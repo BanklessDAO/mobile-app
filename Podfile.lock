@@ -1,0 +1,36 @@
+PODS:
+  - Cartography (4.0.0)
+  - CryptoSwift (1.4.0)
+  - DateToolsSwift (5.0.0)
+  - Fakery (4.1.1)
+  - KeychainAccess (4.2.2)
+  - Kingfisher (6.3.0)
+
+DEPENDENCIES:
+  - Cartography
+  - CryptoSwift
+  - DateToolsSwift
+  - Fakery (~> 4.0)
+  - KeychainAccess
+  - Kingfisher
+
+SPEC REPOS:
+  trunk:
+    - Cartography
+    - CryptoSwift
+    - DateToolsSwift
+    - Fakery
+    - KeychainAccess
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
+  CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
+  DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
+  Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+
+PODFILE CHECKSUM: d7fd4f087f2482f87ef3ab0fa597191e8dab6862
+
+COCOAPODS: 1.10.1
