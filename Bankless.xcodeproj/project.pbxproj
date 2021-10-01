@@ -8,9 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
+		FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3802706276200A47A91 /* HomeViewModel.swift */; };
+		FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3822706277200A47A91 /* HomeViewController.swift */; };
+		FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */; };
+		FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38727062B4000A47A91 /* HomeTimelineView.swift */; };
+		FF78F38C27062B9800A47A91 /* BountyListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38B27062B9800A47A91 /* BountyListItemViewModel.swift */; };
+		FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38D27062BAF00A47A91 /* BountyListCell.swift */; };
+		FF78F39027062BC900A47A91 /* AcademyCourseListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38F27062BC900A47A91 /* AcademyCourseListItemViewModel.swift */; };
+		FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39127062BDA00A47A91 /* AcademyCourseListCell.swift */; };
+		FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39427062C9200A47A91 /* BaseViewModel.swift */; };
+		FF78F3992706357C00A47A91 /* SimpleServiceDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */; };
+		FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39B270635CB00A47A91 /* SimpleDependencyContainer.swift */; };
+		FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39C270635CB00A47A91 /* DependencyContainer.swift */; };
+		FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3A0270636E800A47A91 /* TimelineService.swift */; };
+		FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3A32706374F00A47A91 /* AcademyCourse.swift */; };
+		FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3A927063BDB00A47A91 /* Bounty.swift */; };
+		FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3AB27063C3E00A47A91 /* Member.swift */; };
+		FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3B32706617C00A47A91 /* TimelineItemsResponse.swift */; };
+		FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3B7270665A300A47A91 /* NetworkTimelineService.swift */; };
+		FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3B92706691200A47A91 /* HomeCoordinator.swift */; };
+		FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3BB27066AB700A47A91 /* BaseViewController.swift */; };
+		FF78F3BF270673C000A47A91 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3BE270673C000A47A91 /* Appearance.swift */; };
+		FF78F3C12706741100A47A91 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C02706741100A47A91 /* Colors.swift */; };
+		FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */; };
+		FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */; };
+		FF78F3CF270699DD00A47A91 /* SimpleRouterDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */; };
+		FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D127069A7300A47A91 /* HomeRouter.swift */; };
+		FF78F3D427069A8800A47A91 /* DefaultHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */; };
+		FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */; };
+		FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D72706B27A00A47A91 /* BaseView.swift */; };
+		FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */; };
 		FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D494127053EF300F0244B /* AppDelegate.swift */; };
 		FF7D494427053EF300F0244B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D494327053EF300F0244B /* SceneDelegate.swift */; };
-		FF7D494627053EF300F0244B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D494527053EF300F0244B /* ViewController.swift */; };
 		FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEB2705494100629D79 /* Assets.xcassets */; };
 		FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CED2705494100629D79 /* LaunchScreen.storyboard */; };
 		FF9F5CF32705494100629D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEF2705494100629D79 /* Main.storyboard */; };
@@ -26,10 +55,39 @@
 		CDD460298AF5A9BA27A098F9 /* Pods-Bankless.release prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release prod.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release prod.xcconfig"; sourceTree = "<group>"; };
 		DB0843873BAF88B7E110EFC2 /* Pods-Bankless.debug prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.debug prod.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.debug prod.xcconfig"; sourceTree = "<group>"; };
 		DE0C7DF155A900E0F4FC4E7F /* Pods-Bankless.debug test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.debug test.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.debug test.xcconfig"; sourceTree = "<group>"; };
+		FF78F3802706276200A47A91 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		FF78F3822706277200A47A91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewModel.swift; sourceTree = "<group>"; };
+		FF78F38727062B4000A47A91 /* HomeTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineView.swift; sourceTree = "<group>"; };
+		FF78F38B27062B9800A47A91 /* BountyListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListItemViewModel.swift; sourceTree = "<group>"; };
+		FF78F38D27062BAF00A47A91 /* BountyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListCell.swift; sourceTree = "<group>"; };
+		FF78F38F27062BC900A47A91 /* AcademyCourseListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseListItemViewModel.swift; sourceTree = "<group>"; };
+		FF78F39127062BDA00A47A91 /* AcademyCourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseListCell.swift; sourceTree = "<group>"; };
+		FF78F39427062C9200A47A91 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleServiceDependencyContainer.swift; sourceTree = "<group>"; };
+		FF78F39B270635CB00A47A91 /* SimpleDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDependencyContainer.swift; sourceTree = "<group>"; };
+		FF78F39C270635CB00A47A91 /* DependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		FF78F3A0270636E800A47A91 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
+		FF78F3A32706374F00A47A91 /* AcademyCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourse.swift; sourceTree = "<group>"; };
+		FF78F3A927063BDB00A47A91 /* Bounty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bounty.swift; sourceTree = "<group>"; };
+		FF78F3AB27063C3E00A47A91 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		FF78F3B32706617C00A47A91 /* TimelineItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineItemsResponse.swift; sourceTree = "<group>"; };
+		FF78F3B7270665A300A47A91 /* NetworkTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimelineService.swift; sourceTree = "<group>"; };
+		FF78F3B92706691200A47A91 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		FF78F3BB27066AB700A47A91 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FF78F3BE270673C000A47A91 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		FF78F3C02706741100A47A91 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademyCourse+TitleBehaviour.swift"; sourceTree = "<group>"; };
+		FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBehaviour.swift; sourceTree = "<group>"; };
+		FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRouterDependencyContainer.swift; sourceTree = "<group>"; };
+		FF78F3D127069A7300A47A91 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHomeRouter.swift; sourceTree = "<group>"; };
+		FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		FF78F3D72706B27A00A47A91 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		FF7D493E27053EF300F0244B /* Bankless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7D494127053EF300F0244B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF7D494327053EF300F0244B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FF7D494527053EF300F0244B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF7D494F27053EF400F0244B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF9F5CE42705464400629D79 /* Mock.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Mock.xcconfig; sourceTree = "<group>"; };
 		FF9F5CE52705465400629D79 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
@@ -77,6 +135,7 @@
 		FF78F371270552E800A47A91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FF78F39A270635B000A47A91 /* DependencyContainer */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -84,6 +143,11 @@
 		FF78F3722705545A00A47A91 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FF78F3BD270673A600A47A91 /* Configuration */,
+				FF78F3CA270695CB00A47A91 /* Behaviour */,
+				FF78F3CD2706999100A47A91 /* Navigation */,
+				FF78F39327062C8300A47A91 /* Base */,
+				FF78F37F2706271B00A47A91 /* Home */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -91,6 +155,7 @@
 		FF78F3732705547700A47A91 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FF78F3A22706373600A47A91 /* Models */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -98,8 +163,151 @@
 		FF78F3742705549700A47A91 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */,
+				FF78F39F270636DC00A47A91 /* Timeline */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		FF78F37F2706271B00A47A91 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3B92706691200A47A91 /* HomeCoordinator.swift */,
+				FF78F3802706276200A47A91 /* HomeViewModel.swift */,
+				FF78F3822706277200A47A91 /* HomeViewController.swift */,
+				FF78F38427062AE600A47A91 /* Timeline */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FF78F38427062AE600A47A91 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */,
+				FF78F38727062B4000A47A91 /* HomeTimelineView.swift */,
+				FF78F38927062B4700A47A91 /* BountyBoard */,
+				FF78F38A27062B5200A47A91 /* BanklessAcademy */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		FF78F38927062B4700A47A91 /* BountyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F38B27062B9800A47A91 /* BountyListItemViewModel.swift */,
+				FF78F38D27062BAF00A47A91 /* BountyListCell.swift */,
+			);
+			path = BountyBoard;
+			sourceTree = "<group>";
+		};
+		FF78F38A27062B5200A47A91 /* BanklessAcademy */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F38F27062BC900A47A91 /* AcademyCourseListItemViewModel.swift */,
+				FF78F39127062BDA00A47A91 /* AcademyCourseListCell.swift */,
+			);
+			path = BanklessAcademy;
+			sourceTree = "<group>";
+		};
+		FF78F39327062C8300A47A91 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3D72706B27A00A47A91 /* BaseView.swift */,
+				FF78F39427062C9200A47A91 /* BaseViewModel.swift */,
+				FF78F3BB27066AB700A47A91 /* BaseViewController.swift */,
+				FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */,
+				FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		FF78F39A270635B000A47A91 /* DependencyContainer */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F39C270635CB00A47A91 /* DependencyContainer.swift */,
+				FF78F39B270635CB00A47A91 /* SimpleDependencyContainer.swift */,
+			);
+			path = DependencyContainer;
+			sourceTree = "<group>";
+		};
+		FF78F39F270636DC00A47A91 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3A0270636E800A47A91 /* TimelineService.swift */,
+				FF78F3B32706617C00A47A91 /* TimelineItemsResponse.swift */,
+				FF78F3B52706656C00A47A91 /* Implementation */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		FF78F3A22706373600A47A91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3A32706374F00A47A91 /* AcademyCourse.swift */,
+				FF78F3A927063BDB00A47A91 /* Bounty.swift */,
+				FF78F3AB27063C3E00A47A91 /* Member.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FF78F3B52706656C00A47A91 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3B62706657F00A47A91 /* Network */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FF78F3B62706657F00A47A91 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3B7270665A300A47A91 /* NetworkTimelineService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FF78F3BD270673A600A47A91 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3BE270673C000A47A91 /* Appearance.swift */,
+				FF78F3C02706741100A47A91 /* Colors.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		FF78F3C62706955B00A47A91 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FF78F3CA270695CB00A47A91 /* Behaviour */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */,
+				FF78F3C62706955B00A47A91 /* Extensions */,
+			);
+			path = Behaviour;
+			sourceTree = "<group>";
+		};
+		FF78F3CD2706999100A47A91 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */,
+				FF78F3D027069A3B00A47A91 /* Home */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		FF78F3D027069A3B00A47A91 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F3D127069A7300A47A91 /* HomeRouter.swift */,
+				FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		FF7D493527053EF300F0244B = {
@@ -124,14 +332,13 @@
 		FF7D494027053EF300F0244B /* Bankless */ = {
 			isa = PBXGroup;
 			children = (
+				FF78F371270552E800A47A91 /* Common */,
+				FF78F3722705545A00A47A91 /* Presentation */,
 				FF78F3742705549700A47A91 /* Services */,
 				FF78F3732705547700A47A91 /* Data */,
-				FF78F3722705545A00A47A91 /* Presentation */,
-				FF78F371270552E800A47A91 /* Common */,
 				FF9F5CE7270546E200629D79 /* Resources */,
 				FF7D494127053EF300F0244B /* AppDelegate.swift */,
 				FF7D494327053EF300F0244B /* SceneDelegate.swift */,
-				FF7D494527053EF300F0244B /* ViewController.swift */,
 				FF7D494F27053EF400F0244B /* Info.plist */,
 			);
 			path = Bankless;
@@ -280,9 +487,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF7D494627053EF300F0244B /* ViewController.swift in Sources */,
+				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
+				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
+				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
+				FF78F38C27062B9800A47A91 /* BountyListItemViewModel.swift in Sources */,
+				FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */,
+				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
+				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
+				FF78F3BF270673C000A47A91 /* Appearance.swift in Sources */,
+				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
+				FF78F3D427069A8800A47A91 /* DefaultHomeRouter.swift in Sources */,
+				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
+				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
+				FF78F3992706357C00A47A91 /* SimpleServiceDependencyContainer.swift in Sources */,
+				FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */,
+				FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */,
+				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
+				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
 				FF7D494427053EF300F0244B /* SceneDelegate.swift in Sources */,
+				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
+				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
+				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
+				FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */,
+				FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */,
+				FF78F3CF270699DD00A47A91 /* SimpleRouterDependencyContainer.swift in Sources */,
+				FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */,
+				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
+				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
+				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
+				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
+				FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */,
+				FF78F39027062BC900A47A91 /* AcademyCourseListItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +615,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,6 +775,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -613,6 +852,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -751,6 +991,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -771,6 +1012,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
