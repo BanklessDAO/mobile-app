@@ -1,18 +1,19 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '13.1'
 
 target 'Bankless' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  
+  # Functional reactive extensions
+  pod 'RxSwift'
+  pod 'RxCocoa'
   
   # Autolayout library
   pod 'Cartography'
   
   # Human-fiendly dates
   pod 'DateToolsSwift'
-  
-  # Image caching
-  pod 'Kingfisher'
   
   # Crypto & Keychain
   pod 'KeychainAccess'

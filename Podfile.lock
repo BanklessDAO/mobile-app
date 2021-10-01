@@ -4,7 +4,12 @@ PODS:
   - DateToolsSwift (5.0.0)
   - Fakery (4.1.1)
   - KeychainAccess (4.2.2)
-  - Kingfisher (6.3.0)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
 
 DEPENDENCIES:
   - Cartography
@@ -12,7 +17,8 @@ DEPENDENCIES:
   - DateToolsSwift
   - Fakery (~> 4.0)
   - KeychainAccess
-  - Kingfisher
+  - RxCocoa
+  - RxSwift
 
 SPEC REPOS:
   trunk:
@@ -21,7 +27,9 @@ SPEC REPOS:
     - DateToolsSwift
     - Fakery
     - KeychainAccess
-    - Kingfisher
+    - RxCocoa
+    - RxRelay
+    - RxSwift
 
 SPEC CHECKSUMS:
   Cartography: c5626d29056b20f1e95c017326ee4df57cc39ad8
@@ -29,8 +37,10 @@ SPEC CHECKSUMS:
   DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: d7fd4f087f2482f87ef3ab0fa597191e8dab6862
+PODFILE CHECKSUM: fe335db254afb4a2991f21a4e23a5ff6934c45bb
 
 COCOAPODS: 1.10.1
