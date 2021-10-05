@@ -54,7 +54,7 @@ extension Bounty {
         let setAt: Date
     }
     
-    enum Status: String, Codable {
+    enum Status: String, Codable, CaseIterable {
         case dummy
     }
 }

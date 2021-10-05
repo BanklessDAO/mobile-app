@@ -37,7 +37,7 @@ struct AcademyCourse: Codable {
 }
 
 extension AcademyCourse {
-    enum Difficulty: String, Codable {
+    enum Difficulty: String, Codable, CaseIterable {
         case easy
         case medium
         case hard
@@ -54,7 +54,7 @@ extension AcademyCourse {
 }
 
 extension AcademyCourse.Section {
-    enum `Type`: String, Codable {
+    enum `Type`: String, Codable, CaseIterable {
         case dummy
     }
     
