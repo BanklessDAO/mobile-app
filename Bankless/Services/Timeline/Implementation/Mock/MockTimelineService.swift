@@ -18,3 +18,15 @@
     
 
 import Foundation
+import RxSwift
+
+final class MockTimelineService: TimelineService {
+    func getTimelineItems() -> Observable<TimelineItemsResponse> {
+        return .just(
+            .init(
+                bounties: Bounty.generateMocks(.random(in: 1 ... 4)),
+                academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 4))
+            )
+        )
+    }
+}
