@@ -20,7 +20,17 @@
 import Foundation
 import UIKit
 
-enum Appearance {
+typealias Appearance = ApplicationAppearance
+
+enum ApplicationAppearance {
+    static func apply(window: UIWindow) {
+        if #available(iOS 13.0, *) {
+            window.overrideUserInterfaceStyle = .dark
+        }
+    }
+}
+
+extension ApplicationAppearance {
     static let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     static let contentPaddings = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
     
