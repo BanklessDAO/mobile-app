@@ -27,6 +27,8 @@ final class HomeCoordinator: TimelineServiceDependency {
     
     var timelineService: TimelineService!
     
+    var initialViewController: UIViewController!
+    
     init(
         container: DependencyContainer
     ) {
@@ -34,10 +36,12 @@ final class HomeCoordinator: TimelineServiceDependency {
     }
     
     func start() {
-        fatalError("not implemented")
+        initialViewController = createHomeViewController()
     }
     
     private func createHomeViewController() -> UIViewController {
-        fatalError("not implemented")
+        let viewController = HomeViewController()
+        container.resolve(viewController.viewModel)
+        return viewController
     }
 }
