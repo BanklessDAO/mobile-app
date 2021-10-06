@@ -19,8 +19,6 @@
 
 import Foundation
 
-final class SimpleRouterDependencyContainer: SimpleDependencyContainer { }
-
-protocol HomeRouterDependency {
-    var homeRouter: HomeRouter! { get set }
+protocol TimelineServiceDependency {
+    var timelineService: TimelineService! { get set }
 }

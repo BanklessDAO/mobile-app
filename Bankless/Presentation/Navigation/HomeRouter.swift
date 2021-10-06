@@ -19,7 +19,7 @@
 
 import Foundation
 
-final class DefaultHomeRouter: HomeRouter {
+class HomeRouter {
     func openBounty(_ bounty: Bounty) {
         fatalError("not implemented")
     }

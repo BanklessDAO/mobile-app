@@ -20,19 +20,17 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator: TimelineServiceDependency, HomeRouterDependency {
-    private let routerContainer: SimpleRouterDependencyContainer
-    private let serviceContainer: SimpleServiceDependencyContainer
+final class HomeCoordinator: TimelineServiceDependency {
+    private let container: DependencyContainer
     
-    var homeRouter: HomeRouter!
+    private var homeRouter: HomeRouter!
+    
     var timelineService: TimelineService!
     
     init(
-        routerContainer: SimpleRouterDependencyContainer,
-        serviceContainer: SimpleServiceDependencyContainer
+        container: DependencyContainer
     ) {
-        self.routerContainer = routerContainer
-        self.serviceContainer = serviceContainer
+        self.container = container
     }
     
     func start() {
