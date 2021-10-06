@@ -19,11 +19,19 @@
 
 import Foundation
 import UIKit
+import Cartography
+import RxSwift
+import RxCocoa
 
 class BountyListCell: BaseTableViewCell<BountyListItemViewModel> {
     class var reuseIdentifier: String {
         return String(describing: BountyListCell.self)
     }
+    
+    // MARK: - Subviews -
+    
+    private var titleLabel: UILabel!
+    private var forwardNavIconView: UIImageView!
     
     // MARK: - Setup -
     

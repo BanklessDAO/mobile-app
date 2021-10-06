@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
+		FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF786690270CFD39000279FE /* MockTimelineService.swift */; };
 		FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3802706276200A47A91 /* HomeViewModel.swift */; };
 		FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3822706277200A47A91 /* HomeViewController.swift */; };
 		FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */; };
@@ -17,7 +18,7 @@
 		FF78F39027062BC900A47A91 /* AcademyCourseListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F38F27062BC900A47A91 /* AcademyCourseListItemViewModel.swift */; };
 		FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39127062BDA00A47A91 /* AcademyCourseListCell.swift */; };
 		FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39427062C9200A47A91 /* BaseViewModel.swift */; };
-		FF78F3992706357C00A47A91 /* SimpleServiceDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */; };
+		FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3982706357C00A47A91 /* ServiceDependencies.swift */; };
 		FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39B270635CB00A47A91 /* SimpleDependencyContainer.swift */; };
 		FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F39C270635CB00A47A91 /* DependencyContainer.swift */; };
 		FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3A0270636E800A47A91 /* TimelineService.swift */; };
@@ -28,13 +29,11 @@
 		FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3B7270665A300A47A91 /* NetworkTimelineService.swift */; };
 		FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3B92706691200A47A91 /* HomeCoordinator.swift */; };
 		FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3BB27066AB700A47A91 /* BaseViewController.swift */; };
-		FF78F3BF270673C000A47A91 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3BE270673C000A47A91 /* Appearance.swift */; };
+		FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3BE270673C000A47A91 /* ApplicationAppearance.swift */; };
 		FF78F3C12706741100A47A91 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C02706741100A47A91 /* Colors.swift */; };
 		FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */; };
 		FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */; };
-		FF78F3CF270699DD00A47A91 /* SimpleRouterDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */; };
 		FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D127069A7300A47A91 /* HomeRouter.swift */; };
-		FF78F3D427069A8800A47A91 /* DefaultHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */; };
 		FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */; };
 		FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D72706B27A00A47A91 /* BaseView.swift */; };
 		FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */; };
@@ -43,6 +42,13 @@
 		FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEB2705494100629D79 /* Assets.xcassets */; };
 		FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CED2705494100629D79 /* LaunchScreen.storyboard */; };
 		FF9F5CF32705494100629D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEF2705494100629D79 /* Main.storyboard */; };
+		FFAE9843270D009C0047405D /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9842270D009C0047405D /* Mock.swift */; };
+		FFAE9845270D03610047405D /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9844270D03610047405D /* Mocks.swift */; };
+		FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */; };
+		FFAE984A270D17CC0047405D /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9849270D17CC0047405D /* Configurator.swift */; };
+		FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE984B270D18930047405D /* ApplicationConfigurator.swift */; };
+		FFAE984E270D19410047405D /* NetworkConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE984D270D19410047405D /* NetworkConfigurator.swift */; };
+		FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE984F270D194E0047405D /* MockConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +61,7 @@
 		CDD460298AF5A9BA27A098F9 /* Pods-Bankless.release prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release prod.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release prod.xcconfig"; sourceTree = "<group>"; };
 		DB0843873BAF88B7E110EFC2 /* Pods-Bankless.debug prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.debug prod.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.debug prod.xcconfig"; sourceTree = "<group>"; };
 		DE0C7DF155A900E0F4FC4E7F /* Pods-Bankless.debug test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.debug test.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.debug test.xcconfig"; sourceTree = "<group>"; };
+		FF786690270CFD39000279FE /* MockTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimelineService.swift; sourceTree = "<group>"; };
 		FF78F3802706276200A47A91 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FF78F3822706277200A47A91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewModel.swift; sourceTree = "<group>"; };
@@ -64,7 +71,7 @@
 		FF78F38F27062BC900A47A91 /* AcademyCourseListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseListItemViewModel.swift; sourceTree = "<group>"; };
 		FF78F39127062BDA00A47A91 /* AcademyCourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseListCell.swift; sourceTree = "<group>"; };
 		FF78F39427062C9200A47A91 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleServiceDependencyContainer.swift; sourceTree = "<group>"; };
+		FF78F3982706357C00A47A91 /* ServiceDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDependencies.swift; sourceTree = "<group>"; };
 		FF78F39B270635CB00A47A91 /* SimpleDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDependencyContainer.swift; sourceTree = "<group>"; };
 		FF78F39C270635CB00A47A91 /* DependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		FF78F3A0270636E800A47A91 /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
@@ -75,13 +82,11 @@
 		FF78F3B7270665A300A47A91 /* NetworkTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTimelineService.swift; sourceTree = "<group>"; };
 		FF78F3B92706691200A47A91 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FF78F3BB27066AB700A47A91 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		FF78F3BE270673C000A47A91 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		FF78F3BE270673C000A47A91 /* ApplicationAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAppearance.swift; sourceTree = "<group>"; };
 		FF78F3C02706741100A47A91 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademyCourse+TitleBehaviour.swift"; sourceTree = "<group>"; };
 		FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBehaviour.swift; sourceTree = "<group>"; };
-		FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRouterDependencyContainer.swift; sourceTree = "<group>"; };
 		FF78F3D127069A7300A47A91 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
-		FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHomeRouter.swift; sourceTree = "<group>"; };
 		FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		FF78F3D72706B27A00A47A91 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +100,13 @@
 		FF9F5CEB2705494100629D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF9F5CEE2705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF9F5CF02705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		FFAE9842270D009C0047405D /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		FFAE9844270D03610047405D /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		FFAE9849270D17CC0047405D /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		FFAE984B270D18930047405D /* ApplicationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConfigurator.swift; sourceTree = "<group>"; };
+		FFAE984D270D19410047405D /* NetworkConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfigurator.swift; sourceTree = "<group>"; };
+		FFAE984F270D194E0047405D /* MockConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +144,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF78668F270CFD1F000279FE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FF786690270CFD39000279FE /* MockTimelineService.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		FF78F371270552E800A47A91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,7 +167,9 @@
 				FF78F3CA270695CB00A47A91 /* Behaviour */,
 				FF78F3CD2706999100A47A91 /* Navigation */,
 				FF78F39327062C8300A47A91 /* Base */,
-				FF78F37F2706271B00A47A91 /* Home */,
+				FFAE9852270E41780047405D /* Hierarchy */,
+				FFAE9851270E3F590047405D /* Views */,
+				FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -163,7 +185,7 @@
 		FF78F3742705549700A47A91 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				FF78F3982706357C00A47A91 /* SimpleServiceDependencyContainer.swift */,
+				FF78F3982706357C00A47A91 /* ServiceDependencies.swift */,
 				FF78F39F270636DC00A47A91 /* Timeline */,
 			);
 			path = Services;
@@ -243,6 +265,7 @@
 		FF78F3A22706373600A47A91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FFAE9841270CFF850047405D /* Mocks */,
 				FF78F3A32706374F00A47A91 /* AcademyCourse.swift */,
 				FF78F3A927063BDB00A47A91 /* Bounty.swift */,
 				FF78F3AB27063C3E00A47A91 /* Member.swift */,
@@ -254,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3B62706657F00A47A91 /* Network */,
+				FF78668F270CFD1F000279FE /* Mock */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -269,7 +293,7 @@
 		FF78F3BD270673A600A47A91 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				FF78F3BE270673C000A47A91 /* Appearance.swift */,
+				FF78F3BE270673C000A47A91 /* ApplicationAppearance.swift */,
 				FF78F3C02706741100A47A91 /* Colors.swift */,
 			);
 			path = Configuration;
@@ -295,19 +319,9 @@
 		FF78F3CD2706999100A47A91 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				FF78F3CE270699DD00A47A91 /* SimpleRouterDependencyContainer.swift */,
-				FF78F3D027069A3B00A47A91 /* Home */,
+				FF78F3D127069A7300A47A91 /* HomeRouter.swift */,
 			);
 			path = Navigation;
-			sourceTree = "<group>";
-		};
-		FF78F3D027069A3B00A47A91 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				FF78F3D127069A7300A47A91 /* HomeRouter.swift */,
-				FF78F3D327069A8800A47A91 /* DefaultHomeRouter.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		FF7D493527053EF300F0244B = {
@@ -333,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F371270552E800A47A91 /* Common */,
+				FFAE9848270D17570047405D /* Configuration */,
 				FF78F3722705545A00A47A91 /* Presentation */,
 				FF78F3742705549700A47A91 /* Services */,
 				FF78F3732705547700A47A91 /* Data */,
@@ -370,6 +385,41 @@
 				FF9F5CEF2705494100629D79 /* Main.storyboard */,
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		FFAE9841270CFF850047405D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FFAE9842270D009C0047405D /* Mock.swift */,
+				FFAE9844270D03610047405D /* Mocks.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		FFAE9848270D17570047405D /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				FFAE9849270D17CC0047405D /* Configurator.swift */,
+				FFAE984B270D18930047405D /* ApplicationConfigurator.swift */,
+				FFAE984D270D19410047405D /* NetworkConfigurator.swift */,
+				FFAE984F270D194E0047405D /* MockConfigurator.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		FFAE9851270E3F590047405D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FFAE9852270E41780047405D /* Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F37F2706271B00A47A91 /* Home */,
+			);
+			path = Hierarchy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,16 +540,19 @@
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
+				FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */,
+				FFAE9845270D03610047405D /* Mocks.swift in Sources */,
 				FF78F38C27062B9800A47A91 /* BountyListItemViewModel.swift in Sources */,
 				FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
-				FF78F3BF270673C000A47A91 /* Appearance.swift in Sources */,
+				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
 				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
-				FF78F3D427069A8800A47A91 /* DefaultHomeRouter.swift in Sources */,
 				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
+				FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */,
+				FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
-				FF78F3992706357C00A47A91 /* SimpleServiceDependencyContainer.swift in Sources */,
+				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
 				FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */,
 				FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */,
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
@@ -508,13 +561,16 @@
 				FF7D494427053EF300F0244B /* SceneDelegate.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
+				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
+				FFAE9843270D009C0047405D /* Mock.swift in Sources */,
 				FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */,
+				FFAE984E270D19410047405D /* NetworkConfigurator.swift in Sources */,
 				FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */,
-				FF78F3CF270699DD00A47A91 /* SimpleRouterDependencyContainer.swift in Sources */,
 				FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
+				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
 				FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */,
@@ -601,7 +657,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG MOCK";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Debug Mock";
@@ -684,7 +740,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG PROD";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Debug Prod";
@@ -760,6 +816,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MOCK;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -837,6 +894,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PROD;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -921,7 +979,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TEST";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Debug Test";
@@ -976,6 +1034,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
