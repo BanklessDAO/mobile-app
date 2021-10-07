@@ -19,23 +19,48 @@
 
 import Foundation
 import UIKit
+import Cartography
+import RxSwift
+import RxCocoa
 
-class AcademyCourseListCell: BaseTableViewCell<AcademyCourseListItemViewModel> {
+class AcademyCourseListCell: BaseTableViewCell<AcademyCourseViewModel> {
     class var reuseIdentifier: String {
         return String(describing: AcademyCourseListCell.self)
     }
     
+    // MARK: - Subviews -
+    
+    private var card: AcademyCourseCard!
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {
-        fatalError("not implemented")
+        separatorInset = .init(
+            top: 0,
+            left: CGFloat.greatestFiniteMagnitude,
+            bottom: 0,
+            right: 0
+        )
+        
+        card = AcademyCourseCard()
+        contentView.addSubview(card)
     }
     
     override func setUpConstraints() {
-        fatalError("not implemented")
+        constrain(card, contentView) { (card, view) in
+            card.edges == view.edges
+                .inseted(
+                    by: .init(
+                        top: Appearance.contentInsets.top / 2,
+                        left: Appearance.contentInsets.left,
+                        bottom: Appearance.contentInsets.bottom / 2,
+                        right: Appearance.contentInsets.right
+                    )
+                )
+        }
     }
     
     override func bindViewModel() {
-        fatalError("not implemented")
+        card.bind(viewModel: viewModel)
     }
 }

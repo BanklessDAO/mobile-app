@@ -23,27 +23,44 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class BountyListCell: BaseTableViewCell<BountyListItemViewModel> {
+class BountyListCell: BaseTableViewCell<BountyViewModel> {
     class var reuseIdentifier: String {
         return String(describing: BountyListCell.self)
     }
     
     // MARK: - Subviews -
     
-    private var titleLabel: UILabel!
-    private var forwardNavIconView: UIImageView!
+    private var card: BountyCard!
     
     // MARK: - Setup -
     
     override func setUpSubviews() {
-        fatalError("not implemented")
+        separatorInset = .init(
+            top: 0,
+            left: CGFloat.greatestFiniteMagnitude,
+            bottom: 0,
+            right: 0
+        )
+        
+        card = BountyCard()
+        contentView.addSubview(card)
     }
     
     override func setUpConstraints() {
-        fatalError("not implemented")
+        constrain(card, contentView) { (card, view) in
+            card.edges == view.edges
+                .inseted(
+                    by: .init(
+                        top: Appearance.contentInsets.top / 2,
+                        left: Appearance.contentInsets.left,
+                        bottom: Appearance.contentInsets.bottom / 2,
+                        right: Appearance.contentInsets.right
+                    )
+                )
+        }
     }
     
     override func bindViewModel() {
-        fatalError("not implemented")
+        card.bind(viewModel: viewModel)
     }
 }
