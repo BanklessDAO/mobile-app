@@ -25,5 +25,7 @@ target 'Bankless' do
   # Image caching
   pod 'Kingfisher', '~> 7.0'
   
+  # GraphQL client library
+  pod 'Apollo'
 
 end
