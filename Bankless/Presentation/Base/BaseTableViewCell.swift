@@ -68,10 +68,6 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
         bindViewModel()
     }
     
-    func bindViewModel() {
-        fatalError("must be implemented in subclasses")
-    }
-    
     // MARK: - Setup -
     
     func setUp() {
@@ -85,5 +81,11 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
     
     func setUpConstraints() {
         fatalError("must be implemented in a subclass")
+    }
+    
+    // MARK: - Bindings -
+    
+    func bindViewModel() {
+        fatalError("must be implemented in subclasses")
     }
 }
