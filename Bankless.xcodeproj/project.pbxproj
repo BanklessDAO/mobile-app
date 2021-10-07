@@ -36,7 +36,6 @@
 		FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D72706B27A00A47A91 /* BaseView.swift */; };
 		FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */; };
 		FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D494127053EF300F0244B /* AppDelegate.swift */; };
-		FF7D494427053EF300F0244B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D494327053EF300F0244B /* SceneDelegate.swift */; };
 		FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEB2705494100629D79 /* Assets.xcassets */; };
 		FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CED2705494100629D79 /* LaunchScreen.storyboard */; };
 		FF9F5CF32705494100629D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEF2705494100629D79 /* Main.storyboard */; };
@@ -54,6 +53,9 @@
 		FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9867270E83D60047405D /* BountyViewModel.swift */; };
 		FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE986A270E86250047405D /* AcademyCourseViewModel.swift */; };
 		FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE986C270E86DB0047405D /* AcademyCourseCard.swift */; };
+		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
+		FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */; };
+		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,7 +97,6 @@
 		FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		FF7D493E27053EF300F0244B /* Bankless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7D494127053EF300F0244B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF7D494327053EF300F0244B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FF7D494F27053EF400F0244B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF9F5CE42705464400629D79 /* Mock.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Mock.xcconfig; sourceTree = "<group>"; };
 		FF9F5CE52705465400629D79 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
@@ -117,6 +118,9 @@
 		FFAE9867270E83D60047405D /* BountyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyViewModel.swift; sourceTree = "<group>"; };
 		FFAE986A270E86250047405D /* AcademyCourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseViewModel.swift; sourceTree = "<group>"; };
 		FFAE986C270E86DB0047405D /* AcademyCourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseCard.swift; sourceTree = "<group>"; };
+		FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCell.swift; sourceTree = "<group>"; };
+		FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSectionHeaderCell.swift; sourceTree = "<group>"; };
+		FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,7 +364,6 @@
 				FF78F3732705547700A47A91 /* Data */,
 				FF9F5CE7270546E200629D79 /* Resources */,
 				FF7D494127053EF300F0244B /* AppDelegate.swift */,
-				FF7D494327053EF300F0244B /* SceneDelegate.swift */,
 				FF7D494F27053EF400F0244B /* Info.plist */,
 			);
 			path = Bankless;
@@ -487,18 +490,29 @@
 		FFAE986E270F6B360047405D /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				FFAE9871270F6BBA0047405D /* General */,
+				FFAE9875270F6EA80047405D /* Common */,
+				FFAE9872270F6C330047405D /* News */,
 				FF78F38927062B4700A47A91 /* BountyBoard */,
 				FF78F38A27062B5200A47A91 /* BanklessAcademy */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
 		};
-		FFAE9871270F6BBA0047405D /* General */ = {
+		FFAE9872270F6C330047405D /* News */ = {
 			isa = PBXGroup;
 			children = (
+				FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */,
+				FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */,
 			);
-			path = General;
+			path = News;
+			sourceTree = "<group>";
+		};
+		FFAE9875270F6EA80047405D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,9 +640,11 @@
 				FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */,
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFAE985D270E43D00047405D /* CardView.swift in Sources */,
+				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
 				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
+				FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */,
 				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
 				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
 				FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */,
@@ -641,7 +657,7 @@
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
-				FF7D494427053EF300F0244B /* SceneDelegate.swift in Sources */,
+				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
