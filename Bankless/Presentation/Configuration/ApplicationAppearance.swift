@@ -33,19 +33,80 @@ enum ApplicationAppearance {
 extension ApplicationAppearance {
     static let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     static let contentPaddings = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
+    static let cornerRadius: CGFloat = 10.0
     
     enum Text {
-        static let font: UIFont = .systemFont(ofSize: UIFont.systemFontSize)
-        
-        enum Heading {
-            enum H1 {
-                static let font: UIFont = .boldSystemFont(ofSize: UIFont.systemFontSize + 10.0)
-                static let height: CGFloat = 30.0
+        enum Font {
+            enum Header1 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                        ? .boldSystemFont(ofSize: UIFont.systemFontSize + 20.0)
+                        : .systemFont(ofSize: UIFont.systemFontSize + 20.0)
+                }
+                static let lineHeight: CGFloat = 40.0
             }
             
-            enum H2 {
-                static let font: UIFont = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize + 5)
-                static let height: CGFloat = 25.0
+            enum Header2 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 16.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 16.0)
+                }
+                static let lineHeight: CGFloat = 30.0
+            }
+            
+            enum Title1 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 12.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 12.0)
+                }
+                static let lineHeight: CGFloat = 20.0
+            }
+            
+            enum Title2 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 8.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 8.0)
+                }
+                static let lineHeight: CGFloat = 20.0
+            }
+            
+            enum Label1 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 4.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 4.0)
+                }
+                static let lineHeight: CGFloat = 20.0
+            }
+            
+            enum Label2 {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 2.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 2.0)
+                }
+                static let lineHeight: CGFloat = 20.0
+            }
+            
+            enum Body {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize)
+                    : .systemFont(ofSize: UIFont.systemFontSize)
+                }
+                static let lineHeight: CGFloat = 15.0
+            }
+            
+            enum Note {
+                static func font(bold isBold: Bool) -> UIFont {
+                    return isBold
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize - 2.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize - 2.0)
+                }
+                static let lineHeight: CGFloat = 12.0
             }
         }
     }
