@@ -34,6 +34,17 @@ class ViewModelFoundation {
     
     var disposer = DisposeBag()
     
+    // MARK: - Components -
+    
+    var container: DependencyContainer?
+    
+    // MARK: - Initializers -
+    
+    init(container: DependencyContainer? = nil) {
+        self.container = container
+        self.container?.resolve(self)
+    }
+    
     // MARK: - Setters -
     
     func set<Model>(model: Model) {

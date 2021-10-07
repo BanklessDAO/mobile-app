@@ -20,12 +20,8 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator: TimelineServiceDependency {
+final class HomeCoordinator {
     private let container: DependencyContainer
-    
-    private var homeRouter: HomeRouter!
-    
-    var timelineService: TimelineService!
     
     var initialViewController: UIViewController!
     
@@ -33,15 +29,15 @@ final class HomeCoordinator: TimelineServiceDependency {
         container: DependencyContainer
     ) {
         self.container = container
-    }
-    
-    func start() {
         initialViewController = createHomeViewController()
     }
     
     private func createHomeViewController() -> UIViewController {
-        let viewController = HomeViewController()
-        container.resolve(viewController.viewModel)
+        let viewModel = HomeViewModel(container: container)
+        viewModel.set(router: HomeRouter())
+        
+        let viewController = HomeViewController.init(nibName: nil, bundle: nil)
+        viewController.set(viewModel: viewModel)
         return viewController
     }
 }

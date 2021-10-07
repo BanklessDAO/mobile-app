@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel: BaseViewModel {
+class HomeViewModel: BaseViewModel, TimelineServiceDependency {
     // MARK: - Input/Output -
     
     struct Input { }
@@ -33,15 +33,9 @@ class HomeViewModel: BaseViewModel {
     // MARK: - Components -
     
     private var homeRouter: HomeRouter!
-    private var timelineService: TimelineService!
+    var timelineService: TimelineService!
     
     // MARK: - Setters -
-    
-    override func set<Service>(service: Service) {
-        if let timelineService = service as? TimelineService {
-            self.timelineService = timelineService
-        }
-    }
     
     override func set<Router>(router: Router) {
         if let homeRouter = router as? HomeRouter {
@@ -64,7 +58,7 @@ class HomeViewModel: BaseViewModel {
     private func timelineViewModel() -> Observable<HomeTimelineViewModel> {
         let viewModel = HomeTimelineViewModel()
         viewModel.set(router: homeRouter)
-        viewModel.set(service: timelineService)
+        self.container?.resolve(viewModel)
         
         return .just(viewModel)
     }

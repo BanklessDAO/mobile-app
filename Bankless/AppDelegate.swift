@@ -50,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window: window,
             container: container
         )
-        container.resolve(applicationCoordinator)
         
         applicationCoordinator.start()
         

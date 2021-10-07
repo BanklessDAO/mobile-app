@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class HomeTimelineViewModel: BaseViewModel {
+final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
     // MARK: - Input / Output -
     
     struct Input {
@@ -60,15 +60,9 @@ final class HomeTimelineViewModel: BaseViewModel {
     // MARK: - Components -
     
     private var homeRouter: HomeRouter!
-    private var timelineService: TimelineService!
+    var timelineService: TimelineService!
     
     // MARK: - Setters -
-    
-    override func set<Service>(service: Service) {
-        if let timelineService = service as? TimelineService {
-            self.timelineService = timelineService
-        }
-    }
     
     override func set<Router>(router: Router) {
         if let homeRouter = router as? HomeRouter {
@@ -129,6 +123,6 @@ final class HomeTimelineViewModel: BaseViewModel {
     private func bindSelection(
         input: Driver<IndexPath>
     ) {
-        fatalError("not implemented")
+        // TODO: Implement transations
     }
 }

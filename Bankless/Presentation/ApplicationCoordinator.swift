@@ -42,14 +42,13 @@ class ApplicationCoordinator: NSObject {
         self.window = window
         self.container = container
         homeCoordinator = HomeCoordinator(container: container)
-        container.resolve(homeCoordinator)
         
         super.init()
         
-        presentNavigationController()
+        setUpNavigationController()
     }
     
-    private func presentNavigationController() {
+    private func setUpNavigationController() {
         if navigationController == nil {
             navigationController = BaseNavigationController()
         }
@@ -69,6 +68,5 @@ class ApplicationCoordinator: NSObject {
     
     private func startMainFlow() {
         window.rootViewController = navigationController
-        homeCoordinator.start()
     }
 }
