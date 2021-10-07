@@ -35,6 +35,8 @@ class BountyListCell: BaseTableViewCell<BountyViewModel> {
     // MARK: - Setup -
     
     override func setUpSubviews() {
+        backgroundColor = .backgroundBlack
+        
         separatorInset = .init(
             top: 0,
             left: CGFloat.greatestFiniteMagnitude,

@@ -61,7 +61,7 @@ extension ApplicationAppearance {
                     ? .boldSystemFont(ofSize: UIFont.systemFontSize + 12.0)
                     : .systemFont(ofSize: UIFont.systemFontSize + 12.0)
                 }
-                static let lineHeight: CGFloat = 20.0
+                static let lineHeight: CGFloat = 28.0
             }
             
             enum Title2 {
@@ -70,7 +70,7 @@ extension ApplicationAppearance {
                     ? .boldSystemFont(ofSize: UIFont.systemFontSize + 8.0)
                     : .systemFont(ofSize: UIFont.systemFontSize + 8.0)
                 }
-                static let lineHeight: CGFloat = 20.0
+                static let lineHeight: CGFloat = 24.0
             }
             
             enum Label1 {
