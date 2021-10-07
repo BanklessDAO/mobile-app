@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-06.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class AcademyCourseListItemViewModel: BaseViewModel {
+final class AcademyCourseViewModel: BaseViewModel {
     // MARK: - Input/Output -
     
     struct Input { }
@@ -70,9 +70,9 @@ class AcademyCourseListItemViewModel: BaseViewModel {
         let minutes = academyCourse.duration % 60
         
         return .just(
-                AcademyCourseListItemViewModel.durationEmoji
-                    + " " + String(minutes)
-                    + " " + AcademyCourseListItemViewModel.durationUnitTitle
-            )
+            AcademyCourseViewModel.durationEmoji
+            + " " + String(minutes)
+            + " " + AcademyCourseViewModel.durationUnitTitle
+        )
     }
 }
