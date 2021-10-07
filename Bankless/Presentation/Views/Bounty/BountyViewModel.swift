@@ -52,7 +52,7 @@ final class BountyViewModel: BaseViewModel {
     
     private func rewardString() -> Observable<String> {
         return .just(
-            String(bounty.reward.amount)
+            String(Int(bounty.reward.amount))
             + " " + bounty.reward.currency
         )
     }

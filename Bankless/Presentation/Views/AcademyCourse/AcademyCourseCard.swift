@@ -28,9 +28,11 @@ class AcademyCourseCard: CardView {
     // MARK: - Constants -
     
     private static let backgroundColor: UIColor = .backgroundGrey.withAlphaComponent(0.3)
+    private static let backgroundCurtainAlpha: CGFloat = 0.7
     private static let forwardNavigationIcon = UIImage(named: "arrow_right")!
     private static let sizeRatio: CGSize = .init(width: 16, height: 9)
-    private static let tagHeight: CGFloat = 60.0
+    private static let tagHeight: CGFloat = 40.0
+    private static let tagPadding: CGFloat = 20.0
     
     // MARK: - Properties -
     
@@ -39,6 +41,7 @@ class AcademyCourseCard: CardView {
     // MARK: - Subviews -
     
     private var backgroundImageView: UIImageView!
+    private var backgroundCurtainView: UIView!
     private var forwardNavIconView: UIImageView!
     private var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
@@ -71,6 +74,11 @@ class AcademyCourseCard: CardView {
         backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
         
+        backgroundCurtainView = UIView()
+        backgroundCurtainView.backgroundColor = .black
+        backgroundCurtainView.alpha = AcademyCourseCard.backgroundCurtainAlpha
+        addSubview(backgroundCurtainView)
+        
         forwardNavIconView = UIImageView(image: AcademyCourseCard.forwardNavigationIcon)
         forwardNavIconView.contentMode = .scaleAspectFit
         addSubview(forwardNavIconView)
@@ -81,18 +89,23 @@ class AcademyCourseCard: CardView {
         addSubview(titleLabel)
         
         subtitleLabel = UILabel()
+        subtitleLabel.numberOfLines = 0
         subtitleLabel.textColor = .secondaryWhite
         subtitleLabel.font = Appearance.Text.Font.Label2.font(bold: false)
         addSubview(subtitleLabel)
         
         difficultyTagView = TagView()
+        difficultyTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         difficultyTagView.cornerRadius = Appearance.cornerRadius
         difficultyTagView.backgroundColor = .backgroundGrey
+        difficultyTagView.horizontalPadding = AcademyCourseCard.tagPadding
         addSubview(difficultyTagView)
         
         durationTagView = TagView()
+        durationTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         durationTagView.cornerRadius = Appearance.cornerRadius
         durationTagView.backgroundColor = .backgroundGrey
+        difficultyTagView.horizontalPadding = AcademyCourseCard.tagPadding
         addSubview(durationTagView)
     }
     
@@ -107,35 +120,39 @@ class AcademyCourseCard: CardView {
             bg.edges == view.edges
         }
         
+        constrain(backgroundCurtainView, self) { curtain, view in
+            curtain.edges == view.edges
+        }
+        
         constrain(forwardNavIconView, self) { (icon, view) in
-            icon.top == view.top + Appearance.contentInsets.top
-            icon.right == view.right - Appearance.contentInsets.right
+            icon.top == view.top + CardView.contentInsets.top
+            icon.right == view.right - CardView.contentInsets.right
             icon.height == Appearance.Text.Font.Label2.lineHeight
             icon.width == icon.height
         }
         
         constrain(titleLabel, subtitleLabel, self) { (title, subtitle, view) in
-            title.top >= view.top + Appearance.contentInsets.top
+            title.top >= view.top + CardView.contentInsets.top
             title.left == subtitle.left
             title.right == subtitle.right
-            title.bottom == subtitle.top - Appearance.contentPaddings.bottom
+            title.bottom == subtitle.top - CardView.contentPaddings.bottom
         }
         
         constrain(subtitleLabel, difficultyTagView, self) { (subtitle, difficulty, view) in
-            subtitle.left == view.left + Appearance.contentInsets.left
-            subtitle.right == difficulty.left - Appearance.contentPaddings.left
-            subtitle.bottom == view.bottom - Appearance.contentInsets.bottom
+            subtitle.left == view.left + CardView.contentInsets.left
+            subtitle.right == difficulty.left - CardView.contentPaddings.left
+            subtitle.bottom == view.bottom - CardView.contentInsets.bottom
         }
         
         constrain(difficultyTagView, durationTagView, self) { (difficulty, duration, view) in
-            difficulty.bottom == duration.top - Appearance.contentPaddings.bottom
-            difficulty.right == view.right - Appearance.contentInsets.right
+            difficulty.bottom == duration.top - CardView.contentPaddings.bottom
+            difficulty.right == view.right - CardView.contentInsets.right
             difficulty.height == AcademyCourseCard.tagHeight
         }
         
         constrain(durationTagView, self) { (duration, view) in
-            duration.bottom == view.bottom - Appearance.contentInsets.bottom
-            duration.right == view.right - Appearance.contentInsets.right
+            duration.bottom == view.bottom - CardView.contentInsets.bottom
+            duration.right == view.right - CardView.contentInsets.right
             duration.height == AcademyCourseCard.tagHeight
         }
     }

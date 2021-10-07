@@ -28,7 +28,8 @@ class BountyCard: CardView {
     
     private static let backgroundColor: UIColor = .backgroundGrey.withAlphaComponent(0.3)
     private static let forwardNavigationIcon = UIImage(named: "arrow_right")!
-    private static let rewardTagHeight: CGFloat = 60.0
+    private static let rewardTagHeight: CGFloat = 40.0
+    private static let tagPadding: CGFloat = 20.0
     
     // MARK: - Properties -
     
@@ -72,30 +73,32 @@ class BountyCard: CardView {
         addSubview(forwardNavIconView)
         
         rewardTagView = TagView()
+        rewardTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         rewardTagView.cornerRadius = Appearance.cornerRadius
         rewardTagView.backgroundColor = .backgroundGrey
+        rewardTagView.horizontalPadding = BountyCard.tagPadding
         addSubview(rewardTagView)
     }
     
     func setUpConstraints() {
         constrain(forwardNavIconView, self) { (icon, view) in
-            icon.top == view.top + Appearance.contentInsets.top
-            icon.right == view.right - Appearance.contentInsets.right
+            icon.top == view.top + CardView.contentInsets.top
+            icon.right == view.right - CardView.contentInsets.right
             icon.height == Appearance.Text.Font.Label2.lineHeight
             icon.width == icon.height
         }
         
         constrain(titleLabel, forwardNavIconView, self) { (title, icon, view) in
-            title.left == view.left + Appearance.contentInsets.left
+            title.left == view.left + CardView.contentInsets.left
             title.height == icon.height
             title.centerY == icon.centerY
-            title.right == icon.left - Appearance.contentPaddings.left
+            title.right == icon.left - CardView.contentPaddings.left
         }
         
         constrain(rewardTagView, titleLabel, self) { (reward, title, view) in
-            reward.top == title.bottom + Appearance.contentPaddings.bottom
-            reward.left == view.left + Appearance.contentInsets.left
-            reward.bottom == view.bottom - Appearance.contentInsets.bottom
+            reward.top == title.bottom + CardView.contentPaddings.bottom
+            reward.left == view.left + CardView.contentInsets.left
+            reward.bottom == view.bottom - CardView.contentInsets.bottom
             reward.height == BountyCard.rewardTagHeight
         }
     }

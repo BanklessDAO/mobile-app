@@ -26,6 +26,14 @@ class CardView: UIView {
     
     private static let cornerRadius: CGFloat = 10.0
     
+    static let contentInsets: UIEdgeInsets = .init(
+        top: Appearance.contentInsets.top * 2,
+        left: Appearance.contentInsets.left * 2,
+        bottom: Appearance.contentInsets.bottom * 2,
+        right: Appearance.contentInsets.right * 2
+    )
+    static let contentPaddings = Appearance.contentPaddings
+    
     // MARK: - Initializers -
     
     override init(frame: CGRect) {
