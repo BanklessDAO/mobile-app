@@ -217,8 +217,7 @@
 			children = (
 				FF78F38527062B3500A47A91 /* HomeTimelineViewModel.swift */,
 				FF78F38727062B4000A47A91 /* HomeTimelineView.swift */,
-				FF78F38927062B4700A47A91 /* BountyBoard */,
-				FF78F38A27062B5200A47A91 /* BanklessAcademy */,
+				FFAE986E270F6B360047405D /* Sections */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -483,6 +482,23 @@
 				FFAE986A270E86250047405D /* AcademyCourseViewModel.swift */,
 			);
 			path = AcademyCourse;
+			sourceTree = "<group>";
+		};
+		FFAE986E270F6B360047405D /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				FFAE9871270F6BBA0047405D /* General */,
+				FF78F38927062B4700A47A91 /* BountyBoard */,
+				FF78F38A27062B5200A47A91 /* BanklessAcademy */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		FFAE9871270F6BBA0047405D /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
