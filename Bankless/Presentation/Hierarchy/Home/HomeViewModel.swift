@@ -27,15 +27,8 @@ class HomeViewModel: BaseViewModel {
     struct Input { }
     
     struct Output {
-        let title: Driver<String>
         let timelineViewModel: Driver<HomeTimelineViewModel>
     }
-    
-    // MARK: - Constants -
-    
-    private static let timelineTitle = NSLocalizedString(
-        "home.timeline.title", value: "Today", comment: ""
-    )
     
     // MARK: - Components -
     
@@ -62,7 +55,6 @@ class HomeViewModel: BaseViewModel {
         let timelineViewModel = self.timelineViewModel()
         
         return Output(
-            title: .just(HomeViewModel.timelineTitle),
             timelineViewModel: timelineViewModel.asDriver(onErrorDriveWith: .empty())
         )
     }

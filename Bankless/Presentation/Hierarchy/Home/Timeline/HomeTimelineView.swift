@@ -38,7 +38,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     
     // MARK: - Source -
     
-    let source = BehaviorRelay<TableSource>(value: TableSource())
+    let source = BehaviorRelay<TableSource>(value: .init())
     
     // MARK: - Initializers -
     
@@ -76,8 +76,8 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         )
         
         tableView.register(
-            BountyListCell.self,
-            forCellReuseIdentifier: BountyListCell.reuseIdentifier
+            AcademyCourseListCell.self,
+            forCellReuseIdentifier: AcademyCourseListCell.reuseIdentifier
         )
         
         addSubview(tableView)
@@ -127,5 +127,37 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
 }
 
 extension HomeTimelineView {
-    struct TableSource { }
+    struct TableSource {
+        let title: String
+        let bountiesSectionTitle: String
+        let bountyViewModels: [BountyViewModel]
+        let academyCoursesSectionTitle: String
+        let academyCourseViewModels: [AcademyCourseViewModel]
+        let expandSectionButtonTitle: String
+        
+        init(
+            title: String,
+            bountiesSectionTitle: String,
+            bountyViewModels: [BountyViewModel],
+            academyCoursesSectionTitle: String,
+            academyCourseViewModels: [AcademyCourseViewModel],
+            expandSectionButtonTitle: String
+        ) {
+            self.title = title
+            self.bountiesSectionTitle = bountiesSectionTitle
+            self.bountyViewModels = bountyViewModels
+            self.academyCoursesSectionTitle = academyCoursesSectionTitle
+            self.academyCourseViewModels = academyCourseViewModels
+            self.expandSectionButtonTitle = expandSectionButtonTitle
+        }
+        
+        init() {
+            self.title = ""
+            self.bountiesSectionTitle = ""
+            self.bountyViewModels = []
+            self.academyCoursesSectionTitle = ""
+            self.academyCourseViewModels = []
+            self.expandSectionButtonTitle = ""
+        }
+    }
 }

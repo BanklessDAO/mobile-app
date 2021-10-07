@@ -31,14 +31,19 @@ final class HomeTimelineViewModel: BaseViewModel {
     }
     
     struct Output {
+        let title: Driver<String>
         let bountiesSectionTitle: Driver<String>
-        let bountyViewModels: Driver<[BountyListItemViewModel]>
+        let bountyViewModels: Driver<[BountyViewModel]>
         let academyCoursesSectionTitle: Driver<String>
-        let academyCourseViewModels: Driver<[AcademyCourseListItemViewModel]>
+        let academyCourseViewModels: Driver<[AcademyCourseViewModel]>
         let expandSectionButtonTitle: Driver<String>
     }
     
     // MARK: - Constants -
+    
+    private static let timelineTitle = NSLocalizedString(
+        "home.timeline.title", value: "Today", comment: ""
+    )
     
     static let expandSectionButtonTitle = NSLocalizedString(
         "home.timeline.section.controls.expand.title", value: "See All", comment: ""
@@ -80,7 +85,7 @@ final class HomeTimelineViewModel: BaseViewModel {
         
         let bountyViewModels = bounties
             .map({ bounties in
-                return bounties.map({ return BountyListItemViewModel(bounty: $0) })
+                return bounties.map({ return BountyViewModel(bounty: $0) })
             })
         
         
@@ -91,12 +96,13 @@ final class HomeTimelineViewModel: BaseViewModel {
         let academyCourseViewModels = academyCourses
             .map({ academyCourses in
                 return academyCourses
-                    .map({ return AcademyCourseListItemViewModel(academyCourse: $0) })
+                    .map({ return AcademyCourseViewModel(academyCourse: $0) })
             })
         
         bindSelection(input: input.selection)
         
         return Output(
+            title: .just(HomeTimelineViewModel.timelineTitle),
             bountiesSectionTitle: .just(HomeTimelineViewModel.bountiesSectionTitle),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty()),
             academyCoursesSectionTitle: .just(HomeTimelineViewModel.academySectionTitle),

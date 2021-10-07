@@ -33,8 +33,6 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     
     // MARK: - Subviews -
     
-    private var titleLabel: UILabel!
-    private var horizontalSeparatorView: UIView!
     private var timelineView: HomeTimelineView!
     
     // MARK: - Setup -
@@ -46,26 +44,19 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     }
     
     func setUpSubviews() {
-        titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Heading.H1.font
-        titleLabel.textColor = .secondaryWhite
-        view.addSubview(titleLabel)
-        
-        horizontalSeparatorView = UIView()
-        horizontalSeparatorView.backgroundColor = .secondaryGrey
-        horizontalSeparatorView.isHidden = true
-        view.addSubview(horizontalSeparatorView)
-        
         timelineView = HomeTimelineView()
         view.addSubview(timelineView)
-        
     }
     
     func setUpConstraints() {
-        fatalError("not implemented")
+        constrain(timelineView, view) { (timeline, view) in
+            timeline.edges == view.edges
+        }
     }
     
     func bindViewModel() {
-        fatalError("not implemented")
+        let output = viewModel.transform(input: .init())
+        
+        timelineView.bind(viewModel: output.timelineViewModel)
     }
 }
