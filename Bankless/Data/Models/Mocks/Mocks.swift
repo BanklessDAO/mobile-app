@@ -42,7 +42,7 @@ extension AcademyCourse: Mock {
             id: UUID().uuidString,
             name: faker.lorem.sentence(wordsAmount: 3).capitalized,
             slug: faker.internet.username(separator: nil),
-            backgroundImageURL: URL(string: faker.internet.image())!,
+            backgroundImageURL: URL(string: "https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/96d01/hero.png")!,
             notionId: UUID().uuidString,
             poapEventId: Int.random(in: 0 ... 1_000_000),
             description: faker.company.catchPhrase(),
