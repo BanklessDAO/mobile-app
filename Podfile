@@ -21,5 +21,9 @@ target 'Bankless' do
 
   # Fake data for demo purposes
   pod 'Fakery', '~> 4.0'
+  
+  # Image caching
+  pod 'Kingfisher', '~> 7.0'
+  
 
 end
