@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-29.
+//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -15,12 +15,37 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see https://www.gnu.org/licenses/.
 //
+    
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
+class BaseViewController<VM: ViewModel>: UIViewController {
+    // MARK: - Constants -
+    
+    let contentInsets = Appearance.contentInsets
+    let contentPaddings = Appearance.contentPaddings
+    
+    // MARK: - Properties -
+    
+    var viewModel: VM!
+    
+    // MARK: - Setters -
+    
+    func set(viewModel: VM) {
+        self.viewModel = viewModel
+    }
+    
+    // MARK: - Life cycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setUp()
+    }
+    
+    // MARK: - Setup -
+    
+    func setUp() {
+        fatalError("must be implemented in a subclass")
     }
 }

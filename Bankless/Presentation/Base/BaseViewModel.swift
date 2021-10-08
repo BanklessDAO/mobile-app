@@ -1,0 +1,61 @@
+//
+//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Copyright (C) 2021 BanklessDAO.
+
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Affero General Public License as
+//  published by the Free Software Foundation, either version 3 of the
+//  License, or (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Affero General Public License for more details.
+//
+//  You should have received a copy of the GNU Affero General Public License
+//  along with this program.  If not, see https://www.gnu.org/licenses/.
+//
+
+
+import Foundation
+import RxSwift
+
+typealias BaseViewModel = ViewModelFoundation & ViewModel
+
+protocol ViewModel {
+    associatedtype Input
+    associatedtype Output
+    
+    func transform(input: Input) -> Output
+}
+
+class ViewModelFoundation {
+    // MARK: - Properties -
+    
+    var disposer = DisposeBag()
+    
+    // MARK: - Components -
+    
+    var container: DependencyContainer?
+    
+    // MARK: - Initializers -
+    
+    init(container: DependencyContainer? = nil) {
+        self.container = container
+        self.container?.resolve(self)
+    }
+    
+    // MARK: - Setters -
+    
+    func set<Model>(model: Model) {
+        return
+    }
+    
+    func set<Service>(service: Service) {
+        return
+    }
+    
+    func set<Router>(router: Router) {
+        return
+    }
+}
