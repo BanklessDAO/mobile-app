@@ -154,7 +154,6 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     // MARK: - Data source -
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Num of rows: \(self.source.value.numberOfRows)")
         return self.source.value.numberOfRows
     }
     
