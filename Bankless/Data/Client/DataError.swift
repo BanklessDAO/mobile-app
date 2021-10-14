@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,8 @@
     
 
 import Foundation
-import RxSwift
 
-final class NetworkTimelineService: TimelineService {
-    private let dataClient: DataClient
-    
-    init(
-        dataClient: DataClient
-    ) {
-        self.dataClient = dataClient
-    }
-    
-    func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return dataClient.request(query: .timelineItems)
-    }
+enum DataError: Error {
+    case generic([Error])
+    case mappingError(Error)
 }
