@@ -5,6 +5,9 @@ target 'Bankless' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
+  # Big integer type
+  pod 'BigInt'
+  
   # Functional reactive extensions
   pod 'RxSwift'
   pod 'RxCocoa'
