@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-14.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,9 +18,18 @@
     
 
 import Foundation
+import RxSwift
 
-enum DataQuery {
-    case bankOnChainInfo
-    case poapTokens
-    case timelineItems
+final class NetworkBanklessService: BanklessService {
+    private let dataClient: DataClient
+    
+    init(
+        dataClient: DataClient
+    ) {
+        self.dataClient = dataClient
+    }
+    
+    func getDAOOwnership() -> Observable<DAOOwnershipResponse> {
+        return dataClient.request(query: .bankOnChainInfo)
+    }
 }
