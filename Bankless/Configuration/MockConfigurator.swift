@@ -23,6 +23,16 @@ class MockConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
+        let banklessService = MockBanklessService()
+        container.register { (object: inout BanklessServiceDependency) in
+            object.banklessService = banklessService
+        }
+        
+        let achievementsService = MockAchievementsService()
+        container.register { (object: inout AchievementsServiceDependency) in
+            object.achievementsService = achievementsService
+        }
+        
         let timelineService = MockTimelineService()
         container.register { (object: inout TimelineServiceDependency) in
             object.timelineService = timelineService
