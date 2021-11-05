@@ -136,9 +136,10 @@ extension AttendanceToken: Mock {
             mintedAt: faker.date.backward(days: .random(in: 0 ... 1_000)),
             imageUrl: URL(
                 string: [
-                    "https://storage.googleapis.com/poapmedia/website-meeting-bdao-219-2021-logo-1632473979083.png",
                     "https://storage.googleapis.com/poapmedia/banklessdao-dev-guild-weekly-sync-100421-2021-logo-1633379567327.png",
-                    "https://storage.googleapis.com/poapmedia/banklessdao-dev-guild-weekly-sync-101121-2021-logo-1633899593231.png"
+                    "https://storage.googleapis.com/poapmedia/banklessdao-dev-guild-weekly-sync-101121-2021-logo-1633899593231.png",
+                    "https://storage.googleapis.com/poapmedia/joseph-turner-2021-logo-1634223520875.png",
+                    "https://storage.googleapis.com/poapmedia/banklessdao-grants-committee-weekly-092821-2021-logo-1632861501883.png",
                 ].randomElement()!
             )!
         )
