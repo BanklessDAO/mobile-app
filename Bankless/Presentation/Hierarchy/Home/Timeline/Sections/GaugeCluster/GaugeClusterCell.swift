@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-07.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-14.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -23,42 +23,20 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class FeaturedNewsCell: UITableViewCell {
+class GaugeClusterCell: BaseTableViewCell<GaugeClusterViewModel> {
     class var reuseIdentifier: String {
-        return String(describing: FeaturedNewsCell.self)
+        return String(describing: GaugeClusterCell.self)
     }
     
     // MARK: - Subviews -
     
-    private var titleLabel: UILabel!
-    
-    // MARK: - Initializers -
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUp()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Setters -
-    
-    func set(title: String) {
-        titleLabel.text = title
-    }
+    private var gaugeClusterView: GaugeClusterView!
     
     // MARK: - Setup -
     
-    func setUp() {
+    override func setUpSubviews() {
         backgroundColor = .backgroundBlack
         
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-    func setUpSubviews() {
         separatorInset = .init(
             top: 0,
             left: CGFloat.greatestFiniteMagnitude,
@@ -66,16 +44,26 @@ class FeaturedNewsCell: UITableViewCell {
             right: 0
         )
         
-        titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Font.Header1.font(bold: true)
-        titleLabel.textColor = .secondaryWhite
-        contentView.addSubview(titleLabel)
+        gaugeClusterView = GaugeClusterView()
+        contentView.addSubview(gaugeClusterView)
     }
     
-    func setUpConstraints() {
-        constrain(titleLabel, contentView) { (title, view) in
-            title.height == Appearance.Text.Font.Header1.lineHeight
-            title.edges == view.edges.inseted(by: Appearance.contentInsets)
+    override func setUpConstraints() {
+        constrain(gaugeClusterView, contentView) { (cluster, view) in
+            cluster.edges == view.edges
+                .inseted(
+                    by: .init(
+                        top: Appearance.contentInsets.top / 2,
+                        left: 0,
+                        bottom: Appearance.contentInsets.bottom / 2,
+                        right: 0
+                    )
+                )
         }
+    }
+    
+    override func bindViewModel() {
+        gaugeClusterView.viewModel = viewModel
+        gaugeClusterView.bindViewModel()
     }
 }

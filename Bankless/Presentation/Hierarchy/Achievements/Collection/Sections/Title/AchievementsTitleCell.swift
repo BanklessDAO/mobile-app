@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-18.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,31 +18,28 @@
     
 
 import Foundation
+import UIKit
 import Cartography
 import RxSwift
 import RxCocoa
 
-typealias BaseTableViewCell<VM: ViewModel> = TableViewCellFoundation<VM> & ReusableCell
-
-class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
-    // MARK: - Constants -
-    
-    let contentInsets = Appearance.contentInsets
-    let contentPaddings = Appearance.contentPaddings
-    
-    var insetsHeight: CGFloat {
-        return contentInsets.top + contentInsets.bottom
+class AchievementsTitleCell: UICollectionViewCell {
+    class var reuseIdentifier: String {
+        return String(describing: AchievementsTitleCell.self)
     }
     
-    // MARK: - Properties -
+    override var reuseIdentifier: String? {
+        return AchievementsTitleCell.reuseIdentifier
+    }
     
-    var viewModel: VM!
-    var disposer = DisposeBag()
+    // MARK: - Subviews -
+    
+    private var titleLabel: UILabel!
     
     // MARK: - Initializers -
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
     }
     
@@ -50,40 +47,30 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Life cycle -
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposer = DisposeBag()
-    }
-    
     // MARK: - Setters -
     
-    func set(viewModel: VM) {
-        self.viewModel = viewModel
-        bindViewModel()
+    func set(title: String) {
+        titleLabel.text = title
     }
     
     // MARK: - Setup -
     
     func setUp() {
-        selectionStyle = .none
-        
         setUpSubviews()
         setUpConstraints()
     }
     
     func setUpSubviews() {
-        fatalError("must be implemented in a subclass")
+        titleLabel = UILabel()
+        titleLabel.font = Appearance.Text.Font.Header1.font(bold: true)
+        titleLabel.textColor = .secondaryWhite
+        contentView.addSubview(titleLabel)
     }
     
     func setUpConstraints() {
-        fatalError("must be implemented in a subclass")
-    }
-    
-    // MARK: - Bindings -
-    
-    func bindViewModel() {
-        fatalError("must be implemented in subclasses")
+        constrain(titleLabel, contentView) { (title, view) in
+            title.height == Appearance.Text.Font.Header1.lineHeight
+            title.edges == view.edges
+        }
     }
 }

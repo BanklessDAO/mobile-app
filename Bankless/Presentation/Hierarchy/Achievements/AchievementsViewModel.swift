@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -21,56 +21,35 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel: BaseViewModel, TimelineServiceDependency {
+class AchievementsViewModel: BaseViewModel, AchievementsServiceDependency {
     // MARK: - Input/Output -
     
     struct Input { }
     
     struct Output {
-        let timelineViewModel: Driver<HomeTimelineViewModel>
+        let collectionViewModel: Driver<AchievementCollectionViewModel>
     }
-    
-    // MARK: - Actions -
-    
-    struct Actions {
-        let openAchievements = PublishRelay<Void>()
-    }
-    
-    let actions = Actions()
     
     // MARK: - Components -
     
-    var timelineService: TimelineService!
+    var achievementsService: AchievementsService!
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        subscribeToInputEvents()
-        
-        let timelineViewModel = self.timelineViewModel()
+        let collectionViewModel = self.collectionViewModel()
         
         return Output(
-            timelineViewModel: timelineViewModel.asDriver(onErrorDriveWith: .empty())
+            collectionViewModel: collectionViewModel.asDriver(onErrorDriveWith: .empty())
         )
     }
     
     // MARK: - Timeline -
     
-    private func timelineViewModel() -> Observable<HomeTimelineViewModel> {
-        let viewModel = HomeTimelineViewModel()
+    private func collectionViewModel() -> Observable<AchievementCollectionViewModel> {
+        let viewModel = AchievementCollectionViewModel()
         self.container?.resolve(viewModel)
         
         return .just(viewModel)
-    }
-    
-    // MARK: - Subscriptions -
-    
-    private func subscribeToInputEvents() {
-        NotificationCenter.default.rx
-            .notification(NotificationEvent.achievementsPreviewTapped.notificationName, object: nil)
-            .subscribe(onNext: { [weak self] _ in
-                self?.actions.openAchievements.accept(())
-            })
-            .disposed(by: disposer)
     }
 }

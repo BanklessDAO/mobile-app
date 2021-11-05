@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,14 +19,26 @@
 
 import Foundation
 
-protocol BanklessServiceDependency {
-    var banklessService: BanklessService! { get set }
-}
+import Foundation
+import UIKit
 
-protocol AchievementsServiceDependency {
-    var achievementsService: AchievementsService! { get set }
-}
-
-protocol TimelineServiceDependency {
-    var timelineService: TimelineService! { get set }
+final class AchievementsCoordinator {
+    private let container: DependencyContainer
+    
+    var initialViewController: UIViewController!
+    
+    init(
+        container: DependencyContainer
+    ) {
+        self.container = container
+        initialViewController = createAchievementsViewController()
+    }
+    
+    private func createAchievementsViewController() -> UIViewController {
+        let viewModel = AchievementsViewModel(container: container)
+        
+        let viewController = AchievementsViewController.init(nibName: nil, bundle: nil)
+        viewController.set(viewModel: viewModel)
+        return viewController
+    }
 }

@@ -21,7 +21,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
+final class HomeTimelineViewModel: BaseViewModel,
+                                   BanklessServiceDependency,
+                                   AchievementsServiceDependency,
+                                   TimelineServiceDependency
+{
     // MARK: - Input / Output -
     
     struct Input {
@@ -31,6 +35,7 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
     }
     
     struct Output {
+        let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
         let title: Driver<String>
         let bountiesSectionTitle: Driver<String>
         let bountyViewModels: Driver<[BountyViewModel]>
@@ -59,21 +64,16 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
     
     // MARK: - Components -
     
-    private var homeRouter: HomeRouter!
+    var banklessService: BanklessService!
+    var achievementsService: AchievementsService!
     var timelineService: TimelineService!
-    
-    // MARK: - Setters -
-    
-    override func set<Router>(router: Router) {
-        if let homeRouter = router as? HomeRouter {
-            self.homeRouter = homeRouter
-        }
-    }
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let timelineItems = self.timelineItems(refreshInput: .just(())).share()
+        let refreshTrigger = Driver<Void>.just(())
+        
+        let timelineItems = self.timelineItems(refreshInput: refreshTrigger).share()
         
         let bounties = timelineItems.map({ $0.bounties }).share()
         
@@ -96,6 +96,8 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
         bindSelection(input: input.selection)
         
         return Output(
+            gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
+                .asDriver(onErrorDriveWith: .empty()),
             title: .just(HomeTimelineViewModel.timelineTitle),
             bountiesSectionTitle: .just(HomeTimelineViewModel.bountiesSectionTitle),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty()),
@@ -105,6 +107,53 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
         )
     }
     
+    // MARK: - Gauge cluster -
+    
+    private func gaugeClusterViewModel(
+        refreshInput: Driver<Void>
+    ) -> Observable<GaugeClusterViewModel> {
+        let bankAccount = daoOwnership(refreshInput: refreshInput)
+            .map({ $0.bankAccount })
+        let attendanceTokens = achievements(refreshInput: refreshInput)
+            .map({ $0.attendanceTokens })
+        
+        return .combineLatest(
+            bankAccount,
+            attendanceTokens
+        ) { bankAccount, attendanceTokens in
+            return GaugeClusterViewModel(
+                bankAccount: bankAccount,
+                attendanceTokens: attendanceTokens
+            )
+        }
+    }
+    
+    private func daoOwnership(
+        refreshInput: Driver<Void>
+    ) -> Observable<DAOOwnershipResponse> {
+        return refreshInput
+            .asObservable()
+            .flatMapLatest({ [weak self] _ -> Observable<DAOOwnershipResponse> in
+                guard let self = self else { return .empty() }
+
+                return self.banklessService.getDAOOwnership()
+            })
+    }
+    
+    private func achievements(
+        refreshInput: Driver<Void>
+    ) -> Observable<AchievementsResponse> {
+        return refreshInput
+            .asObservable()
+            .flatMapLatest({ [weak self] _ -> Observable<AchievementsResponse> in
+                guard let self = self else { return .empty() }
+                
+                return self.achievementsService.getAchiements()
+            })
+    }
+    
+    // MARK: - Timeline -
+    
     private func timelineItems(
         refreshInput: Driver<Void>
     ) -> Observable<TimelineItemsResponse> {
@@ -113,8 +162,7 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
             .flatMapLatest({ [weak self] _ -> Observable<TimelineItemsResponse> in
                 guard let self = self else { return .empty() }
                 
-                return self.timelineService
-                    .getTimelineItems()
+                return self.timelineService.getTimelineItems()
             })
     }
     
@@ -123,6 +171,6 @@ final class HomeTimelineViewModel: BaseViewModel, TimelineServiceDependency {
     private func bindSelection(
         input: Driver<IndexPath>
     ) {
-        // TODO: Implement transations
+        // TODO: Implement transitions
     }
 }

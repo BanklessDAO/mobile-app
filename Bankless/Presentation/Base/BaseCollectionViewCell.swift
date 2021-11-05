@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-typealias BaseTableViewCell<VM: ViewModel> = TableViewCellFoundation<VM> & ReusableCell
+typealias BaseCollectionViewCell<VM: ViewModel> = CollectionViewCellFoundation<VM> & ReusableCell
 
-class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
+class CollectionViewCellFoundation<VM: ViewModel>: UICollectionViewCell {
     // MARK: - Constants -
     
     let contentInsets = Appearance.contentInsets
@@ -41,8 +41,8 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
     
     // MARK: - Initializers -
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
     }
     
@@ -67,8 +67,6 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
     // MARK: - Setup -
     
     func setUp() {
-        selectionStyle = .none
-        
         setUpSubviews()
         setUpConstraints()
     }

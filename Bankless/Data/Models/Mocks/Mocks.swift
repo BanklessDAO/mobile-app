@@ -19,6 +19,7 @@
 
 import Foundation
 import Fakery
+import BigInt
 
 private let faker = Faker(locale: "en-US")
 
@@ -124,4 +125,57 @@ extension Bounty.Reward: Mock {
             scale: 1
         )
     }
+}
+
+// MARK: - Attendance token -
+
+extension AttendanceToken: Mock {
+    static func generateMock() -> AttendanceToken {
+        return .init(
+            id: UUID().uuidString,
+            mintedAt: faker.date.backward(days: .random(in: 0 ... 1_000)),
+            imageUrl: URL(
+                string: [
+                    "https://storage.googleapis.com/poapmedia/banklessdao-dev-guild-weekly-sync-100421-2021-logo-1633379567327.png",
+                    "https://storage.googleapis.com/poapmedia/banklessdao-dev-guild-weekly-sync-101121-2021-logo-1633899593231.png",
+                    "https://storage.googleapis.com/poapmedia/joseph-turner-2021-logo-1634223520875.png",
+                    "https://storage.googleapis.com/poapmedia/banklessdao-grants-committee-weekly-092821-2021-logo-1632861501883.png",
+                ].randomElement()!
+            )!
+        )
+    }
+}
+
+// MARK: - BANK Account -
+
+extension BANKAccount: Mock {
+    static func generateMock() -> BANKAccount {
+        return .init(
+            address: "0x" + faker.lorem.characters(amount: 40),
+            balance: randomERC20Amount(),
+            transactions: Transaction.generateMocks(.random(in: 10 ... 20))
+        )
+    }
+}
+
+extension BANKAccount.Transaction: Mock {
+    static func generateMock() -> BANKAccount.Transaction {
+        return .init(
+            fromAddress: "0x" + faker.lorem.characters(amount: 40),
+            toAddress: "0x" + faker.lorem.characters(amount: 40),
+            amount: randomERC20Amount(10 ... 500),
+            blockTimestamp: Int(
+                faker.date
+                    .backward(days: .random(in: 0 ... 1_000))
+                    .timeIntervalSince1970
+            )
+        )
+    }
+}
+
+// MARK: - Utils -
+
+private func randomERC20Amount(_ range: ClosedRange<Int> = 100 ... 2_000) -> BigInt {
+    let amount = Int.random(in: range)
+    return BigInt(stringLiteral: String(amount) + String.init(repeating: "0", count: 18))
 }

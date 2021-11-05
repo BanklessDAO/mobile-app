@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,31 +18,21 @@
     
 
 import Foundation
+import UIKit
 import Cartography
 import RxSwift
 import RxCocoa
+import Kingfisher
 
-typealias BaseTableViewCell<VM: ViewModel> = TableViewCellFoundation<VM> & ReusableCell
-
-class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
-    // MARK: - Constants -
+class AttendanceTokenView: BaseView<AttendanceTokenViewModel> {
+    // MARK: - Subviews -
     
-    let contentInsets = Appearance.contentInsets
-    let contentPaddings = Appearance.contentPaddings
-    
-    var insetsHeight: CGFloat {
-        return contentInsets.top + contentInsets.bottom
-    }
-    
-    // MARK: - Properties -
-    
-    var viewModel: VM!
-    var disposer = DisposeBag()
+    private var imageView: UIImageView!
     
     // MARK: - Initializers -
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
     }
     
@@ -52,38 +42,42 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
     
     // MARK: - Life cycle -
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposer = DisposeBag()
-    }
-    
-    // MARK: - Setters -
-    
-    func set(viewModel: VM) {
-        self.viewModel = viewModel
-        bindViewModel()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.layer.cornerRadius = imageView.bounds.width / 2
     }
     
     // MARK: - Setup -
     
-    func setUp() {
-        selectionStyle = .none
-        
+    private func setUp() {
         setUpSubviews()
         setUpConstraints()
     }
     
     func setUpSubviews() {
-        fatalError("must be implemented in a subclass")
+        imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        addSubview(imageView)
     }
     
     func setUpConstraints() {
-        fatalError("must be implemented in a subclass")
+        constrain(imageView, self) { image, view in
+            image.edges == view.edges
+        }
     }
     
-    // MARK: - Bindings -
+    override func bindViewModel() {
+        let output = viewModel.transform(input: input())
+        
+        output.imageURL
+            .drive(onNext: { [weak self] url in
+                self?.imageView.kf.setImage(with: url)
+            })
+            .disposed(by: disposer)
+    }
     
-    func bindViewModel() {
-        fatalError("must be implemented in subclasses")
+    private func input() -> AttendanceTokenViewModel.Input {
+        return .init()
     }
 }

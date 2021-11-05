@@ -74,6 +74,11 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         tableView.delegate = self
         
         tableView.register(
+            GaugeClusterCell.self,
+            forCellReuseIdentifier: GaugeClusterCell.reuseIdentifier
+        )
+        
+        tableView.register(
             FeaturedNewsCell.self,
             forCellReuseIdentifier: FeaturedNewsCell.reuseIdentifier
         )
@@ -122,11 +127,18 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         
         let source = Driver<TableSource>
             .combineLatest(
+                output.gaugeClusterViewModel,
                 generalOutput,
                 bountiesOutput,
                 academyOutput,
-                resultSelector: { general, bounties, academy -> TableSource in
+                resultSelector: {
+                    gaugeCluster,
+                    general,
+                    bounties,
+                    academy -> TableSource in
+                    
                     return TableSource(
+                        gaugeClusterViewModel: gaugeCluster,
                         newsSectionTitle: general.0,
                         bountiesSectionTitle: bounties.0,
                         bountyViewModels: bounties.1,
@@ -163,22 +175,50 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         let row = self.source.value.translateGlobalRow(at: indexPath.row)
         
         switch row.sectionType {
-            
+        
+        case .gaugeCluster:
+            switch self.source.value.gaugeClusterSection.rowType(at: row.localIndex) {
+                
+            case .header:
+                fatalError("not implemented")
+            case .content:
+                let gaugeClusterViewModel = self.source.value
+                    .gaugeClusterSection
+                    .viewModels[0]
+                
+                let gaugeClusterCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: GaugeClusterCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! GaugeClusterCell
+                
+                gaugeClusterCell.set(viewModel: gaugeClusterViewModel)
+                
+                cell = gaugeClusterCell
+            }
         case .news:
             switch self.source.value.newsSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let newsCell = FeaturedNewsCell()
-                newsCell.set(title: self.source.value.newsSection.title ?? "")
-                cell = newsCell
-            case .content:
                 fatalError("not implemented")
+            case .content:
+                let newsCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: FeaturedNewsCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! FeaturedNewsCell
+                newsCell.set(title: self.source.value.title)
+                cell = newsCell
             }
         case .bounties:
             switch self.source.value.bountiesSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let bountiesHeaderCell = TimelineSectionHeaderCell()
+                let bountiesHeaderCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! TimelineSectionHeaderCell
                 bountiesHeaderCell.set(title: self.source.value.bountiesSection.title ?? "")
                 bountiesHeaderCell.setExpandButton(
                     title: self.source.value.expandSectionButtonTitle
@@ -208,7 +248,11 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             switch self.source.value.academyCoursesSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let academyCoursesHeaderCell = TimelineSectionHeaderCell()
+                let academyCoursesHeaderCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! TimelineSectionHeaderCell
                 academyCoursesHeaderCell.set(
                     title: self.source.value.academyCoursesSection.title ?? ""
                 )
@@ -240,22 +284,32 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         
         return cell
     }
+    
+    // MARK: - Delegate -
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }
 
 extension HomeTimelineView {
     struct TableSource {
+        let title: String
         let expandSectionButtonTitle: String
+        let gaugeClusterSection: Section<GaugeClusterViewModel>
         let newsSection: Section<FeaturedNewsViewModel>
         let bountiesSection: Section<BountyViewModel>
         let academyCoursesSection: Section<AcademyCourseViewModel>
         
         var numberOfRows: Int {
-            return newsSection.numberOfRows
+            return gaugeClusterSection.numberOfRows
+                + newsSection.numberOfRows
                 + bountiesSection.numberOfRows
                 + academyCoursesSection.numberOfRows
         }
         
         init(
+            gaugeClusterViewModel: GaugeClusterViewModel,
             newsSectionTitle: String,
             bountiesSectionTitle: String,
             bountyViewModels: [BountyViewModel],
@@ -263,19 +317,28 @@ extension HomeTimelineView {
             academyCourseViewModels: [AcademyCourseViewModel],
             expandSectionButtonTitle: String
         ) {
+            self.title = newsSectionTitle
             self.expandSectionButtonTitle = expandSectionButtonTitle
+            
+            self.gaugeClusterSection = .init(
+                type: .gaugeCluster,
+                viewModels: [gaugeClusterViewModel]
+            )
+            
             self.newsSection = .init(
                 type: .news,
-                title: newsSectionTitle,
-                isExpandable: false,
-                viewModels: []
+                viewModels: [
+                    FeaturedNewsViewModel()
+                ]
             )
+            
             self.bountiesSection = .init(
                 type: .bounties,
                 title: bountiesSectionTitle,
                 isExpandable: true,
                 viewModels: bountyViewModels
             )
+            
             self.academyCoursesSection = .init(
                 type: .academy,
                 title: academyCoursesSectionTitle,
@@ -285,19 +348,28 @@ extension HomeTimelineView {
         }
         
         init() {
+            self.title = ""
             self.expandSectionButtonTitle = ""
+            
+            self.gaugeClusterSection = .init(
+                type: .gaugeCluster,
+                viewModels: []
+            )
+            
             self.newsSection = .init(
                 type: .news,
                 title: "",
                 isExpandable: false,
                 viewModels: []
             )
+            
             self.bountiesSection = .init(
                 type: .bounties,
                 title: "",
                 isExpandable: true,
                 viewModels: []
             )
+            
             self.academyCoursesSection = .init(
                 type: .academy,
                 title: "",
@@ -313,6 +385,11 @@ extension HomeTimelineView {
             
             var localIndex = index
             
+            if localIndex < gaugeClusterSection.numberOfRows {
+                return (sectionType: .gaugeCluster, localIndex: localIndex)
+            }
+            
+            localIndex -= gaugeClusterSection.numberOfRows
             if localIndex < newsSection.numberOfRows {
                 return (sectionType: .news, localIndex: localIndex)
             }
@@ -334,6 +411,7 @@ extension HomeTimelineView {
 
 extension HomeTimelineView.TableSource {
     enum SectionType {
+        case gaugeCluster
         case news
         case bounties
         case academy

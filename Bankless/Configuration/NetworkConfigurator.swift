@@ -26,6 +26,17 @@ class NetworkConfigurator: Configurator {
         let container = SimpleDependencyContainer()
         
         let dataClient = ApolloGraphQLClient(baseURL: NetworkConfigurator.graphQLAPIEndpoint)
+        
+        let banklessService = NetworkBanklessService(dataClient: dataClient)
+        container.register { (object: inout BanklessServiceDependency) in
+            object.banklessService = banklessService
+        }
+        
+        let achievementsService = NetworkAchievementsService(dataClient: dataClient)
+        container.register { (object: inout AchievementsServiceDependency) in
+            object.achievementsService = achievementsService
+        }
+        
         let timelineService = NetworkTimelineService(dataClient: dataClient)
         container.register { (object: inout TimelineServiceDependency) in
             object.timelineService = timelineService

@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -23,33 +23,36 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class HomeViewController: BaseViewController<HomeViewModel> {
+class AttendanceTokenCell: BaseCollectionViewCell<AttendanceTokenViewModel> {
+    class var reuseIdentifier: String {
+        return String(describing: AttendanceTokenCell.self)
+    }
+    
+    override var reuseIdentifier: String? {
+        return AttendanceTokenCell.reuseIdentifier
+    }
+    
     // MARK: - Subviews -
     
-    private var timelineView: HomeTimelineView!
+    private var attendanceTokenView: AttendanceTokenView!
     
     // MARK: - Setup -
     
-    override func setUp() {
-        setUpSubviews()
-        setUpConstraints()
-        bindViewModel()
+    override func setUpSubviews() {
+        backgroundColor = .backgroundBlack
+        
+        attendanceTokenView = AttendanceTokenView()
+        contentView.addSubview(attendanceTokenView)
     }
     
-    func setUpSubviews() {
-        timelineView = HomeTimelineView()
-        view.addSubview(timelineView)
-    }
-    
-    func setUpConstraints() {
-        constrain(timelineView, view) { (timeline, view) in
-            timeline.edges == view.edges
+    override func setUpConstraints() {
+        constrain(attendanceTokenView, contentView) { (token, view) in
+            token.edges == view.edges
         }
     }
     
-    func bindViewModel() {
-        let output = viewModel.transform(input: .init())
-        
-        timelineView.bind(viewModel: output.timelineViewModel)
+    override func bindViewModel() {
+        attendanceTokenView.viewModel = viewModel
+        attendanceTokenView.bindViewModel()
     }
 }

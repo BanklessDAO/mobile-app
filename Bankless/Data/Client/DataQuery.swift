@@ -20,5 +20,7 @@
 import Foundation
 
 enum DataQuery {
+    case bankOnChainInfo
+    case poapTokens
     case timelineItems
 }

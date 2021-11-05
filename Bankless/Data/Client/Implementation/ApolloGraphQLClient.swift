@@ -53,6 +53,44 @@ class ApolloGraphQLClient: DataClient {
                     fatalError("not supported")
                 }
             }
+        case .bankOnChainInfo:
+            return apolloRequest(
+                apolloQuery: SampleDataQuery(),
+                responseType: T.self
+            ) { graphQLResult in
+                if let event = graphQLResult.data?.poapEvent {
+                    print(event)
+                    
+                    let response = DAOOwnershipResponse(
+                        bankAccount: BANKAccount.generateMock()
+                    )
+                    
+                    return .success(response as! T)
+                } else if let errors = graphQLResult.errors {
+                    return .failure(DataError.generic(errors))
+                } else {
+                    fatalError("not supported")
+                }
+            }
+        case .poapTokens:
+            return apolloRequest(
+                apolloQuery: SampleDataQuery(),
+                responseType: T.self
+            ) { graphQLResult in
+                if let event = graphQLResult.data?.poapEvent {
+                    print(event)
+                    
+                    let response = AchievementsResponse(
+                        attendanceTokens: AttendanceToken.generateMocks(.random(in: 5 ... 5))
+                    )
+                    
+                    return .success(response as! T)
+                } else if let errors = graphQLResult.errors {
+                    return .failure(DataError.generic(errors))
+                } else {
+                    fatalError("not supported")
+                }
+            }
         }
     }
 }

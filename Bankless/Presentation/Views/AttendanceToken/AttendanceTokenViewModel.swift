@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,33 @@
     
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-protocol BanklessServiceDependency {
-    var banklessService: BanklessService! { get set }
-}
-
-protocol AchievementsServiceDependency {
-    var achievementsService: AchievementsService! { get set }
-}
-
-protocol TimelineServiceDependency {
-    var timelineService: TimelineService! { get set }
+final class AttendanceTokenViewModel: BaseViewModel {
+    // MARK: - Input/Output -
+    
+    struct Input { }
+    
+    struct Output {
+        let imageURL: Driver<URL>
+    }
+    
+    // MARK: - Data -
+    
+    private let attendanceToken: AttendanceToken
+    
+    // MARK: - Initializers -
+    
+    init(attendanceToken: AttendanceToken) {
+        self.attendanceToken = attendanceToken
+    }
+    
+    // MARK: - Transformer -
+    
+    func transform(input: Input) -> Output {
+        return Output(
+            imageURL: .just(attendanceToken.imageUrl)
+        )
+    }
 }

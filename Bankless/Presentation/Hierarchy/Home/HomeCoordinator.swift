@@ -32,12 +32,27 @@ final class HomeCoordinator {
         initialViewController = createHomeViewController()
     }
     
+    // MARK: - Initialization -
+    
     private func createHomeViewController() -> UIViewController {
         let viewModel = HomeViewModel(container: container)
-        viewModel.set(router: HomeRouter())
+        
+        viewModel.actions.openAchievements
+            .bind(onNext: { [weak self] in self?.openAchievements() })
+            .disposed(by: viewModel.disposer)
         
         let viewController = HomeViewController.init(nibName: nil, bundle: nil)
         viewController.set(viewModel: viewModel)
         return viewController
+    }
+    
+    // MARK: - Transitions -
+    
+    private func openAchievements() {
+        let coordinator = AchievementsCoordinator(container: container)
+        container.resolve(coordinator)
+        
+        initialViewController.navigationController?
+            .pushViewController(coordinator.initialViewController, animated: true)
     }
 }

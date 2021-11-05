@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-14.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,13 @@
     
 
 import Foundation
+import BigInt
 
-protocol BanklessServiceDependency {
-    var banklessService: BanklessService! { get set }
+extension BANKAccount: ERC20AmountPresentationBehaviour {
+    static let decimalPlaces: Int = 18
+    var amount: BigInt { return balance }
 }
 
-protocol AchievementsServiceDependency {
-    var achievementsService: AchievementsService! { get set }
-}
-
-protocol TimelineServiceDependency {
-    var timelineService: TimelineService! { get set }
+extension BANKAccount.Transaction: ERC20AmountPresentationBehaviour {
+    static let decimalPlaces: Int = 18
 }
