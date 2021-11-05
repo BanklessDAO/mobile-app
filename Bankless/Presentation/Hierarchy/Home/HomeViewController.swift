@@ -24,13 +24,6 @@ import RxSwift
 import RxCocoa
 
 class HomeViewController: BaseViewController<HomeViewModel> {
-    // MARK: - Constants -
-    
-    static let headerContentHeight: CGFloat = 64.0
-    
-    static let separatorColor: UIColor = .secondaryGrey
-    static let separatorHeight = 1.0
-    
     // MARK: - Subviews -
     
     private var timelineView: HomeTimelineView!

@@ -200,17 +200,25 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             switch self.source.value.newsSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let newsCell = FeaturedNewsCell()
-                newsCell.set(title: self.source.value.newsSection.title ?? "")
-                cell = newsCell
-            case .content:
                 fatalError("not implemented")
+            case .content:
+                let newsCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: FeaturedNewsCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! FeaturedNewsCell
+                newsCell.set(title: self.source.value.title)
+                cell = newsCell
             }
         case .bounties:
             switch self.source.value.bountiesSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let bountiesHeaderCell = TimelineSectionHeaderCell()
+                let bountiesHeaderCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! TimelineSectionHeaderCell
                 bountiesHeaderCell.set(title: self.source.value.bountiesSection.title ?? "")
                 bountiesHeaderCell.setExpandButton(
                     title: self.source.value.expandSectionButtonTitle
@@ -240,7 +248,11 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             switch self.source.value.academyCoursesSection.rowType(at: row.localIndex) {
                 
             case .header:
-                let academyCoursesHeaderCell = TimelineSectionHeaderCell()
+                let academyCoursesHeaderCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! TimelineSectionHeaderCell
                 academyCoursesHeaderCell.set(
                     title: self.source.value.academyCoursesSection.title ?? ""
                 )
@@ -272,10 +284,17 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         
         return cell
     }
+    
+    // MARK: - Delegate -
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }
 
 extension HomeTimelineView {
     struct TableSource {
+        let title: String
         let expandSectionButtonTitle: String
         let gaugeClusterSection: Section<GaugeClusterViewModel>
         let newsSection: Section<FeaturedNewsViewModel>
@@ -298,6 +317,7 @@ extension HomeTimelineView {
             academyCourseViewModels: [AcademyCourseViewModel],
             expandSectionButtonTitle: String
         ) {
+            self.title = newsSectionTitle
             self.expandSectionButtonTitle = expandSectionButtonTitle
             
             self.gaugeClusterSection = .init(
@@ -307,9 +327,9 @@ extension HomeTimelineView {
             
             self.newsSection = .init(
                 type: .news,
-                title: newsSectionTitle,
-                isExpandable: false,
-                viewModels: []
+                viewModels: [
+                    FeaturedNewsViewModel()
+                ]
             )
             
             self.bountiesSection = .init(
@@ -328,6 +348,7 @@ extension HomeTimelineView {
         }
         
         init() {
+            self.title = ""
             self.expandSectionButtonTitle = ""
             
             self.gaugeClusterSection = .init(

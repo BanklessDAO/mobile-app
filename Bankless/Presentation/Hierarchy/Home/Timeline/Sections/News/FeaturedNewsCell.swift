@@ -52,6 +52,8 @@ class FeaturedNewsCell: UITableViewCell {
     // MARK: - Setup -
     
     func setUp() {
+        backgroundColor = .backgroundBlack
+        
         setUpSubviews()
         setUpConstraints()
     }
