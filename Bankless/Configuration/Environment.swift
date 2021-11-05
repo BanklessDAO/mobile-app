@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-10-14.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,21 @@
     
 
 import Foundation
-import RxSwift
 
-final class NetworkTimelineService: TimelineService {
-    private let dataClient: DataClient
+public enum Environment {
+    static let graphQLAPIEndpoint: String = {
+        guard let url = Environment.infoDictionary["GRAPHQL_API_ENDPOINT"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return url
+    }()
     
-    init(
-        dataClient: DataClient
-    ) {
-        self.dataClient = dataClient
-    }
-    
-    func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return dataClient.request(query: .timelineItems)
-    }
+    fileprivate static let infoDictionary: [String: Any] = {
+        guard let dict = Bundle.main.infoDictionary else {
+            fatalError("Not found")
+        }
+        
+        return dict
+    }()
 }

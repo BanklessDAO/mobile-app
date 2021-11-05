@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+#if DEBUG
+        configureDebugEnvironment()
+#endif
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.backgroundColor = .black
         self.window = window
@@ -74,5 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         
+    }
+}
+
+extension AppDelegate {
+    private func configureDebugEnvironment() {
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
 }

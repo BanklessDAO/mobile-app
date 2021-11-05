@@ -20,8 +20,17 @@
 import Foundation
 
 class NetworkConfigurator: Configurator {
+    private static let graphQLAPIEndpoint: URL = .init(string: Environment.graphQLAPIEndpoint)!
+    
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
+        
+        let dataClient = ApolloGraphQLClient(baseURL: NetworkConfigurator.graphQLAPIEndpoint)
+        let timelineService = NetworkTimelineService(dataClient: dataClient)
+        container.register { (object: inout TimelineServiceDependency) in
+            object.timelineService = timelineService
+        }
+        
         return container
     }
 }
