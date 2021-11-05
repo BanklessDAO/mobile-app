@@ -30,22 +30,23 @@ class HomeViewModel: BaseViewModel, TimelineServiceDependency {
         let timelineViewModel: Driver<HomeTimelineViewModel>
     }
     
+    // MARK: - Actions -
+    
+    struct Actions {
+        let openAchievements = PublishRelay<Void>()
+    }
+    
+    let actions = Actions()
+    
     // MARK: - Components -
     
-    private var homeRouter: HomeRouter!
     var timelineService: TimelineService!
-    
-    // MARK: - Setters -
-    
-    override func set<Router>(router: Router) {
-        if let homeRouter = router as? HomeRouter {
-            self.homeRouter = homeRouter
-        }
-    }
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        subscribeToInputEvents()
+        
         let timelineViewModel = self.timelineViewModel()
         
         return Output(
@@ -57,9 +58,19 @@ class HomeViewModel: BaseViewModel, TimelineServiceDependency {
     
     private func timelineViewModel() -> Observable<HomeTimelineViewModel> {
         let viewModel = HomeTimelineViewModel()
-        viewModel.set(router: homeRouter)
         self.container?.resolve(viewModel)
         
         return .just(viewModel)
+    }
+    
+    // MARK: - Subscriptions -
+    
+    private func subscribeToInputEvents() {
+        NotificationCenter.default.rx
+            .notification(NotificationEvent.achievementsPreviewTapped.notificationName, object: nil)
+            .subscribe(onNext: { [weak self] _ in
+                self?.actions.openAchievements.accept(())
+            })
+            .disposed(by: disposer)
     }
 }

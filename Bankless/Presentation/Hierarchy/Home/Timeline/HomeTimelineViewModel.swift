@@ -64,18 +64,9 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     // MARK: - Components -
     
-    private var homeRouter: HomeRouter!
     var banklessService: BanklessService!
     var achievementsService: AchievementsService!
     var timelineService: TimelineService!
-    
-    // MARK: - Setters -
-    
-    override func set<Router>(router: Router) {
-        if let homeRouter = router as? HomeRouter {
-            self.homeRouter = homeRouter
-        }
-    }
     
     // MARK: - Transformer -
     
