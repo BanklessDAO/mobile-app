@@ -31,7 +31,6 @@
 		FF78F3C12706741100A47A91 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C02706741100A47A91 /* Colors.swift */; };
 		FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */; };
 		FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */; };
-		FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D127069A7300A47A91 /* HomeRouter.swift */; };
 		FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */; };
 		FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D72706B27A00A47A91 /* BaseView.swift */; };
 		FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */; };
@@ -66,6 +65,20 @@
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
+		FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */; };
+		FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */; };
+		FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */; };
+		FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6000D271C866500F73FA1 /* AchievementCollectionViewModel.swift */; };
+		FFE60012271C887900F73FA1 /* AttendanceTokenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60011271C887900F73FA1 /* AttendanceTokenViewModel.swift */; };
+		FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60013271C888400F73FA1 /* AttendanceTokenView.swift */; };
+		FFE60016271C8B5400F73FA1 /* AttendanceTokenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60015271C8B5400F73FA1 /* AttendanceTokenCell.swift */; };
+		FFE60018271C8DF400F73FA1 /* AchievementsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60017271C8DF400F73FA1 /* AchievementsCollectionView.swift */; };
+		FFE6001A271C8F5800F73FA1 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */; };
+		FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */; };
+		FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60020271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift */; };
+		FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */; };
+		FFE60026271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */; };
+		FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60028271E33C300F73FA1 /* NotificationEvent.swift */; };
 		FFEB12272710CF7E003EF90D /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = FFEB12262710CF7E003EF90D /* schema.json */; };
 		FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12302710FBCC003EF90D /* DataClient.swift */; };
 		FFEB12342710FC63003EF90D /* ApolloGraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12332710FC63003EF90D /* ApolloGraphQLClient.swift */; };
@@ -114,7 +127,6 @@
 		FF78F3C02706741100A47A91 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademyCourse+TitleBehaviour.swift"; sourceTree = "<group>"; };
 		FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBehaviour.swift; sourceTree = "<group>"; };
-		FF78F3D127069A7300A47A91 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		FF78F3D72706B27A00A47A91 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +166,20 @@
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount + ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
+		FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
+		FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCoordinator.swift; sourceTree = "<group>"; };
+		FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
+		FFE6000D271C866500F73FA1 /* AchievementCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCollectionViewModel.swift; sourceTree = "<group>"; };
+		FFE60011271C887900F73FA1 /* AttendanceTokenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenViewModel.swift; sourceTree = "<group>"; };
+		FFE60013271C888400F73FA1 /* AttendanceTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenView.swift; sourceTree = "<group>"; };
+		FFE60015271C8B5400F73FA1 /* AttendanceTokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenCell.swift; sourceTree = "<group>"; };
+		FFE60017271C8DF400F73FA1 /* AchievementsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCollectionView.swift; sourceTree = "<group>"; };
+		FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		FFE60020271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTitleViewModel.swift; sourceTree = "<group>"; };
+		FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTitleCell.swift; sourceTree = "<group>"; };
+		FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsSectionHeaderCell.swift; sourceTree = "<group>"; };
+		FFE60028271E33C300F73FA1 /* NotificationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEvent.swift; sourceTree = "<group>"; };
 		FFEB121E2710A195003EF90D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FFEB121F2710A195003EF90D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FFEB12202710A1CC003EF90D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -220,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3BD270673A600A47A91 /* Configuration */,
+				FFE60027271E33AE00F73FA1 /* Common */,
 				FF78F3CA270695CB00A47A91 /* Behaviour */,
-				FF78F3CD2706999100A47A91 /* Navigation */,
 				FF78F39327062C8300A47A91 /* Base */,
 				FFAE9852270E41780047405D /* Hierarchy */,
 				FFAE9851270E3F590047405D /* Views */,
@@ -255,8 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3B92706691200A47A91 /* HomeCoordinator.swift */,
-				FF78F3802706276200A47A91 /* HomeViewModel.swift */,
 				FF78F3822706277200A47A91 /* HomeViewController.swift */,
+				FF78F3802706276200A47A91 /* HomeViewModel.swift */,
 				FF78F38427062AE600A47A91 /* Timeline */,
 			);
 			path = Home;
@@ -295,7 +321,9 @@
 				FF78F39427062C9200A47A91 /* BaseViewModel.swift */,
 				FF78F3BB27066AB700A47A91 /* BaseViewController.swift */,
 				FF78F3D52706ADD100A47A91 /* BaseNavigationController.swift */,
+				FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */,
 				FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */,
+				FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -367,14 +395,6 @@
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
 			path = Behaviour;
-			sourceTree = "<group>";
-		};
-		FF78F3CD2706999100A47A91 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				FF78F3D127069A7300A47A91 /* HomeRouter.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		FF7D493527053EF300F0244B = {
@@ -470,6 +490,7 @@
 				FFCC9FAE2718CA4200CAB3A3 /* GaugeCluster */,
 				FFAE9869270E860C0047405D /* AcademyCourse */,
 				FFAE9864270E4A920047405D /* Bounty */,
+				FFE60010271C885D00F73FA1 /* AttendanceToken */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -477,6 +498,7 @@
 		FFAE9852270E41780047405D /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF78F37F2706271B00A47A91 /* Home */,
 			);
 			path = Hierarchy;
@@ -597,6 +619,79 @@
 				FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */,
 			);
 			path = GaugeCluster;
+			sourceTree = "<group>";
+		};
+		FFE60005271C83EC00F73FA1 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */,
+				FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */,
+				FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */,
+				FFE6000C271C864A00F73FA1 /* Collection */,
+			);
+			path = Achievements;
+			sourceTree = "<group>";
+		};
+		FFE6000C271C864A00F73FA1 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60017271C8DF400F73FA1 /* AchievementsCollectionView.swift */,
+				FFE6000D271C866500F73FA1 /* AchievementCollectionViewModel.swift */,
+				FFE6001E271E2DA700F73FA1 /* Sections */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		FFE6000F271C882E00F73FA1 /* AttendanceTokens */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60015271C8B5400F73FA1 /* AttendanceTokenCell.swift */,
+			);
+			path = AttendanceTokens;
+			sourceTree = "<group>";
+		};
+		FFE60010271C885D00F73FA1 /* AttendanceToken */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60013271C888400F73FA1 /* AttendanceTokenView.swift */,
+				FFE60011271C887900F73FA1 /* AttendanceTokenViewModel.swift */,
+			);
+			path = AttendanceToken;
+			sourceTree = "<group>";
+		};
+		FFE6001E271E2DA700F73FA1 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60024271E2FB700F73FA1 /* Common */,
+				FFE6001F271E2DB900F73FA1 /* Title */,
+				FFE6000F271C882E00F73FA1 /* AttendanceTokens */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		FFE6001F271E2DB900F73FA1 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */,
+				FFE60020271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		FFE60024271E2FB700F73FA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FFE60027271E33AE00F73FA1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FFE60028271E33C300F73FA1 /* NotificationEvent.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		FFEB12222710CC39003EF90D /* Network */ = {
@@ -815,19 +910,24 @@
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
+				FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */,
 				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
 				FFEB12342710FC63003EF90D /* ApolloGraphQLClient.swift in Sources */,
 				FFEB124E2718AB18003EF90D /* AchievementsResponse.swift in Sources */,
 				FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */,
+				FFE6001A271C8F5800F73FA1 /* BaseCollectionViewCell.swift in Sources */,
 				FFCC9FA42718B63400CAB3A3 /* NetworkAchievementsService.swift in Sources */,
 				FFAE9866270E4AA60047405D /* BountyCard.swift in Sources */,
 				FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */,
 				FFAE9845270D03610047405D /* Mocks.swift in Sources */,
 				FFCC9FAB2718CA1700CAB3A3 /* GaugeClusterViewModel.swift in Sources */,
-				FF78F3D227069A7300A47A91 /* HomeRouter.swift in Sources */,
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
+				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
+				FFE60026271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift in Sources */,
+				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
 				FFAE985D270E43D00047405D /* CardView.swift in Sources */,
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
+				FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
@@ -837,13 +937,16 @@
 				FFEB124427189C33003EF90D /* Environment.swift in Sources */,
 				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
 				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
+				FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */,
 				FFCC9FAD2718CA2800CAB3A3 /* GaugeClusterCell.swift in Sources */,
 				FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */,
 				FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */,
 				FFCC9FA62718B64000CAB3A3 /* MockBanklessService.swift in Sources */,
 				FFEB12502718ABA2003EF90D /* DAOOwnershipResponse.swift in Sources */,
+				FFE60012271C887900F73FA1 /* AttendanceTokenViewModel.swift in Sources */,
 				FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */,
 				FFEB123B2710FF6D003EF90D /* DataQuery.swift in Sources */,
+				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
 				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
@@ -852,6 +955,7 @@
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
 				FFEB12382710FE17003EF90D /* SampleData.graphql.swift in Sources */,
+				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FFCC9FB62718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
 				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
@@ -859,9 +963,12 @@
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
+				FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */,
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FFAE9843270D009C0047405D /* Mock.swift in Sources */,
+				FFE60018271C8DF400F73FA1 /* AchievementsCollectionView.swift in Sources */,
+				FFE60016271C8B5400F73FA1 /* AttendanceTokenCell.swift in Sources */,
 				FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */,
 				FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */,
 				FFCC9FA22718B62800CAB3A3 /* MockAchievementsService.swift in Sources */,
@@ -873,6 +980,7 @@
 				FFAE985F270E43D00047405D /* TagView.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
+				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
 				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
