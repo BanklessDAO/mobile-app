@@ -90,6 +90,8 @@ final class GaugeClusterViewModel: BaseViewModel {
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        bind(tapAchievements: input.tapAchievements)
+        
         let attendanceTokenImages = attendanceTokens
             .map({ $0.imageUrl })
         
@@ -146,5 +148,19 @@ final class GaugeClusterViewModel: BaseViewModel {
         return .just(
             String.localizedStringWithFormat(eventStringFormat, timeString)
         )
+    }
+    
+    // MARK: - Events -
+    
+    private func bind(tapAchievements: Driver<Void>) {
+        tapAchievements
+            .drive(onNext: {
+                NotificationCenter.default
+                    .post(
+                        name: NotificationEvent.achievementsPreviewTapped.notificationName,
+                        object: nil
+                    )
+            })
+            .disposed(by: disposer)
     }
 }

@@ -130,7 +130,6 @@ class AchievementsBarView: UIView {
         for imageURL in achievementImageURLs[0 ..< previewItemCount] {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFit
-            imageView.clipsToBounds = true
             
             imageView.kf.setImage(with: imageURL)
             
@@ -144,6 +143,13 @@ class AchievementsBarView: UIView {
         let hiddenCount = achievementImageURLs.count - previewItemCount
         if hiddenCount > 0 {
             truncationLabel.text = " +" + String(hiddenCount)
+        }
+        
+        layoutIfNeeded()
+        
+        for subview in achievementsStackView.arrangedSubviews {
+            subview.clipsToBounds = true
+            subview.layer.cornerRadius = subview.bounds.height / 2
         }
     }
 }

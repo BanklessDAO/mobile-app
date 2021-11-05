@@ -35,6 +35,7 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     private var lastTransactionLabel: UILabel!
     private var achievementsBarView: AchievementsBarView!
     private var lastAchievementLabel: UILabel!
+    private var achievementsButton: UIButton!
     
     // MARK: - Initializers -
     
@@ -77,6 +78,9 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
         lastAchievementLabel.font = Appearance.Text.Font.Label2.font(bold: false)
         lastAchievementLabel.textColor = .secondaryWhite
         addSubview(lastAchievementLabel)
+        
+        achievementsButton = UIButton(type: .custom)
+        addSubview(achievementsButton)
     }
     
     func setUpConstraints() {
@@ -106,6 +110,10 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
             event.centerY == events.centerY
             event.right == events.left - contentPaddings.left
         }
+        
+        constrain(achievementsButton, achievementsBarView) { button, bar in
+            button.edges == bar.edges
+        }
     }
     
     override func bindViewModel() {
@@ -123,7 +131,7 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     
     private func input() -> GaugeClusterViewModel.Input {
         return .init(
-            tapAchievements: .empty()
+            tapAchievements: achievementsButton.rx.tap.asDriver()
         )
     }
 }
