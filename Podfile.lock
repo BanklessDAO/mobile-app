@@ -9,6 +9,7 @@ PODS:
   - Fakery (4.1.1)
   - KeychainAccess (4.2.2)
   - Kingfisher (7.1.0)
+  - OAuthSwift (2.2.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - Fakery (~> 4.0)
   - KeychainAccess
   - Kingfisher (~> 7.0)
+  - OAuthSwift (~> 2.2.0)
   - RxCocoa
   - RxSwift
 
@@ -38,6 +40,7 @@ SPEC REPOS:
     - Fakery
     - KeychainAccess
     - Kingfisher
+    - OAuthSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -51,10 +54,11 @@ SPEC CHECKSUMS:
   Fakery: d3380c4aa1efe7631c0831d7e26aa9db4491f014
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: cdabaf49be7ee7cc124f0f276b355edf61903cf8
+  OAuthSwift: 75efbb5bd9a4b2b71a37bd7e986bf3f55ddd54c6
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: c366762f159ffce145586a18f49d6595e772d2f3
+PODFILE CHECKSUM: 6d143f070651329c45f1f2d73da16a2428f8d6a9
 
 COCOAPODS: 1.10.1
