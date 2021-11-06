@@ -25,7 +25,16 @@ class NetworkConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
+        let discordAuthProvider = OAuth2AuthProvider(
+            server: .discord,
+            sessionStorage: KeychainBasedSessionStorage()
+        )
         let dataClient = ApolloGraphQLClient(baseURL: NetworkConfigurator.graphQLAPIEndpoint)
+        
+        let authService = NetworkAuthService(authProvider: discordAuthProvider)
+        container.register { (object: inout AuthServiceDependency) in
+            object.authService = authService
+        }
         
         let banklessService = NetworkBanklessService(dataClient: dataClient)
         container.register { (object: inout BanklessServiceDependency) in
