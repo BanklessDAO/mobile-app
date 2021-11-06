@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-05.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,19 +18,8 @@
     
 
 import Foundation
+import RxSwift
 
-protocol AuthServiceDependency {
-    var authService: AuthService! { get set }
-}
-
-protocol BanklessServiceDependency {
-    var banklessService: BanklessService! { get set }
-}
-
-protocol AchievementsServiceDependency {
-    var achievementsService: AchievementsService! { get set }
-}
-
-protocol TimelineServiceDependency {
-    var timelineService: TimelineService! { get set }
+protocol AuthService {
+    func getDiscordAccess() -> Completable
 }
