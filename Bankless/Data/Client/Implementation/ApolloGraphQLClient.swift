@@ -39,8 +39,6 @@ class ApolloGraphQLClient: DataClient {
                 responseType: T.self
             ) { graphQLResult in
                 if let event = graphQLResult.data?.poapEvent {
-                    print(event)
-                    
                     let response = TimelineItemsResponse(
                         bounties: Bounty.generateMocks(.random(in: 2 ... 2)),
                         academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 1))
@@ -59,8 +57,6 @@ class ApolloGraphQLClient: DataClient {
                 responseType: T.self
             ) { graphQLResult in
                 if let event = graphQLResult.data?.poapEvent {
-                    print(event)
-                    
                     let response = DAOOwnershipResponse(
                         bankAccount: BANKAccount.generateMock()
                     )
@@ -78,8 +74,6 @@ class ApolloGraphQLClient: DataClient {
                 responseType: T.self
             ) { graphQLResult in
                 if let event = graphQLResult.data?.poapEvent {
-                    print(event)
-                    
                     let response = AchievementsResponse(
                         attendanceTokens: AttendanceToken.generateMocks(.random(in: 5 ... 5))
                     )

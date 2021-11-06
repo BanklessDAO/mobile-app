@@ -44,8 +44,6 @@ extension ApolloGraphQLClient {
                     switch mappingResult {
                         
                     case .success(let payload):
-                        print(payload)
-                        
                         observer.onNext(payload)
                     case .failure(let error):
                         print(error.localizedDescription)
