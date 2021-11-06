@@ -28,6 +28,64 @@ public enum Environment {
         return url
     }()
     
+    static let discordClientId: String = {
+        guard let value = Environment.infoDictionary["DISCORD_CLIENT_ID"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordClientSecret: String = {
+        guard let value = Environment.infoDictionary["DISCORD_CLIENT_SECRET"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordAuthURL: String = {
+        guard let value = Environment.infoDictionary["DISCORD_AUTH_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordAuthRedirectURL: String = {
+        guard let value = Environment.infoDictionary["DISCORD_AUTH_REDIRECT_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordAuthRedirectURLScheme: String = {
+        guard let value = Environment
+                .infoDictionary["DISCORD_AUTH_REDIRECT_URL_SCHEME"] as? String else {
+                    fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordAuthRedirectPath: String = {
+        guard let value = Environment
+                .infoDictionary["DISCORD_AUTH_REDIRECT_PATH"] as? String else {
+                    fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let discordAccessTokenURL: String = {
+        guard let value = Environment.infoDictionary["DISCORD_ACCESS_TOKEN_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
     fileprivate static let infoDictionary: [String: Any] = {
         guard let dict = Bundle.main.infoDictionary else {
             fatalError("Not found")
