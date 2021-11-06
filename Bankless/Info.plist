@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>GRAPHQL_API_ENDPOINT</key>
-	<string>https://${GRAPHQL_API_ENDPOINT}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -18,8 +16,33 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>banklessdaoapp</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>GRAPHQL_API_ENDPOINT</key>
+	<string>https://${GRAPHQL_API_ENDPOINT}</string>
+	<key>DISCORD_AUTH_URL</key>
+	<string>https://${DISCORD_AUTH_PATH}</string>
+	<key>DISCORD_AUTH_REDIRECT_URL_SCHEME</key>
+	<string>${DISCORD_AUTH_REDIRECT_URL_SCHEME}</string>
+	<key>DISCORD_AUTH_REDIRECT_PATH</key>
+	<string>${DISCORD_AUTH_REDIRECT_PATH}</string>
+	<key>DISCORD_AUTH_REDIRECT_URL</key>
+	<string>${DISCORD_AUTH_REDIRECT_URL_SCHEME}://${DISCORD_AUTH_REDIRECT_PATH}</string>
+	<key>DISCORD_ACCESS_TOKEN_URL</key>
+	<string>https://${DISCORD_ACCESS_TOKEN_PATH}</string>
+	<key>DISCORD_CLIENT_ID</key>
+	<string>${DISCORD_CLIENT_ID}</string>
+	<key>DISCORD_CLIENT_SECRET</key>
+	<string>${DISCORD_CLIENT_SECRET}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

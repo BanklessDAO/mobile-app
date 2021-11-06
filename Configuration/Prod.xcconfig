@@ -1,2 +1,4 @@
+#include "Secrets.xcconfig"
+
 PRODUCT_DISPLAY_NAME = Bankless
 PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app

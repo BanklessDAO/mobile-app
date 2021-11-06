@@ -1,3 +1,5 @@
+#include "Environment.xcconfig"
+#include "Secrets.xcconfig"
+
 PRODUCT_DISPLAY_NAME = Bankless Test
 PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app.test
-GRAPHQL_API_ENDPOINT = api.thegraph.com/subgraphs/name/amxx/poap
