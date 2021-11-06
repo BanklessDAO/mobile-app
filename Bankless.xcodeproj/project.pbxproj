@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
+		FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */; };
+		FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */; };
 		FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF786690270CFD39000279FE /* MockTimelineService.swift */; };
 		FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3802706276200A47A91 /* HomeViewModel.swift */; };
 		FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3822706277200A47A91 /* HomeViewController.swift */; };
@@ -55,6 +57,17 @@
 		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
 		FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */; };
 		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
+		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
+		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
+		FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */; };
+		FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4762735FC5D00EA8F12 /* AuthProvider.swift */; };
+		FFC6F4792735FDC100EA8F12 /* AuthProviderServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4782735FDC100EA8F12 /* AuthProviderServer.swift */; };
+		FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F47B2735FEC400EA8F12 /* OAuth2AuthProvider.swift */; };
+		FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F47E2736058200EA8F12 /* OAuth2WebViewController.swift */; };
+		FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FFC6F4802736075300EA8F12 /* Secrets.xcconfig */; };
+		FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F48227360BCB00EA8F12 /* OAuth2ConsumerInfo.swift */; };
+		FFC6F4852736FE7E00EA8F12 /* OAuth2ServerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4842736FE7E00EA8F12 /* OAuth2ServerInfo.swift */; };
+		FFC6F48A27370A7800EA8F12 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F48927370A7800EA8F12 /* AuthError.swift */; };
 		FFCC9FA22718B62800CAB3A3 /* MockAchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA12718B62800CAB3A3 /* MockAchievementsService.swift */; };
 		FFCC9FA42718B63400CAB3A3 /* NetworkAchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA32718B63400CAB3A3 /* NetworkAchievementsService.swift */; };
 		FFCC9FA62718B64000CAB3A3 /* MockBanklessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA52718B64000CAB3A3 /* MockBanklessService.swift */; };
@@ -104,6 +117,8 @@
 		7F156FCF430E914EC318C70E /* Pods_Bankless.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bankless.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A72E15F02E9FAC61902259 /* Pods-Bankless.debug test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.debug test.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.debug test.xcconfig"; sourceTree = "<group>"; };
 		C4F3A936DC476C1FA58282F3 /* Pods-Bankless.release mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release mock.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release mock.xcconfig"; sourceTree = "<group>"; };
+		FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
+		FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainBasedSessionStorage.swift; sourceTree = "<group>"; };
 		FF786690270CFD39000279FE /* MockTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimelineService.swift; sourceTree = "<group>"; };
 		FF78F3802706276200A47A91 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FF78F3822706277200A47A91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +171,18 @@
 		FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCell.swift; sourceTree = "<group>"; };
 		FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSectionHeaderCell.swift; sourceTree = "<group>"; };
 		FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsViewModel.swift; sourceTree = "<group>"; };
+		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
+		FFC6F4762735FC5D00EA8F12 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		FFC6F4782735FDC100EA8F12 /* AuthProviderServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderServer.swift; sourceTree = "<group>"; };
+		FFC6F47B2735FEC400EA8F12 /* OAuth2AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2AuthProvider.swift; sourceTree = "<group>"; };
+		FFC6F47E2736058200EA8F12 /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2WebViewController.swift; sourceTree = "<group>"; };
+		FFC6F4802736075300EA8F12 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		FFC6F48227360BCB00EA8F12 /* OAuth2ConsumerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2ConsumerInfo.swift; sourceTree = "<group>"; };
+		FFC6F4842736FE7E00EA8F12 /* OAuth2ServerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2ServerInfo.swift; sourceTree = "<group>"; };
+		FFC6F4882736FF5500EA8F12 /* Environment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Environment.xcconfig; sourceTree = "<group>"; };
+		FFC6F48927370A7800EA8F12 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		FFCC9FA12718B62800CAB3A3 /* MockAchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAchievementsService.swift; sourceTree = "<group>"; };
 		FFCC9FA32718B63400CAB3A3 /* NetworkAchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAchievementsService.swift; sourceTree = "<group>"; };
 		FFCC9FA52718B64000CAB3A3 /* MockBanklessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBanklessService.swift; sourceTree = "<group>"; };
@@ -234,6 +261,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FF0B6BFE27373C7100CB33BF /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */,
+				FF0B6C0127373CB300CB33BF /* Implementation */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		FF0B6C0127373CB300CB33BF /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
 		FF78F371270552E800A47A91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +303,8 @@
 		FF78F3732705547700A47A91 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FFC6F4752735F54500EA8F12 /* Auth */,
+				FF0B6BFE27373C7100CB33BF /* Session */,
 				FFEB122F2710FB9C003EF90D /* Client */,
 				FFEB12222710CC39003EF90D /* Network */,
 				FF78F3A22706373600A47A91 /* Models */,
@@ -270,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3982706357C00A47A91 /* ServiceDependencies.swift */,
+				FFC6F46D2735F3D200EA8F12 /* Auth */,
 				FFEB12482718AA92003EF90D /* Bankless */,
 				FFEB12472718AA5C003EF90D /* Achievements */,
 				FF78F39F270636DC00A47A91 /* Timeline */,
@@ -440,6 +487,8 @@
 				FF9F5CE42705464400629D79 /* Mock.xcconfig */,
 				FF9F5CE52705465400629D79 /* Test.xcconfig */,
 				FF9F5CE62705465D00629D79 /* Prod.xcconfig */,
+				FFC6F4882736FF5500EA8F12 /* Environment.xcconfig */,
+				FFC6F4802736075300EA8F12 /* Secrets.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -583,6 +632,54 @@
 				FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		FFC6F46D2735F3D200EA8F12 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6F46E2735F41500EA8F12 /* AuthService.swift */,
+				FFC6F4702735F47800EA8F12 /* Implementation */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FFC6F4702735F47800EA8F12 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6F4712735F48800EA8F12 /* MockAuthService.swift */,
+				FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FFC6F4752735F54500EA8F12 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6F4762735FC5D00EA8F12 /* AuthProvider.swift */,
+				FFC6F4782735FDC100EA8F12 /* AuthProviderServer.swift */,
+				FFC6F48927370A7800EA8F12 /* AuthError.swift */,
+				FFC6F47A2735FEA100EA8F12 /* Implementation */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		FFC6F47A2735FEA100EA8F12 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6F47B2735FEC400EA8F12 /* OAuth2AuthProvider.swift */,
+				FFC6F48227360BCB00EA8F12 /* OAuth2ConsumerInfo.swift */,
+				FFC6F4842736FE7E00EA8F12 /* OAuth2ServerInfo.swift */,
+				FFC6F47D2736053800EA8F12 /* Views */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FFC6F47D2736053800EA8F12 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6F47E2736058200EA8F12 /* OAuth2WebViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FFCC9F9F2718B5FB00CAB3A3 /* Implementation */ = {
@@ -831,6 +928,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFEB12272710CF7E003EF90D /* schema.json in Resources */,
+				FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */,
 				FF9F5CF32705494100629D79 /* Main.storyboard in Resources */,
 				FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */,
 				FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */,
@@ -907,9 +1005,12 @@
 				FFEB12392710FE17003EF90D /* Types.graphql.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
+				FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
+				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
+				FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */,
 				FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */,
 				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
 				FFEB12342710FC63003EF90D /* ApolloGraphQLClient.swift in Sources */,
@@ -920,11 +1021,16 @@
 				FFAE9866270E4AA60047405D /* BountyCard.swift in Sources */,
 				FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */,
 				FFAE9845270D03610047405D /* Mocks.swift in Sources */,
+				FFC6F48A27370A7800EA8F12 /* AuthError.swift in Sources */,
 				FFCC9FAB2718CA1700CAB3A3 /* GaugeClusterViewModel.swift in Sources */,
+				FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */,
+				FFC6F4792735FDC100EA8F12 /* AuthProviderServer.swift in Sources */,
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
 				FFE60026271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift in Sources */,
+				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
 				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
+				FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */,
 				FFAE985D270E43D00047405D /* CardView.swift in Sources */,
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */,
@@ -935,6 +1041,7 @@
 				FFEB124A2718AAAC003EF90D /* AchievementsService.swift in Sources */,
 				FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */,
 				FFEB124427189C33003EF90D /* Environment.swift in Sources */,
+				FFC6F4852736FE7E00EA8F12 /* OAuth2ServerInfo.swift in Sources */,
 				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
 				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
 				FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */,
@@ -957,10 +1064,12 @@
 				FFEB12382710FE17003EF90D /* SampleData.graphql.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FFCC9FB62718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift in Sources */,
+				FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
 				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
 				FFEB124C2718AAC2003EF90D /* BanklessService.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
+				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
 				FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */,
@@ -970,6 +1079,7 @@
 				FFE60018271C8DF400F73FA1 /* AchievementsCollectionView.swift in Sources */,
 				FFE60016271C8B5400F73FA1 /* AttendanceTokenCell.swift in Sources */,
 				FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */,
+				FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */,
 				FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */,
 				FFCC9FA22718B62800CAB3A3 /* MockAchievementsService.swift in Sources */,
 				FFAE984E270D19410047405D /* NetworkConfigurator.swift in Sources */,
@@ -1079,7 +1189,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1090,6 +1201,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1163,7 +1275,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1174,6 +1287,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1242,7 +1356,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1253,6 +1368,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1321,7 +1437,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1332,6 +1449,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1462,7 +1580,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1473,6 +1592,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1484,7 +1604,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = T55G7JLVK5;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -1495,6 +1616,7 @@
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = BanklessDAO_Dev_2021110601;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
