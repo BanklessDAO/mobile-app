@@ -3,3 +3,4 @@ DISCORD_AUTH_PATH = discord.com/api/oauth2/authorize
 DISCORD_AUTH_REDIRECT_URL_SCHEME = https
 DISCORD_AUTH_REDIRECT_PATH = bankless.community/auth/discord/redirect
 DISCORD_ACCESS_TOKEN_PATH = discord.com/api/oauth2/token
+DISCORD_API_BASE_PATH = discord.com/api
