@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,22 +19,10 @@
 
 import Foundation
 
-protocol AuthServiceDependency {
-    var authService: AuthService! { get set }
-}
-
-protocol IdentityServiceDependency {
-    var identityService: IdentityService! { get set }
-}
-
-protocol BanklessServiceDependency {
-    var banklessService: BanklessService! { get set }
-}
-
-protocol AchievementsServiceDependency {
-    var achievementsService: AchievementsService! { get set }
-}
-
-protocol TimelineServiceDependency {
-    var timelineService: TimelineService! { get set }
+struct UserIdentityResponse {
+    let discordUser: DiscordUser
+    
+    init(discordUser: DiscordUser) {
+        self.discordUser = discordUser
+    }
 }
