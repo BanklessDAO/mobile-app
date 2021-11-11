@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,9 +18,12 @@
     
 
 import Foundation
+import RxSwift
 
-enum DataQuery {
-    case bankOnChainInfo
-    case poapTokens
-    case timelineItems
+protocol ContentGatewayClient: DataClient {
+    func getUserBANKAccount() -> Observable<BANKAccount>
+    func getUserAttendanceTokens() -> Observable<[AttendanceToken]>
+    func getTimelineContent() -> Observable<TimelineContentResponse>
 }
+
+typealias TimelineContentResponse = TimelineItemsResponse

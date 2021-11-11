@@ -30,5 +30,11 @@ target 'Bankless' do
   
   # GraphQL client library
   pod 'Apollo'
+  
+  # Network abstraction library
+  pod 'Moya/RxSwift', '~> 15.0'
+  
+  # OAuth2 authorization
+  pod 'OAuthSwift', '~> 2.2.0'
 
 end

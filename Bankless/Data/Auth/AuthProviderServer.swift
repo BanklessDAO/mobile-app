@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-09-30.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-05.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
     
 
 import Foundation
-import UIKit
 
-final class BaseNavigationController: UINavigationController { }
+enum AuthProviderServer {
+    case discord
+}

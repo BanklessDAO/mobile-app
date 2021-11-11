@@ -20,6 +20,4 @@
 import Foundation
 import RxSwift
 
-protocol DataClient {
-    func request<T>(query: DataQuery) -> Observable<T>
-}
+protocol DataClient { }

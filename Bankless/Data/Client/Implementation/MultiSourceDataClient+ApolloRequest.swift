@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import Apollo
 
-extension ApolloGraphQLClient {
+extension MultiSourceDataClient {
     func apolloRequest<Q, T>(
         apolloQuery: Q,
         responseType: T.Type,
@@ -44,8 +44,6 @@ extension ApolloGraphQLClient {
                     switch mappingResult {
                         
                     case .success(let payload):
-                        print(payload)
-                        
                         observer.onNext(payload)
                     case .failure(let error):
                         print(error.localizedDescription)

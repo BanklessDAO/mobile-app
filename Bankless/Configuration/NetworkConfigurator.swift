@@ -25,19 +25,39 @@ class NetworkConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
-        let dataClient = ApolloGraphQLClient(baseURL: NetworkConfigurator.graphQLAPIEndpoint)
+        let keychainSessionStorage = KeychainBasedSessionStorage()
         
-        let banklessService = NetworkBanklessService(dataClient: dataClient)
+        let discordAuthProvider = OAuth2AuthProvider(
+            server: .discord,
+            sessionStorage: keychainSessionStorage
+        )
+        
+        let dataClient = MultiSourceDataClient(
+            contentGatewayAPIBaseURL: NetworkConfigurator.graphQLAPIEndpoint,
+            sessionStorage: keychainSessionStorage
+        )
+        
+        let authService = NetworkAuthService(authProvider: discordAuthProvider)
+        container.register { (object: inout AuthServiceDependency) in
+            object.authService = authService
+        }
+        
+        let identityService = NetworkIdentityService(discordClient: dataClient)
+        container.register { (object: inout IdentityServiceDependency) in
+            object.identityService = identityService
+        }
+        
+        let banklessService = NetworkBanklessService(contentGatewayClient: dataClient)
         container.register { (object: inout BanklessServiceDependency) in
             object.banklessService = banklessService
         }
         
-        let achievementsService = NetworkAchievementsService(dataClient: dataClient)
+        let achievementsService = NetworkAchievementsService(contentGatewayClient: dataClient)
         container.register { (object: inout AchievementsServiceDependency) in
             object.achievementsService = achievementsService
         }
         
-        let timelineService = NetworkTimelineService(dataClient: dataClient)
+        let timelineService = NetworkTimelineService(contentGatewayClient: dataClient)
         container.register { (object: inout TimelineServiceDependency) in
             object.timelineService = timelineService
         }

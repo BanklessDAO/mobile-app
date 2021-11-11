@@ -21,7 +21,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel: BaseViewModel, TimelineServiceDependency {
+class HomeViewModel: BaseViewModel,
+                     AuthServiceDependency,
+                     IdentityServiceDependency,
+                     TimelineServiceDependency
+{
     // MARK: - Input/Output -
     
     struct Input { }
@@ -40,11 +44,18 @@ class HomeViewModel: BaseViewModel, TimelineServiceDependency {
     
     // MARK: - Components -
     
+    var authService: AuthService!
+    var identityService: IdentityService!
     var timelineService: TimelineService!
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        ensureDiscordAccess()
+            .andThen(loadDiscordUser())
+            .subscribe()
+            .disposed(by: disposer)
+        
         subscribeToInputEvents()
         
         let timelineViewModel = self.timelineViewModel()
@@ -52,6 +63,25 @@ class HomeViewModel: BaseViewModel, TimelineServiceDependency {
         return Output(
             timelineViewModel: timelineViewModel.asDriver(onErrorDriveWith: .empty())
         )
+    }
+    
+    // MARK: - Discord Data -
+    
+    private func ensureDiscordAccess() -> Completable {
+        return authService.getDiscordAccess()
+    }
+    
+    private func loadDiscordUser() -> Completable {
+        return identityService.getUserIdentity()
+            .do(onNext: {
+                NotificationCenter.default
+                    .post(
+                        name: NotificationEvent.discordUserUpdated.notificationName,
+                        object: $0.discordUser
+                    )
+            })
+            .flatMap({ _ in Completable.empty() })
+            .asCompletable()
     }
     
     // MARK: - Timeline -

@@ -19,6 +19,14 @@
 
 import Foundation
 
+protocol AuthServiceDependency {
+    var authService: AuthService! { get set }
+}
+
+protocol IdentityServiceDependency {
+    var identityService: IdentityService! { get set }
+}
+
 protocol BanklessServiceDependency {
     var banklessService: BanklessService! { get set }
 }
