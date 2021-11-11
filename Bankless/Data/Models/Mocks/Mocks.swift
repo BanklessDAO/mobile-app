@@ -23,6 +23,17 @@ import BigInt
 
 private let faker = Faker(locale: "en-US")
 
+// MARK: - Discord user -
+
+extension DiscordUser: Mock {
+    static func generateMock() -> DiscordUser {
+        return .init(
+            id: UUID().uuidString,
+            handle: faker.internet.username()
+        )
+    }
+}
+
 // MARK: - Member -
 
 extension Member: Mock {
