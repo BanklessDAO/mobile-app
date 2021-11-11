@@ -60,6 +60,21 @@ class ApplicationCoordinator: NSObject {
             [homeCoordinator.initialViewController],
             animated: false
         )
+        
+        let navigationBar = NavigationBar()
+        
+        let identityItem = IdentityStripeView(layoutDirection: .rightHand)
+        identityItem.set(viewModel: IdentityStripeViewModel())
+        identityItem.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        navigationBar.set(
+            views: [
+                identityItem,
+            ]
+        )
+        
+        navigationController?.navigationBar
+            .set(customNavigationView: navigationBar)
     }
     
     func start() {

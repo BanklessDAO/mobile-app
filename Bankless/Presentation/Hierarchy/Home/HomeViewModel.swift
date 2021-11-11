@@ -73,9 +73,15 @@ class HomeViewModel: BaseViewModel,
     
     private func loadDiscordUser() -> Completable {
         return identityService.getUserIdentity()
-            .do(onNext: { print($0) })
-                .flatMap({ _ in Completable.empty() })
-                .asCompletable()
+            .do(onNext: {
+                NotificationCenter.default
+                    .post(
+                        name: NotificationEvent.discordUserUpdated.notificationName,
+                        object: $0.discordUser
+                    )
+            })
+            .flatMap({ _ in Completable.empty() })
+            .asCompletable()
     }
     
     // MARK: - Timeline -

@@ -67,6 +67,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .backgroundBlack
+        tableView.tableHeaderView = UIView(frame: .zero)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.contentInsetAdjustmentBehavior = .never
         
