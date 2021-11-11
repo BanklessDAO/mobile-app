@@ -21,15 +21,16 @@ import Foundation
 import RxSwift
 
 final class NetworkBanklessService: BanklessService {
-    private let dataClient: DataClient
+    private let contentGatewayClient: ContentGatewayClient
     
     init(
-        dataClient: DataClient
+        contentGatewayClient: ContentGatewayClient
     ) {
-        self.dataClient = dataClient
+        self.contentGatewayClient = contentGatewayClient
     }
     
     func getDAOOwnership() -> Observable<DAOOwnershipResponse> {
-        return dataClient.request(query: .bankOnChainInfo)
+        return contentGatewayClient.getUserBANKAccount()
+            .map({ DAOOwnershipResponse(bankAccount: $0) })
     }
 }

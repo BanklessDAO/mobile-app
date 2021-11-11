@@ -21,15 +21,21 @@ import Foundation
 import RxSwift
 
 final class NetworkTimelineService: TimelineService {
-    private let dataClient: DataClient
+    private let contentGatewayClient: ContentGatewayClient
     
     init(
-        dataClient: DataClient
+        contentGatewayClient: ContentGatewayClient
     ) {
-        self.dataClient = dataClient
+        self.contentGatewayClient = contentGatewayClient
     }
     
     func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return dataClient.request(query: .timelineItems)
+        return contentGatewayClient.getTimelineContent()
+            .map({
+                TimelineItemsResponse(
+                    bounties: $0.bounties,
+                    academyCourses: $0.academyCourses
+                )
+            })
     }
 }
