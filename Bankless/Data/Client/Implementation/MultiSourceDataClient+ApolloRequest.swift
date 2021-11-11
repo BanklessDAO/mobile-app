@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import Apollo
 
-extension ApolloGraphQLClient {
+extension MultiSourceDataClient {
     func apolloRequest<Q, T>(
         apolloQuery: Q,
         responseType: T.Type,

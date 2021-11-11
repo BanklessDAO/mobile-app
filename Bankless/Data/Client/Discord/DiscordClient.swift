@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -20,4 +20,6 @@
 import Foundation
 import RxSwift
 
-protocol DataClient { }
+protocol DiscordClient: DataClient {
+    func getCurrentUser() -> Observable<DiscordUser>
+}

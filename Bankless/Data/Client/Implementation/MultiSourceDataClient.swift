@@ -19,5 +19,20 @@
 
 import Foundation
 import RxSwift
+import Apollo
 
-protocol DataClient { }
+class MultiSourceDataClient: DataClient {
+    let discordAPI: DiscordAPIProvider
+    let apollo: ApolloClient
+    
+    init(
+        contentGatewayAPIBaseURL: URL,
+        sessionStorage: SessionStorage
+    ) {
+        self.discordAPI = DiscordAPIProvider(
+            sessionStorage: sessionStorage
+        )
+        
+        self.apollo = ApolloClient(url: contentGatewayAPIBaseURL)
+    }
+}
