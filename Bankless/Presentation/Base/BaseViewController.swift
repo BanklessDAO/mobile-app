@@ -30,6 +30,10 @@ class BaseViewController<VM: ViewModel>: UIViewController {
     
     var viewModel: VM!
     
+    override var navigationController: BaseNavigationController? {
+        return super.navigationController as? BaseNavigationController
+    }
+    
     // MARK: - Setters -
     
     func set(viewModel: VM) {

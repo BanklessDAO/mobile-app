@@ -4,6 +4,21 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Base Navigation Controller-->
+        <scene sceneID="ULq-hl-SvI">
+            <objects>
+                <navigationController restorationIdentifier="BaseNavigationController" storyboardIdentifier="BaseNavigationController" id="jSP-Mj-5RY" customClass="BaseNavigationController" customModule="Bankless" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M9C-c1-vbb" customClass="BaseNavigationBar" customModule="Bankless" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9P7-FT-Pq2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-301" y="625"/>
+        </scene>
+    </scenes>
 </document>

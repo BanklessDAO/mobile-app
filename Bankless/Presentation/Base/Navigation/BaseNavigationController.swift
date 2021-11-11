@@ -19,5 +19,32 @@
 
 import Foundation
 import UIKit
+import Cartography
 
-final class BaseNavigationController: UINavigationController { }
+final class BaseNavigationController: UINavigationController {
+    // MARK: - Navigation bar -
+    
+    override var navigationBar: BaseNavigationBar {
+        return super.navigationBar as! BaseNavigationBar
+    }
+    
+    // MARK: - Subviews -
+    
+    private var curtainView: UIView!
+    
+    // MARK: - Curtain -
+    
+    func setCurtain(on isVisible: Bool) {
+        curtainView?.removeFromSuperview()
+        
+        guard isVisible else { return }
+        
+        curtainView = UIView()
+        curtainView.backgroundColor = .init(white: 0.0, alpha: 0.5)
+        view.addSubview(curtainView)
+        
+        constrain(curtainView, view) { (curtain, view) in
+            curtain.edges == view.edges
+        }
+    }
+}

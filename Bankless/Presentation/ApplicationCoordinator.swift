@@ -50,10 +50,11 @@ class ApplicationCoordinator: NSObject {
     
     private func setUpNavigationController() {
         if navigationController == nil {
-            navigationController = BaseNavigationController()
+            navigationController = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(
+                    withIdentifier: String(describing: BaseNavigationController.self)
+                ) as? BaseNavigationController
         }
-        
-        navigationController.isNavigationBarHidden = true
         
         navigationController.setViewControllers(
             [homeCoordinator.initialViewController],
