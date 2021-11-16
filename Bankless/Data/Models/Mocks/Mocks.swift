@@ -104,10 +104,11 @@ extension Bounty: Mock {
         return .init(
             id: UUID().uuidString,
             season: String(Int.random(in: 1 ... 2)),
-            title: faker.lorem.sentence(wordsAmount: 3).capitalized,
-            descrtiption: faker.lorem.paragraphs(amount: 3),
+            title: faker.lorem.sentence(wordsAmount: 8).capitalized,
+            descrtiption: faker.lorem
+                .sentence(wordsAmount: Int.random(in: 60 ... 200)),
             criteria: faker.lorem
-                .sentence(wordsAmount: Int.random(in: 20 ... 40)).capitalized,
+                .sentence(wordsAmount: Int.random(in: 20 ... 40)),
             reward: .generateMock(),
             createdBy: .generateMock(),
             createdAt: faker.date.backward(days: .random(in: 0 ... 1_000)),
