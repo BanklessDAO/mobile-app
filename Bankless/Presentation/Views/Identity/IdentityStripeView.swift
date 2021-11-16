@@ -55,11 +55,15 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
         backgroundColor = .backgroundGrey.withAlphaComponent(0.30)
         
         setUpSubviews()
-        setUpConstraints()
+        
+        UIView.performWithoutAnimation {
+            setUpConstraints()
+        }
     }
     
     private func setUpSubviews() {
         button = UIButton(type: .custom)
+        button.alpha = 0.75
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.backgroundColor = .backgroundGrey.withAlphaComponent(0.75)
         addSubview(button)
