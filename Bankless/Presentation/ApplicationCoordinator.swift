@@ -19,8 +19,14 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ApplicationCoordinator: NSObject {
+    // MARK: - Properties -
+    
+    private let disposer = DisposeBag()
+    
     // MARK: - View hierarchy -
     
     private let window: UIWindow
@@ -63,18 +69,36 @@ class ApplicationCoordinator: NSObject {
         
         let navigationBar = NavigationBar()
         
-        let identityItem = IdentityStripeView(layoutDirection: .rightHand)
-        identityItem.set(viewModel: IdentityStripeViewModel())
-        identityItem.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        
-        navigationBar.set(
-            views: [
-                identityItem,
-            ]
-        )
-        
         navigationController?.navigationBar
             .set(customNavigationView: navigationBar)
+        
+        navigationController.controllerStack.asObservable()
+            .subscribe(onNext: { [weak self] viewControllers in
+                var views: [UIView] = []
+                
+                if viewControllers.count > 1 {
+                    let backButtonItem = IconButtonNavigationBarItem(
+                        icon: NavigationBarIcon.back.image
+                    )
+                    backButtonItem.rxTap
+                        .drive(onNext: { [weak self] in
+                            _ = self?.navigationController.popViewController(animated: true)
+                        })
+                        .disposed(by: backButtonItem.disposer)
+                    views.append(backButtonItem)
+                }
+                
+                let identityViewModel = IdentityStripeViewModel(mode: .currentUser)
+                self?.container.resolve(identityViewModel)
+                
+                let identityItem = IdentityStripeView(layoutDirection: .rightHand)
+                identityItem.set(viewModel: identityViewModel)
+                identityItem.setContentHuggingPriority(.defaultLow, for: .horizontal)
+                views.append(identityItem)
+                
+                navigationBar.set(views: views)
+            })
+            .disposed(by: disposer)
     }
     
     func start() {

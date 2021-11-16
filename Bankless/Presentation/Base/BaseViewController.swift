@@ -19,6 +19,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class BaseViewController<VM: ViewModel>: UIViewController {
     // MARK: - Constants -
@@ -30,9 +31,21 @@ class BaseViewController<VM: ViewModel>: UIViewController {
     
     var coordinator: Coordinator?
     var viewModel: VM!
+    let disposer = DisposeBag()
     
     override var navigationController: BaseNavigationController? {
         return super.navigationController as? BaseNavigationController
+    }
+    
+    // MARK: - Initializers -
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        navigationItem.hidesBackButton = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Setters -

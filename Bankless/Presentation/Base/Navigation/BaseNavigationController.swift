@@ -20,6 +20,8 @@
 import Foundation
 import UIKit
 import Cartography
+import RxSwift
+import RxCocoa
 
 final class BaseNavigationController: UINavigationController {
     // MARK: - Navigation bar -
@@ -28,9 +30,35 @@ final class BaseNavigationController: UINavigationController {
         return super.navigationBar as! BaseNavigationBar
     }
     
+    var controllerStack = BehaviorRelay<[UIViewController]>(value: [])
+    
     // MARK: - Subviews -
     
     private var curtainView: UIView!
+    
+    // MARK: - Lifecycle -
+    
+    override func setViewControllers(_ viewControllers: [UIViewController], animated: Bool) {
+        super.setViewControllers(viewControllers, animated: animated)
+        controllerStack.accept(viewControllers)
+    }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        controllerStack.accept(viewControllers)
+    }
+    
+    override func popViewController(animated: Bool) -> UIViewController? {
+        let vc = super.popViewController(animated: animated)
+        controllerStack.accept(viewControllers)
+        return vc
+    }
+    
+    override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        let vc = super.popToRootViewController(animated: animated)
+        controllerStack.accept(viewControllers)
+        return vc
+    }
     
     // MARK: - Curtain -
     
