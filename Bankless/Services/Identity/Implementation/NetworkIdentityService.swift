@@ -22,6 +22,7 @@ import RxSwift
 
 final class NetworkIdentityService: IdentityService {
     private let discordClient: DiscordClient
+    private var recentIdentityResponse: UserIdentityResponse?
     
     init(
         discordClient: DiscordClient
@@ -30,7 +31,14 @@ final class NetworkIdentityService: IdentityService {
     }
     
     func getUserIdentity() -> Observable<UserIdentityResponse> {
-        return discordClient.getCurrentUser()
+        let recent: Observable<UserIdentityResponse> = recentIdentityResponse != nil
+            ? .just(recentIdentityResponse!)
+            : .empty()
+        
+        let fresh = discordClient.getCurrentUser()
             .map({ UserIdentityResponse(discordUser: $0) })
+            .do(onNext: { [weak self] response in self?.recentIdentityResponse = response })
+        
+        return recent.concat(fresh)
     }
 }
