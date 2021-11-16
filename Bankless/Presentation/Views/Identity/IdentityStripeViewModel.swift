@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class IdentityStripeViewModel: BaseViewModel {
+final class IdentityStripeViewModel: BaseViewModel, IdentityServiceDependency {
     // MARK: - Input/Output -
     
     struct Input {
@@ -38,23 +38,39 @@ final class IdentityStripeViewModel: BaseViewModel {
     private static let discordIcon = UIImage(named: "discord_icon")!
     private static let titlePlaceholder = NSLocalizedString(
         "identity.title.placeholder",
-        value: "Unknown User",
+        value: "Unknown",
         comment: ""
     )
+    
+    // MARK: - Data -
+    
+    private let mode: Mode
+    
+    // MARK: - Components -
+    
+    var identityService: IdentityService!
+    
+    // MARK: - Initializers -
+    
+    init(mode: Mode) {
+        self.mode = mode
+    }
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        let user = loadUser().map({ $0 as DiscordUser? }).startWith(nil)
+        
         bind(tap: input.tap)
         
         return Output(
             domainIcon: .just(IdentityStripeViewModel.discordIcon),
-            title: titleString().asDriver(onErrorDriveWith: .empty())
+            title: titleString(for: user).asDriver(onErrorDriveWith: .empty())
         )
     }
     
-    private func titleString() -> Observable<String> {
-        return subscribeToDiscordUserUpdates()
+    private func titleString(for user: Observable<DiscordUser?>) -> Observable<String> {
+        return user
             .map({ user in
                 guard let user = user else {
                     return IdentityStripeViewModel.titlePlaceholder
@@ -65,12 +81,28 @@ final class IdentityStripeViewModel: BaseViewModel {
             .startWith(IdentityStripeViewModel.titlePlaceholder)
     }
     
-    // MARK: - Events -
+    // MARK: - Discord data -
     
-    private func subscribeToDiscordUserUpdates() -> Observable<DiscordUser?> {
-        NotificationCenter.default.rx
-            .notification(NotificationEvent.discordUserUpdated.notificationName, object: nil)
-            .map({ $0.object as? DiscordUser })
+    private func loadUser() -> Observable<DiscordUser> {
+        let user: Observable<DiscordUser>
+        
+        switch mode {
+            
+        case .user(let anotherUser):
+            user = .just(anotherUser)
+        case .currentUser:
+            user = identityService.getUserIdentity()
+                .map({ $0.discordUser })
+                .do(onNext: {
+                    NotificationCenter.default
+                        .post(
+                            name: NotificationEvent.discordUserUpdated.notificationName,
+                            object: $0
+                        )
+                })
+        }
+        
+        return user
     }
     
     // MARK: - Actions -
@@ -81,5 +113,12 @@ final class IdentityStripeViewModel: BaseViewModel {
                 fatalError("not implemented")
             })
             .disposed(by: disposer)
+    }
+}
+
+extension IdentityStripeViewModel {
+    enum Mode {
+        case currentUser
+        case user(_ user: DiscordUser)
     }
 }

@@ -24,7 +24,7 @@ final class MockTimelineService: TimelineService {
     func getTimelineItems() -> Observable<TimelineItemsResponse> {
         return .just(
             .init(
-                bounties: Bounty.generateMocks(.random(in: 2 ... 2)),
+                bounties: Bounty.generateMocks(.random(in: 3 ... 3)),
                 academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 1))
             )
         )

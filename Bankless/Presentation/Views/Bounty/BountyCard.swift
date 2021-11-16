@@ -40,6 +40,7 @@ class BountyCard: CardView {
     private var titleLabel: UILabel!
     private var forwardNavIconView: UIImageView!
     private var rewardTagView: TagView!
+    private var statusTagView: TagView!
     
     // MARK: - Initialiers -
     
@@ -75,9 +76,16 @@ class BountyCard: CardView {
         rewardTagView = TagView()
         rewardTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         rewardTagView.cornerRadius = Appearance.cornerRadius
-        rewardTagView.backgroundColor = .backgroundGrey
+        rewardTagView.backgroundColor = .backgroundGrey.withAlphaComponent(0.5)
         rewardTagView.horizontalPadding = BountyCard.tagPadding
         addSubview(rewardTagView)
+        
+        statusTagView = TagView()
+        statusTagView.font = Appearance.Text.Font.Label2.font(bold: true)
+        statusTagView.cornerRadius = Appearance.cornerRadius
+        statusTagView.backgroundColor = .backgroundGrey.withAlphaComponent(0.5)
+        statusTagView.horizontalPadding = BountyCard.tagPadding
+        addSubview(statusTagView)
     }
     
     func setUpConstraints() {
@@ -101,6 +109,13 @@ class BountyCard: CardView {
             reward.bottom == view.bottom - CardView.contentInsets.bottom
             reward.height == BountyCard.rewardTagHeight
         }
+        
+        constrain(statusTagView, rewardTagView, self) { (status, reward, view) in
+            status.centerY == reward.centerY
+            status.left == reward.right + CardView.contentPaddings.left
+            status.right <= view.right - CardView.contentInsets.right
+            status.height == reward.height
+        }
     }
     
     func bind(viewModel: BountyViewModel) {
@@ -109,5 +124,11 @@ class BountyCard: CardView {
         
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
         output.reward.drive(rewardTagView.rx.text).disposed(by: disposer)
+        output.status
+            .drive(onNext: { [weak self] status in
+                self?.statusTagView.text = status.title
+                self?.statusTagView.textColor = status.color
+            })
+            .disposed(by: disposer)
     }
 }

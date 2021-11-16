@@ -21,11 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel: BaseViewModel,
-                     AuthServiceDependency,
-                     IdentityServiceDependency,
-                     TimelineServiceDependency
-{
+class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDependency {
     // MARK: - Input/Output -
     
     struct Input { }
@@ -38,6 +34,9 @@ class HomeViewModel: BaseViewModel,
     
     struct Actions {
         let openAchievements = PublishRelay<Void>()
+        let openBountyBoard = PublishRelay<Void>()
+        let openAcademy = PublishRelay<Void>()
+        let openNewsletter = PublishRelay<Void>()
     }
     
     let actions = Actions()
@@ -46,13 +45,11 @@ class HomeViewModel: BaseViewModel,
     
     var authService: AuthService!
     var identityService: IdentityService!
-    var timelineService: TimelineService!
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
         ensureDiscordAccess()
-            .andThen(loadDiscordUser())
             .subscribe()
             .disposed(by: disposer)
         
@@ -71,24 +68,15 @@ class HomeViewModel: BaseViewModel,
         return authService.getDiscordAccess()
     }
     
-    private func loadDiscordUser() -> Completable {
-        return identityService.getUserIdentity()
-            .do(onNext: {
-                NotificationCenter.default
-                    .post(
-                        name: NotificationEvent.discordUserUpdated.notificationName,
-                        object: $0.discordUser
-                    )
-            })
-            .flatMap({ _ in Completable.empty() })
-            .asCompletable()
-    }
-    
     // MARK: - Timeline -
     
     private func timelineViewModel() -> Observable<HomeTimelineViewModel> {
         let viewModel = HomeTimelineViewModel()
         self.container?.resolve(viewModel)
+        viewModel.expandBountiesTransitionRequested
+            .bind(to: actions.openBountyBoard).disposed(by: disposer)
+        viewModel.expandAcademyTransitionRequested
+            .bind(to: actions.openAcademy).disposed(by: disposer)
         
         return .just(viewModel)
     }

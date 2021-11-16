@@ -10,6 +10,33 @@
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
 		FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */; };
 		FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */; };
+		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
+		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
+		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
+		FF5BCD76273DD0E3000D3FEF /* MockBountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD75273DD0E3000D3FEF /* MockBountyBoardService.swift */; };
+		FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD77273DD0E9000D3FEF /* NetworkBountyBoardService.swift */; };
+		FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD7B273DD1D0000D3FEF /* BountyReferenceRequest.swift */; };
+		FF5BCD7E273DD1DF000D3FEF /* SubmitBountyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD7D273DD1DF000D3FEF /* SubmitBountyRequest.swift */; };
+		FF5BCD81273DD30E000D3FEF /* BountyBoardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD80273DD30E000D3FEF /* BountyBoardCoordinator.swift */; };
+		FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD82273DD31E000D3FEF /* BountyBoardViewController.swift */; };
+		FF5BCD85273DD326000D3FEF /* BountyBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD84273DD326000D3FEF /* BountyBoardViewModel.swift */; };
+		FF5BCD8E273DD3F4000D3FEF /* BountyDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD8D273DD3F4000D3FEF /* BountyDetailsCoordinator.swift */; };
+		FF5BCD90273DD3FD000D3FEF /* BountyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD8F273DD3FD000D3FEF /* BountyDetailsViewController.swift */; };
+		FF5BCD95273DD43C000D3FEF /* BountySubmissionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD94273DD43C000D3FEF /* BountySubmissionCoordinator.swift */; };
+		FF5BCD97273DD444000D3FEF /* BountySubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD96273DD444000D3FEF /* BountySubmissionViewController.swift */; };
+		FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD98273DD44B000D3FEF /* BountySubmissionViewModel.swift */; };
+		FF5BCD9B273DD889000D3FEF /* Bounty+TitleBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD9A273DD889000D3FEF /* Bounty+TitleBehaviour.swift */; };
+		FF5BCD9D273DD915000D3FEF /* ColorBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD9C273DD915000D3FEF /* ColorBehaviour.swift */; };
+		FF5BCD9F273DD93E000D3FEF /* Bounty+ColorBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD9E273DD93E000D3FEF /* Bounty+ColorBehaviour.swift */; };
+		FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDA1273DE0A9000D3FEF /* BaseSectionedSource.swift */; };
+		FF5BCDA7273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDA6273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift */; };
+		FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDA8273DE897000D3FEF /* BountyBoardHeaderCell.swift */; };
+		FF5BCDAD273F0E06000D3FEF /* SectionHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDAC273F0E06000D3FEF /* SectionHeaderViewModel.swift */; };
+		FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDB0273F5A2A000D3FEF /* BountyDetailsViewModel.swift */; };
+		FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDB3273F716B000D3FEF /* Coordinator.swift */; };
+		FF5BCDB6273F8052000D3FEF /* Bounty+LifecycleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDB5273F8052000D3FEF /* Bounty+LifecycleAction.swift */; };
+		FF5BCDB9273F8878000D3FEF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDB8273F8878000D3FEF /* TextField.swift */; };
+		FF5BCDBC2742DFD5000D3FEF /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDBB2742DFD5000D3FEF /* TextView.swift */; };
 		FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF786690270CFD39000279FE /* MockTimelineService.swift */; };
 		FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3802706276200A47A91 /* HomeViewModel.swift */; };
 		FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3822706277200A47A91 /* HomeViewController.swift */; };
@@ -76,7 +103,7 @@
 		FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE986A270E86250047405D /* AcademyCourseViewModel.swift */; };
 		FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE986C270E86DB0047405D /* AcademyCourseCard.swift */; };
 		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
-		FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */; };
+		FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* SectionHeaderCell.swift */; };
 		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
 		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
 		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
@@ -97,7 +124,7 @@
 		FFCC9FAD2718CA2800CAB3A3 /* GaugeClusterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FAC2718CA2800CAB3A3 /* GaugeClusterCell.swift */; };
 		FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FAF2718CA8000CAB3A3 /* GaugeClusterView.swift */; };
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
-		FFCC9FB62718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift */; };
+		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
 		FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */; };
 		FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */; };
@@ -111,7 +138,7 @@
 		FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */; };
 		FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60020271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift */; };
 		FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */; };
-		FFE60026271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */; };
+		FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60025271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift */; };
 		FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60028271E33C300F73FA1 /* NotificationEvent.swift */; };
 		FFEB12272710CF7E003EF90D /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = FFEB12262710CF7E003EF90D /* schema.json */; };
 		FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12302710FBCC003EF90D /* DataClient.swift */; };
@@ -139,6 +166,33 @@
 		C4F3A936DC476C1FA58282F3 /* Pods-Bankless.release mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release mock.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release mock.xcconfig"; sourceTree = "<group>"; };
 		FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainBasedSessionStorage.swift; sourceTree = "<group>"; };
+		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
+		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
+		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
+		FF5BCD75273DD0E3000D3FEF /* MockBountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBountyBoardService.swift; sourceTree = "<group>"; };
+		FF5BCD77273DD0E9000D3FEF /* NetworkBountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBountyBoardService.swift; sourceTree = "<group>"; };
+		FF5BCD7B273DD1D0000D3FEF /* BountyReferenceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyReferenceRequest.swift; sourceTree = "<group>"; };
+		FF5BCD7D273DD1DF000D3FEF /* SubmitBountyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBountyRequest.swift; sourceTree = "<group>"; };
+		FF5BCD80273DD30E000D3FEF /* BountyBoardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardCoordinator.swift; sourceTree = "<group>"; };
+		FF5BCD82273DD31E000D3FEF /* BountyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardViewController.swift; sourceTree = "<group>"; };
+		FF5BCD84273DD326000D3FEF /* BountyBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardViewModel.swift; sourceTree = "<group>"; };
+		FF5BCD8D273DD3F4000D3FEF /* BountyDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailsCoordinator.swift; sourceTree = "<group>"; };
+		FF5BCD8F273DD3FD000D3FEF /* BountyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailsViewController.swift; sourceTree = "<group>"; };
+		FF5BCD94273DD43C000D3FEF /* BountySubmissionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountySubmissionCoordinator.swift; sourceTree = "<group>"; };
+		FF5BCD96273DD444000D3FEF /* BountySubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountySubmissionViewController.swift; sourceTree = "<group>"; };
+		FF5BCD98273DD44B000D3FEF /* BountySubmissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountySubmissionViewModel.swift; sourceTree = "<group>"; };
+		FF5BCD9A273DD889000D3FEF /* Bounty+TitleBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bounty+TitleBehaviour.swift"; sourceTree = "<group>"; };
+		FF5BCD9C273DD915000D3FEF /* ColorBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBehaviour.swift; sourceTree = "<group>"; };
+		FF5BCD9E273DD93E000D3FEF /* Bounty+ColorBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bounty+ColorBehaviour.swift"; sourceTree = "<group>"; };
+		FF5BCDA1273DE0A9000D3FEF /* BaseSectionedSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSectionedSource.swift; sourceTree = "<group>"; };
+		FF5BCDA6273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardHeaderViewModel.swift; sourceTree = "<group>"; };
+		FF5BCDA8273DE897000D3FEF /* BountyBoardHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardHeaderCell.swift; sourceTree = "<group>"; };
+		FF5BCDAC273F0E06000D3FEF /* SectionHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewModel.swift; sourceTree = "<group>"; };
+		FF5BCDB0273F5A2A000D3FEF /* BountyDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyDetailsViewModel.swift; sourceTree = "<group>"; };
+		FF5BCDB3273F716B000D3FEF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		FF5BCDB5273F8052000D3FEF /* Bounty+LifecycleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bounty+LifecycleAction.swift"; sourceTree = "<group>"; };
+		FF5BCDB8273F8878000D3FEF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		FF5BCDBB2742DFD5000D3FEF /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		FF786690270CFD39000279FE /* MockTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimelineService.swift; sourceTree = "<group>"; };
 		FF78F3802706276200A47A91 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FF78F3822706277200A47A91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -210,7 +264,7 @@
 		FFAE986A270E86250047405D /* AcademyCourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseViewModel.swift; sourceTree = "<group>"; };
 		FFAE986C270E86DB0047405D /* AcademyCourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseCard.swift; sourceTree = "<group>"; };
 		FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCell.swift; sourceTree = "<group>"; };
-		FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSectionHeaderCell.swift; sourceTree = "<group>"; };
+		FFAE9876270F6F270047405D /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
 		FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsViewModel.swift; sourceTree = "<group>"; };
 		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
@@ -232,7 +286,7 @@
 		FFCC9FAC2718CA2800CAB3A3 /* GaugeClusterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeClusterCell.swift; sourceTree = "<group>"; };
 		FFCC9FAF2718CA8000CAB3A3 /* GaugeClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeClusterView.swift; sourceTree = "<group>"; };
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
-		FFCC9FB52718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount + ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
+		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
 		FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCoordinator.swift; sourceTree = "<group>"; };
@@ -246,7 +300,7 @@
 		FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		FFE60020271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTitleViewModel.swift; sourceTree = "<group>"; };
 		FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsTitleCell.swift; sourceTree = "<group>"; };
-		FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsSectionHeaderCell.swift; sourceTree = "<group>"; };
+		FFE60025271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSectionHeaderCell.swift; sourceTree = "<group>"; };
 		FFE60028271E33C300F73FA1 /* NotificationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationEvent.swift; sourceTree = "<group>"; };
 		FFEB121E2710A195003EF90D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FFEB121F2710A195003EF90D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -318,6 +372,138 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		FF5BCD6D273DCF8D000D3FEF /* BountyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */,
+				FF5BCD7B273DD1D0000D3FEF /* BountyReferenceRequest.swift */,
+				FF5BCD7D273DD1DF000D3FEF /* SubmitBountyRequest.swift */,
+				FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */,
+				FF5BCD72273DD077000D3FEF /* BountyResponse.swift */,
+				FF5BCD74273DD0D1000D3FEF /* Implementation */,
+			);
+			path = BountyBoard;
+			sourceTree = "<group>";
+		};
+		FF5BCD74273DD0D1000D3FEF /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD75273DD0E3000D3FEF /* MockBountyBoardService.swift */,
+				FF5BCD77273DD0E9000D3FEF /* NetworkBountyBoardService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FF5BCD7F273DD2F6000D3FEF /* BountyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD87273DD388000D3FEF /* Home */,
+				FF5BCD8C273DD3C8000D3FEF /* Details */,
+				FF5BCD93273DD421000D3FEF /* Submission */,
+			);
+			path = BountyBoard;
+			sourceTree = "<group>";
+		};
+		FF5BCD87273DD388000D3FEF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD80273DD30E000D3FEF /* BountyBoardCoordinator.swift */,
+				FF5BCD82273DD31E000D3FEF /* BountyBoardViewController.swift */,
+				FF5BCD84273DD326000D3FEF /* BountyBoardViewModel.swift */,
+				FF5BCDA3273DE56B000D3FEF /* Sections */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FF5BCD8C273DD3C8000D3FEF /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD8D273DD3F4000D3FEF /* BountyDetailsCoordinator.swift */,
+				FF5BCD8F273DD3FD000D3FEF /* BountyDetailsViewController.swift */,
+				FF5BCDB0273F5A2A000D3FEF /* BountyDetailsViewModel.swift */,
+				FF5BCDB5273F8052000D3FEF /* Bounty+LifecycleAction.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		FF5BCD93273DD421000D3FEF /* Submission */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCD94273DD43C000D3FEF /* BountySubmissionCoordinator.swift */,
+				FF5BCD96273DD444000D3FEF /* BountySubmissionViewController.swift */,
+				FF5BCD98273DD44B000D3FEF /* BountySubmissionViewModel.swift */,
+			);
+			path = Submission;
+			sourceTree = "<group>";
+		};
+		FF5BCDA3273DE56B000D3FEF /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDA4273DE577000D3FEF /* Header */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		FF5BCDA4273DE577000D3FEF /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDA8273DE897000D3FEF /* BountyBoardHeaderCell.swift */,
+				FF5BCDA6273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		FF5BCDAA273DEB72000D3FEF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDAE273F2AE0000D3FEF /* SectionHeader */,
+				FF5BCDAB273DEB8C000D3FEF /* Cells */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FF5BCDAB273DEB8C000D3FEF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FF78F38927062B4700A47A91 /* BountyBoard */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FF5BCDAE273F2AE0000D3FEF /* SectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				FFAE9876270F6F270047405D /* SectionHeaderCell.swift */,
+				FFE60025271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift */,
+				FF5BCDAC273F0E06000D3FEF /* SectionHeaderViewModel.swift */,
+			);
+			path = SectionHeader;
+			sourceTree = "<group>";
+		};
+		FF5BCDB2273F715C000D3FEF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDB3273F716B000D3FEF /* Coordinator.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		FF5BCDB7273F8866000D3FEF /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDB8273F8878000D3FEF /* TextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		FF5BCDBA2742DFC8000D3FEF /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				FF5BCDBB2742DFD5000D3FEF /* TextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
 		FF78F371270552E800A47A91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +548,7 @@
 				FFEB12482718AA92003EF90D /* Bankless */,
 				FFEB12472718AA5C003EF90D /* Achievements */,
 				FF78F39F270636DC00A47A91 /* Timeline */,
+				FF5BCD6D273DCF8D000D3FEF /* BountyBoard */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -412,6 +599,7 @@
 				FFE6001C271C8FB000F73FA1 /* ReusableCell.swift */,
 				FF78F3D92706B3BD00A47A91 /* BaseTableViewCell.swift */,
 				FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */,
+				FF5BCDA1273DE0A9000D3FEF /* BaseSectionedSource.swift */,
 				FF7A33D9273CCCA60037899B /* Navigation */,
 			);
 			path = Base;
@@ -472,7 +660,9 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */,
-				FFCC9FB52718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift */,
+				FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */,
+				FF5BCD9A273DD889000D3FEF /* Bounty+TitleBehaviour.swift */,
+				FF5BCD9E273DD93E000D3FEF /* Bounty+ColorBehaviour.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -481,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */,
+				FF5BCD9C273DD915000D3FEF /* ColorBehaviour.swift */,
 				FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */,
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
@@ -684,6 +875,8 @@
 		FFAE9851270E3F590047405D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FF5BCDBA2742DFC8000D3FEF /* TextView */,
+				FF5BCDB7273F8866000D3FEF /* TextField */,
 				FFAE9863270E4A810047405D /* Common */,
 				FF7A33C6273CB4DA0037899B /* NavigationBar */,
 				FF7A33D2273CB9B40037899B /* Identity */,
@@ -698,8 +891,11 @@
 		FFAE9852270E41780047405D /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				FF5BCDAA273DEB72000D3FEF /* Common */,
+				FF5BCDB2273F715C000D3FEF /* Base */,
 				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF78F37F2706271B00A47A91 /* Home */,
+				FF5BCD7F273DD2F6000D3FEF /* BountyBoard */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -759,10 +955,8 @@
 		FFAE986E270F6B360047405D /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				FFAE9875270F6EA80047405D /* Common */,
 				FFCC9FA92718C95800CAB3A3 /* GaugeCluster */,
 				FFAE9872270F6C330047405D /* News */,
-				FF78F38927062B4700A47A91 /* BountyBoard */,
 				FF78F38A27062B5200A47A91 /* BanklessAcademy */,
 			);
 			path = Sections;
@@ -775,14 +969,6 @@
 				FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */,
 			);
 			path = News;
-			sourceTree = "<group>";
-		};
-		FFAE9875270F6EA80047405D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				FFAE9876270F6F270047405D /* TimelineSectionHeaderCell.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		FFC6F46D2735F3D200EA8F12 /* Auth */ = {
@@ -929,7 +1115,6 @@
 		FFE60024271E2FB700F73FA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FFE60025271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1158,14 +1343,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5BCD8E273DD3F4000D3FEF /* BountyDetailsCoordinator.swift in Sources */,
+				FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */,
 				FFEB12392710FE17003EF90D /* Types.graphql.swift in Sources */,
+				FF5BCDB9273F8878000D3FEF /* TextField.swift in Sources */,
+				FF5BCD97273DD444000D3FEF /* BountySubmissionViewController.swift in Sources */,
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
 				FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */,
+				FF5BCDAD273F0E06000D3FEF /* SectionHeaderViewModel.swift in Sources */,
+				FF5BCD85273DD326000D3FEF /* BountyBoardViewModel.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF7A33BB273CA7210037899B /* MockIdentityService.swift in Sources */,
+				FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */,
 				FF7A33A0273C684F0037899B /* NetworkProvider.swift in Sources */,
+				FF5BCDBC2742DFD5000D3FEF /* TextView.swift in Sources */,
 				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
@@ -1175,6 +1368,8 @@
 				FF7A33D8273CCC630037899B /* BaseNavigationBar.swift in Sources */,
 				FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */,
 				FFEB124E2718AB18003EF90D /* AchievementsResponse.swift in Sources */,
+				FF5BCD9F273DD93E000D3FEF /* Bounty+ColorBehaviour.swift in Sources */,
+				FF5BCD81273DD30E000D3FEF /* BountyBoardCoordinator.swift in Sources */,
 				FF7A33A2273C694D0037899B /* DiscordAPIProvider.swift in Sources */,
 				FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */,
 				FFE6001A271C8F5800F73FA1 /* BaseCollectionViewCell.swift in Sources */,
@@ -1190,7 +1385,8 @@
 				FFC6F4792735FDC100EA8F12 /* AuthProviderServer.swift in Sources */,
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
-				FFE60026271E2FDB00F73FA1 /* AchievementsSectionHeaderCell.swift in Sources */,
+				FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */,
+				FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */,
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
 				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
 				FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */,
@@ -1198,13 +1394,16 @@
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
+				FF5BCDA7273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF7A33C3273CA9CF0037899B /* MultiSourceDataClient+ContentGateway.swift in Sources */,
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
 				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
 				FFEB124A2718AAAC003EF90D /* AchievementsService.swift in Sources */,
-				FFAE9877270F6F270047405D /* TimelineSectionHeaderCell.swift in Sources */,
+				FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */,
 				FF7A33B8273CA6C30037899B /* UserIdentityResponse.swift in Sources */,
+				FF5BCD90273DD3FD000D3FEF /* BountyDetailsViewController.swift in Sources */,
+				FF5BCD95273DD43C000D3FEF /* BountySubmissionCoordinator.swift in Sources */,
 				FFEB124427189C33003EF90D /* Environment.swift in Sources */,
 				FFC6F4852736FE7E00EA8F12 /* OAuth2ServerInfo.swift in Sources */,
 				FF78F3BC27066AB700A47A91 /* BaseViewController.swift in Sources */,
@@ -1221,6 +1420,8 @@
 				FFE60012271C887900F73FA1 /* AttendanceTokenViewModel.swift in Sources */,
 				FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */,
 				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
+				FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */,
+				FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
 				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
@@ -1230,15 +1431,18 @@
 				FF7A33DB273CCCBB0037899B /* BaseNavigationView.swift in Sources */,
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
 				FFEB12382710FE17003EF90D /* SampleData.graphql.swift in Sources */,
+				FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FF7A33B6273CA69C0037899B /* IdentityService.swift in Sources */,
-				FFCC9FB62718D20900CAB3A3 /* BANKAccount + ERC20BalancePresentationBehaviour.swift in Sources */,
+				FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */,
 				FF7A33C5273CACD60037899B /* DiscordUser.swift in Sources */,
 				FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
 				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
+				FF5BCD76273DD0E3000D3FEF /* MockBountyBoardService.swift in Sources */,
 				FFEB124C2718AAC2003EF90D /* BanklessService.swift in Sources */,
 				FF7A33A4273C69970037899B /* DiscordAPIMethod.swift in Sources */,
+				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
@@ -1249,9 +1453,11 @@
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
 				FFAE9843270D009C0047405D /* Mock.swift in Sources */,
+				FF5BCD9B273DD889000D3FEF /* Bounty+TitleBehaviour.swift in Sources */,
 				FFE60018271C8DF400F73FA1 /* AchievementsCollectionView.swift in Sources */,
 				FFE60016271C8B5400F73FA1 /* AttendanceTokenCell.swift in Sources */,
 				FF78F3A42706374F00A47A91 /* AcademyCourse.swift in Sources */,
+				FF5BCD7E273DD1DF000D3FEF /* SubmitBountyRequest.swift in Sources */,
 				FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */,
 				FF7A33BD273CA7280037899B /* NetworkIdentityService.swift in Sources */,
 				FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */,
@@ -1263,12 +1469,18 @@
 				FF7A33D6273CBB940037899B /* IdentityStripeViewModel.swift in Sources */,
 				FF7A339E273C68240037899B /* BaseNetworkProvider.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
+				FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */,
 				FFAE985F270E43D00047405D /* TagView.swift in Sources */,
+				FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
+				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
 				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
+				FF5BCDB6273F8052000D3FEF /* Bounty+LifecycleAction.swift in Sources */,
+				FF5BCD9D273DD915000D3FEF /* ColorBehaviour.swift in Sources */,
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
+				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
 				FFEB123F27110B8D003EF90D /* DataError.swift in Sources */,
 				FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */,

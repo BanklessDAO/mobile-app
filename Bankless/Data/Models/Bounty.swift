@@ -26,20 +26,20 @@ struct Bounty: Codable {
     let descrtiption: String
     let criteria: String
     let reward: Reward
-    let createdBy: Member
+    let createdBy: DiscordUser
     let createdAt: Date?
     let dueAt: Date?
     let discordMessageId: String?
     let status: Status
     let statusHistory: [StatusEvent]
-    let claimedBy: Member?
+    let claimedBy: DiscordUser?
     let claimedAt: Date?
     let submissionNotes: String?
     let submissionUrl: URL?
     let submittedAt: Date?
-    let submittedBy: Member?
+    let submittedBy: DiscordUser?
     let reviewedAt: Date?
-    let reviewedBy: Member?
+    let reviewedBy: DiscordUser?
 }
 
 extension Bounty {
@@ -55,6 +55,11 @@ extension Bounty {
     }
     
     enum Status: String, Codable, CaseIterable {
-        case dummy
+        case draft
+        case open
+        case inProgress
+        case inReview
+        case completed
+        case deleted
     }
 }

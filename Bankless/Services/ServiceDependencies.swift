@@ -38,3 +38,7 @@ protocol AchievementsServiceDependency {
 protocol TimelineServiceDependency {
     var timelineService: TimelineService! { get set }
 }
+
+protocol BountyBoardServiceDependency {
+    var bountyBoardService: BountyBoardService! { get set }
+}

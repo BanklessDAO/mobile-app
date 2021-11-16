@@ -31,6 +31,7 @@ class IconButtonNavigationBarItem: UIView {
     var rxTap: Driver<Void> {
         return button.rx.tap.asDriver()
     }
+    let disposer = DisposeBag()
     
     // MARK: - Subviews -
     
@@ -67,8 +68,10 @@ class IconButtonNavigationBarItem: UIView {
     }
     
     private func setUpConstraints() {
-        constrain(button, self) { button, view in
-            button.edges == view.edges
+        UIView.performWithoutAnimation {
+            constrain(button, self) { button, view in
+                button.edges == view.edges
+            }
         }
     }
 }

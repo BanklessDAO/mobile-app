@@ -58,7 +58,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
         ) { graphQLResult in
             if let _ = graphQLResult.data?.poapEvent {
                 let response = TimelineContentResponse(
-                    bounties: Bounty.generateMocks(.random(in: 2 ... 2)),
+                    bounties: Bounty.generateMocks(.random(in: 3 ... 3)),
                     academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 1))
                 )
                 

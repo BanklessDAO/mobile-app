@@ -20,7 +20,7 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator {
+final class HomeCoordinator: Coordinator {
     private let container: DependencyContainer
     
     var initialViewController: UIViewController!
@@ -40,6 +40,10 @@ final class HomeCoordinator {
         viewModel.actions.openAchievements
             .bind(onNext: { [weak self] in self?.openAchievements() })
             .disposed(by: viewModel.disposer)
+        viewModel.actions.openBountyBoard
+            .bind(onNext: { [weak self] in self?.openBountyBoard() })
+            .disposed(by: viewModel.disposer)
+            
         
         let viewController = HomeViewController.init(nibName: nil, bundle: nil)
         viewController.set(viewModel: viewModel)
@@ -54,5 +58,12 @@ final class HomeCoordinator {
         
         initialViewController.navigationController?
             .pushViewController(coordinator.initialViewController, animated: true)
+    }
+    
+    private func openBountyBoard() {
+        let coordinator = BountyBoardCoordinator(container: container)
+        container.resolve(coordinator)
+        
+        coordinator.start(from: initialViewController.navigationController!)
     }
 }

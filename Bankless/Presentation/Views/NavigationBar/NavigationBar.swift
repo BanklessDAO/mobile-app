@@ -51,16 +51,21 @@ class NavigationBar: BaseNavigationView {
     
     func set(views: [UIView]) {
         self.views = views
-        resetLayout()
+        
+        UIView.performWithoutAnimation {
+            resetLayout()
+        }
     }
     
     // MARK: - Setup -
     
     private func setUp() {
-        setUpSubviews()
-        setUpConstraints()
-        
-        set(views: [])
+        UIView.performWithoutAnimation {
+            setUpSubviews()
+            setUpConstraints()
+            
+            set(views: [])
+        }
     }
     
     private func setUpSubviews() {
@@ -76,7 +81,7 @@ class NavigationBar: BaseNavigationView {
         constrain(stackView, self) { stack, view in
             stack.left == view.left + Appearance.contentInsets.left
             stack.top == view.top
-            stack.bottom == view.bottom - Appearance.contentInsets.bottom
+            stack.bottom == view.bottom - Appearance.contentPaddings.bottom
             stack.right == view.right - Appearance.contentInsets.left
         }
     }
@@ -84,12 +89,17 @@ class NavigationBar: BaseNavigationView {
     // MARK: - Dynamic layout -
     
     private func resetLayout() {
-        for subview in stackView.arrangedSubviews {
-            stackView.removeArrangedSubview(subview)
+        for subview in stackView.subviews {
+            subview.removeFromSuperview()
         }
         
         for view in views {
             stackView.addArrangedSubview(view)
+        }
+        
+        UIView.performWithoutAnimation {
+            stackView.setNeedsLayout()
+            stackView.layoutIfNeeded()
         }
     }
 }

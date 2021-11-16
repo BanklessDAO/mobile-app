@@ -30,18 +30,17 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     struct Input {
         let refresh: Driver<Void>
-        let selection: Driver<IndexPath>
+        let selection: Driver<ViewModelFoundation>
         let expandSection: Driver<Int>
     }
     
     struct Output {
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
         let title: Driver<String>
-        let bountiesSectionTitle: Driver<String>
+        let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
         let bountyViewModels: Driver<[BountyViewModel]>
-        let academyCoursesSectionTitle: Driver<String>
+        let academyCoursesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
         let academyCourseViewModels: Driver<[AcademyCourseViewModel]>
-        let expandSectionButtonTitle: Driver<String>
     }
     
     // MARK: - Constants -
@@ -62,6 +61,11 @@ final class HomeTimelineViewModel: BaseViewModel,
         "home.timeline.section.academy.title", value: "Academy", comment: ""
     )
     
+    // MARK: - Events -
+    
+    let expandBountiesTransitionRequested = PublishRelay<Void>()
+    let expandAcademyTransitionRequested = PublishRelay<Void>()
+    
     // MARK: - Components -
     
     var banklessService: BanklessService!
@@ -77,12 +81,25 @@ final class HomeTimelineViewModel: BaseViewModel,
         
         let bounties = timelineItems.map({ $0.bounties }).share()
         
+        let bountiesHeaderVM = SectionHeaderViewModel()
+        bountiesHeaderVM.set(title: HomeTimelineViewModel.bountiesSectionTitle)
+        bountiesHeaderVM.setExpandButton(
+            title: HomeTimelineViewModel.expandSectionButtonTitle
+        ) { [weak self] in
+            self?.expandBountiesTransitionRequested.accept(())
+        }
         let bountyViewModels = bounties
             .map({ bounties in
                 return bounties.map({ return BountyViewModel(bounty: $0) })
             })
         
-        
+        let coursesHeaderVM = SectionHeaderViewModel()
+        coursesHeaderVM.set(title: HomeTimelineViewModel.academySectionTitle)
+        coursesHeaderVM.setExpandButton(
+            title: HomeTimelineViewModel.expandSectionButtonTitle
+        ) { [weak self] in
+            self?.expandAcademyTransitionRequested.accept(())
+        }
         let academyCourses = timelineItems
             .map({ $0.academyCourses })
             .share()
@@ -99,11 +116,10 @@ final class HomeTimelineViewModel: BaseViewModel,
             gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
                 .asDriver(onErrorDriveWith: .empty()),
             title: .just(HomeTimelineViewModel.timelineTitle),
-            bountiesSectionTitle: .just(HomeTimelineViewModel.bountiesSectionTitle),
+            bountiesSectionHeaderViewModel: .just(bountiesHeaderVM),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty()),
-            academyCoursesSectionTitle: .just(HomeTimelineViewModel.academySectionTitle),
-            academyCourseViewModels: academyCourseViewModels.asDriver(onErrorDriveWith: .empty()),
-            expandSectionButtonTitle: .just(HomeTimelineViewModel.expandSectionButtonTitle)
+            academyCoursesSectionHeaderViewModel: .just(coursesHeaderVM),
+            academyCourseViewModels: academyCourseViewModels.asDriver(onErrorDriveWith: .empty())
         )
     }
     
@@ -169,8 +185,18 @@ final class HomeTimelineViewModel: BaseViewModel,
     // MARK: - Selection -
     
     private func bindSelection(
-        input: Driver<IndexPath>
+        input: Driver<ViewModelFoundation>
     ) {
-        // TODO: Implement transitions
+        input.asObservable()
+            .subscribe(onNext: { [weak self] viewModel in
+                switch viewModel {
+                
+                case let bountyViewModel as BountyViewModel:
+                    fatalError("not implemented")
+                default:
+                    break
+                }
+            })
+            .disposed(by: disposer)
     }
 }

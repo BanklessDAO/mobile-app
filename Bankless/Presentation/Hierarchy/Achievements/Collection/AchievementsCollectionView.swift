@@ -39,7 +39,7 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     
     // MARK: - Source -
     
-    let source = BehaviorRelay<CollectionSource>(value: .init())
+    let source = BehaviorRelay<ListSource>(value: .init())
     
     // MARK: - Initializers -
     
@@ -84,8 +84,8 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         )
         
         collectionView.register(
-            AchievementsSectionHeaderCell.self,
-            forCellWithReuseIdentifier: AchievementsSectionHeaderCell.reuseIdentifier
+            CollectionSectionHeaderCell.self,
+            forCellWithReuseIdentifier: CollectionSectionHeaderCell.reuseIdentifier
         )
         
         collectionView.register(
@@ -112,16 +112,16 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
             output.attendanceTokenViewModels
         )
         
-        let source = Driver<CollectionSource>
+        let source = Driver<ListSource>
             .combineLatest(
                 titleOutput,
                 attendanceTokensOutput,
                 resultSelector: {
                     title,
                     attendanceTokens
-                    -> CollectionSource in
+                    -> ListSource in
                     
-                    return CollectionSource(
+                    return ListSource(
                         title: title,
                         attendanceTokensSectionTitle: attendanceTokens.0,
                         attendanceTokenViewModels: attendanceTokens.1
@@ -160,47 +160,39 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         switch row.sectionType {
             
         case .title:
-            switch self.source.value.titleSection.rowType(at: row.localIndex) {
+            switch self.source.value.titleSection.rowPayload(at: row.index) {
                 
             case .header:
                 fatalError("not implemented")
-            case .content:
+            case let .content(viewModel):
                 let titleCell = collectionView
                     .dequeueReusableCell(
                         withReuseIdentifier: AchievementsTitleCell.reuseIdentifier,
                         for: indexPath
                     ) as! AchievementsTitleCell
-                titleCell.set(title: self.source.value.title)
+                titleCell.set(title: viewModel.title)
                 cell = titleCell
             }
         case .attendanceTokens:
-            switch self.source.value.attendanceTokensSection.rowType(at: row.localIndex) {
+            switch self.source.value.attendanceTokensSection.rowPayload(at: row.index) {
                 
-            case .header:
+            case let .header(viewModel):
                 let attendanceTokensHeaderCell = collectionView
                     .dequeueReusableCell(
-                        withReuseIdentifier: AchievementsSectionHeaderCell.reuseIdentifier,
+                        withReuseIdentifier: CollectionSectionHeaderCell.reuseIdentifier,
                         for: indexPath
-                    ) as! AchievementsSectionHeaderCell
-                attendanceTokensHeaderCell
-                    .set(title: self.source.value.attendanceTokensSection.title ?? "")
+                    ) as! CollectionSectionHeaderCell
+                attendanceTokensHeaderCell.set(viewModel: viewModel)
                 
                 cell = attendanceTokensHeaderCell
-            case .content:
-                let attendanceTokenViewModel = self.source.value
-                    .attendanceTokensSection
-                    .viewModels[
-                        row.localIndex
-                        - (self.source.value.attendanceTokensSection.hasHeader ? 1 : 0)
-                    ]
-                
+            case let .content(viewModel):
                 let attendanceTokenCell = collectionView
                     .dequeueReusableCell(
                         withReuseIdentifier: AttendanceTokenCell.reuseIdentifier,
                         for: indexPath
                     ) as! AttendanceTokenCell
                 
-                attendanceTokenCell.set(viewModel: attendanceTokenViewModel)
+                attendanceTokenCell.set(viewModel: viewModel)
                 
                 cell = attendanceTokenCell
             }
@@ -228,7 +220,7 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         case .title:
             return CGSize(width: width, height: Appearance.Text.Font.Header1.lineHeight * 2)
         case .attendanceTokens:
-            switch self.source.value.attendanceTokensSection.rowType(at: row.localIndex) {
+            switch self.source.value.attendanceTokensSection.rowPayload(at: row.index) {
                 
             case .header:
                 return CGSize(width: width, height: Appearance.Text.Font.Title1.lineHeight * 2)
@@ -240,14 +232,18 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
 }
 
 extension AchievementCollectionView {
-    struct CollectionSource {
-        let title: String
-        let titleSection: Section<AchievementsTitleViewModel>
-        let attendanceTokensSection: Section<AttendanceTokenViewModel>
+    class ListSource: BaseSectionedSource<ListSectionType>, SectionedSourceRequirements {
+        typealias SectionType = ListSectionType
+        typealias Row = SectionRow
+        
+        let titleSection: ListSource.Section<Void, AchievementsTitleViewModel>
+        let attendanceTokensSection: ListSource.Section<
+            SectionHeaderViewModel, AttendanceTokenViewModel
+        >
         
         var numberOfRows: Int {
             return titleSection.numberOfRows
-                + attendanceTokensSection.numberOfRows
+            + attendanceTokensSection.numberOfRows
         }
         
         init(
@@ -255,42 +251,36 @@ extension AchievementCollectionView {
             attendanceTokensSectionTitle: String,
             attendanceTokenViewModels: [AttendanceTokenViewModel]
         ) {
-            self.title = title
-            
             self.titleSection = .init(
                 type: .title,
                 viewModels: [
-                    AchievementsTitleViewModel()
+                    AchievementsTitleViewModel(title: title)
                 ]
             )
             
+            let headerVM = SectionHeaderViewModel()
+            headerVM.set(title: attendanceTokensSectionTitle)
+            
             self.attendanceTokensSection = .init(
                 type: .attendanceTokens,
-                title: attendanceTokensSectionTitle,
-                isExpandable: false,
+                headerViewModel: headerVM,
                 viewModels: attendanceTokenViewModels
             )
         }
         
-        init() {
-            self.title = ""
-            
+        override init() {
             self.titleSection = .init(
                 type: .title,
-                title: "",
-                isExpandable: false,
                 viewModels: []
             )
             
             self.attendanceTokensSection = .init(
                 type: .attendanceTokens,
-                title: "",
-                isExpandable: true,
                 viewModels: []
             )
         }
         
-        func translateGlobalRow(at index: Int) -> (sectionType: SectionType, localIndex: Int) {
+        func translateGlobalRow(at index: Int) -> SectionRow {
             guard index < numberOfRows else {
                 fatalError("index is outside the bounds")
             }
@@ -298,85 +288,20 @@ extension AchievementCollectionView {
             var localIndex = index
             
             if localIndex < titleSection.numberOfRows {
-                return (sectionType: .title, localIndex: localIndex)
+                return SectionRow(sectionType: .title, index: localIndex)
             }
             
             localIndex -= titleSection.numberOfRows
             if localIndex < attendanceTokensSection.numberOfRows {
-                return (sectionType: .attendanceTokens, localIndex: localIndex)
+                return SectionRow(sectionType: .attendanceTokens, index: localIndex)
             }
             
             fatalError("section not found")
         }
     }
-}
-
-extension AchievementCollectionView.CollectionSource {
-    enum SectionType {
+    
+    enum ListSectionType: SectionedSourceSectionType {
         case title
         case attendanceTokens
-    }
-    
-    struct Section<T> {
-        let type: SectionType
-        let title: String?
-        let hasHeader: Bool
-        let isExpandable: Bool
-        let viewModels: [T]
-        
-        var isEmpty: Bool {
-            return viewModels.isEmpty
-        }
-        
-        var numberOfRows: Int {
-            guard !isEmpty else { return 0 }
-            return (hasHeader ? 1 : 0)
-            + viewModels.count
-        }
-        
-        init(
-            type: SectionType,
-            viewModels: [T]
-        ) {
-            self.type = type
-            self.title = nil
-            self.hasHeader = false
-            self.isExpandable = false
-            self.viewModels = viewModels
-        }
-        
-        init(
-            type: SectionType,
-            title: String,
-            isExpandable: Bool,
-            viewModels: [T]
-        ) {
-            self.type = type
-            self.title = title
-            self.hasHeader = true
-            self.isExpandable = isExpandable
-            self.viewModels = viewModels
-        }
-        
-        func rowType(at index: Int) -> Row.`Type` {
-            if hasHeader && index == 0 {
-                return .header
-            }
-            
-            guard index < numberOfRows else {
-                fatalError("index is outside the bounds")
-            }
-            
-            return .content
-        }
-    }
-}
-
-extension AchievementCollectionView.CollectionSource.Section {
-    enum Row {
-        enum `Type` {
-            case header
-            case content
-        }
     }
 }

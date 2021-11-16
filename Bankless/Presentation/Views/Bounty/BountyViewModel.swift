@@ -29,11 +29,12 @@ final class BountyViewModel: BaseViewModel {
     struct Output {
         let title: Driver<String>
         let reward: Driver<String>
+        let status: Driver<(title: String, color: UIColor)>
     }
     
     // MARK: - Data -
     
-    private let bounty: Bounty
+    let bounty: Bounty
     
     // MARK: - Initializers -
     
@@ -46,7 +47,8 @@ final class BountyViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
         return Output(
             title: .just(bounty.title),
-            reward: self.rewardString().asDriver(onErrorDriveWith: .empty())
+            reward: self.rewardString().asDriver(onErrorDriveWith: .empty()),
+            status: .just((title: bounty.status.title, color: bounty.status.colorCode))
         )
     }
     

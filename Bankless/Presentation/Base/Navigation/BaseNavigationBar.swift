@@ -45,7 +45,10 @@ class BaseNavigationBar: UINavigationBar {
     
     private func setUp() {
         setUpSubviews()
-        setUpConstraints()
+        
+        UIView.performWithoutAnimation {
+            setUpConstraints()
+        }
     }
     
     private func setUpSubviews() {
@@ -64,12 +67,14 @@ class BaseNavigationBar: UINavigationBar {
     func set(customNavigationView: BaseNavigationView) {
         removeCustomNavigationView()
         
-        self.customNavigationView = customNavigationView
-        customViewContainer.addSubview(customNavigationView)
-        customViewContainer.isUserInteractionEnabled = true
-        
-        constrain(customNavigationView, customViewContainer) { (view, container) in
-            view.edges == container.edges
+        UIView.performWithoutAnimation {
+            self.customNavigationView = customNavigationView
+            customViewContainer.addSubview(customNavigationView)
+            customViewContainer.isUserInteractionEnabled = true
+            
+            constrain(customNavigationView, customViewContainer) { (view, container) in
+                view.edges == container.edges
+            }
         }
     }
     

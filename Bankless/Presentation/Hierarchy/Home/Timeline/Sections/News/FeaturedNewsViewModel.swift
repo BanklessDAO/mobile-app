@@ -28,6 +28,16 @@ final class FeaturedNewsViewModel: BaseViewModel {
     
     struct Output { }
     
+    // MARK: - Properties -
+    
+    let title: String
+    
+    // MARK: - Initializets -
+    
+    init(title: String) {
+        self.title = title
+    }
+    
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {

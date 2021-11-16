@@ -28,17 +28,6 @@ class HomeViewController: BaseViewController<HomeViewModel> {
     
     private var timelineView: HomeTimelineView!
     
-    // MARK: - Initializer -
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        navigationItem.hidesBackButton = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Setup -
     
     override func setUp() {
