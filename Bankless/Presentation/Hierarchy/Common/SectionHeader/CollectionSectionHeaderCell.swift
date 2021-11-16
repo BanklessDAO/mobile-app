@@ -23,18 +23,14 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class AchievementsSectionHeaderCell: UICollectionViewCell {
+class CollectionSectionHeaderCell: BaseCollectionViewCell<SectionHeaderViewModel> {
     class var reuseIdentifier: String {
-        return String(describing: AchievementsSectionHeaderCell.self)
+        return String(describing: SectionHeaderCell.self)
     }
     
     // MARK: - Constants -
     
     private static let expandButtonColor: UIColor = .primaryRed
-    
-    // MARK: - Properties -
-    
-    private var expandAction: (() -> Void)?
     
     // MARK: - Subviews -
     
@@ -52,25 +48,14 @@ class AchievementsSectionHeaderCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setters -
-    
-    func set(title: String) {
-        titleLabel.text = title
-    }
-    
-    func setExpandButton(title: String, action: @escaping () -> Void) {
-        self.expandButton.setTitle(title, for: .normal)
-        self.expandAction = action
-    }
-    
     // MARK: - Setup -
     
-    func setUp() {
+    override func setUp() {
         setUpSubviews()
         setUpConstraints()
     }
     
-    func setUpSubviews() {
+    override func setUpSubviews() {
         backgroundColor = .backgroundBlack
         
         titleLabel = UILabel()
@@ -79,12 +64,11 @@ class AchievementsSectionHeaderCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         expandButton = UIButton(type: .custom)
-        expandButton.setTitleColor(AchievementsSectionHeaderCell.expandButtonColor, for: .normal)
-        expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
+        expandButton.setTitleColor(CollectionSectionHeaderCell.expandButtonColor, for: .normal)
         contentView.addSubview(expandButton)
     }
     
-    func setUpConstraints() {
+    override func setUpConstraints() {
         constrain(titleLabel, expandButton, contentView) { title, expand, view in
             title.height == Appearance.Text.Font.Title1.lineHeight
             title.height == expand.height
@@ -100,9 +84,13 @@ class AchievementsSectionHeaderCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Action -
-    
-    @objc private func expandButtonTapped() {
-        expandAction?()
+    override func bindViewModel() {
+        let output = viewModel.transform(input: .init(expand: expandButton.rx.tap.asDriver()))
+        
+        output.title.drive(titleLabel.rx.text).disposed(by: disposer)
+        
+        output.isExpandable.map(!).drive(expandButton.rx.isHidden).disposed(by: disposer)
+        
+        output.expandButtonTitle.drive(expandButton.rx.title(for: .normal)).disposed(by: disposer)
     }
 }

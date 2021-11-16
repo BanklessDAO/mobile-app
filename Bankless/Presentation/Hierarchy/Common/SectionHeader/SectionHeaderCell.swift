@@ -23,18 +23,14 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class TimelineSectionHeaderCell: UITableViewCell {
+class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
     class var reuseIdentifier: String {
-        return String(describing: TimelineSectionHeaderCell.self)
+        return String(describing: SectionHeaderCell.self)
     }
     
     // MARK: - Constants -
     
     private static let expandButtonColor: UIColor = .primaryRed
-    
-    // MARK: - Properties -
-
-    private var expandAction: (() -> Void)?
     
     // MARK: - Subviews -
     
@@ -52,25 +48,14 @@ class TimelineSectionHeaderCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setters -
-    
-    func set(title: String) {
-        titleLabel.text = title
-    }
-    
-    func setExpandButton(title: String, action: @escaping () -> Void) {
-        self.expandButton.setTitle(title, for: .normal)
-        self.expandAction = action
-    }
-    
     // MARK: - Setup -
     
-    func setUp() {
+    override func setUp() {
         setUpSubviews()
         setUpConstraints()
     }
     
-    func setUpSubviews() {
+    override func setUpSubviews() {
         backgroundColor = .backgroundBlack
         
         separatorInset = .init(
@@ -86,31 +71,38 @@ class TimelineSectionHeaderCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         
         expandButton = UIButton(type: .custom)
-        expandButton.setTitleColor(TimelineSectionHeaderCell.expandButtonColor, for: .normal)
-        expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
+        expandButton.setTitleColor(SectionHeaderCell.expandButtonColor, for: .normal)
         contentView.addSubview(expandButton)
     }
     
-    func setUpConstraints() {
-        constrain(titleLabel, expandButton, contentView) { title, expand, view in
+    override func setUpConstraints() {
+        constrain(titleLabel, contentView) { title, view in
             title.height == Appearance.Text.Font.Title1.lineHeight
-            title.height == expand.height
-            title.centerY == expand.centerY
-            title.left == view.left + Appearance.contentInsets.left
-            title.edges == view.edges.inseted(by: Appearance.contentInsets)
+            title.edges == view.edges.inseted(
+                by: .init(
+                    top: Appearance.contentInsets.top * 2,
+                    left: Appearance.contentInsets.left,
+                    bottom: Appearance.contentInsets.bottom,
+                    right: Appearance.contentInsets.right
+                )
+            )
         }
         
-        constrain(expandButton, contentView) { expand, view in
-            expand.top == view.top + Appearance.contentInsets.top
+        constrain(expandButton, titleLabel, contentView) { expand, title, view in
+            expand.height == title.height
+            expand.centerY == title.centerY
             expand.right == view.right - Appearance.contentInsets.right
-            expand.bottom == view.bottom - Appearance.contentInsets.bottom
             expand.width == 0 ~ .defaultLow
         }
     }
     
-    // MARK: - Action -
-    
-    @objc private func expandButtonTapped() {
-        expandAction?()
+    override func bindViewModel() {
+        let output = viewModel.transform(input: .init(expand: expandButton.rx.tap.asDriver()))
+        
+        output.title.drive(titleLabel.rx.text).disposed(by: disposer)
+        
+        output.isExpandable.map(!).drive(expandButton.rx.isHidden).disposed(by: disposer)
+        
+        output.expandButtonTitle.drive(expandButton.rx.title(for: .normal)).disposed(by: disposer)
     }
 }
