@@ -24,7 +24,7 @@ import Cartography
 class AutoWidthLabel: UILabel {
 	// MARK: - Properties -
 	
-	var horizontalPadding: CGFloat = 0 {
+	var horizontalPadding: CGFloat = 2 {
 		didSet {
 			autoSize()
 		}
