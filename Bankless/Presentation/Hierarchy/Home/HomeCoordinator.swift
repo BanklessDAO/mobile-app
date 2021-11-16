@@ -20,7 +20,7 @@
 import Foundation
 import UIKit
 
-final class HomeCoordinator {
+final class HomeCoordinator: Coordinator {
     private let container: DependencyContainer
     
     var initialViewController: UIViewController!

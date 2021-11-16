@@ -28,6 +28,7 @@ class BaseViewController<VM: ViewModel>: UIViewController {
     
     // MARK: - Properties -
     
+    var coordinator: Coordinator?
     var viewModel: VM!
     
     override var navigationController: BaseNavigationController? {
