@@ -28,6 +28,16 @@ final class AchievementsTitleViewModel: BaseViewModel {
     
     struct Output { }
     
+    // MARK: - Properties -
+    
+    let title: String
+    
+    // MARK: - Initializers -
+    
+    init(title: String) {
+        self.title = title
+    }
+    
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {

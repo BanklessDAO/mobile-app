@@ -38,7 +38,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     
     // MARK: - Source -
     
-    let source = BehaviorRelay<TableSource>(value: .init())
+    let source = BehaviorRelay<ListSource>(value: .init())
     
     // MARK: - Initializers -
     
@@ -68,7 +68,9 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .backgroundBlack
         tableView.tableHeaderView = UIView(frame: .zero)
-        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView = UIView(
+            frame: .init(x: 0, y: 0, width: 0, height: contentInsets.bottom * 2)
+        )
         tableView.contentInsetAdjustmentBehavior = .never
         
         tableView.dataSource = self
@@ -85,8 +87,8 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         )
         
         tableView.register(
-            TimelineSectionHeaderCell.self,
-            forCellReuseIdentifier: TimelineSectionHeaderCell.reuseIdentifier
+            SectionHeaderCell.self,
+            forCellReuseIdentifier: SectionHeaderCell.reuseIdentifier
         )
         
         tableView.register(
@@ -104,48 +106,45 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     
     func setUpConstraints() {
         constrain(tableView, self) { (table, view) in
-            table.edges == view.safeAreaLayoutGuide.edges
+            table.left == view.safeAreaLayoutGuide.left
+            table.right == view.safeAreaLayoutGuide.right
+            table.top == view.safeAreaLayoutGuide.top
+            table.bottom == view.bottom
         }
     }
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         
-        let generalOutput = Driver.combineLatest(
-            output.title,
-            output.expandSectionButtonTitle
-        )
-        
         let bountiesOutput = Driver.combineLatest(
-            output.bountiesSectionTitle,
+            output.bountiesSectionHeaderViewModel,
             output.bountyViewModels
         )
         
         let academyOutput = Driver.combineLatest(
-            output.academyCoursesSectionTitle,
+            output.academyCoursesSectionHeaderViewModel,
             output.academyCourseViewModels
         )
         
-        let source = Driver<TableSource>
+        let source = Driver<ListSource>
             .combineLatest(
                 output.gaugeClusterViewModel,
-                generalOutput,
+                output.title,
                 bountiesOutput,
                 academyOutput,
                 resultSelector: {
                     gaugeCluster,
-                    general,
+                    title,
                     bounties,
-                    academy -> TableSource in
+                    academy -> ListSource in
                     
-                    return TableSource(
+                    return ListSource(
                         gaugeClusterViewModel: gaugeCluster,
-                        newsSectionTitle: general.0,
-                        bountiesSectionTitle: bounties.0,
+                        newsSectionTitle: title,
+                        bountiesHeaderViewModel: bounties.0,
                         bountyViewModels: bounties.1,
-                        academyCoursesSectionTitle: academy.0,
-                        academyCourseViewModels: academy.1,
-                        expandSectionButtonTitle: general.1
+                        academyHeaderViewModel: academy.0,
+                        academyCourseViewModels: academy.1
                     )
                 })
         
@@ -157,9 +156,27 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     }
     
     private func input() -> HomeTimelineViewModel.Input {
+        let selection = tableView.rx.itemSelected.asDriver()
+            .map({ indexPath -> ViewModelFoundation? in
+                let row = self.source.value.translateGlobalRow(at: indexPath.row)
+                
+                switch row.sectionType {
+                    
+                case .gaugeCluster:
+                    return nil
+                case .news:
+                    return nil
+                case .bounties:
+                    return self.source.value.bountiesSection.rowViewModel(at: row.index)
+                case .academy:
+                    return self.source.value.academyCoursesSection.rowViewModel(at: row.index)
+                }
+            })
+            .filter({ $0 != nil }).map({ $0! })
+        
         return HomeTimelineViewModel.Input(
             refresh: refreshTrigger.asDriver(onErrorDriveWith: .empty()),
-            selection: tableView.rx.itemSelected.asDriver(),
+            selection: selection.asDriver(),
             expandSection: sectionExpandButtonRelay.asDriver(onErrorDriveWith: .empty())
         )
     }
@@ -178,106 +195,76 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         switch row.sectionType {
         
         case .gaugeCluster:
-            switch self.source.value.gaugeClusterSection.rowType(at: row.localIndex) {
+            switch self.source.value.gaugeClusterSection.rowPayload(at: row.index) {
                 
             case .header:
                 fatalError("not implemented")
-            case .content:
-                let gaugeClusterViewModel = self.source.value
-                    .gaugeClusterSection
-                    .viewModels[0]
-                
+            case let .content(viewModel):
                 let gaugeClusterCell = tableView
                     .dequeueReusableCell(
                         withIdentifier: GaugeClusterCell.reuseIdentifier,
                         for: indexPath
                     ) as! GaugeClusterCell
                 
-                gaugeClusterCell.set(viewModel: gaugeClusterViewModel)
+                gaugeClusterCell.set(viewModel: viewModel)
                 
                 cell = gaugeClusterCell
             }
         case .news:
-            switch self.source.value.newsSection.rowType(at: row.localIndex) {
+            switch self.source.value.newsSection.rowPayload(at: row.index) {
                 
             case .header:
                 fatalError("not implemented")
-            case .content:
+            case let .content(viewModel):
                 let newsCell = tableView
                     .dequeueReusableCell(
                         withIdentifier: FeaturedNewsCell.reuseIdentifier,
                         for: indexPath
                     ) as! FeaturedNewsCell
-                newsCell.set(title: self.source.value.title)
+                newsCell.set(title: viewModel.title)
                 cell = newsCell
             }
         case .bounties:
-            switch self.source.value.bountiesSection.rowType(at: row.localIndex) {
+            switch self.source.value.bountiesSection.rowPayload(at: row.index) {
                 
-            case .header:
+            case let .header(viewModel):
                 let bountiesHeaderCell = tableView
                     .dequeueReusableCell(
-                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        withIdentifier: SectionHeaderCell.reuseIdentifier,
                         for: indexPath
-                    ) as! TimelineSectionHeaderCell
-                bountiesHeaderCell.set(title: self.source.value.bountiesSection.title ?? "")
-                bountiesHeaderCell.setExpandButton(
-                    title: self.source.value.expandSectionButtonTitle
-                ) {
-                    // TODO: Handle section expand event
-                }
+                    ) as! SectionHeaderCell
+                bountiesHeaderCell.set(viewModel: viewModel)
                 cell = bountiesHeaderCell
-            case .content:
-                let bountyViewModel = self.source.value
-                    .bountiesSection
-                    .viewModels[
-                        row.localIndex
-                            - (self.source.value.bountiesSection.hasHeader ? 1 : 0)
-                    ]
-                
+            case let .content(viewModel):
                 let bountyCell = tableView
                     .dequeueReusableCell(
                         withIdentifier: BountyListCell.reuseIdentifier,
                         for: indexPath
                     ) as! BountyListCell
                 
-                bountyCell.set(viewModel: bountyViewModel)
+                bountyCell.set(viewModel: viewModel)
                 
                 cell = bountyCell
             }
         case .academy:
-            switch self.source.value.academyCoursesSection.rowType(at: row.localIndex) {
+            switch self.source.value.academyCoursesSection.rowPayload(at: row.index) {
                 
-            case .header:
+            case let .header(viewModel):
                 let academyCoursesHeaderCell = tableView
                     .dequeueReusableCell(
-                        withIdentifier: TimelineSectionHeaderCell.reuseIdentifier,
+                        withIdentifier: SectionHeaderCell.reuseIdentifier,
                         for: indexPath
-                    ) as! TimelineSectionHeaderCell
-                academyCoursesHeaderCell.set(
-                    title: self.source.value.academyCoursesSection.title ?? ""
-                )
-                academyCoursesHeaderCell.setExpandButton(
-                    title: self.source.value.expandSectionButtonTitle
-                ) {
-                    // TODO: Handle section expand event
-                }
+                    ) as! SectionHeaderCell
+                academyCoursesHeaderCell.set(viewModel: viewModel)
                 cell = academyCoursesHeaderCell
-            case .content:
-                let academyCourseViewModel = self.source.value
-                    .academyCoursesSection
-                    .viewModels[
-                        row.localIndex
-                            - (self.source.value.academyCoursesSection.hasHeader ? 1 : 0)
-                    ]
-                
+            case let .content(viewModel):
                 let academyCourseCell = tableView
                     .dequeueReusableCell(
                         withIdentifier: AcademyCourseListCell.reuseIdentifier,
                         for: indexPath
                     ) as! AcademyCourseListCell
                 
-                academyCourseCell.set(viewModel: academyCourseViewModel)
+                academyCourseCell.set(viewModel: viewModel)
                 
                 cell = academyCourseCell
             }
@@ -294,33 +281,34 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
 }
 
 extension HomeTimelineView {
-    struct TableSource {
-        let title: String
-        let expandSectionButtonTitle: String
-        let gaugeClusterSection: Section<GaugeClusterViewModel>
-        let newsSection: Section<FeaturedNewsViewModel>
-        let bountiesSection: Section<BountyViewModel>
-        let academyCoursesSection: Section<AcademyCourseViewModel>
+    class ListSource: BaseSectionedSource<ListSectionType>, SectionedSourceRequirements {
+        typealias SectionType = ListSectionType
+        typealias Row = SectionRow
+        
+        let gaugeClusterSection: ListSource.Section<Void, GaugeClusterViewModel>
+        let newsSection: ListSource.Section<Void, FeaturedNewsViewModel>
+        let bountiesSection: ListSource.Section<
+            SectionHeaderViewModel, BountyViewModel
+        >
+        let academyCoursesSection: ListSource.Section<
+            SectionHeaderViewModel, AcademyCourseViewModel
+        >
         
         var numberOfRows: Int {
             return gaugeClusterSection.numberOfRows
-                + newsSection.numberOfRows
-                + bountiesSection.numberOfRows
-                + academyCoursesSection.numberOfRows
+            + newsSection.numberOfRows
+            + bountiesSection.numberOfRows
+            + academyCoursesSection.numberOfRows
         }
         
         init(
             gaugeClusterViewModel: GaugeClusterViewModel,
             newsSectionTitle: String,
-            bountiesSectionTitle: String,
+            bountiesHeaderViewModel: SectionHeaderViewModel,
             bountyViewModels: [BountyViewModel],
-            academyCoursesSectionTitle: String,
-            academyCourseViewModels: [AcademyCourseViewModel],
-            expandSectionButtonTitle: String
+            academyHeaderViewModel: SectionHeaderViewModel,
+            academyCourseViewModels: [AcademyCourseViewModel]
         ) {
-            self.title = newsSectionTitle
-            self.expandSectionButtonTitle = expandSectionButtonTitle
-            
             self.gaugeClusterSection = .init(
                 type: .gaugeCluster,
                 viewModels: [gaugeClusterViewModel]
@@ -329,29 +317,24 @@ extension HomeTimelineView {
             self.newsSection = .init(
                 type: .news,
                 viewModels: [
-                    FeaturedNewsViewModel()
+                    FeaturedNewsViewModel(title: newsSectionTitle)
                 ]
             )
             
             self.bountiesSection = .init(
                 type: .bounties,
-                title: bountiesSectionTitle,
-                isExpandable: true,
+                headerViewModel: bountiesHeaderViewModel,
                 viewModels: bountyViewModels
             )
             
             self.academyCoursesSection = .init(
                 type: .academy,
-                title: academyCoursesSectionTitle,
-                isExpandable: true,
+                headerViewModel: academyHeaderViewModel,
                 viewModels: academyCourseViewModels
             )
         }
         
-        init() {
-            self.title = ""
-            self.expandSectionButtonTitle = ""
-            
+        override init() {
             self.gaugeClusterSection = .init(
                 type: .gaugeCluster,
                 viewModels: []
@@ -359,27 +342,21 @@ extension HomeTimelineView {
             
             self.newsSection = .init(
                 type: .news,
-                title: "",
-                isExpandable: false,
                 viewModels: []
             )
             
             self.bountiesSection = .init(
                 type: .bounties,
-                title: "",
-                isExpandable: true,
                 viewModels: []
             )
             
             self.academyCoursesSection = .init(
                 type: .academy,
-                title: "",
-                isExpandable: true,
                 viewModels: []
             )
         }
         
-        func translateGlobalRow(at index: Int) -> (sectionType: SectionType, localIndex: Int) {
+        func translateGlobalRow(at index: Int) -> ListSource.SectionRow {
             guard index < numberOfRows else {
                 fatalError("index is outside the bounds")
             }
@@ -387,97 +364,32 @@ extension HomeTimelineView {
             var localIndex = index
             
             if localIndex < gaugeClusterSection.numberOfRows {
-                return (sectionType: .gaugeCluster, localIndex: localIndex)
+                return ListSource.SectionRow(sectionType: .gaugeCluster, index: localIndex)
             }
             
             localIndex -= gaugeClusterSection.numberOfRows
             if localIndex < newsSection.numberOfRows {
-                return (sectionType: .news, localIndex: localIndex)
+                return ListSource.SectionRow(sectionType: .news, index: localIndex)
             }
             
             localIndex -= newsSection.numberOfRows
             if localIndex < bountiesSection.numberOfRows {
-                return (sectionType: .bounties, localIndex: localIndex)
+                return ListSource.SectionRow(sectionType: .bounties, index: localIndex)
             }
             
             localIndex -= bountiesSection.numberOfRows
             if localIndex < academyCoursesSection.numberOfRows {
-                return (sectionType: .academy, localIndex: localIndex)
+                return ListSource.SectionRow(sectionType: .academy, index: localIndex)
             }
             
             fatalError("section not found")
         }
     }
-}
-
-extension HomeTimelineView.TableSource {
-    enum SectionType {
+    
+    enum ListSectionType: SectionedSourceSectionType {
         case gaugeCluster
         case news
         case bounties
         case academy
-    }
-    
-    struct Section<T> {
-        let type: SectionType
-        let title: String?
-        let hasHeader: Bool
-        let isExpandable: Bool
-        let viewModels: [T]
-        
-        var isEmpty: Bool {
-            return viewModels.isEmpty
-        }
-        
-        var numberOfRows: Int {
-            guard !isEmpty else { return 0 }
-            return (hasHeader ? 1 : 0)
-                + viewModels.count
-        }
-        
-        init(
-            type: SectionType,
-            viewModels: [T]
-        ) {
-            self.type = type
-            self.title = nil
-            self.hasHeader = false
-            self.isExpandable = false
-            self.viewModels = viewModels
-        }
-        
-        init(
-            type: SectionType,
-            title: String,
-            isExpandable: Bool,
-            viewModels: [T]
-        ) {
-            self.type = type
-            self.title = title
-            self.hasHeader = true
-            self.isExpandable = isExpandable
-            self.viewModels = viewModels
-        }
-        
-        func rowType(at index: Int) -> Row.`Type` {
-            guard index < numberOfRows else {
-                fatalError("index is outside the bounds")
-            }
-            
-            if hasHeader && index == 0 {
-                return .header
-            }
-            
-            return .content
-        }
-    }
-}
-
-extension HomeTimelineView.TableSource.Section {
-    enum Row {
-        enum `Type` {
-            case header
-            case content
-        }
     }
 }
