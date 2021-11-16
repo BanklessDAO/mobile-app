@@ -22,6 +22,7 @@ import Foundation
 enum NotificationEvent: String, CaseIterable {
     case achievementsPreviewTapped
     case discordUserUpdated
+    case bountyHasBeenUpdated
     
     var notificationName: Notification.Name {
         return Notification.Name(rawValue)
