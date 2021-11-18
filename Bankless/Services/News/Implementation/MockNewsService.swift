@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-16.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,13 @@
 import Foundation
 import RxSwift
 
-protocol ContentGatewayClient: DataClient {
-    func getUserBANKAccount() -> Observable<BANKAccount>
-    func getUserAttendanceTokens() -> Observable<[AttendanceToken]>
-    func getTimelineContent() -> Observable<TimelineContentResponse>
-    func getNewsContent() -> Observable<NewsContentResponse>
+final class MockNewsService: NewsService {
+    func listNewsItems() -> Observable<NewsItemsResponse> {
+        return .just(
+            .init(
+                newsletterItems: NewsletterItem.generateMocks(.random(in: 20 ... 40)),
+                podcastItems: PodcastItem.generateMocks(.random(in: 90 ... 120))
+            )
+        )
+    }
 }
-
-typealias TimelineContentResponse = TimelineItemsResponse
-typealias NewsContentResponse = NewsItemsResponse

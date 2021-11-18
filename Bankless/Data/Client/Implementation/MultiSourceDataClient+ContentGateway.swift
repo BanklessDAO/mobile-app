@@ -58,6 +58,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
         ) { graphQLResult in
             if let _ = graphQLResult.data?.poapEvent {
                 let response = TimelineContentResponse(
+                    newsletterItems: NewsletterItem.generateMocks(.random(in: 2 ... 4)),
+                    podcastItems: PodcastItem.generateMocks(.random(in: 2 ... 4)),
                     bounties: Bounty.generateMocks(.random(in: 3 ... 3)),
                     academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 1))
                 )
@@ -69,5 +71,14 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 fatalError("not supported")
             }
         }
+    }
+    
+    func getNewsContent() -> Observable<NewsContentResponse> {
+        return .just(
+            NewsContentResponse(
+                newsletterItems: NewsletterItem.generateMocks(.random(in: 20 ... 40)),
+                podcastItems: PodcastItem.generateMocks(.random(in: 90 ... 120))
+            )
+        )
     }
 }

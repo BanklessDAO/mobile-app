@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-16.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,16 @@
 import Foundation
 import RxSwift
 
-protocol ContentGatewayClient: DataClient {
-    func getUserBANKAccount() -> Observable<BANKAccount>
-    func getUserAttendanceTokens() -> Observable<[AttendanceToken]>
-    func getTimelineContent() -> Observable<TimelineContentResponse>
-    func getNewsContent() -> Observable<NewsContentResponse>
+final class NetworkNewsService: NewsService {
+    private let contentGatewayClient: ContentGatewayClient
+    
+    init(
+        contentGatewayClient: ContentGatewayClient
+    ) {
+        self.contentGatewayClient = contentGatewayClient
+    }
+    
+    func listNewsItems() -> Observable<NewsItemsResponse> {
+        return contentGatewayClient.getNewsContent()
+    }
 }
-
-typealias TimelineContentResponse = TimelineItemsResponse
-typealias NewsContentResponse = NewsItemsResponse
