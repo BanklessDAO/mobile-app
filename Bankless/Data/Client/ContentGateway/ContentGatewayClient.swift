@@ -24,6 +24,8 @@ protocol ContentGatewayClient: DataClient {
     func getUserBANKAccount() -> Observable<BANKAccount>
     func getUserAttendanceTokens() -> Observable<[AttendanceToken]>
     func getTimelineContent() -> Observable<TimelineContentResponse>
+    func getNewsContent() -> Observable<NewsContentResponse>
 }
 
 typealias TimelineContentResponse = TimelineItemsResponse
+typealias NewsContentResponse = NewsItemsResponse

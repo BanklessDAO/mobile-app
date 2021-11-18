@@ -36,7 +36,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     struct Output {
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
-        let title: Driver<String>
+        let featuredNewsViewModel: Driver<FeaturedNewsViewModel>
         let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
         let bountyViewModels: Driver<[BountyViewModel]>
         let academyCoursesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
@@ -44,10 +44,6 @@ final class HomeTimelineViewModel: BaseViewModel,
     }
     
     // MARK: - Constants -
-    
-    private static let timelineTitle = NSLocalizedString(
-        "home.timeline.title", value: "Today", comment: ""
-    )
     
     static let expandSectionButtonTitle = NSLocalizedString(
         "home.timeline.section.controls.expand.title", value: "See All", comment: ""
@@ -63,7 +59,11 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     // MARK: - Events -
     
+    let expandNewsTransitionRequested = PublishRelay<Void>()
+    let newsletterItemTransitionRequested = PublishRelay<NewsletterItem>()
+    let podcastItemTransitionRequested = PublishRelay<PodcastItem>()
     let expandBountiesTransitionRequested = PublishRelay<Void>()
+    let bountyTransitionRequested = PublishRelay<Bounty>()
     let expandAcademyTransitionRequested = PublishRelay<Void>()
     
     // MARK: - Components -
@@ -93,6 +93,10 @@ final class HomeTimelineViewModel: BaseViewModel,
                 return bounties.map({ return BountyViewModel(bounty: $0) })
             })
         
+        let academyCourses = timelineItems
+            .map({ $0.academyCourses })
+            .share()
+        
         let coursesHeaderVM = SectionHeaderViewModel()
         coursesHeaderVM.set(title: HomeTimelineViewModel.academySectionTitle)
         coursesHeaderVM.setExpandButton(
@@ -100,22 +104,47 @@ final class HomeTimelineViewModel: BaseViewModel,
         ) { [weak self] in
             self?.expandAcademyTransitionRequested.accept(())
         }
-        let academyCourses = timelineItems
-            .map({ $0.academyCourses })
-            .share()
-        
         let academyCourseViewModels = academyCourses
             .map({ academyCourses in
                 return academyCourses
                     .map({ return AcademyCourseViewModel(academyCourse: $0) })
             })
         
+        let featuredNewsViewModel = timelineItems
+            .map({ ($0.newsletterItems + $0.podcastItems) as [NewsItemPreviewBehaviour] })
+            .map({ items -> FeaturedNewsViewModel in
+                let viewModel = FeaturedNewsViewModel(newsItems: items)
+                
+                viewModel.selectionRelay.asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] index in
+                        switch items[index] {
+                        
+                        case let newsletterItem as NewsletterItem:
+                            self?.newsletterItemTransitionRequested.accept(newsletterItem)
+                        case let podcastItem as PodcastItem:
+                            self?.podcastItemTransitionRequested.accept(podcastItem)
+                        default:
+                            fatalError("unexpected type")
+                        }
+                    })
+                    .disposed(by: viewModel.disposer)
+                
+                viewModel.expandRequestRelay.asDriver(onErrorDriveWith: .empty())
+                    .drive(onNext: { [weak self] _ in
+                        self?.expandNewsTransitionRequested.accept(())
+                    })
+                    .disposed(by: viewModel.disposer)
+                
+                return viewModel
+            })
+            .share()
+        
         bindSelection(input: input.selection)
         
         return Output(
             gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
                 .asDriver(onErrorDriveWith: .empty()),
-            title: .just(HomeTimelineViewModel.timelineTitle),
+            featuredNewsViewModel: featuredNewsViewModel.asDriver(onErrorDriveWith: .empty()),
             bountiesSectionHeaderViewModel: .just(bountiesHeaderVM),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty()),
             academyCoursesSectionHeaderViewModel: .just(coursesHeaderVM),
@@ -192,7 +221,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 switch viewModel {
                 
                 case let bountyViewModel as BountyViewModel:
-                    fatalError("not implemented")
+                    self?.bountyTransitionRequested.accept(bountyViewModel.bounty)
                 default:
                     break
                 }

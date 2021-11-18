@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-05.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-17.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,16 +19,28 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
-final class MockTimelineService: TimelineService {
-    func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return .just(
-            .init(
-                newsletterItems: NewsletterItem.generateMocks(.random(in: 2 ... 4)),
-                podcastItems: PodcastItem.generateMocks(.random(in: 2 ... 4)),
-                bounties: Bounty.generateMocks(.random(in: 3 ... 3)),
-                academyCourses: AcademyCourse.generateMocks(.random(in: 1 ... 1))
-            )
-        )
+final class NewsHeaderViewModel: BaseViewModel {
+    // MARK: - Input/Output -
+    
+    struct Input { }
+    
+    struct Output { }
+    
+    // MARK: - Static output -
+    
+    let title: String
+    
+    // MARK: - Initializers -
+    
+    init(title: String) {
+        self.title = title
+    }
+    
+    // MARK: - Transformer -
+    
+    func transform(input: Input) -> Output {
+        return Output()
     }
 }

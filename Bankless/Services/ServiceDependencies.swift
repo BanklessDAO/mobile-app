@@ -39,6 +39,10 @@ protocol TimelineServiceDependency {
     var timelineService: TimelineService! { get set }
 }
 
+protocol NewsServiceDependency {
+    var newsService: NewsService! { get set }
+}
+
 protocol BountyBoardServiceDependency {
     var bountyBoardService: BountyBoardService! { get set }
 }

@@ -20,13 +20,19 @@
 import Foundation
 
 struct TimelineItemsResponse {
+    let newsletterItems: [NewsletterItem]
+    let podcastItems: [PodcastItem]
     let bounties: [Bounty]
     let academyCourses: [AcademyCourse]
     
     internal init(
+        newsletterItems: [NewsletterItem],
+        podcastItems: [PodcastItem],
         bounties: [Bounty],
         academyCourses: [AcademyCourse]
     ) {
+        self.newsletterItems = newsletterItems
+        self.podcastItems = podcastItems
         self.bounties = bounties
         self.academyCourses = academyCourses
     }

@@ -129,18 +129,18 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         let source = Driver<ListSource>
             .combineLatest(
                 output.gaugeClusterViewModel,
-                output.title,
+                output.featuredNewsViewModel,
                 bountiesOutput,
                 academyOutput,
                 resultSelector: {
                     gaugeCluster,
-                    title,
+                    featuredNews,
                     bounties,
                     academy -> ListSource in
                     
                     return ListSource(
                         gaugeClusterViewModel: gaugeCluster,
-                        newsSectionTitle: title,
+                        featuredNewsViewModel: featuredNews,
                         bountiesHeaderViewModel: bounties.0,
                         bountyViewModels: bounties.1,
                         academyHeaderViewModel: academy.0,
@@ -221,7 +221,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
                         withIdentifier: FeaturedNewsCell.reuseIdentifier,
                         for: indexPath
                     ) as! FeaturedNewsCell
-                newsCell.set(title: viewModel.title)
+                newsCell.set(viewModel: viewModel)
                 cell = newsCell
             }
         case .bounties:
@@ -303,7 +303,7 @@ extension HomeTimelineView {
         
         init(
             gaugeClusterViewModel: GaugeClusterViewModel,
-            newsSectionTitle: String,
+            featuredNewsViewModel: FeaturedNewsViewModel,
             bountiesHeaderViewModel: SectionHeaderViewModel,
             bountyViewModels: [BountyViewModel],
             academyHeaderViewModel: SectionHeaderViewModel,
@@ -316,9 +316,7 @@ extension HomeTimelineView {
             
             self.newsSection = .init(
                 type: .news,
-                viewModels: [
-                    FeaturedNewsViewModel(title: newsSectionTitle)
-                ]
+                viewModels: [featuredNewsViewModel]
             )
             
             self.bountiesSection = .init(
