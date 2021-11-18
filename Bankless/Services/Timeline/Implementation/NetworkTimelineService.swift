@@ -31,11 +31,5 @@ final class NetworkTimelineService: TimelineService {
     
     func getTimelineItems() -> Observable<TimelineItemsResponse> {
         return contentGatewayClient.getTimelineContent()
-            .map({
-                TimelineItemsResponse(
-                    bounties: $0.bounties,
-                    academyCourses: $0.academyCourses
-                )
-            })
     }
 }
