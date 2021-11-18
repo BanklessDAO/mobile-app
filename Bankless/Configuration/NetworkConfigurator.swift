@@ -62,6 +62,11 @@ class NetworkConfigurator: Configurator {
             object.timelineService = timelineService
         }
         
+        let newsService = MockNewsService()
+        container.register { (object: inout NewsServiceDependency) in
+            object.newsService = newsService
+        }
+        
         let bountyBoardService = MockBountyBoardService()
         container.register { (object: inout BountyBoardServiceDependency) in
             object.bountyBoardService = bountyBoardService
