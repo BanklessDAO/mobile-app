@@ -23,42 +23,31 @@ import Cartography
 import RxSwift
 import RxCocoa
 
-class FeaturedNewsCell: UITableViewCell {
+class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     class var reuseIdentifier: String {
         return String(describing: FeaturedNewsCell.self)
     }
     
+    // MARK: - Constants -
+    
+    private static let collectionRatio: CGSize = .init(width: 16, height: 10)
+    
+    // MARK: - Properties -
+    
+    private let featuredNewsCollectionFlowLayout = FeaturedNewsCollectionFlowLayout()
+    private let itemsSource = BehaviorRelay<[NewsItemPreviewBehaviour]>(value: [])
+    private let itemSelection = PublishRelay<Int>()
+    
     // MARK: - Subviews -
     
     private var titleLabel: UILabel!
-    
-    // MARK: - Initializers -
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUp()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Setters -
-    
-    func set(title: String) {
-        titleLabel.text = title
-    }
+    private var collectionView: UICollectionView!
     
     // MARK: - Setup -
     
-    func setUp() {
+    override func setUpSubviews() {
         backgroundColor = .backgroundBlack
         
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
-    func setUpSubviews() {
         separatorInset = .init(
             top: 0,
             left: CGFloat.greatestFiniteMagnitude,
@@ -70,12 +59,111 @@ class FeaturedNewsCell: UITableViewCell {
         titleLabel.font = Appearance.Text.Font.Header1.font(bold: true)
         titleLabel.textColor = .secondaryWhite
         contentView.addSubview(titleLabel)
+        
+        collectionView = UICollectionView(
+            featuredNewsCollectionFlowLayout: featuredNewsCollectionFlowLayout
+        )
+        collectionView.backgroundColor = .backgroundBlack
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(
+            FeaturedNewsItemCell.self,
+            forCellWithReuseIdentifier: String(describing: FeaturedNewsItemCell.self)
+        )
+        collectionView.register(
+            FeaturedNewsExpandCell.self,
+            forCellWithReuseIdentifier: String(describing: FeaturedNewsExpandCell.self)
+        )
+        featuredNewsCollectionFlowLayout.estimatedItemSize
+            = UICollectionViewFlowLayout.automaticSize
+        featuredNewsCollectionFlowLayout.minimumLineSpacing = 10
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        contentView.addSubview(collectionView)
     }
     
-    func setUpConstraints() {
+    override func setUpConstraints() {
         constrain(titleLabel, contentView) { (title, view) in
+            title.top == view.top + Appearance.contentInsets.top
+            title.left == view.left + Appearance.contentInsets.left
+            title.right == view.right - Appearance.contentInsets.right
             title.height == Appearance.Text.Font.Header1.lineHeight
-            title.edges == view.edges.inseted(by: Appearance.contentInsets)
         }
+        
+        constrain(collectionView, titleLabel, contentView) { items, title, view in
+            items.top == title.bottom + Appearance.contentPaddings.bottom
+            items.left == view.left
+            items.right == view.right
+            items.height == view.width
+                / FeaturedNewsCell.collectionRatio.width
+                * FeaturedNewsCell.collectionRatio.height
+            items.bottom == view.bottom - Appearance.contentInsets.bottom
+        }
+    }
+    
+    override func bindViewModel() {
+        let output = viewModel.transform(
+            input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()))
+        )
+        
+        output.title.drive(titleLabel.rx.text).disposed(by: disposer)
+        output.items.drive(itemsSource).disposed(by: disposer)
+        
+        itemsSource.asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.collectionView.reloadData()
+            })
+            .disposed(by: disposer)
+    }
+}
+
+extension FeaturedNewsCell: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return itemsSource.value.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt
+        indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let sourceItem = itemsSource.value[indexPath.row]
+        
+        guard !(sourceItem is ShowMorePlaceholderItem) else {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: String(describing: FeaturedNewsExpandCell.self),
+                for: indexPath
+            ) as! FeaturedNewsExpandCell
+            
+            cell.set(placeholderItem: sourceItem as! ShowMorePlaceholderItem)
+            
+            return cell
+        }
+        
+        let newsItemViewModel = NewsItemViewModel(newsItem: sourceItem)
+        
+        let newsItemView = FeaturedNewsItemView()
+        newsItemView.set(viewModel: newsItemViewModel)
+        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: FeaturedNewsItemCell.self),
+            for: indexPath
+        ) as! FeaturedNewsItemCell
+        cell.set(itemView: newsItemView)
+        
+        return cell
+    }
+}
+
+extension FeaturedNewsCell: UICollectionViewDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        itemSelection.accept(indexPath.row)
     }
 }

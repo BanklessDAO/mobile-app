@@ -37,13 +37,24 @@ final class HomeCoordinator: Coordinator {
     private func createHomeViewController() -> UIViewController {
         let viewModel = HomeViewModel(container: container)
         
+        viewModel.actions.openNews
+            .bind(onNext: { [weak self] in self?.openNews() })
+            .disposed(by: viewModel.disposer)
+        viewModel.actions.openNewsletterItem
+            .bind(onNext: { [weak self] in self?.openNewsletterItem($0) })
+            .disposed(by: viewModel.disposer)
+        viewModel.actions.openPodcastItem
+            .bind(onNext: { [weak self] in self?.openPodcastItem($0) })
+            .disposed(by: viewModel.disposer)
         viewModel.actions.openAchievements
             .bind(onNext: { [weak self] in self?.openAchievements() })
             .disposed(by: viewModel.disposer)
         viewModel.actions.openBountyBoard
             .bind(onNext: { [weak self] in self?.openBountyBoard() })
             .disposed(by: viewModel.disposer)
-            
+        viewModel.actions.openBounty
+            .bind(onNext: { [weak self] in self?.openBounty($0) })
+            .disposed(by: viewModel.disposer)
         
         let viewController = HomeViewController.init(nibName: nil, bundle: nil)
         viewController.set(viewModel: viewModel)
@@ -51,6 +62,33 @@ final class HomeCoordinator: Coordinator {
     }
     
     // MARK: - Transitions -
+    
+    private func openNews() {
+        let coordinator = NewsCoordinator(container: container)
+        container.resolve(coordinator)
+        
+        coordinator.start(from: initialViewController.navigationController!)
+    }
+    
+    private func openNewsletterItem(_ newsletterItem: NewsletterItem) {
+        let coordinator = NewsletterDetailsCoordinator(container: self.container)
+        self.container.resolve(coordinator)
+        
+        coordinator.start(
+            with: newsletterItem,
+            from: self.initialViewController.navigationController!
+        )
+    }
+    
+    private func openPodcastItem(_ podcastItem: PodcastItem) {
+        let coordinator = PodcastDetailsCoordinator(container: self.container)
+        self.container.resolve(coordinator)
+        
+        coordinator.start(
+            with: podcastItem,
+            from: self.initialViewController.navigationController!
+        )
+    }
     
     private func openAchievements() {
         let coordinator = AchievementsCoordinator(container: container)
@@ -65,5 +103,15 @@ final class HomeCoordinator: Coordinator {
         container.resolve(coordinator)
         
         coordinator.start(from: initialViewController.navigationController!)
+    }
+    
+    private func openBounty(_ bounty: Bounty) {
+        let coordinator = BountyDetailsCoordinator(container: self.container)
+        self.container.resolve(coordinator)
+        
+        coordinator.start(
+            with: bounty,
+            from: self.initialViewController.navigationController!
+        )
     }
 }

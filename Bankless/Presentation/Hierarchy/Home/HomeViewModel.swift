@@ -34,9 +34,12 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
     
     struct Actions {
         let openAchievements = PublishRelay<Void>()
+        let openNews = PublishRelay<Void>()
+        let openNewsletterItem = PublishRelay<NewsletterItem>()
+        let openPodcastItem = PublishRelay<PodcastItem>()
         let openBountyBoard = PublishRelay<Void>()
+        let openBounty = PublishRelay<Bounty>()
         let openAcademy = PublishRelay<Void>()
-        let openNewsletter = PublishRelay<Void>()
     }
     
     let actions = Actions()
@@ -73,8 +76,16 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
     private func timelineViewModel() -> Observable<HomeTimelineViewModel> {
         let viewModel = HomeTimelineViewModel()
         self.container?.resolve(viewModel)
+        viewModel.expandNewsTransitionRequested
+            .bind(to: actions.openNews).disposed(by: disposer)
+        viewModel.newsletterItemTransitionRequested
+            .bind(to: actions.openNewsletterItem).disposed(by: disposer)
+        viewModel.podcastItemTransitionRequested
+            .bind(to: actions.openPodcastItem).disposed(by: disposer)
         viewModel.expandBountiesTransitionRequested
             .bind(to: actions.openBountyBoard).disposed(by: disposer)
+        viewModel.bountyTransitionRequested
+            .bind(to: actions.openBounty).disposed(by: disposer)
         viewModel.expandAcademyTransitionRequested
             .bind(to: actions.openAcademy).disposed(by: disposer)
         

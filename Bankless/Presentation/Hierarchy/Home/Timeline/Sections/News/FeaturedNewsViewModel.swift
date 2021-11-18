@@ -24,23 +24,55 @@ import RxCocoa
 final class FeaturedNewsViewModel: BaseViewModel {
     // MARK: - Input/Output -
     
-    struct Input { }
+    struct Input {
+        let selection: Driver<Int>
+    }
     
-    struct Output { }
+    struct Output {
+        let title: Driver<String>
+        let items: Driver<[NewsItemPreviewBehaviour]>
+    }
     
-    // MARK: - Properties -
+    // MARK: - Constants -
     
-    let title: String
+    private static let title = NSLocalizedString(
+        "home.timeline.news.title", value: "Today", comment: ""
+    )
+    
+    // MARK: - Data -
+    
+    private let newsItems: [NewsItemPreviewBehaviour]
+    
+    // MARK: - Events -
+    
+    let selectionRelay = PublishRelay<Int>()
+    let expandRequestRelay = PublishRelay<Void>()
     
     // MARK: - Initializets -
     
-    init(title: String) {
-        self.title = title
+    init(newsItems: [NewsItemPreviewBehaviour]) {
+        self.newsItems = newsItems + [ShowMorePlaceholderItem()]
     }
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        return Output()
+        input.selection
+            .drive(onNext: { [weak self] index in
+                guard let self = self else { return }
+                
+                guard !(self.newsItems[index] is ShowMorePlaceholderItem) else {
+                    self.expandRequestRelay.accept(())
+                    return
+                }
+                
+                self.selectionRelay.accept(index)
+            })
+            .disposed(by: disposer)
+        
+        return Output(
+            title: .just(FeaturedNewsViewModel.title),
+            items: .just(newsItems)
+        )
     }
 }
