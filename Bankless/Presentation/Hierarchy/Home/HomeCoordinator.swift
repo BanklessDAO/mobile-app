@@ -55,6 +55,12 @@ final class HomeCoordinator: Coordinator {
         viewModel.actions.openBounty
             .bind(onNext: { [weak self] in self?.openBounty($0) })
             .disposed(by: viewModel.disposer)
+        viewModel.actions.openAcademy
+            .bind(onNext: { [weak self] in self?.openAcademy() })
+            .disposed(by: viewModel.disposer)
+        viewModel.actions.openAcademyCourse
+            .bind(onNext: { [weak self] in self?.openAcademyCourse($0) })
+            .disposed(by: viewModel.disposer)
         
         let viewController = HomeViewController.init(nibName: nil, bundle: nil)
         viewController.set(viewModel: viewModel)
@@ -111,6 +117,23 @@ final class HomeCoordinator: Coordinator {
         
         coordinator.start(
             with: bounty,
+            from: self.initialViewController.navigationController!
+        )
+    }
+    
+    private func openAcademy() {
+        let coordinator = AcademyCoordinator(container: container)
+        container.resolve(coordinator)
+        
+        coordinator.start(from: initialViewController.navigationController!)
+    }
+    
+    private func openAcademyCourse(_ academyCourse: AcademyCourse) {
+        let coordinator = AcademyCourseDetailsCoordinator(container: self.container)
+        self.container.resolve(coordinator)
+        
+        coordinator.start(
+            with: academyCourse,
             from: self.initialViewController.navigationController!
         )
     }

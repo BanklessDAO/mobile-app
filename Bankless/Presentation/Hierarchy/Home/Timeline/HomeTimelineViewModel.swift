@@ -65,6 +65,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     let expandBountiesTransitionRequested = PublishRelay<Void>()
     let bountyTransitionRequested = PublishRelay<Bounty>()
     let expandAcademyTransitionRequested = PublishRelay<Void>()
+    let academyCourseTransitionRequested = PublishRelay<AcademyCourse>()
     
     // MARK: - Components -
     
@@ -221,7 +222,11 @@ final class HomeTimelineViewModel: BaseViewModel,
                 switch viewModel {
                 
                 case let bountyViewModel as BountyViewModel:
-                    self?.bountyTransitionRequested.accept(bountyViewModel.bounty)
+                    self?.bountyTransitionRequested
+                        .accept(bountyViewModel.bounty)
+                case let academyCourseViewModel as AcademyCourseViewModel:
+                    self?.academyCourseTransitionRequested
+                        .accept(academyCourseViewModel.academyCourse)
                 default:
                     break
                 }
