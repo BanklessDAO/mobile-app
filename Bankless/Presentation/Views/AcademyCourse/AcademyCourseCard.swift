@@ -32,7 +32,7 @@ class AcademyCourseCard: CardView {
     private static let forwardNavigationIcon = UIImage(named: "arrow_right")!
     private static let sizeRatio: CGSize = .init(width: 16, height: 9)
     private static let tagHeight: CGFloat = 40.0
-    private static let tagPadding: CGFloat = 20.0
+    private static let tagPadding: CGFloat = 30.0
     
     // MARK: - Properties -
     
