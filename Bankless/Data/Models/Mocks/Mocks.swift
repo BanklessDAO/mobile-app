@@ -60,7 +60,7 @@ extension AcademyCourse: Mock {
             description: faker.company.catchPhrase(),
             duration: Int.random(in: 5 ... 40),
             difficulty: .allCases.randomElement()!,
-            poapImageLink: URL(string: faker.internet.image())!,
+            poapImageLink: URL(string: "https://storage.googleapis.com/poapmedia/bankless-academy-intro-to-defi-2021-logo-1630063060767.png")!,
             learnings: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
             learningActions: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
             knowledgeRequirements: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
