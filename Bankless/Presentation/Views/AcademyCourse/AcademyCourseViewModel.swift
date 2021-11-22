@@ -45,7 +45,7 @@ final class AcademyCourseViewModel: BaseViewModel {
     
     // MARK: - Data -
     
-    private let academyCourse: AcademyCourse
+    let academyCourse: AcademyCourse
     
     // MARK: - Initializers -
     
