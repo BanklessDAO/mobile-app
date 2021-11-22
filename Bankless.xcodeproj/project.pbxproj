@@ -10,6 +10,26 @@
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
 		FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */; };
 		FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */; };
+		FF1AC6422746435F003025E0 /* AcademyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6412746435F003025E0 /* AcademyCoordinator.swift */; };
+		FF1AC64427464367003025E0 /* AcademyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64327464367003025E0 /* AcademyViewController.swift */; };
+		FF1AC64627464371003025E0 /* AcademyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64527464371003025E0 /* AcademyViewModel.swift */; };
+		FF1AC649274643B5003025E0 /* AcademyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC648274643B5003025E0 /* AcademyService.swift */; };
+		FF1AC64B274643E5003025E0 /* AcademyCourseListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64A274643E5003025E0 /* AcademyCourseListResponse.swift */; };
+		FF1AC64E27464461003025E0 /* MockAcademyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64D27464461003025E0 /* MockAcademyService.swift */; };
+		FF1AC6502746446A003025E0 /* NetworkAcademyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64F2746446A003025E0 /* NetworkAcademyService.swift */; };
+		FF1AC65427464697003025E0 /* AcademyHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC65327464697003025E0 /* AcademyHeaderCell.swift */; };
+		FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC655274646A0003025E0 /* AcademyHeaderViewModel.swift */; };
+		FF1AC65827470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC65727470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift */; };
+		FF1AC65A27470DDE003025E0 /* AcademyCourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC65927470DDE003025E0 /* AcademyCourseDetailsViewController.swift */; };
+		FF1AC65C27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC65B27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift */; };
+		FF1AC66027470E55003025E0 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC65F27470E55003025E0 /* UIImage+Color.swift */; };
+		FF1AC6622747150E003025E0 /* MarkupRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6612747150E003025E0 /* MarkupRenderable.swift */; };
+		FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6632747153A003025E0 /* String+MarkupRenderable.swift */; };
+		FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC666274719F8003025E0 /* AcademyCourseDetailViewModel.swift */; };
+		FF1AC66927471A01003025E0 /* AcademyCourseDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66827471A01003025E0 /* AcademyCourseDetailCard.swift */; };
+		FF1AC66B27471A9B003025E0 /* AcademyCourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */; };
+		FF1AC66E2747220F003025E0 /* SectionNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */; };
+		FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -200,6 +220,26 @@
 		C4F3A936DC476C1FA58282F3 /* Pods-Bankless.release mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release mock.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release mock.xcconfig"; sourceTree = "<group>"; };
 		FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainBasedSessionStorage.swift; sourceTree = "<group>"; };
+		FF1AC6412746435F003025E0 /* AcademyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCoordinator.swift; sourceTree = "<group>"; };
+		FF1AC64327464367003025E0 /* AcademyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyViewController.swift; sourceTree = "<group>"; };
+		FF1AC64527464371003025E0 /* AcademyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyViewModel.swift; sourceTree = "<group>"; };
+		FF1AC648274643B5003025E0 /* AcademyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyService.swift; sourceTree = "<group>"; };
+		FF1AC64A274643E5003025E0 /* AcademyCourseListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseListResponse.swift; sourceTree = "<group>"; };
+		FF1AC64D27464461003025E0 /* MockAcademyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAcademyService.swift; sourceTree = "<group>"; };
+		FF1AC64F2746446A003025E0 /* NetworkAcademyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAcademyService.swift; sourceTree = "<group>"; };
+		FF1AC65327464697003025E0 /* AcademyHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyHeaderCell.swift; sourceTree = "<group>"; };
+		FF1AC655274646A0003025E0 /* AcademyHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyHeaderViewModel.swift; sourceTree = "<group>"; };
+		FF1AC65727470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetailsCoordinator.swift; sourceTree = "<group>"; };
+		FF1AC65927470DDE003025E0 /* AcademyCourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetailsViewController.swift; sourceTree = "<group>"; };
+		FF1AC65B27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetailsViewModel.swift; sourceTree = "<group>"; };
+		FF1AC65F27470E55003025E0 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		FF1AC6612747150E003025E0 /* MarkupRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupRenderable.swift; sourceTree = "<group>"; };
+		FF1AC6632747153A003025E0 /* String+MarkupRenderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MarkupRenderable.swift"; sourceTree = "<group>"; };
+		FF1AC666274719F8003025E0 /* AcademyCourseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetailViewModel.swift; sourceTree = "<group>"; };
+		FF1AC66827471A01003025E0 /* AcademyCourseDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetailCard.swift; sourceTree = "<group>"; };
+		FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetail.swift; sourceTree = "<group>"; };
+		FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionNavigationViewModel.swift; sourceTree = "<group>"; };
+		FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionNavigationControlView.swift; sourceTree = "<group>"; };
 		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
 		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
 		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
@@ -438,6 +478,116 @@
 				FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FF1AC63D2746425C003025E0 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC63E2746428D003025E0 /* Home */,
+				FF1AC63F2746429E003025E0 /* CourseDetails */,
+				FF1AC640274642F5003025E0 /* CourseFlow */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
+		FF1AC63E2746428D003025E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC6412746435F003025E0 /* AcademyCoordinator.swift */,
+				FF1AC64327464367003025E0 /* AcademyViewController.swift */,
+				FF1AC64527464371003025E0 /* AcademyViewModel.swift */,
+				FF1AC65127464678003025E0 /* Sections */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FF1AC63F2746429E003025E0 /* CourseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC65727470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift */,
+				FF1AC65927470DDE003025E0 /* AcademyCourseDetailsViewController.swift */,
+				FF1AC65B27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift */,
+				FF1AC665274719CD003025E0 /* Card */,
+			);
+			path = CourseDetails;
+			sourceTree = "<group>";
+		};
+		FF1AC640274642F5003025E0 /* CourseFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CourseFlow;
+			sourceTree = "<group>";
+		};
+		FF1AC647274643A1003025E0 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC648274643B5003025E0 /* AcademyService.swift */,
+				FF1AC64A274643E5003025E0 /* AcademyCourseListResponse.swift */,
+				FF1AC64C2746444A003025E0 /* Implementation */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
+		FF1AC64C2746444A003025E0 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC64D27464461003025E0 /* MockAcademyService.swift */,
+				FF1AC64F2746446A003025E0 /* NetworkAcademyService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FF1AC65127464678003025E0 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC65227464682003025E0 /* Header */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		FF1AC65227464682003025E0 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC65327464697003025E0 /* AcademyHeaderCell.swift */,
+				FF1AC655274646A0003025E0 /* AcademyHeaderViewModel.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		FF1AC65D27470E3A003025E0 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC65E27470E41003025E0 /* Extensions */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		FF1AC65E27470E41003025E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC65F27470E55003025E0 /* UIImage+Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FF1AC665274719CD003025E0 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC66827471A01003025E0 /* AcademyCourseDetailCard.swift */,
+				FF1AC666274719F8003025E0 /* AcademyCourseDetailViewModel.swift */,
+				FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		FF1AC66C274721BA003025E0 /* SectionNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */,
+				FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */,
+			);
+			path = SectionNavigation;
 			sourceTree = "<group>";
 		};
 		FF5BCD6D273DCF8D000D3FEF /* BountyBoard */ = {
@@ -750,6 +900,7 @@
 				FF78F39F270636DC00A47A91 /* Timeline */,
 				FF5BCDBD27444E02000D3FEF /* News */,
 				FF5BCD6D273DCF8D000D3FEF /* BountyBoard */,
+				FF1AC647274643A1003025E0 /* Academy */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -869,6 +1020,7 @@
 				FF5BCDCE27445D54000D3FEF /* NewsletterItem+NewsItemPreviewBehaviour.swift */,
 				FF5BCDD027445D5D000D3FEF /* PodcastItem+NewsItemPreviewBehaviour.swift */,
 				FF5BCE032745A399000D3FEF /* PodcastItem+VideoSource.swift */,
+				FF1AC6632747153A003025E0 /* String+MarkupRenderable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -881,6 +1033,7 @@
 				FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */,
 				FF5BCDCC27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift */,
 				FF5BCE0027459C5B000D3FEF /* VideoSource.swift */,
+				FF1AC6612747150E003025E0 /* MarkupRenderable.swift */,
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
 			path = Behaviour;
@@ -1093,8 +1246,10 @@
 				FFAE9869270E860C0047405D /* AcademyCourse */,
 				FFAE9864270E4A920047405D /* Bounty */,
 				FFE60010271C885D00F73FA1 /* AttendanceToken */,
+				FF1AC65D27470E3A003025E0 /* Image */,
 				FF5BCDFB274599F0000D3FEF /* Video */,
 				FF5BCE0C2745CC4B000D3FEF /* Markup */,
+				FF1AC66C274721BA003025E0 /* SectionNavigation */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1108,6 +1263,7 @@
 				FF78F37F2706271B00A47A91 /* Home */,
 				FF5BCDE227457F86000D3FEF /* News */,
 				FF5BCD7F273DD2F6000D3FEF /* BountyBoard */,
+				FF1AC63D2746425C003025E0 /* Academy */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -1560,6 +1716,7 @@
 				FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */,
 				FF5BCDAD273F0E06000D3FEF /* SectionHeaderViewModel.swift in Sources */,
 				FF5BCD85273DD326000D3FEF /* BountyBoardViewModel.swift in Sources */,
+				FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF7A33BB273CA7210037899B /* MockIdentityService.swift in Sources */,
 				FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */,
@@ -1582,16 +1739,21 @@
 				FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */,
 				FFE6001A271C8F5800F73FA1 /* BaseCollectionViewCell.swift in Sources */,
 				FFCC9FA42718B63400CAB3A3 /* NetworkAchievementsService.swift in Sources */,
+				FF1AC64627464371003025E0 /* AcademyViewModel.swift in Sources */,
 				FFAE9866270E4AA60047405D /* BountyCard.swift in Sources */,
 				FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */,
 				FF7A33CA273CB5CC0037899B /* NavigationBarItemView.swift in Sources */,
 				FFAE9845270D03610047405D /* Mocks.swift in Sources */,
+				FF1AC66E2747220F003025E0 /* SectionNavigationViewModel.swift in Sources */,
 				FF5BCDEF27457FDD000D3FEF /* NewsHeaderCell.swift in Sources */,
 				FF7A33C8273CB4F40037899B /* NavigationBar.swift in Sources */,
 				FFC6F48A27370A7800EA8F12 /* AuthError.swift in Sources */,
 				FF5BCDCB27445474000D3FEF /* NetworkNewsService.swift in Sources */,
+				FF1AC66927471A01003025E0 /* AcademyCourseDetailCard.swift in Sources */,
 				FFCC9FAB2718CA1700CAB3A3 /* GaugeClusterViewModel.swift in Sources */,
 				FF5BCDD92744BC31000D3FEF /* FeaturedNewsItemCell.swift in Sources */,
+				FF1AC6422746435F003025E0 /* AcademyCoordinator.swift in Sources */,
+				FF1AC66027470E55003025E0 /* UIImage+Color.swift in Sources */,
 				FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */,
 				FF5BCDD127445D5D000D3FEF /* PodcastItem+NewsItemPreviewBehaviour.swift in Sources */,
 				FFC6F4792735FDC100EA8F12 /* AuthProviderServer.swift in Sources */,
@@ -1603,6 +1765,7 @@
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
 				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
 				FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */,
+				FF1AC65C27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift in Sources */,
 				FFAE985D270E43D00047405D /* CardView.swift in Sources */,
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FF5BCDDB2744C342000D3FEF /* FeaturedNewsItemView.swift in Sources */,
@@ -1627,6 +1790,7 @@
 				FF78F38627062B3500A47A91 /* HomeTimelineViewModel.swift in Sources */,
 				FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */,
 				FFCC9FAD2718CA2800CAB3A3 /* GaugeClusterCell.swift in Sources */,
+				FF1AC66B27471A9B003025E0 /* AcademyCourseDetail.swift in Sources */,
 				FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */,
 				FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */,
 				FFCC9FA62718B64000CAB3A3 /* MockBanklessService.swift in Sources */,
@@ -1640,8 +1804,11 @@
 				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
 				FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */,
 				FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */,
+				FF1AC64E27464461003025E0 /* MockAcademyService.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
+				FF1AC6622747150E003025E0 /* MarkupRenderable.swift in Sources */,
+				FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */,
 				FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */,
 				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
 				FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */,
@@ -1649,17 +1816,22 @@
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
 				FF7A33DB273CCCBB0037899B /* BaseNavigationView.swift in Sources */,
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
+				FF1AC65827470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift in Sources */,
 				FF5BCDD627446873000D3FEF /* NewsItemViewModel.swift in Sources */,
 				FFEB12382710FE17003EF90D /* SampleData.graphql.swift in Sources */,
 				FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */,
 				FF5BCDF82745977B000D3FEF /* PodcastDetailsViewModel.swift in Sources */,
+				FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FF7A33B6273CA69C0037899B /* IdentityService.swift in Sources */,
 				FF5BCDCF27445D54000D3FEF /* NewsletterItem+NewsItemPreviewBehaviour.swift in Sources */,
+				FF1AC65427464697003025E0 /* AcademyHeaderCell.swift in Sources */,
 				FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */,
 				FF7A33C5273CACD60037899B /* DiscordUser.swift in Sources */,
+				FF1AC64427464367003025E0 /* AcademyViewController.swift in Sources */,
 				FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
+				FF1AC649274643B5003025E0 /* AcademyService.swift in Sources */,
 				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
 				FF5BCDBF27444E1A000D3FEF /* NewsService.swift in Sources */,
 				FF5BCD76273DD0E3000D3FEF /* MockBountyBoardService.swift in Sources */,
@@ -1669,6 +1841,7 @@
 				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
 				FF5BCDED27457FD4000D3FEF /* NewsHeaderViewModel.swift in Sources */,
 				FF5BCDC127444E4B000D3FEF /* NewsItemsResponse.swift in Sources */,
+				FF1AC6502746446A003025E0 /* NetworkAcademyService.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
@@ -1679,6 +1852,7 @@
 				FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */,
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FF5BCDCD27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift in Sources */,
+				FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
 				FF5BCDFF27459C27000D3FEF /* VideoViewModel.swift in Sources */,
@@ -1723,6 +1897,8 @@
 				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
 				FFEB123F27110B8D003EF90D /* DataError.swift in Sources */,
+				FF1AC65A27470DDE003025E0 /* AcademyCourseDetailsViewController.swift in Sources */,
+				FF1AC64B274643E5003025E0 /* AcademyCourseListResponse.swift in Sources */,
 				FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
