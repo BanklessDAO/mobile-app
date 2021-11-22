@@ -23,7 +23,7 @@ import Cartography
 import RxSwift
 import RxCocoa
 import Kingfisher
-import AVKit
+import YouTubePlayerKit
 
 class VideoView: BaseView<VideoViewModel> {
     // MARK: - Constants -
@@ -33,8 +33,7 @@ class VideoView: BaseView<VideoViewModel> {
     
     // MARK: - Properties -
     
-    private var videoPlayer: AVPlayer!
-    private var playerController: AVPlayerViewController!
+    private var youTubePlayerViewController: YouTubePlayerViewController!
     
     // MARK: - Subviews -
     
@@ -54,7 +53,7 @@ class VideoView: BaseView<VideoViewModel> {
     }
     
     deinit {
-        videoPlayer?.pause()
+        youTubePlayerViewController?.player.pause()
     }
     
     // MARK: - Setup -
@@ -67,12 +66,7 @@ class VideoView: BaseView<VideoViewModel> {
     }
     
     private func setUpSubviews() {
-        playerController = AVPlayerViewController()
-        if #available(iOS 11.0, *) {
-            playerController.entersFullScreenWhenPlaybackBegins = true
-            playerController.exitsFullScreenWhenPlaybackEnds = true
-        }
-        insertSubview(playerController.view, at: 0)
+        youTubePlayerViewController = YouTubePlayerViewController(player: "")
         
         thumbnailImageView = UIImageView()
         thumbnailImageView.contentMode = .scaleAspectFill
@@ -91,10 +85,6 @@ class VideoView: BaseView<VideoViewModel> {
     }
     
     private func setUpConstraints() {
-        constrain(playerController.view, self) { (player, view) in
-            player.edges == view.edges
-        }
-        
         constrain(
             thumbnailImageView, curtainView, playButton, self
         ) { (thumbnail, curtain, play, view) in
@@ -121,18 +111,12 @@ class VideoView: BaseView<VideoViewModel> {
     // MARK: - Transitions -
     
     private func set(contentURL: URL) {
-        playerController.player?.pause()
-        
-        let item = AVPlayerItem(url: contentURL)
-    
-        videoPlayer = AVPlayer(playerItem: item)
-        playerController.player = videoPlayer
+        youTubePlayerViewController.player.source = .url(contentURL.absoluteString)
     }
     
     private func play() {
-        videoPlayer?.play()
-        
-        playButton.isHidden = true
-        thumbnailImageView.isHidden = true
+        (UIApplication.shared.delegate as? AppDelegate)?
+            .applicationCoordinator.navigationController
+            .present(youTubePlayerViewController, animated: true)
     }
 }

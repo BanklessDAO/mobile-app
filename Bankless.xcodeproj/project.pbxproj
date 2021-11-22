@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,7 @@
 		FF1AC66B27471A9B003025E0 /* AcademyCourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */; };
 		FF1AC66E2747220F003025E0 /* SectionNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */; };
 		FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */; };
+		FF1AC67B274C474C003025E0 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF1AC67A274C474C003025E0 /* YouTubePlayerKit */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -435,6 +436,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF1AC67B274C474C003025E0 /* YouTubePlayerKit in Frameworks */,
 				D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1588,6 +1590,9 @@
 			dependencies = (
 			);
 			name = Bankless;
+			packageProductDependencies = (
+				FF1AC67A274C474C003025E0 /* YouTubePlayerKit */,
+			);
 			productName = Bankless;
 			productReference = FF7D493E27053EF300F0244B /* Bankless.app */;
 			productType = "com.apple.product-type.application";
@@ -1616,6 +1621,9 @@
 				Base,
 			);
 			mainGroup = FF7D493527053EF300F0244B;
+			packageReferences = (
+				FF1AC679274C474C003025E0 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+			);
 			productRefGroup = FF7D493F27053EF300F0244B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2456,6 +2464,25 @@
 			defaultConfigurationName = "Release Test";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF1AC679274C474C003025E0 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF1AC67A274C474C003025E0 /* YouTubePlayerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF1AC679274C474C003025E0 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF7D493627053EF300F0244B /* Project object */;
 }
