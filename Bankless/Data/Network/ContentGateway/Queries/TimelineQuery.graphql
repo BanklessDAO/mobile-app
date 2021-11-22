@@ -1,0 +1,124 @@
+query TimelineQuery {
+  BanklessTokens(
+    where: {
+      address_equals: "0xbbc3d8108069b10a5859a08f31d140b9f357f73f"
+    }
+  ) {
+    data {
+      address
+      balance
+      transactions {
+        amount
+        toAddress
+        fromAddress
+      }
+    }
+  }
+  
+  # TODO: Have a separate flat filterable entity collection for BANK transactions
+  
+  POAPTokens(
+    where: {
+      owner_equals: "0xbbc3d8108069b10a5859a08f31d140b9f357f73f"
+    }
+  ) {
+    data {
+      id
+      owner
+      mintedAt
+      imageUrl
+    }
+  }
+  
+  NewsletterItems(
+    first: 3
+  ) {
+    id
+    title
+    slug
+    excerpt
+    createdAt
+    updatedAt
+    coverPictureUrl
+    url
+    htmlContent
+    readingTimeInMinutes
+    isFeatured
+  }
+  
+  PodcastItems(
+    first: 3
+  ) {
+    id
+    title
+    description
+    publishedAt
+    thumbnailUrl
+    videoURL
+  }
+  
+  Bounties(
+    first: 3
+  ) {
+    data {
+      id
+      title
+      season
+      description
+      criteria
+      rewardAmount
+      status
+      createdBy {
+        discordId
+        discordHandle
+      }
+      createdAt
+      dueAt
+      discordMessageId
+      status
+      claimedBy {
+        discordId
+        discordHandle
+      }
+      claimedAt
+      submittedBy {
+        discordId
+        discordHandle
+      }
+      submittedAt
+      submissionNotes
+      submissionUrl
+      reviewedBy {
+        discordId
+        discordHandle
+      }
+      reviewedAt
+    }
+  }
+  
+  Courses(
+    first: 3
+  ) {
+    data {
+      slug
+      name
+      duration
+      difficulty
+      description
+      knowledgeRequirements
+      learnings
+      learningActions
+      poapEventId
+      poapImageLink
+      sections {
+        type
+        title
+        content
+        quiz {
+          answers
+          rightAnswerNumber
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+query NewsQuery {
+  NewsletterItems {
+    id
+    title
+    slug
+    excerpt
+    createdAt
+    updatedAt
+    coverPictureUrl
+    url
+    htmlContent
+    readingTimeInMinutes
+    isFeatured
+  }
+  
+  PodcastItems {
+    id
+    title
+    description
+    publishedAt
+    thumbnailUrl
+    videoURL
+  }
+}
