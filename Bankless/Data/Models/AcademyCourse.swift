@@ -55,7 +55,10 @@ extension AcademyCourse {
 
 extension AcademyCourse.Section {
     enum `Type`: String, Codable, CaseIterable {
-        case dummy
+        case learn
+        case quiz
+        case quest
+        case poap
     }
     
     struct Quiz: Codable {

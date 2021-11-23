@@ -1,4 +1,4 @@
-GRAPHQL_API_ENDPOINT = api.thegraph.com/subgraphs/name/amxx/poap
+GRAPHQL_API_ENDPOINT = content-gateway-api.herokuapp.com/api/graphql/api/graphql
 DISCORD_AUTH_PATH = discord.com/api/oauth2/authorize
 DISCORD_AUTH_REDIRECT_URL_SCHEME = https
 DISCORD_AUTH_REDIRECT_PATH = bankless.community/auth/discord/redirect

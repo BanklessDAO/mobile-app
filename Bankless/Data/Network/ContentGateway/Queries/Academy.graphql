@@ -1,4 +1,4 @@
-query AcademyQuery {
+query Academy {
   Courses {
     data {
       slug

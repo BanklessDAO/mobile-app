@@ -30,11 +30,14 @@
 		FF1AC66B27471A9B003025E0 /* AcademyCourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */; };
 		FF1AC66E2747220F003025E0 /* SectionNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */; };
 		FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */; };
+		FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC671274C25E8003025E0 /* Timeline.graphql */; };
+		FF1AC676274C2640003025E0 /* Academy.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC675274C2640003025E0 /* Academy.graphql */; };
+		FF1AC678274C2658003025E0 /* BountyBoard.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC677274C2658003025E0 /* BountyBoard.graphql */; };
 		FF1AC67B274C474C003025E0 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF1AC67A274C474C003025E0 /* YouTubePlayerKit */; };
-		FF1AC672274C25E8003025E0 /* TimelineQuery.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC671274C25E8003025E0 /* TimelineQuery.graphql */; };
-		FF1AC674274C2629003025E0 /* NewsQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC673274C2629003025E0 /* NewsQuery.graphql */; };
-		FF1AC676274C2640003025E0 /* AcademyQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC675274C2640003025E0 /* AcademyQuery.graphql */; };
-		FF1AC678274C2658003025E0 /* BountyBoardQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC677274C2658003025E0 /* BountyBoardQuery.graphql */; };
+		FF1AC688274C4FD0003025E0 /* Academy.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */; };
+		FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */; };
+		FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */; };
+		FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC687274C4FD0003025E0 /* Types.graphql.swift */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -243,10 +246,13 @@
 		FF1AC66A27471A9B003025E0 /* AcademyCourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseDetail.swift; sourceTree = "<group>"; };
 		FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionNavigationViewModel.swift; sourceTree = "<group>"; };
 		FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionNavigationControlView.swift; sourceTree = "<group>"; };
-		FF1AC671274C25E8003025E0 /* TimelineQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = TimelineQuery.graphql; sourceTree = "<group>"; };
-		FF1AC673274C2629003025E0 /* NewsQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = NewsQuery.graphql; sourceTree = "<group>"; };
-		FF1AC675274C2640003025E0 /* AcademyQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AcademyQuery.graphql; sourceTree = "<group>"; };
-		FF1AC677274C2658003025E0 /* BountyBoardQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BountyBoardQuery.graphql; sourceTree = "<group>"; };
+		FF1AC671274C25E8003025E0 /* Timeline.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Timeline.graphql; sourceTree = "<group>"; };
+		FF1AC675274C2640003025E0 /* Academy.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Academy.graphql; sourceTree = "<group>"; };
+		FF1AC677274C2658003025E0 /* BountyBoard.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BountyBoard.graphql; sourceTree = "<group>"; };
+		FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.graphql.swift; sourceTree = "<group>"; };
+		FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyBoard.graphql.swift; sourceTree = "<group>"; };
+		FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.graphql.swift; sourceTree = "<group>"; };
+		FF1AC687274C4FD0003025E0 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
 		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
 		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
 		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
@@ -421,7 +427,6 @@
 		FFEB121F2710A195003EF90D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FFEB12202710A1CC003EF90D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		FFEB12262710CF7E003EF90D /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		FFEB12282710F4DF003EF90D /* SampleData.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SampleData.graphql; sourceTree = "<group>"; };
 		FFEB12302710FBCC003EF90D /* DataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClient.swift; sourceTree = "<group>"; };
 		FFEB12332710FC63003EF90D /* MultiSourceDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSourceDataClient.swift; sourceTree = "<group>"; };
 		FFEB123E27110B8D003EF90D /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
@@ -1518,11 +1523,9 @@
 		FFEB12292710F57D003EF90D /* Queries */ = {
 			isa = PBXGroup;
 			children = (
-				FFEB12282710F4DF003EF90D /* SampleData.graphql */,
-				FF1AC671274C25E8003025E0 /* TimelineQuery.graphql */,
-				FF1AC673274C2629003025E0 /* NewsQuery.graphql */,
-				FF1AC675274C2640003025E0 /* AcademyQuery.graphql */,
-				FF1AC677274C2658003025E0 /* BountyBoardQuery.graphql */,
+				FF1AC671274C25E8003025E0 /* Timeline.graphql */,
+				FF1AC675274C2640003025E0 /* Academy.graphql */,
+				FF1AC677274C2658003025E0 /* BountyBoard.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -1553,6 +1556,10 @@
 		FFEB12352710FE17003EF90D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */,
+				FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */,
+				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
+				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1647,9 +1654,8 @@
 				FFEB12272710CF7E003EF90D /* schema.json in Resources */,
 				FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */,
 				FF9F5CF32705494100629D79 /* Main.storyboard in Resources */,
-				FF1AC674274C2629003025E0 /* NewsQuery.graphql in Resources */,
-				FF1AC678274C2658003025E0 /* BountyBoardQuery.graphql in Resources */,
-				FF1AC676274C2640003025E0 /* AcademyQuery.graphql in Resources */,
+				FF1AC678274C2658003025E0 /* BountyBoard.graphql in Resources */,
+				FF1AC676274C2640003025E0 /* Academy.graphql in Resources */,
 				FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */,
 				FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -1789,13 +1795,14 @@
 				FF5BCDDF2744D389000D3FEF /* ShowMorePlaceholderItem.swift in Sources */,
 				FF5BCDF62745976F000D3FEF /* PodcastDetailsCoordinator.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
-				FF1AC672274C25E8003025E0 /* TimelineQuery.graphql in Sources */,
+				FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */,
 				FF5BCDA7273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF7A33C3273CA9CF0037899B /* MultiSourceDataClient+ContentGateway.swift in Sources */,
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
 				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
 				FFEB124A2718AAAC003EF90D /* AchievementsService.swift in Sources */,
+				FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */,
 				FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */,
 				FF7A33B8273CA6C30037899B /* UserIdentityResponse.swift in Sources */,
 				FF5BCD90273DD3FD000D3FEF /* BountyDetailsViewController.swift in Sources */,
@@ -1824,6 +1831,7 @@
 				FF1AC64E27464461003025E0 /* MockAcademyService.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
+				FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */,
 				FF1AC6622747150E003025E0 /* MarkupRenderable.swift in Sources */,
 				FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */,
 				FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */,
@@ -1890,6 +1898,7 @@
 				FF5BCDC92744546A000D3FEF /* MockNewsService.swift in Sources */,
 				FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */,
 				FFEB1242271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift in Sources */,
+				FF1AC688274C4FD0003025E0 /* Academy.graphql.swift in Sources */,
 				FF5BCE0127459C5C000D3FEF /* VideoSource.swift in Sources */,
 				FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */,
 				FF5BCE0B2745CAF7000D3FEF /* NewsletterDetailsViewController.swift in Sources */,
@@ -1903,6 +1912,7 @@
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
 				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
+				FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
 				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
 				FF5BCDE727457FA6000D3FEF /* NewsViewController.swift in Sources */,

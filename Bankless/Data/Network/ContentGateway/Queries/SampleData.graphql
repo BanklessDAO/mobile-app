@@ -1,9 +1,0 @@
-query SampleData {
-  poapEvent(id: "69") {
-    tokens {
-      owner {
-        id
-      }
-    }
-  }
-}
