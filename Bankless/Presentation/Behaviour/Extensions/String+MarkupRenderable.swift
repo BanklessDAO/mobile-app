@@ -22,7 +22,7 @@ import Foundation
 extension String: MarkupRenderable {
     var renderedString: NSAttributedString? {
         guard let data = self.data(
-            using: String.Encoding.utf8,
+            using: String.Encoding.utf16,
             allowLossyConversion: false
         ) else {
             return nil
