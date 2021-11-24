@@ -65,7 +65,13 @@ final class AcademyCourseDetailsCoordinator: Coordinator {
             .drive(onNext: { [weak self] academyCourse in
                 guard let self = self else { return }
                 
-                fatalError("not implemented")
+                let coordinator = AcademyCourseFlowCoordinator(container: self.container)
+                self.container.resolve(coordinator)
+                
+                coordinator.start(
+                    with: academyCourse,
+                    from: self.initialViewController.navigationController!
+                )
             })
             .disposed(by: initialViewController.disposer)
     }
