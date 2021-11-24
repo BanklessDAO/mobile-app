@@ -25,6 +25,8 @@ class NetworkConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
+        let appLevelSettingsStorage = AppLevelPersistentSettingsStorage()
+        
         let keychainSessionStorage = KeychainBasedSessionStorage()
         
         let discordAuthProvider = OAuth2AuthProvider(
@@ -36,6 +38,13 @@ class NetworkConfigurator: Configurator {
             contentGatewayAPIBaseURL: NetworkConfigurator.graphQLAPIEndpoint,
             sessionStorage: keychainSessionStorage
         )
+        
+        let userSettingsService = DefaultUserSettingsService(
+            settingsStorage: appLevelSettingsStorage
+        )
+        container.register { (object: inout UserSettingsServiceDependency) in
+            object.userSettingsService = userSettingsService
+        }
         
         let authService = NetworkAuthService(authProvider: discordAuthProvider)
         container.register { (object: inout AuthServiceDependency) in
