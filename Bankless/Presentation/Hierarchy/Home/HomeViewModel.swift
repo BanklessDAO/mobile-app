@@ -70,6 +70,15 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
     
     private func ensureDiscordAccess() -> Completable {
         return authService.getDiscordAccess()
+            .asObservable()
+            .do(onCompleted: {
+                NotificationCenter.default
+                    .post(
+                        name: NotificationEvent.discordAccessHasBeenGranted.notificationName,
+                        object: nil
+                    )
+            })
+            .asCompletable()
     }
     
     // MARK: - Timeline -
