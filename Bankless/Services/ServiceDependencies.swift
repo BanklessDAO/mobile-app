@@ -19,6 +19,10 @@
 
 import Foundation
 
+protocol UserSettingsServiceDependency {
+    var userSettingsService: UserSettingsService! { get set }
+}
+
 protocol AuthServiceDependency {
     var authService: AuthService! { get set }
 }
