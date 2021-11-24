@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class AcademyCourseDetailsViewModel: BaseViewModel, AcademyServiceDependency {
+final class AcademyCourseDetailsViewModel: BaseViewModel {
     // MARK: - Input/Output -
     
     struct Input { }
@@ -71,10 +71,6 @@ final class AcademyCourseDetailsViewModel: BaseViewModel, AcademyServiceDependen
     
     private let academyCourse: AcademyCourse
     
-    // MARK: - Components -
-    
-    var academyService: AcademyService!
-    
     // MARK: - Events -
     
     struct Events {
@@ -112,6 +108,7 @@ final class AcademyCourseDetailsViewModel: BaseViewModel, AcademyServiceDependen
         let sectionNavVM = SectionNavigationViewModel(
             source: .init(
                 title: AcademyCourseDetailsViewModel.actionButtonTitle.uppercased(),
+                navigationOptions: [.forward],
                 progress: 0.0
             )
         )

@@ -30,7 +30,7 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
     private static let tagPadding: CGFloat = 30.0
     private static let tagHeight: CGFloat = 40.0
     private static let buttonHeight: CGFloat = 50.0
-    private static let headerSeparatorHeight: CGFloat = 1
+    private static let separatorHeight: CGFloat = 1
     private static let collectibleImageToScreenWidthRatio = 0.25
     
     private static let navLabelText0 = NSLocalizedString(
@@ -58,8 +58,9 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
     
     // MARK: - Subviews -
     
+    private var contentView: UIView!
     private var scrollView: UIScrollView!
-    private var containerView: UIView!
+    private var scrollContainerView: UIView!
     
     private var navigationLabel: UILabel!
     private var difficultyTagView: TagView!
@@ -73,6 +74,7 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
     private var collectibleTitleLabel: UILabel!
     private var collectibleSubtitleLabel: UILabel!
     private var collectibleImageView: UIImageView!
+    private var footerSeparatorView: UIView!
     private var navControl: SectionNavigationControlView!
     
     // MARK: - Setup -
@@ -86,12 +88,16 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
     func setUpSubviews() {
         view.backgroundColor = .backgroundBlack
         
-        scrollView = UIScrollView()
-        view.addSubview(scrollView)
+        contentView = UIView()
+        contentView.backgroundColor = .backgroundBlack
+        view.addSubview(contentView)
         
-        containerView = UIView()
-        containerView.backgroundColor = .backgroundBlack
-        scrollView.addSubview(containerView)
+        scrollView = UIScrollView()
+        contentView.addSubview(scrollView)
+        
+        scrollContainerView = UIView()
+        scrollContainerView.backgroundColor = .backgroundBlack
+        scrollView.addSubview(scrollContainerView)
         
         let navLabelAttributedString0 = NSMutableAttributedString(
             string: AcademyCourseDetailsViewController.navLabelText0,
@@ -115,43 +121,43 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
         
         navigationLabel = UILabel()
         navigationLabel.attributedText = navLabelAttributedString0
-        containerView.addSubview(navigationLabel)
+        scrollContainerView.addSubview(navigationLabel)
         
         difficultyTagView = TagView()
         difficultyTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         difficultyTagView.cornerRadius = Appearance.cornerRadius
         difficultyTagView.backgroundColor = .backgroundGrey
         difficultyTagView.horizontalPadding = AcademyCourseDetailsViewController.tagPadding
-        containerView.addSubview(difficultyTagView)
+        scrollContainerView.addSubview(difficultyTagView)
         
         durationTagView = TagView()
         durationTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         durationTagView.cornerRadius = Appearance.cornerRadius
         durationTagView.backgroundColor = .backgroundGrey
         durationTagView.horizontalPadding = AcademyCourseDetailsViewController.tagPadding
-        containerView.addSubview(durationTagView)
+        scrollContainerView.addSubview(durationTagView)
         
         titleLabel = UILabel()
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .secondaryWhite
         titleLabel.font = Appearance.Text.Font.Title2.font(bold: true)
-        containerView.addSubview(titleLabel)
+        scrollContainerView.addSubview(titleLabel)
         
         descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .secondaryWhite
         descriptionLabel.font = Appearance.Text.Font.Label2.font(bold: false)
-        containerView.addSubview(descriptionLabel)
+        scrollContainerView.addSubview(descriptionLabel)
         
         headerSeparatorView = UIView()
         headerSeparatorView.backgroundColor = .backgroundGrey
-        containerView.addSubview(headerSeparatorView)
+        scrollContainerView.addSubview(headerSeparatorView)
         
         detailsContainerView = UIView()
-        containerView.addSubview(detailsContainerView)
+        scrollContainerView.addSubview(detailsContainerView)
         
         collectibleTextContainerView = UIView()
-        containerView.addSubview(collectibleTextContainerView)
+        scrollContainerView.addSubview(collectibleTextContainerView)
         
         collectibleTitleLabel = UILabel()
         collectibleTitleLabel.text = AcademyCourseDetailsViewController.fields.collectible
@@ -168,34 +174,47 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
         
         collectibleImageView = UIImageView()
         collectibleImageView.contentMode = .scaleAspectFit
-        containerView.addSubview(collectibleImageView)
+        scrollContainerView.addSubview(collectibleImageView)
+        
+        footerSeparatorView = UIView()
+        footerSeparatorView.backgroundColor = .backgroundGrey.withAlphaComponent(0.5)
+        view.addSubview(footerSeparatorView)
         
         navControl = SectionNavigationControlView()
-        containerView.addSubview(navControl)
+        view.addSubview(navControl)
     }
     
     func setUpConstraints() {
-        constrain(scrollView, view) { scroll, view in
+        constrain(contentView, footerSeparatorView, view) { content, footer, view in
+            content.top == view.safeAreaLayoutGuide.top
+            content.left == view.left
+            content.right == view.right
+            content.bottom == footer.top
+        }
+        
+        constrain(scrollView, contentView) { scroll, view in
             scroll.top == view.safeAreaLayoutGuide.top
             scroll.left == view.left
             scroll.right == view.right
             scroll.bottom == view.bottom
         }
         
-        constrain(containerView, scrollView, view) { container, scroll, view in
+        constrain(scrollContainerView, scrollView, contentView) { container, scroll, view in
             container.edges == scroll.edges
             container.width == view.width
             container.height == view.height ~ .defaultLow
         }
         
-        constrain(navigationLabel, containerView) { nav, view in
+        constrain(navigationLabel, scrollContainerView) { nav, view in
             nav.left == view.left + contentInsets.left
             nav.right == view.right - contentInsets.right
             nav.top == view.safeAreaLayoutGuide.top + contentInsets.top
             nav.height == Appearance.Text.Font.Note.lineHeight
         }
         
-        constrain(difficultyTagView, navigationLabel, containerView) { (difficulty, nav, view) in
+        constrain(
+            difficultyTagView, navigationLabel, scrollContainerView
+        ) { (difficulty, nav, view) in
             difficulty.top == nav.bottom + contentInsets.bottom
             difficulty.left == view.left + contentInsets.left
             difficulty.height == AcademyCourseDetailsViewController.tagHeight
@@ -207,43 +226,48 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
             duration.height == AcademyCourseDetailsViewController.tagHeight
         }
         
-        constrain(titleLabel, difficultyTagView, containerView) { title, dif, view in
+        constrain(titleLabel, difficultyTagView, scrollContainerView) { title, dif, view in
             title.left == view.left + contentInsets.left
             title.right == view.right - contentInsets.right
             title.top == dif.bottom + contentPaddings.bottom * 2
         }
         
-        constrain(descriptionLabel, titleLabel, containerView) { subtitle, title, view in
+        constrain(descriptionLabel, titleLabel, scrollContainerView) { subtitle, title, view in
             subtitle.left == view.left + contentInsets.left
             subtitle.right == view.right - contentInsets.right
             subtitle.top == title.bottom + contentPaddings.bottom
         }
         
-        constrain(headerSeparatorView, descriptionLabel, containerView) { sep, subtitle, view in
+        constrain(
+            headerSeparatorView, descriptionLabel, scrollContainerView
+        ) { sep, subtitle, view in
             sep.left == view.left + contentInsets.left
             sep.right == view.right - contentInsets.right
             sep.top == subtitle.bottom + contentInsets.bottom * 2
-            sep.height == AcademyCourseDetailsViewController.headerSeparatorHeight
+            sep.height == AcademyCourseDetailsViewController.separatorHeight
         }
         
-        constrain(detailsContainerView, headerSeparatorView, containerView) { details, sep, view in
+        constrain(
+            detailsContainerView, headerSeparatorView, scrollContainerView
+        ) { details, sep, view in
             details.top == sep.bottom + contentInsets.bottom * 2
             details.left == view.left + contentInsets.left
             details.right == view.right - contentInsets.right
         }
         
         constrain(
-            collectibleImageView, detailsContainerView, containerView
+            collectibleImageView, detailsContainerView, scrollContainerView
         ) { colImage, details, view in
             colImage.right == view.right - contentInsets.right
             colImage.top == details.bottom + contentInsets.bottom * 2
             colImage.width == view.width
                 * AcademyCourseDetailsViewController.collectibleImageToScreenWidthRatio
             colImage.height == colImage.width
+            colImage.bottom == view.bottom - contentInsets.bottom
         }
         
         constrain(
-            collectibleTextContainerView, collectibleImageView, containerView
+            collectibleTextContainerView, collectibleImageView, scrollContainerView
         ) { colText, colImage, view in
             colText.left == view.left + contentInsets.left
             colText.right == colImage.left - contentPaddings.left
@@ -267,10 +291,17 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
             colSub.bottom == container.bottom
         }
         
-        constrain(navControl, collectibleImageView, containerView) { nav, col, view in
-            nav.top == col.bottom + contentInsets.bottom * 2
+        constrain(footerSeparatorView, navControl, view) { sep, nav, view in
+            sep.left == view.left + contentInsets.left
+            sep.right == view.right - contentInsets.right
+            sep.bottom == nav.top - contentInsets.bottom * 2
+            sep.height == AcademyCourseDetailsViewController.separatorHeight
+        }
+        
+        constrain(navControl, view) { nav, view in
             nav.left == view.left + contentInsets.left
             nav.right == view.right - contentInsets.right
+            nav.height == AcademyCourseDetailsViewController.buttonHeight
             nav.bottom == view.safeAreaLayoutGuide.bottom - contentInsets.bottom
         }
     }
