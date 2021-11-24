@@ -28,7 +28,7 @@ final class MarkupViewModel: BaseViewModel {
     
     struct Output {
         let rawMarkup: Driver<String>
-        let renderedContent: Driver<NSAttributedString>
+        let renderedContent: Driver<NSAttributedString?>
     }
     
     // MARK: - Data -
@@ -44,9 +44,7 @@ final class MarkupViewModel: BaseViewModel {
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        guard let renderedContent = rawMarkup.convertToAttributedFromHTML() else {
-            fatalError("Markup rendering failed")
-        }
+        let renderedContent = rawMarkup.convertToAttributedFromHTML()
         
         let html = """
         <html>

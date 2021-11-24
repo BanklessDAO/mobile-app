@@ -1,0 +1,25 @@
+query Academy {
+  Courses {
+    data {
+      slug
+      name
+      duration
+      difficulty
+      description
+      knowledgeRequirements
+      learnings
+      learningActions
+      poapEventId
+      poapImageLink
+      sections {
+        type
+        title
+        content
+        quiz {
+          answers
+          rightAnswerNumber
+        }
+      }
+    }
+  }
+}

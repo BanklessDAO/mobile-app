@@ -28,6 +28,11 @@ class MockConfigurator: Configurator {
             object.authService = authService
         }
         
+        let identityService = MockIdentityService()
+        container.register { (object: inout IdentityServiceDependency) in
+            object.identityService = identityService
+        }
+        
         let banklessService = MockBanklessService()
         container.register { (object: inout BanklessServiceDependency) in
             object.banklessService = banklessService
@@ -41,6 +46,21 @@ class MockConfigurator: Configurator {
         let timelineService = MockTimelineService()
         container.register { (object: inout TimelineServiceDependency) in
             object.timelineService = timelineService
+        }
+        
+        let newsService = MockNewsService()
+        container.register { (object: inout NewsServiceDependency) in
+            object.newsService = newsService
+        }
+        
+        let bountyBoardService = MockBountyBoardService()
+        container.register { (object: inout BountyBoardServiceDependency) in
+            object.bountyBoardService = bountyBoardService
+        }
+        
+        let academyService = MockAcademyService()
+        container.register { (object: inout AcademyServiceDependency) in
+            object.academyService = academyService
         }
         
         return container

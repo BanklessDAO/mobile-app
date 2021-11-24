@@ -40,6 +40,7 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
         let openBountyBoard = PublishRelay<Void>()
         let openBounty = PublishRelay<Bounty>()
         let openAcademy = PublishRelay<Void>()
+        let openAcademyCourse = PublishRelay<AcademyCourse>()
     }
     
     let actions = Actions()
@@ -88,6 +89,8 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
             .bind(to: actions.openBounty).disposed(by: disposer)
         viewModel.expandAcademyTransitionRequested
             .bind(to: actions.openAcademy).disposed(by: disposer)
+        viewModel.academyCourseTransitionRequested
+            .bind(to: actions.openAcademyCourse).disposed(by: disposer)
         
         return .just(viewModel)
     }

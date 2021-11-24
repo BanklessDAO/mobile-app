@@ -72,6 +72,11 @@ class NetworkConfigurator: Configurator {
             object.bountyBoardService = bountyBoardService
         }
         
+        let academyService = MockAcademyService()
+        container.register { (object: inout AcademyServiceDependency) in
+            object.academyService = academyService
+        }
+        
         return container
     }
 }

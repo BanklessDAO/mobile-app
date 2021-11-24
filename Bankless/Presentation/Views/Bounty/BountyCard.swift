@@ -29,7 +29,7 @@ class BountyCard: CardView {
     private static let backgroundColor: UIColor = .backgroundGrey.withAlphaComponent(0.3)
     private static let forwardNavigationIcon = UIImage(named: "arrow_right")!
     private static let rewardTagHeight: CGFloat = 40.0
-    private static let tagPadding: CGFloat = 20.0
+    private static let tagPadding: CGFloat = 30.0
     
     // MARK: - Properties -
     

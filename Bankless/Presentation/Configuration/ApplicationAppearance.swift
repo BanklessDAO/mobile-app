@@ -31,7 +31,7 @@ enum ApplicationAppearance {
 }
 
 extension ApplicationAppearance {
-    static let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    static let contentInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
     static let contentPaddings = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
     static let cornerRadius: CGFloat = 10.0
     
@@ -94,8 +94,8 @@ extension ApplicationAppearance {
             enum Body {
                 static func font(bold isBold: Bool) -> UIFont {
                     return isBold
-                    ? .boldSystemFont(ofSize: UIFont.systemFontSize)
-                    : .systemFont(ofSize: UIFont.systemFontSize)
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize + 1.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize + 1.0)
                 }
                 static let lineHeight: CGFloat = 15.0
             }
@@ -103,8 +103,8 @@ extension ApplicationAppearance {
             enum Note {
                 static func font(bold isBold: Bool) -> UIFont {
                     return isBold
-                    ? .boldSystemFont(ofSize: UIFont.systemFontSize - 2.0)
-                    : .systemFont(ofSize: UIFont.systemFontSize - 2.0)
+                    ? .boldSystemFont(ofSize: UIFont.systemFontSize - 1.0)
+                    : .systemFont(ofSize: UIFont.systemFontSize - 1.0)
                 }
                 static let lineHeight: CGFloat = 12.0
             }

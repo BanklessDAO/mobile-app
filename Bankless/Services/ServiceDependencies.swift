@@ -46,3 +46,7 @@ protocol NewsServiceDependency {
 protocol BountyBoardServiceDependency {
     var bountyBoardService: BountyBoardService! { get set }
 }
+
+protocol AcademyServiceDependency {
+    var academyService: AcademyService! { get set }
+}

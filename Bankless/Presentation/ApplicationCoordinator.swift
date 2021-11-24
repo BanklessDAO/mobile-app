@@ -30,7 +30,7 @@ class ApplicationCoordinator: NSObject {
     // MARK: - View hierarchy -
     
     private let window: UIWindow
-    private var navigationController: BaseNavigationController!
+    private(set) var navigationController: BaseNavigationController!
     
     // MARK: - Coordination -
     

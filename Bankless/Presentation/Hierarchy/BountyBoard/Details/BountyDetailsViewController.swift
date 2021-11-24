@@ -26,7 +26,7 @@ import Cartography
 class BountyDetailsViewController: BaseViewController<BountyDetailsViewModel> {
     // MARK: - Constants -
     
-    private static let tagPadding: CGFloat = 20.0
+    private static let tagPadding: CGFloat = 30.0
     private static let tagHeight: CGFloat = 40.0
     private static let buttonHeight: CGFloat = 50.0
     private static let headerSeparatorHeight: CGFloat = 1

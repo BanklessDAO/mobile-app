@@ -27,7 +27,7 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     // MARK: - Constants -
     
     private static let tagHeight: CGFloat = 40.0
-    private static let tagPadding: CGFloat = 20.0
+    private static let tagPadding: CGFloat = 30.0
     
     // MARK: - Subviews -
     

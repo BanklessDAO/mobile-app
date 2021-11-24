@@ -50,12 +50,16 @@ extension AcademyCourse {
         let content: String?
         let quiz: Quiz?
         let component: String?
+        let poapImageLink: URL?
     }
 }
 
 extension AcademyCourse.Section {
     enum `Type`: String, Codable, CaseIterable {
-        case dummy
+        case learn
+        case quiz
+        case quest
+        case poap
     }
     
     struct Quiz: Codable {

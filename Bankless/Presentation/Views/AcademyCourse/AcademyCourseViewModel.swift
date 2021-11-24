@@ -45,7 +45,7 @@ final class AcademyCourseViewModel: BaseViewModel {
     
     // MARK: - Data -
     
-    private let academyCourse: AcademyCourse
+    let academyCourse: AcademyCourse
     
     // MARK: - Initializers -
     
@@ -66,7 +66,7 @@ final class AcademyCourseViewModel: BaseViewModel {
     }
     
     private func durationString() -> Observable<String> {
-        // Assuming the duration is stores in seconds
+        // Assuming the duration is stored in seconds
         let minutes = academyCourse.duration % 60
         
         return .just(
