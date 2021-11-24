@@ -38,6 +38,18 @@
 		FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */; };
 		FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */; };
 		FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC687274C4FD0003025E0 /* Types.graphql.swift */; };
+		FF1AC68D274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC68C274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift */; };
+		FF1AC68F274C6B70003025E0 /* AcademyCourseFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC68E274C6B70003025E0 /* AcademyCourseFlowViewController.swift */; };
+		FF1AC691274C6B77003025E0 /* AcademyCourseFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC690274C6B77003025E0 /* AcademyCourseFlowViewModel.swift */; };
+		FF1AC694274C6D7A003025E0 /* AcademyCourseSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC693274C6D7A003025E0 /* AcademyCourseSectionViewModel.swift */; };
+		FF1AC696274C6D83003025E0 /* AcademyCourseSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC695274C6D83003025E0 /* AcademyCourseSectionView.swift */; };
+		FF1AC69D274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC69C274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift */; };
+		FF1AC69F274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC69E274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift */; };
+		FF1AC6A1274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A0274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift */; };
+		FF1AC6A3274C7119003025E0 /* AcademyCourseLearnSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A2274C7119003025E0 /* AcademyCourseLearnSectionView.swift */; };
+		FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A4274C7124003025E0 /* AcademyCourseQuizSectionView.swift */; };
+		FF1AC6A7274C712F003025E0 /* AcademyCoursePoapSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A6274C712F003025E0 /* AcademyCoursePoapSectionView.swift */; };
+		FF1AC6A9274C71D5003025E0 /* AcademyCourseSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A8274C71D5003025E0 /* AcademyCourseSectionFactory.swift */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -99,6 +111,7 @@
 		FF5BCE0B2745CAF7000D3FEF /* NewsletterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCE0A2745CAF7000D3FEF /* NewsletterDetailsViewController.swift */; };
 		FF5BCE0E2745CC8B000D3FEF /* MarkupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCE0D2745CC8B000D3FEF /* MarkupView.swift */; };
 		FF5BCE102745CC93000D3FEF /* MarkupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCE0F2745CC93000D3FEF /* MarkupViewModel.swift */; };
+		FF60C9A0274DD80A00C794C1 /* AcademyCourse+QuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF60C99F274DD80A00C794C1 /* AcademyCourse+QuizItem.swift */; };
 		FF786691270CFD39000279FE /* MockTimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF786690270CFD39000279FE /* MockTimelineService.swift */; };
 		FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3802706276200A47A91 /* HomeViewModel.swift */; };
 		FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78F3822706277200A47A91 /* HomeViewController.swift */; };
@@ -150,6 +163,10 @@
 		FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEB2705494100629D79 /* Assets.xcassets */; };
 		FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CED2705494100629D79 /* LaunchScreen.storyboard */; };
 		FF9F5CF32705494100629D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEF2705494100629D79 /* Main.storyboard */; };
+		FFA9C162274DA523003F4B11 /* QuizItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C161274DA523003F4B11 /* QuizItemViewModel.swift */; };
+		FFA9C164274DA52D003F4B11 /* QuizItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C163274DA52D003F4B11 /* QuizItemView.swift */; };
+		FFA9C166274DA564003F4B11 /* QuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C165274DA564003F4B11 /* QuizItem.swift */; };
+		FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C168274DAB8E003F4B11 /* QuizItemOptionView.swift */; };
 		FFAE9843270D009C0047405D /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9842270D009C0047405D /* Mock.swift */; };
 		FFAE9845270D03610047405D /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9844270D03610047405D /* Mocks.swift */; };
 		FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */; };
@@ -253,6 +270,18 @@
 		FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyBoard.graphql.swift; sourceTree = "<group>"; };
 		FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.graphql.swift; sourceTree = "<group>"; };
 		FF1AC687274C4FD0003025E0 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
+		FF1AC68C274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseFlowCoordinator.swift; sourceTree = "<group>"; };
+		FF1AC68E274C6B70003025E0 /* AcademyCourseFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseFlowViewController.swift; sourceTree = "<group>"; };
+		FF1AC690274C6B77003025E0 /* AcademyCourseFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseFlowViewModel.swift; sourceTree = "<group>"; };
+		FF1AC693274C6D7A003025E0 /* AcademyCourseSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseSectionViewModel.swift; sourceTree = "<group>"; };
+		FF1AC695274C6D83003025E0 /* AcademyCourseSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseSectionView.swift; sourceTree = "<group>"; };
+		FF1AC69C274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseLearnSectionViewModel.swift; sourceTree = "<group>"; };
+		FF1AC69E274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseQuizSectionViewModel.swift; sourceTree = "<group>"; };
+		FF1AC6A0274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCoursePoapSectionViewModel.swift; sourceTree = "<group>"; };
+		FF1AC6A2274C7119003025E0 /* AcademyCourseLearnSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseLearnSectionView.swift; sourceTree = "<group>"; };
+		FF1AC6A4274C7124003025E0 /* AcademyCourseQuizSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseQuizSectionView.swift; sourceTree = "<group>"; };
+		FF1AC6A6274C712F003025E0 /* AcademyCoursePoapSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCoursePoapSectionView.swift; sourceTree = "<group>"; };
+		FF1AC6A8274C71D5003025E0 /* AcademyCourseSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseSectionFactory.swift; sourceTree = "<group>"; };
 		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
 		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
 		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
@@ -314,6 +343,7 @@
 		FF5BCE0A2745CAF7000D3FEF /* NewsletterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsletterDetailsViewController.swift; sourceTree = "<group>"; };
 		FF5BCE0D2745CC8B000D3FEF /* MarkupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupView.swift; sourceTree = "<group>"; };
 		FF5BCE0F2745CC93000D3FEF /* MarkupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupViewModel.swift; sourceTree = "<group>"; };
+		FF60C99F274DD80A00C794C1 /* AcademyCourse+QuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AcademyCourse+QuizItem.swift"; sourceTree = "<group>"; };
 		FF786690270CFD39000279FE /* MockTimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimelineService.swift; sourceTree = "<group>"; };
 		FF78F3802706276200A47A91 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FF78F3822706277200A47A91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +400,10 @@
 		FF9F5CEB2705494100629D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF9F5CEE2705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF9F5CF02705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		FFA9C161274DA523003F4B11 /* QuizItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItemViewModel.swift; sourceTree = "<group>"; };
+		FFA9C163274DA52D003F4B11 /* QuizItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItemView.swift; sourceTree = "<group>"; };
+		FFA9C165274DA564003F4B11 /* QuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItem.swift; sourceTree = "<group>"; };
+		FFA9C168274DAB8E003F4B11 /* QuizItemOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItemOptionView.swift; sourceTree = "<group>"; };
 		FFAE9842270D009C0047405D /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		FFAE9844270D03610047405D /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
@@ -526,6 +560,10 @@
 		FF1AC640274642F5003025E0 /* CourseFlow */ = {
 			isa = PBXGroup;
 			children = (
+				FF1AC68C274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift */,
+				FF1AC68E274C6B70003025E0 /* AcademyCourseFlowViewController.swift */,
+				FF1AC690274C6B77003025E0 /* AcademyCourseFlowViewModel.swift */,
+				FF1AC692274C6D61003025E0 /* Section */,
 			);
 			path = CourseFlow;
 			sourceTree = "<group>";
@@ -599,6 +637,46 @@
 				FF1AC66D2747220F003025E0 /* SectionNavigationViewModel.swift */,
 			);
 			path = SectionNavigation;
+			sourceTree = "<group>";
+		};
+		FF1AC692274C6D61003025E0 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC6A8274C71D5003025E0 /* AcademyCourseSectionFactory.swift */,
+				FF1AC695274C6D83003025E0 /* AcademyCourseSectionView.swift */,
+				FF1AC693274C6D7A003025E0 /* AcademyCourseSectionViewModel.swift */,
+				FF1AC699274C6F75003025E0 /* Learn */,
+				FF1AC69A274C6F7D003025E0 /* Quiz */,
+				FF1AC69B274C6F8A003025E0 /* Poap */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		FF1AC699274C6F75003025E0 /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC6A2274C7119003025E0 /* AcademyCourseLearnSectionView.swift */,
+				FF1AC69C274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift */,
+			);
+			path = Learn;
+			sourceTree = "<group>";
+		};
+		FF1AC69A274C6F7D003025E0 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC6A4274C7124003025E0 /* AcademyCourseQuizSectionView.swift */,
+				FF1AC69E274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		FF1AC69B274C6F8A003025E0 /* Poap */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC6A6274C712F003025E0 /* AcademyCoursePoapSectionView.swift */,
+				FF1AC6A0274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift */,
+			);
+			path = Poap;
 			sourceTree = "<group>";
 		};
 		FF5BCD6D273DCF8D000D3FEF /* BountyBoard */ = {
@@ -1032,6 +1110,7 @@
 				FF5BCDD027445D5D000D3FEF /* PodcastItem+NewsItemPreviewBehaviour.swift */,
 				FF5BCE032745A399000D3FEF /* PodcastItem+VideoSource.swift */,
 				FF1AC6632747153A003025E0 /* String+MarkupRenderable.swift */,
+				FF60C99F274DD80A00C794C1 /* AcademyCourse+QuizItem.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1045,6 +1124,7 @@
 				FF5BCDCC27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift */,
 				FF5BCE0027459C5B000D3FEF /* VideoSource.swift */,
 				FF1AC6612747150E003025E0 /* MarkupRenderable.swift */,
+				FFA9C165274DA564003F4B11 /* QuizItem.swift */,
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
 			path = Behaviour;
@@ -1223,6 +1303,24 @@
 			path = Base.lproj;
 			sourceTree = "<group>";
 		};
+		FFA9C160274DA501003F4B11 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9C163274DA52D003F4B11 /* QuizItemView.swift */,
+				FFA9C161274DA523003F4B11 /* QuizItemViewModel.swift */,
+				FFA9C167274DAB7A003F4B11 /* Option */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		FFA9C167274DAB7A003F4B11 /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				FFA9C168274DAB8E003F4B11 /* QuizItemOptionView.swift */,
+			);
+			path = Option;
+			sourceTree = "<group>";
+		};
 		FFAE9841270CFF850047405D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1261,6 +1359,7 @@
 				FF5BCDFB274599F0000D3FEF /* Video */,
 				FF5BCE0C2745CC4B000D3FEF /* Markup */,
 				FF1AC66C274721BA003025E0 /* SectionNavigation */,
+				FFA9C160274DA501003F4B11 /* Quiz */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1730,8 +1829,10 @@
 			files = (
 				FF5BCD8E273DD3F4000D3FEF /* BountyDetailsCoordinator.swift in Sources */,
 				FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */,
+				FFA9C166274DA564003F4B11 /* QuizItem.swift in Sources */,
 				FF5BCDB9273F8878000D3FEF /* TextField.swift in Sources */,
 				FF5BCD97273DD444000D3FEF /* BountySubmissionViewController.swift in Sources */,
+				FF1AC696274C6D83003025E0 /* AcademyCourseSectionView.swift in Sources */,
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
@@ -1748,6 +1849,7 @@
 				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
+				FFA9C164274DA52D003F4B11 /* QuizItemView.swift in Sources */,
 				FF5BCE072745CAE4000D3FEF /* NewsletterDetailsViewModel.swift in Sources */,
 				FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */,
 				FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */,
@@ -1776,6 +1878,7 @@
 				FF5BCDD92744BC31000D3FEF /* FeaturedNewsItemCell.swift in Sources */,
 				FF1AC6422746435F003025E0 /* AcademyCoordinator.swift in Sources */,
 				FF1AC66027470E55003025E0 /* UIImage+Color.swift in Sources */,
+				FF1AC694274C6D7A003025E0 /* AcademyCourseSectionViewModel.swift in Sources */,
 				FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */,
 				FF5BCDD127445D5D000D3FEF /* PodcastItem+NewsItemPreviewBehaviour.swift in Sources */,
 				FFC6F4792735FDC100EA8F12 /* AuthProviderServer.swift in Sources */,
@@ -1796,6 +1899,7 @@
 				FF5BCDF62745976F000D3FEF /* PodcastDetailsCoordinator.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
 				FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */,
+				FFA9C162274DA523003F4B11 /* QuizItemViewModel.swift in Sources */,
 				FF5BCDA7273DE5B6000D3FEF /* BountyBoardHeaderViewModel.swift in Sources */,
 				FF78F39227062BDA00A47A91 /* AcademyCourseListCell.swift in Sources */,
 				FF7A33C3273CA9CF0037899B /* MultiSourceDataClient+ContentGateway.swift in Sources */,
@@ -1806,6 +1910,7 @@
 				FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */,
 				FF7A33B8273CA6C30037899B /* UserIdentityResponse.swift in Sources */,
 				FF5BCD90273DD3FD000D3FEF /* BountyDetailsViewController.swift in Sources */,
+				FF1AC691274C6B77003025E0 /* AcademyCourseFlowViewModel.swift in Sources */,
 				FF5BCD95273DD43C000D3FEF /* BountySubmissionCoordinator.swift in Sources */,
 				FFEB124427189C33003EF90D /* Environment.swift in Sources */,
 				FFC6F4852736FE7E00EA8F12 /* OAuth2ServerInfo.swift in Sources */,
@@ -1828,6 +1933,7 @@
 				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
 				FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */,
 				FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */,
+				FF1AC68F274C6B70003025E0 /* AcademyCourseFlowViewController.swift in Sources */,
 				FF1AC64E27464461003025E0 /* MockAcademyService.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
@@ -1844,6 +1950,8 @@
 				FF1AC65827470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift in Sources */,
 				FF5BCDD627446873000D3FEF /* NewsItemViewModel.swift in Sources */,
 				FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */,
+				FF1AC69F274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift in Sources */,
+				FF1AC6A9274C71D5003025E0 /* AcademyCourseSectionFactory.swift in Sources */,
 				FF5BCDF82745977B000D3FEF /* PodcastDetailsViewModel.swift in Sources */,
 				FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
@@ -1865,6 +1973,7 @@
 				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
 				FF5BCDED27457FD4000D3FEF /* NewsHeaderViewModel.swift in Sources */,
 				FF5BCDC127444E4B000D3FEF /* NewsItemsResponse.swift in Sources */,
+				FF1AC6A7274C712F003025E0 /* AcademyCoursePoapSectionView.swift in Sources */,
 				FF1AC6502746446A003025E0 /* NetworkAcademyService.swift in Sources */,
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
@@ -1873,10 +1982,13 @@
 				FF5BCDC527444E84000D3FEF /* PodcastItem.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
 				FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */,
+				FF1AC6A1274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift in Sources */,
 				FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */,
+				FF1AC68D274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift in Sources */,
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FF5BCDCD27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift in Sources */,
 				FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */,
+				FF60C9A0274DD80A00C794C1 /* AcademyCourse+QuizItem.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
 				FF5BCDFF27459C27000D3FEF /* VideoViewModel.swift in Sources */,
@@ -1904,6 +2016,7 @@
 				FF5BCE0B2745CAF7000D3FEF /* NewsletterDetailsViewController.swift in Sources */,
 				FF7A33D6273CBB940037899B /* IdentityStripeViewModel.swift in Sources */,
 				FF5BCDE527457F9E000D3FEF /* NewsCoordinator.swift in Sources */,
+				FF1AC69D274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift in Sources */,
 				FF7A339E273C68240037899B /* BaseNetworkProvider.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
 				FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */,
@@ -1911,6 +2024,7 @@
 				FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
 				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
+				FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
 				FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
@@ -1919,6 +2033,8 @@
 				FF5BCDB6273F8052000D3FEF /* Bounty+LifecycleAction.swift in Sources */,
 				FF5BCD9D273DD915000D3FEF /* ColorBehaviour.swift in Sources */,
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
+				FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */,
+				FF1AC6A3274C7119003025E0 /* AcademyCourseLearnSectionView.swift in Sources */,
 				FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */,
 				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
