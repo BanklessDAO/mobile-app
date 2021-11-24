@@ -91,31 +91,38 @@ extension MultiSourceDataClient: ContentGatewayClient {
                     })
                 
                 let academyCourses = timelineData.courses?.data
-                    .map({
+                    .map({ course in
                         AcademyCourse(
                             id: UUID().uuidString,
-                            name: $0.name!,
-                            slug: $0.slug!,
-                            backgroundImageURL: URL(string: $0.poapImageLink!)!,
+                            name: course.name!,
+                            slug: course.slug!,
+                            backgroundImageURL: URL(string: course.poapImageLink!)!,
                             notionId: UUID().uuidString,
-                            poapEventId: Int($0.poapEventId!),
-                            description: $0.description!,
-                            duration: Int($0.duration!),
-                            difficulty: .init(rawValue: $0.difficulty!.lowercased())!,
-                            poapImageLink: URL(string: $0.poapImageLink!)!,
-                            learnings: $0.learnings!,
-                            learningActions: $0.learningActions!,
-                            knowledgeRequirements: $0.knowledgeRequirements!,
-                            sections: $0.sections
+                            poapEventId: Int(course.poapEventId!),
+                            description: course.description!,
+                            duration: Int(course.duration!),
+                            difficulty: .init(rawValue: course.difficulty!.lowercased())!,
+                            poapImageLink: URL(string: course.poapImageLink!)!,
+                            learnings: course.learnings!,
+                            learningActions: course.learningActions!,
+                            knowledgeRequirements: course.knowledgeRequirements!,
+                            sections: course.sections
                                 .map({
                                     $0.compactMap({ section -> AcademyCourse.Section in
-                                        AcademyCourse.Section(
+                                        let type: AcademyCourse.Section.`Type` = .init(
+                                            rawValue: section!.type!.lowercased()
+                                        )!
+                                        
+                                        return AcademyCourse.Section(
                                             id: UUID().uuidString,
-                                            type: .init(rawValue: section!.type!.lowercased())!,
+                                            type: type,
                                             title: section!.title!,
                                             content: section!.content!,
                                             quiz: nil,
-                                            component: nil
+                                            component: nil,
+                                            poapImageLink: type == .poap
+                                            ? URL(string: course.poapImageLink!)!
+                                            : nil
                                         )
                                     })
                                 }) ?? []

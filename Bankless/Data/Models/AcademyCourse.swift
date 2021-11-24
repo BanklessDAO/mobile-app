@@ -50,6 +50,7 @@ extension AcademyCourse {
         let content: String?
         let quiz: Quiz?
         let component: String?
+        let poapImageLink: URL?
     }
 }
 
