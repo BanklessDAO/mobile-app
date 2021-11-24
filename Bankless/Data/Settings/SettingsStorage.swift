@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-18.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-24.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,10 @@
 
 import Foundation
 
-enum NotificationEvent: String, CaseIterable {
-    case achievementsPreviewTapped
-    case discordAccessHasBeenGranted
-    case discordUserUpdated
-    case bountyHasBeenUpdated
-    
-    var notificationName: Notification.Name {
-        return Notification.Name(rawValue)
-    }
+protocol SettingsStorage {
+    func readValue(for key: SettingsKey) -> SettingsValue?
+    func writeValue(_ value: SettingsValue?, for key: SettingsKey)
 }
+
+typealias SettingsKey = UserSetting
+typealias SettingsValue = Any

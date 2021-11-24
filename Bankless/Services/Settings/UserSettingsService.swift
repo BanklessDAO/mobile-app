@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-18.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-24.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,14 +18,9 @@
     
 
 import Foundation
+import RxSwift
 
-enum NotificationEvent: String, CaseIterable {
-    case achievementsPreviewTapped
-    case discordAccessHasBeenGranted
-    case discordUserUpdated
-    case bountyHasBeenUpdated
-    
-    var notificationName: Notification.Name {
-        return Notification.Name(rawValue)
-    }
+protocol UserSettingsService {
+    func streamValue(for userSetting: UserSetting) -> Observable<Any?>
+    func setValue(_ value: Any?, for userSetting: UserSetting) -> Completable
 }

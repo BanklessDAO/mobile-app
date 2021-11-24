@@ -23,6 +23,15 @@ class MockConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
+        let appLevelSettingsStorage = AppLevelPersistentSettingsStorage()
+        
+        let userSettingsService = DefaultUserSettingsService(
+            settingsStorage: appLevelSettingsStorage
+        )
+        container.register { (object: inout UserSettingsServiceDependency) in
+            object.userSettingsService = userSettingsService
+        }
+        
         let authService = MockAuthService()
         container.register { (object: inout AuthServiceDependency) in
             object.authService = authService
