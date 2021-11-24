@@ -45,6 +45,8 @@
 	<string>${DISCORD_CLIENT_SECRET}</string>
 	<key>DISCORD_API_BASE_URL</key>
 	<string>https://${DISCORD_API_BASE_PATH}</string>
+	<key>DISCORD_SERVER_URL</key>
+	<string>https://${DISCORD_SERVER_LINK}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
