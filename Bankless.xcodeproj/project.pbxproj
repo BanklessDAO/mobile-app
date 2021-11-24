@@ -163,6 +163,11 @@
 		FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEB2705494100629D79 /* Assets.xcassets */; };
 		FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CED2705494100629D79 /* LaunchScreen.storyboard */; };
 		FF9F5CF32705494100629D79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9F5CEF2705494100629D79 /* Main.storyboard */; };
+		FFA95AB9274EC0E400D72978 /* UserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA95AB8274EC0E400D72978 /* UserSettingsService.swift */; };
+		FFA95ABB274EC1B300D72978 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA95ABA274EC1B300D72978 /* UserSetting.swift */; };
+		FFA95ABE274EC33F00D72978 /* SettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA95ABD274EC33F00D72978 /* SettingsStorage.swift */; };
+		FFA95AC1274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA95AC0274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift */; };
+		FFA95AC4274EC52700D72978 /* DefaultUserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA95AC3274EC52700D72978 /* DefaultUserSettingsService.swift */; };
 		FFA9C162274DA523003F4B11 /* QuizItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C161274DA523003F4B11 /* QuizItemViewModel.swift */; };
 		FFA9C164274DA52D003F4B11 /* QuizItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C163274DA52D003F4B11 /* QuizItemView.swift */; };
 		FFA9C166274DA564003F4B11 /* QuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA9C165274DA564003F4B11 /* QuizItem.swift */; };
@@ -400,6 +405,11 @@
 		FF9F5CEB2705494100629D79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF9F5CEE2705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF9F5CF02705494100629D79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		FFA95AB8274EC0E400D72978 /* UserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsService.swift; sourceTree = "<group>"; };
+		FFA95ABA274EC1B300D72978 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		FFA95ABD274EC33F00D72978 /* SettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStorage.swift; sourceTree = "<group>"; };
+		FFA95AC0274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLevelPersistentSettingsStorage.swift; sourceTree = "<group>"; };
+		FFA95AC3274EC52700D72978 /* DefaultUserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserSettingsService.swift; sourceTree = "<group>"; };
 		FFA9C161274DA523003F4B11 /* QuizItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItemViewModel.swift; sourceTree = "<group>"; };
 		FFA9C163274DA52D003F4B11 /* QuizItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItemView.swift; sourceTree = "<group>"; };
 		FFA9C165274DA564003F4B11 /* QuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizItem.swift; sourceTree = "<group>"; };
@@ -968,6 +978,7 @@
 		FF78F3732705547700A47A91 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FFA95ABC274EC30C00D72978 /* Settings */,
 				FFC6F4752735F54500EA8F12 /* Auth */,
 				FF0B6BFE27373C7100CB33BF /* Session */,
 				FFEB122F2710FB9C003EF90D /* Client */,
@@ -982,6 +993,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3982706357C00A47A91 /* ServiceDependencies.swift */,
+				FFA95AB7274EC0C300D72978 /* Settings */,
 				FFC6F46D2735F3D200EA8F12 /* Auth */,
 				FF7A33B4273CA6870037899B /* Identity */,
 				FFEB12482718AA92003EF90D /* Bankless */,
@@ -1301,6 +1313,41 @@
 				FF9F5CEF2705494100629D79 /* Main.storyboard */,
 			);
 			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		FFA95AB7274EC0C300D72978 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FFA95AB8274EC0E400D72978 /* UserSettingsService.swift */,
+				FFA95ABA274EC1B300D72978 /* UserSetting.swift */,
+				FFA95AC2274EC51700D72978 /* Implementation */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FFA95ABC274EC30C00D72978 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FFA95ABD274EC33F00D72978 /* SettingsStorage.swift */,
+				FFA95ABF274EC3CD00D72978 /* Implementation */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FFA95ABF274EC3CD00D72978 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFA95AC0274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		FFA95AC2274EC51700D72978 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFA95AC3274EC52700D72978 /* DefaultUserSettingsService.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		FFA9C160274DA501003F4B11 /* Quiz */ = {
@@ -1886,6 +1933,7 @@
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
 				FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */,
+				FFA95ABB274EC1B300D72978 /* UserSetting.swift in Sources */,
 				FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */,
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
 				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
@@ -1949,9 +1997,11 @@
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
 				FF1AC65827470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift in Sources */,
 				FF5BCDD627446873000D3FEF /* NewsItemViewModel.swift in Sources */,
+				FFA95AC4274EC52700D72978 /* DefaultUserSettingsService.swift in Sources */,
 				FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */,
 				FF1AC69F274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift in Sources */,
 				FF1AC6A9274C71D5003025E0 /* AcademyCourseSectionFactory.swift in Sources */,
+				FFA95ABE274EC33F00D72978 /* SettingsStorage.swift in Sources */,
 				FF5BCDF82745977B000D3FEF /* PodcastDetailsViewModel.swift in Sources */,
 				FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
@@ -1960,6 +2010,7 @@
 				FF1AC65427464697003025E0 /* AcademyHeaderCell.swift in Sources */,
 				FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */,
 				FF7A33C5273CACD60037899B /* DiscordUser.swift in Sources */,
+				FFA95AB9274EC0E400D72978 /* UserSettingsService.swift in Sources */,
 				FF1AC64427464367003025E0 /* AcademyViewController.swift in Sources */,
 				FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
@@ -1971,6 +2022,7 @@
 				FF7A33A4273C69970037899B /* DiscordAPIMethod.swift in Sources */,
 				FF5BCE092745CAEC000D3FEF /* NewsletterDetailsCoordinator.swift in Sources */,
 				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
+				FFA95AC1274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift in Sources */,
 				FF5BCDED27457FD4000D3FEF /* NewsHeaderViewModel.swift in Sources */,
 				FF5BCDC127444E4B000D3FEF /* NewsItemsResponse.swift in Sources */,
 				FF1AC6A7274C712F003025E0 /* AcademyCoursePoapSectionView.swift in Sources */,
