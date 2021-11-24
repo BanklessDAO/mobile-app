@@ -21,6 +21,7 @@ import Foundation
 
 enum NotificationEvent: String, CaseIterable {
     case achievementsPreviewTapped
+    case discordAccessHasBeenGranted
     case discordUserUpdated
     case bountyHasBeenUpdated
     
