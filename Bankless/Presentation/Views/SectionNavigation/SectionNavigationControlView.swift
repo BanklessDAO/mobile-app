@@ -71,11 +71,13 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
         addSubview(progressBarView)
         
         prevNavButton = UIButton(type: .custom)
+        prevNavButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         prevNavButton.isHidden = true
         prevNavButton.setImage(SectionNavigationControlView.prevNavigationIcon, for: .normal)
         addSubview(prevNavButton)
         
         nextNavButton = UIButton(type: .custom)
+        nextNavButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         nextNavButton.isHidden = true
         nextNavButton.setImage(SectionNavigationControlView.nextNavigationIcon, for: .normal)
         addSubview(nextNavButton)
@@ -114,6 +116,7 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
         switch state {
             
         case .start:
+            titleLabel.textAlignment = .left
             prevNavButton.isHidden = true
             nextNavButton.isHidden = false
             progressBarView.isHidden = true
@@ -125,6 +128,8 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
                 title.right == next.left - contentPaddings.left
             }
         case .middle(let progress):
+            titleLabel.textAlignment = .center
+            
             let validProgress = progress > 1.0 ? 1.0 : progress
             
             prevNavButton.isHidden = false
@@ -140,6 +145,8 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
                 title.right == next.left - contentPaddings.left
             }
         case .end:
+            titleLabel.textAlignment = .right
+            
             prevNavButton.isHidden = false
             nextNavButton.isHidden = true
             progressBarView.isHidden = true
@@ -159,22 +166,22 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
         let output = viewModel.transform(input: input())
         
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
-        output.progress.drive(onNext: { [weak self] progress in
-            switch progress {
-                
-            case ...0.0:
-                self?.state = .start
-            case 0.0 ..< 1.0:
-                self?.state = .middle(progress: CGFloat(progress))
-            case 1.0...:
-                self?.state = .end
-            default:
-                break
+        Driver
+            .combineLatest(output.navigationOptions, output.progress) {
+                (navOptions: $0, progress: $1)
             }
+            .drive(onNext: { [weak self] output in
+                if output.navOptions.contains(.back) && output.navOptions.contains(.forward) {
+                    self?.state = .middle(progress: CGFloat(output.progress))
+                } else if output.navOptions.contains(.back) {
+                    self?.state = .end
+                } else if output.navOptions.contains(.forward) {
+                    self?.state = .start
+                }
             
-            self?.resetDymanicLayout()
-        })
-        .disposed(by: disposer)
+                self?.resetDymanicLayout()
+            })
+            .disposed(by: disposer)
     }
     
     private func input() -> SectionNavigationViewModel.Input {

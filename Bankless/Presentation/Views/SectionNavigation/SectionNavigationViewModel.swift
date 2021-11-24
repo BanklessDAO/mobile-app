@@ -55,15 +55,10 @@ final class SectionNavigationViewModel: BaseViewModel {
             .drive(onNext: { [weak self] in self?.navigationRequest.accept($0) })
             .disposed(by: disposer)
         
-        let navOptions: [NavigationOption] = [
-            source.progress > 0.0 ? .back : nil,
-            source.progress < 0.0 ? .forward : nil
-        ].compactMap({ $0 })
-        
         return Output(
             title: .just(source.title),
             progress: .just(source.progress),
-            navigationOptions: .just(navOptions)
+            navigationOptions: .just(source.navigationOptions)
         )
     }
 }
@@ -71,6 +66,7 @@ final class SectionNavigationViewModel: BaseViewModel {
 extension SectionNavigationViewModel {
     struct Source {
         let title: String
+        let navigationOptions: [NavigationOption]
         let progress: Float
     }
     
