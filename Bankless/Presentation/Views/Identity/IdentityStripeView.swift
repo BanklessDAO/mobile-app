@@ -30,6 +30,7 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
     
     // MARK: - Subviews -
     
+    private var domainIconView: UIImageView!
     private var button: UIButton!
     private var titleLabel: UILabel!
     
@@ -62,13 +63,19 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
     }
     
     private func setUpSubviews() {
+        domainIconView = UIImageView()
+        domainIconView.backgroundColor = .backgroundGrey.withAlphaComponent(0.75)
+        domainIconView.alpha = 0.75
+        domainIconView.contentMode = .scaleAspectFit
+        domainIconView.setContentHuggingPriority(.required, for: .horizontal)
+        domainIconView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        addSubview(domainIconView)
+        
         button = UIButton(type: .custom)
-        button.alpha = 0.75
-        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        button.backgroundColor = .backgroundGrey.withAlphaComponent(0.75)
         addSubview(button)
         
         titleLabel = UILabel()
+        titleLabel.lineBreakMode = .byTruncatingMiddle
         titleLabel.textColor = .secondaryWhite
         addSubview(titleLabel)
     }
@@ -77,34 +84,38 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
         switch layoutDirection {
             
         case .leftHand:
-            constrain(button, titleLabel, self) { button, title, view in
-                button.left == view.left
-                title.left == button.right + contentPaddings.right
+            constrain(domainIconView, titleLabel, self) { icon, title, view in
+                icon.left == view.left
+                title.left == icon.right + contentPaddings.right
                 title.right == view.right - contentPaddings.left
             }
         case .rightHand:
-            constrain(button, titleLabel, self) { button, title, view in
-                button.right == view.right
-                title.right == button.left - contentPaddings.left
+            constrain(domainIconView, titleLabel, self) { icon, title, view in
+                icon.right == view.right
+                title.right == icon.left - contentPaddings.left
                 title.left == view.left + contentPaddings.right
             }
         }
         
-        constrain(button, self) { button, view in
-            button.centerY == view.centerY
-            button.height == view.height
+        constrain(domainIconView, self) { icon, view in
+            icon.centerY == view.centerY
+            icon.height == view.height
         }
         
         constrain(titleLabel, self) { title, view in
             title.centerY == view.centerY
             title.height == view.height - contentPaddings.top - contentPaddings.bottom
         }
+        
+        constrain(button, self) { button, view in
+            button.edges == view.edges
+        }
     }
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         
-        output.domainIcon.drive(button.rx.image(for: .normal)).disposed(by: disposer)
+        output.domainIcon.drive(domainIconView.rx.image).disposed(by: disposer)
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
     }
     
