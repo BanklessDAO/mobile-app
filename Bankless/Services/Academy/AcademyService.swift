@@ -22,4 +22,5 @@ import RxSwift
 
 protocol AcademyService {
     func listCourses() -> Observable<AcademyCourseListResponse>
+    func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable
 }

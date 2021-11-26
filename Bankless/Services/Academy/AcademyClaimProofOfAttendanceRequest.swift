@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-18.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-25.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,13 @@
     
 
 import Foundation
-import RxSwift
 
-final class MockAcademyService: AcademyService {
-    func listCourses() -> Observable<AcademyCourseListResponse> {
-        return .just(
-            AcademyCourseListResponse(
-                courses: AcademyCourse.generateMocks(.random(in: 4 ... 10))
-            )
-        )
-    }
+struct AcademyClaimProofOfAttendanceRequest {
+    let eventId: String
+    let ethAddress: String
     
-    func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable {
-        return .empty()
+    init(eventId: String, ethAddress: String) {
+        self.eventId = eventId
+        self.ethAddress = ethAddress
     }
 }
