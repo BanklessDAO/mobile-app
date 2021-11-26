@@ -112,8 +112,8 @@ class AchievementsBarView: UIView {
     // MARK: - Dynamic layout -
     
     private func resetAchievementsLayout() {
-        for subview in achievementsStackView.arrangedSubviews {
-            achievementsStackView.removeArrangedSubview(subview)
+        for subview in achievementsStackView.subviews {
+            subview.removeFromSuperview()
         }
         truncationLabel.text = ""
         
