@@ -189,6 +189,12 @@
 		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
 		FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* SectionHeaderCell.swift */; };
 		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
+		FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */; };
+		FFC4D66427507CE1008E10D8 /* BanklessAcademyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */; };
+		FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */; };
+		FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */; };
+		FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */; };
+		FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */; };
 		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
 		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
 		FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */; };
@@ -431,6 +437,12 @@
 		FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCell.swift; sourceTree = "<group>"; };
 		FFAE9876270F6F270047405D /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
 		FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsViewModel.swift; sourceTree = "<group>"; };
+		FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyClient.swift; sourceTree = "<group>"; };
+		FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyClaimProofOfAttendanceRequest.swift; sourceTree = "<group>"; };
+		FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+BanklessAcademy.swift"; sourceTree = "<group>"; };
+		FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIProvider.swift; sourceTree = "<group>"; };
+		FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIMethod.swift; sourceTree = "<group>"; };
 		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
@@ -582,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				FF1AC648274643B5003025E0 /* AcademyService.swift */,
+				FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */,
 				FF1AC64A274643E5003025E0 /* AcademyCourseListResponse.swift */,
 				FF1AC64C2746444A003025E0 /* Implementation */,
 			);
@@ -1054,6 +1067,7 @@
 				FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */,
 				FF5BCDA1273DE0A9000D3FEF /* BaseSectionedSource.swift */,
 				FF7A33D9273CCCA60037899B /* Navigation */,
+				FFC4D65F274F14F2008E10D8 /* Collection */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1498,6 +1512,31 @@
 			path = News;
 			sourceTree = "<group>";
 		};
+		FFC4D65F274F14F2008E10D8 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		FFC4D66227507CC3008E10D8 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
+		FFC4D66927507F6E008E10D8 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */,
+				FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
 		FFC6F46D2735F3D200EA8F12 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -1652,6 +1691,7 @@
 				FF7A339C273C67070037899B /* Base */,
 				FF7A339B273C66AD0037899B /* Discord */,
 				FFEB12232710CD1A003EF90D /* ContentGateway */,
+				FFC4D66927507F6E008E10D8 /* Academy */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1683,6 +1723,7 @@
 				FFEB123E27110B8D003EF90D /* DataError.swift */,
 				FF7A33A9273CA29E0037899B /* Discord */,
 				FF7A33AB273CA2D10037899B /* ContentGateway */,
+				FFC4D66227507CC3008E10D8 /* Academy */,
 				FFEB12322710FC56003EF90D /* Implementation */,
 			);
 			path = Client;
@@ -1695,6 +1736,7 @@
 				FF7A33BE273CA87E0037899B /* MultiSourceDataClient+Discord.swift */,
 				FF7A33C2273CA9CF0037899B /* MultiSourceDataClient+ContentGateway.swift */,
 				FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */,
+				FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1882,11 +1924,13 @@
 				FF1AC696274C6D83003025E0 /* AcademyCourseSectionView.swift in Sources */,
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
+				FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
 				FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */,
 				FF5BCDAD273F0E06000D3FEF /* SectionHeaderViewModel.swift in Sources */,
 				FF5BCD85273DD326000D3FEF /* BountyBoardViewModel.swift in Sources */,
 				FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */,
+				FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF7A33BB273CA7210037899B /* MockIdentityService.swift in Sources */,
 				FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */,
@@ -2004,6 +2048,7 @@
 				FFA95ABE274EC33F00D72978 /* SettingsStorage.swift in Sources */,
 				FF5BCDF82745977B000D3FEF /* PodcastDetailsViewModel.swift in Sources */,
 				FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */,
+				FFC4D66427507CE1008E10D8 /* BanklessAcademyClient.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FF7A33B6273CA69C0037899B /* IdentityService.swift in Sources */,
 				FF5BCDCF27445D54000D3FEF /* NewsletterItem+NewsItemPreviewBehaviour.swift in Sources */,
@@ -2032,6 +2077,7 @@
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
 				FF7A33AD273CA3DA0037899B /* DiscordClient.swift in Sources */,
 				FF5BCDC527444E84000D3FEF /* PodcastItem.swift in Sources */,
+				FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
 				FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */,
 				FF1AC6A1274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift in Sources */,
@@ -2040,6 +2086,7 @@
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FF5BCDCD27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift in Sources */,
 				FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */,
+				FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */,
 				FF60C9A0274DD80A00C794C1 /* AcademyCourse+QuizItem.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
@@ -2072,6 +2119,7 @@
 				FF7A339E273C68240037899B /* BaseNetworkProvider.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
 				FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */,
+				FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */,
 				FFAE985F270E43D00047405D /* TagView.swift in Sources */,
 				FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
