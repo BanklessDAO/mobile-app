@@ -21,7 +21,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class AcademyCourseFlowViewModel: BaseViewModel {
+final class AcademyCourseFlowViewModel: BaseViewModel,
+                                        AcademyServiceDependency,
+                                        UserSettingsServiceDependency
+{
     // MARK: - Input/Output -
     
     struct Input { }
@@ -53,6 +56,19 @@ final class AcademyCourseFlowViewModel: BaseViewModel {
     // MARK: - Data -
     
     private let academyCourse: AcademyCourse
+    
+    // MARK: - Components -
+    
+    var academyService: AcademyService!
+    var userSettingsService: UserSettingsService!
+    
+    // MARK: - Events -
+    
+    struct Events {
+        let academyCourseCompletionRequest = PublishRelay<Void>()
+    }
+    
+    let events = Events()
     
     // MARK: - Initializers -
     
@@ -132,8 +148,56 @@ final class AcademyCourseFlowViewModel: BaseViewModel {
             .map({ [weak self] sectionIndex in
                 guard let self = self else { fatalError("unexpected navigation request") }
                 
-                return AcademyCourseSectionFactory
+                let viewModel = AcademyCourseSectionFactory
                     .createSectionViewModel(for: self.academyCourse.sections[sectionIndex])
+                
+                switch viewModel {
+                    
+                case let poapSectionViewModel as AcademyCoursePoapSectionViewModel:
+                    self.bindClaim(
+                        request: poapSectionViewModel.claimPoapRequest.asObservable(),
+                        onCompleted: { [weak self] in
+                            self?.events.academyCourseCompletionRequest.accept(())
+                        }
+                    )
+                        .subscribe()
+                        .disposed(by: poapSectionViewModel.disposer)
+                default:
+                    break
+                }
+                
+                return viewModel
             })
+    }
+    
+    // MARK: - Actions -
+    
+    private func bindClaim(
+        request: Observable<Void>,
+        onCompleted: @escaping () -> Void
+    ) -> Completable {
+        return Observable
+            .combineLatest(request, userSettingsService.streamValue(for: .publicETHAddress)) {
+                _, addressSetting -> String in
+                
+                guard let ethAddress = addressSetting as? String else {
+                    fatalError("eth address is not set by the user")
+                }
+                
+                return ethAddress
+            }
+            .flatMapLatest({ [weak self] ethAddress -> Completable in
+                guard let self = self else { return .empty() }
+                
+                return self.academyService
+                    .claimProofOfAttendance(
+                        request: .init(
+                            eventId: String(self.academyCourse.poapEventId),
+                            ethAddress: ethAddress
+                        )
+                    )
+                    .do(onCompleted: onCompleted)
+            })
+            .asCompletable()
     }
 }
