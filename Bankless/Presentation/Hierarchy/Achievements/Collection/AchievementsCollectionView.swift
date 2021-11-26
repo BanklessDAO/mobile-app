@@ -25,12 +25,11 @@ import RxCocoa
 
 final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
                                        UICollectionViewDataSource,
-                                       UICollectionViewDelegate,
-                                       UICollectionViewDelegateFlowLayout
+                                       UICollectionViewDelegate
 {
     // MARK: - Properties -
     
-    var flowLayout: UICollectionViewFlowLayout!
+    var layout: GridCollectionViewLayout!
     let refreshTrigger = PublishRelay<Void>()
     
     // MARK: - Subviews -
@@ -52,6 +51,13 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle -
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionView.reloadData()
+    }
+    
     // MARK: - Setup -
     
     private func setUp() {
@@ -66,12 +72,10 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     private func setUpCollection() {
         backgroundColor = .backgroundBlack
         
-        flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumInteritemSpacing = contentPaddings.left
-        flowLayout.minimumLineSpacing = contentPaddings.top
-        flowLayout.sectionInset = contentInsets
+        layout = GridCollectionViewLayout(numberOfColumns: 3)
+        layout.delegate = self
         
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .backgroundBlack
         collectionView.contentInsetAdjustmentBehavior = .never
         
@@ -98,7 +102,10 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     
     func setUpConstraints() {
         constrain(collectionView, self) { (collection, view) in
-            collection.edges == view.safeAreaLayoutGuide.edges
+            collection.top == view.safeAreaLayoutGuide.top
+            collection.left == view.left + contentInsets.left
+            collection.right == view.right - contentInsets.right
+            collection.bottom == view.bottom
         }
     }
     
@@ -200,34 +207,75 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         
         return cell
     }
-    
-    // MARK: - Flow layout -
+}
+
+extension AchievementCollectionView: GridCollectionViewLayoutDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        heightForItemAt index: GridIndex,
+        indexPath: IndexPath
+    ) -> CGFloat {
+        switch index.row {
+            
+        case 0:
+            return Appearance.Text.Font.Header1.lineHeight * 2
+        case 1:
+            return Appearance.Text.Font.Title1.lineHeight * 2
+        default:
+            return (collectionView.bounds.width / 3) - contentInsets.left
+        }
+    }
     
     func collectionView(
         _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let width = collectionView.bounds.width
-        let numberOfItemsPerRow: CGFloat = 3
-        let spacing: CGFloat = flowLayout.minimumInteritemSpacing
-        let availableWidth = width - spacing * (numberOfItemsPerRow + 1)
-        let itemDimension = floor(availableWidth / numberOfItemsPerRow)
-        
+        heightForRow row: Int
+    ) -> CGFloat {
+        switch row {
+            
+        case 0:
+            return Appearance.Text.Font.Header1.lineHeight * 2
+        case 1:
+            return Appearance.Text.Font.Title1.lineHeight * 2
+        default:
+            return (collectionView.bounds.width / 3) - contentInsets.left
+        }
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        alignmentForSection section: Int
+    ) -> GridCollectionViewLayout.Alignment {
+        return .top
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        columnSpanForItemAt index: GridIndex,
+        indexPath: IndexPath
+    ) -> Int {
         let row = self.source.value.translateGlobalRow(at: indexPath.row)
+        
         switch row.sectionType {
             
         case .title:
-            return CGSize(width: width, height: Appearance.Text.Font.Header1.lineHeight * 2)
+            return index.column == 0 ? 3 : 0
         case .attendanceTokens:
             switch self.source.value.attendanceTokensSection.rowPayload(at: row.index) {
                 
             case .header:
-                return CGSize(width: width, height: Appearance.Text.Font.Title1.lineHeight * 2)
+                return index.column == 0 ? 3 : 0
             case .content:
-                return CGSize(width: itemDimension, height: itemDimension)
+                return 1
             }
         }
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        heightForSupplementaryView kind: GridCollectionViewLayout.ElementKind,
+        at section: Int
+    ) -> CGFloat? {
+        return nil
     }
 }
 
