@@ -147,7 +147,9 @@ final class IdentityStripeViewModel: BaseViewModel,
         ethAddress: Observable<String?>
     ) -> Observable<String> {
         return Observable.combineLatest(user, ethAddress) { (user: $0, address: $1) }
-            .map({ identity in
+            .map({ [weak self] identity in
+                guard let self = self else { return "" }
+                
                 let userString = identity.user?.handle
                     ?? IdentityStripeViewModel.placeholders.user
                 
@@ -161,7 +163,13 @@ final class IdentityStripeViewModel: BaseViewModel,
                 ])
                 : IdentityStripeViewModel.placeholders.address
                 
-                return userString + " (\(addressString))"
+                switch self.mode {
+                    
+                case .currentUser:
+                    return userString + " (\(addressString))"
+                case .user:
+                    return userString
+                }
             })
             .startWith(
                 IdentityStripeViewModel.placeholders.user
@@ -214,8 +222,8 @@ final class IdentityStripeViewModel: BaseViewModel,
                     
                 case .currentUser:
                     self.presentUserMenu()
-                case .user(let discordUser):
-                    fatalError("not implemented")
+                case .user:
+                    break
                 }
             })
             .disposed(by: disposer)
