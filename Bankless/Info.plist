@@ -47,6 +47,8 @@
 	<string>https://${DISCORD_API_BASE_PATH}</string>
 	<key>DISCORD_SERVER_URL</key>
 	<string>https://${DISCORD_SERVER_LINK}</string>
+	<key>BANKLESS_ACADEMY_API_BASE_URL</key>
+	<string>https://${BANKLESS_ACADEMY_API_BASE_PATH}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
