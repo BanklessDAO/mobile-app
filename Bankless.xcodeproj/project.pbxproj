@@ -195,6 +195,7 @@
 		FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */; };
 		FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */; };
 		FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */; };
+		FFC4D6722751B170008E10D8 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6712751B170008E10D8 /* ActivityTracker.swift */; };
 		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
 		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
 		FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */; };
@@ -443,6 +444,7 @@
 		FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+BanklessAcademy.swift"; sourceTree = "<group>"; };
 		FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIProvider.swift; sourceTree = "<group>"; };
 		FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIMethod.swift; sourceTree = "<group>"; };
+		FFC4D6712751B170008E10D8 /* ActivityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
 		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
@@ -1430,8 +1432,8 @@
 			children = (
 				FF5BCDAA273DEB72000D3FEF /* Common */,
 				FF5BCDB2273F715C000D3FEF /* Base */,
-				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF78F37F2706271B00A47A91 /* Home */,
+				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF5BCDE227457F86000D3FEF /* News */,
 				FF5BCD7F273DD2F6000D3FEF /* BountyBoard */,
 				FF1AC63D2746425C003025E0 /* Academy */,
@@ -1681,6 +1683,7 @@
 			isa = PBXGroup;
 			children = (
 				FFE60028271E33C300F73FA1 /* NotificationEvent.swift */,
+				FFC4D6712751B170008E10D8 /* ActivityTracker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2022,6 +2025,7 @@
 				FFE60012271C887900F73FA1 /* AttendanceTokenViewModel.swift in Sources */,
 				FF5BCDC327444E7B000D3FEF /* NewsletterItem.swift in Sources */,
 				FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */,
+				FFC4D6722751B170008E10D8 /* ActivityTracker.swift in Sources */,
 				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
 				FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */,
 				FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */,
