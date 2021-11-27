@@ -32,5 +32,6 @@ final class NetworkAchievementsService: AchievementsService {
     func getAchiements() -> Observable<AchievementsResponse> {
         return contentGatewayClient.getUserAttendanceTokens()
             .map({ AchievementsResponse(attendanceTokens: $0) })
+            .take(1)
     }
 }

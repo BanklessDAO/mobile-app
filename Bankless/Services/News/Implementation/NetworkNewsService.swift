@@ -30,6 +30,6 @@ final class NetworkNewsService: NewsService {
     }
     
     func listNewsItems() -> Observable<NewsItemsResponse> {
-        return contentGatewayClient.getNewsContent()
+        return contentGatewayClient.getNewsContent().take(1)
     }
 }

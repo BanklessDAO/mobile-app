@@ -30,6 +30,6 @@ final class NetworkTimelineService: TimelineService {
     }
     
     func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return contentGatewayClient.getTimelineContent()
+        return contentGatewayClient.getTimelineContent().take(1)
     }
 }
