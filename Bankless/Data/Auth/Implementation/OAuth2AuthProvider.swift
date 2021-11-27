@@ -91,6 +91,11 @@ final class OAuth2AuthProvider: AuthProvider {
             }
     }
     
+    func deauthorizeClient(for server: AuthProviderServer) -> Completable {
+        self.sessionStorage.clear()
+        return .empty()
+    }
+    
     func useCurrentSession() -> Completable {
         return Completable.create { [weak self] observer in
             guard self?.sessionStorage

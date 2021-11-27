@@ -22,6 +22,7 @@ import RxSwift
 import RxCocoa
 
 final class IdentityStripeViewModel: BaseViewModel,
+                                     AuthServiceDependency,
                                      IdentityServiceDependency,
                                      UserSettingsServiceDependency
 {
@@ -67,6 +68,11 @@ final class IdentityStripeViewModel: BaseViewModel,
             value: "Open Discord",
             comment: ""
         ),
+        logIn: NSLocalizedString(
+            "user.menu.item.log_in.title",
+            value: "Log In",
+            comment: ""
+        ),
         logOut: NSLocalizedString(
             "user.menu.item.log_out.title",
             value: "Log Out",
@@ -103,6 +109,9 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Properties -
     
+    private let userRelay = BehaviorRelay<DiscordUser?>(value: nil)
+    private let logInRequest = PublishSubject<Void>()
+    private let logOutRequest = PublishSubject<Void>()
     private let settingUpdateRequest = PublishSubject<UserSetting>()
     
     // MARK: - Data -
@@ -111,6 +120,7 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Components -
     
+    var authService: AuthService!
     var identityService: IdentityService!
     var userSettingsService: UserSettingsService!
     
@@ -123,18 +133,21 @@ final class IdentityStripeViewModel: BaseViewModel,
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let user = loadUser().map({ $0 as DiscordUser? }).startWith(nil)
+        loadUser().map({ $0 as DiscordUser? }).startWith(nil)
+            .bind(to: userRelay).disposed(by: disposer)
         let ethAddress = userSettingsService
             .streamValue(for: .publicETHAddress)
             .map({ $0 as? String })
         
         let titleString = titleString(
-            user: user,
+            user: userRelay.asObservable(),
             ethAddress: ethAddress
         )
         
         bind(tap: input.tap)
         bindSettingsInput()
+        bindLogInInput()
+        bindLogOutInput()
         
         return Output(
             domainIcon: .just(IdentityStripeViewModel.discordIcon),
@@ -179,8 +192,8 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Discord data -
     
-    private func loadUser() -> Observable<DiscordUser> {
-        let user: Observable<DiscordUser>
+    private func loadUser() -> Observable<DiscordUser?> {
+        let user: Observable<DiscordUser?>
         
         switch mode {
             
@@ -189,7 +202,7 @@ final class IdentityStripeViewModel: BaseViewModel,
         case .currentUser:
             user = NotificationCenter.default.rx
                 .notification(
-                    NotificationEvent.discordAccessHasBeenGranted.notificationName,
+                    NotificationEvent.discordAccessHasChanged.notificationName,
                     object: nil
                 )
                 .map({ _ in () })
@@ -257,13 +270,23 @@ final class IdentityStripeViewModel: BaseViewModel,
             )
         )
         
-        menu.addAction(
-            .init(
-                title: IdentityStripeViewModel.userMenuItemTitles.logOut,
-                style: .destructive,
-                handler: { _ in  }
+        if userRelay.value == nil {
+            menu.addAction(
+                .init(
+                    title: IdentityStripeViewModel.userMenuItemTitles.logIn,
+                    style: .default,
+                    handler: { [weak self] _ in self?.logInRequest.onNext(()) }
+                )
             )
-        )
+        } else {
+            menu.addAction(
+                .init(
+                    title: IdentityStripeViewModel.userMenuItemTitles.logOut,
+                    style: .destructive,
+                    handler: { [weak self] _ in self?.logOutRequest.onNext(()) }
+                )
+            )
+        }
         
         menu.addAction(
             .init(
@@ -297,6 +320,43 @@ final class IdentityStripeViewModel: BaseViewModel,
                 }
             })
             .asCompletable()
+            .subscribe()
+            .disposed(by: disposer)
+    }
+    
+    private func bindLogInInput() {
+        logInRequest.asObservable()
+            .flatMapLatest({ [weak self] in
+                return self?.authService.getDiscordAccess()
+                    .asObservable()
+                    .do(onCompleted: {
+                        NotificationCenter.default
+                            .post(
+                                name: NotificationEvent.discordAccessHasChanged.notificationName,
+                                object: nil
+                            )
+                    }) ?? .empty()
+            })
+            .asCompletable()
+            .subscribe()
+            .disposed(by: disposer)
+            
+    }
+    
+    private func bindLogOutInput() {
+        logOutRequest.asObservable()
+            .flatMapLatest({ [weak self] in
+                return self?.authService
+                    .terminateDiscordAccess()
+                    .do(onCompleted: {
+                        NotificationCenter.default
+                            .post(
+                                name: NotificationEvent.discordAccessHasChanged.notificationName,
+                                object: nil
+                            )
+                    })
+                ?? .empty()
+            })
             .subscribe()
             .disposed(by: disposer)
     }

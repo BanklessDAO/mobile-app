@@ -37,6 +37,7 @@ final class NetworkIdentityService: IdentityService {
         
         let fresh = discordClient.getCurrentUser()
             .map({ UserIdentityResponse(discordUser: $0) })
+            .catchAndReturn(.init(discordUser: nil))
             .do(onNext: { [weak self] response in self?.recentIdentityResponse = response })
         
         return recent.concat(fresh)

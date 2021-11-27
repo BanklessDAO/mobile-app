@@ -24,4 +24,8 @@ final class MockAuthService: AuthService {
     func getDiscordAccess() -> Completable {
         return .empty()
     }
+    
+    func terminateDiscordAccess() -> Completable {
+        return .empty()
+    }
 }

@@ -74,7 +74,7 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
             .do(onCompleted: {
                 NotificationCenter.default
                     .post(
-                        name: NotificationEvent.discordAccessHasBeenGranted.notificationName,
+                        name: NotificationEvent.discordAccessHasChanged.notificationName,
                         object: nil
                     )
             })

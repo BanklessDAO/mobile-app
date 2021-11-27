@@ -20,9 +20,9 @@
 import Foundation
 
 struct UserIdentityResponse {
-    let discordUser: DiscordUser
+    let discordUser: DiscordUser?
     
-    init(discordUser: DiscordUser) {
+    init(discordUser: DiscordUser?) {
         self.discordUser = discordUser
     }
 }

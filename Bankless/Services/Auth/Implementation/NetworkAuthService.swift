@@ -32,4 +32,8 @@ final class NetworkAuthService: AuthService {
     func getDiscordAccess() -> Completable {
         return authProvider.authorizeClient(with: .discord)
     }
+    
+    func terminateDiscordAccess() -> Completable {
+        return authProvider.deauthorizeClient(for: .discord)
+    }
 }

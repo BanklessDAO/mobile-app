@@ -22,4 +22,5 @@ import RxSwift
 
 protocol AuthProvider {
     func authorizeClient(with server: AuthProviderServer) -> Completable
+    func deauthorizeClient(for server: AuthProviderServer) -> Completable
 }
