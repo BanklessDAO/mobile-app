@@ -35,6 +35,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
         let featuredNewsViewModel: Driver<FeaturedNewsViewModel>
         let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
@@ -57,6 +58,11 @@ final class HomeTimelineViewModel: BaseViewModel,
         "home.timeline.section.academy.title", value: "Academy", comment: ""
     )
     
+    // MARK: - Properties -
+    
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
+    
     // MARK: - Events -
     
     let expandNewsTransitionRequested = PublishRelay<Void>()
@@ -76,7 +82,9 @@ final class HomeTimelineViewModel: BaseViewModel,
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let refreshTrigger = Driver<Void>.just(())
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
         
         let timelineItems = self.timelineItems(refreshInput: refreshTrigger).share()
         
@@ -143,6 +151,7 @@ final class HomeTimelineViewModel: BaseViewModel,
         bindSelection(input: input.selection)
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
                 .asDriver(onErrorDriveWith: .empty()),
             featuredNewsViewModel: featuredNewsViewModel.asDriver(onErrorDriveWith: .empty()),
@@ -183,6 +192,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
 
                 return self.banklessService.getDAOOwnership()
+                    .trackActivity(self.activityTracker)
             })
     }
     
@@ -195,6 +205,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
                 
                 return self.achievementsService.getAchiements()
+                    .trackActivity(self.activityTracker)
             })
     }
     
@@ -209,6 +220,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
                 
                 return self.timelineService.getTimelineItems()
+                    .trackActivity(self.activityTracker)
             })
     }
     

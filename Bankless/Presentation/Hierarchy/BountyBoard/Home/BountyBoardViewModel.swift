@@ -30,6 +30,7 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let title: Driver<String>
         let bountyViewModels: Driver<[BountyViewModel]>
     }
@@ -50,7 +51,8 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
     
     // MARK: - Properties -
     
-    private var autoRefresh = PublishRelay<Void>()
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
     
     // MARK: - Components -
     
@@ -59,17 +61,18 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
+        
         bindSelection(input: input.selection)
         subscribeToBountyUpdates()
         
-        let bountyViewModels = bounties(
-            refreshInput: Driver.merge(
-                [input.refresh, autoRefresh.asDriver(onErrorDriveWith: .empty())]
-            )
-        )
+        let bountyViewModels = bounties(refreshInput: refreshTrigger)
             .map({ $0.map(BountyViewModel.init) })
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             title: .just(BountyBoardViewModel.title),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty())
         )
@@ -87,6 +90,7 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
                 
                 return self.bountyBoardService.listBounties()
                     .map({ $0.bounties })
+                    .trackActivity(self.activityTracker)
             })
     }
     
@@ -116,7 +120,7 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
             .notification(NotificationEvent.bountyHasBeenUpdated.notificationName, object: nil)
             .map({ $0.object as? Bounty }).filter({ $0 != nil }).map({ $0! })
             .subscribe(onNext: { [weak self] bounty in
-                self?.autoRefresh.accept(())
+                self?.autorefresh.accept(())
             })
             .disposed(by: disposer)
     }

@@ -30,6 +30,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let title: Driver<String>
         let newsItemViewModels: Driver<[NewsItemViewModel]>
     }
@@ -51,7 +52,8 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     
     // MARK: - Properties -
     
-    private var autoRefresh = PublishRelay<Void>()
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
     
     // MARK: - Components -
     
@@ -60,9 +62,13 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
+        
         bindSelection(input: input.selection)
         
-        let newsItemViewModels = newsItems(refreshInput: input.refresh)
+        let newsItemViewModels = newsItems(refreshInput: refreshTrigger)
             .map({
                 ($0.newsletterItems as [NewsItemPreviewBehaviour])
                 + ($0.podcastItems as [NewsItemPreviewBehaviour])
@@ -71,6 +77,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
             .map({ $0.map(NewsItemViewModel.init) })
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             title: .just(NewsViewModel.title),
             newsItemViewModels: newsItemViewModels.asDriver(onErrorDriveWith: .empty())
         )
@@ -105,6 +112,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
                             podcastItems: $0.podcastItems
                         )
                     })
+                    .trackActivity(self.activityTracker)
             })
     }
     

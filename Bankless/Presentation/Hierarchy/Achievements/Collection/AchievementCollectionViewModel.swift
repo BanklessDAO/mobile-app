@@ -30,6 +30,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let title: Driver<String>
         let attendanceTokensSectionTitle: Driver<String>
         let attendanceTokenViewModels: Driver<[AttendanceTokenViewModel]>
@@ -45,6 +46,11 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
         "home.collection.section.attendance_tokens.title", value: "POAP Tokens", comment: ""
     )
     
+    // MARK: - Properties -
+    
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
+    
     // MARK: - Components -
     
     var achievementsService: AchievementsService!
@@ -52,7 +58,9 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let refreshTrigger = Driver<Void>.just(())
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
         
         let collectionItems = self.collectionItems(refreshInput: refreshTrigger).share()
         
@@ -67,6 +75,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
        bindSelection(input: input.selection)
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             title: .just(AchievementCollectionViewModel.collectionTitle),
             attendanceTokensSectionTitle: .just(
                 AchievementCollectionViewModel.attendanceTokensSectionTitle
@@ -87,6 +96,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
                 guard let self = self else { return .empty() }
                 
                 return self.achievementsService.getAchiements()
+                    .trackActivity(self.activityTracker)
             })
     }
     

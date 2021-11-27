@@ -29,12 +29,12 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
 {
     // MARK: - Properties -
     
-    let refreshTrigger = PublishRelay<Void>()
     private let sectionExpandButtonRelay = PublishRelay<Int>()
     
     // MARK: - Subviews -
     
     private(set) var tableView: UITableView!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - Source -
     
@@ -101,6 +101,9 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             forCellReuseIdentifier: AcademyCourseListCell.reuseIdentifier
         )
         
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl)
+        
         addSubview(tableView)
     }
     
@@ -115,6 +118,8 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
+        
+        output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let bountiesOutput = Driver.combineLatest(
             output.bountiesSectionHeaderViewModel,
@@ -175,7 +180,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             .filter({ $0 != nil }).map({ $0! })
         
         return HomeTimelineViewModel.Input(
-            refresh: refreshTrigger.asDriver(onErrorDriveWith: .empty()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
             selection: selection.asDriver(),
             expandSection: sectionExpandButtonRelay.asDriver(onErrorDriveWith: .empty())
         )

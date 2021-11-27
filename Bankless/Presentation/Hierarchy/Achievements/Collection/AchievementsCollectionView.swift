@@ -30,11 +30,11 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     // MARK: - Properties -
     
     var layout: GridCollectionViewLayout!
-    let refreshTrigger = PublishRelay<Void>()
     
     // MARK: - Subviews -
     
     private(set) var collectionView: UICollectionView!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - Source -
     
@@ -97,6 +97,9 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
             forCellWithReuseIdentifier: AttendanceTokenCell.reuseIdentifier
         )
         
+        refreshControl = UIRefreshControl()
+        collectionView.addSubview(refreshControl)
+        
         addSubview(collectionView)
     }
     
@@ -111,6 +114,8 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
+        
+        output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let titleOutput = output.title
         
@@ -144,7 +149,7 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     
     private func input() -> AchievementCollectionViewModel.Input {
         return AchievementCollectionViewModel.Input(
-            refresh: refreshTrigger.asDriver(onErrorDriveWith: .empty()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
             selection: collectionView.rx.itemSelected.asDriver()
         )
     }

@@ -30,6 +30,7 @@ class AcademyViewModel: BaseViewModel, AcademyServiceDependency {
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let title: Driver<String>
         let academyCourseViewModels: Driver<[AcademyCourseViewModel]>
     }
@@ -50,7 +51,8 @@ class AcademyViewModel: BaseViewModel, AcademyServiceDependency {
     
     // MARK: - Properties -
     
-    private var autoRefresh = PublishRelay<Void>()
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
     
     // MARK: - Components -
     
@@ -59,16 +61,17 @@ class AcademyViewModel: BaseViewModel, AcademyServiceDependency {
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
+        
         bindSelection(input: input.selection)
         
-        let academyCourseViewModels = courses(
-            refreshInput: Driver.merge(
-                [input.refresh, autoRefresh.asDriver(onErrorDriveWith: .empty())]
-            )
-        )
+        let academyCourseViewModels = courses(refreshInput: refreshTrigger)
             .map({ $0.map(AcademyCourseViewModel.init) })
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             title: .just(AcademyViewModel.title),
             academyCourseViewModels: academyCourseViewModels.asDriver(onErrorDriveWith: .empty())
         )
@@ -86,6 +89,7 @@ class AcademyViewModel: BaseViewModel, AcademyServiceDependency {
                 
                 return self.academyService.listCourses()
                     .map({ $0.courses })
+                    .trackActivity(self.activityTracker)
             })
     }
     
