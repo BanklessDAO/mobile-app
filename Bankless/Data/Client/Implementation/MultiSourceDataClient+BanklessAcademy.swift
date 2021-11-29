@@ -32,5 +32,6 @@ extension MultiSourceDataClient: BanklessAcademyClient {
             .asObservable()
             .flatMap({ _ in Completable.empty() })
             .asCompletable()
+            .catchMapError()
     }
 }

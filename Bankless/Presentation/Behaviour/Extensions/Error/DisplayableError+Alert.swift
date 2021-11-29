@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,14 +18,26 @@
     
 
 import Foundation
-import RxSwift
+import UIKit
 
-extension MultiSourceDataClient: DiscordClient {
-    func getCurrentUser() -> Observable<DiscordUser> {
-        return discordAPI
-            .request(.me)
-            .asObservable()
-            .map(DiscordUser.self)
-            .catchMapError()
+extension DisplayableError {
+    func display() {
+        let errorAlert = UIAlertController(
+            title: nil,
+            message: localizedDescription,
+            preferredStyle: .alert
+        )
+        
+        errorAlert.addAction(
+            .init(
+                title: Localization.Common.Actions.ok,
+                style: .cancel,
+                handler: { _ in  }
+            )
+        )
+        
+        (UIApplication.shared.delegate as! AppDelegate)
+            .applicationCoordinator.navigationController?
+            .present(errorAlert, animated: true)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-28.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,14 +18,8 @@
     
 
 import Foundation
-import RxSwift
 
-extension MultiSourceDataClient: DiscordClient {
-    func getCurrentUser() -> Observable<DiscordUser> {
-        return discordAPI
-            .request(.me)
-            .asObservable()
-            .map(DiscordUser.self)
-            .catchMapError()
-    }
+enum ServiceError: Error {
+    case unknown
+    case raw(Error)
 }

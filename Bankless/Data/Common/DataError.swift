@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,12 @@
 import Foundation
 
 enum DataError: Error {
-    case generic([Error])
+    case unknown
+    case raw(Error)
+    case rawCollection([Error])
+    case connectionIsOffline
+    case authRequest(Error)
+    case sessionInvalid
+    case sessionExpired
     case mappingError(Error)
 }

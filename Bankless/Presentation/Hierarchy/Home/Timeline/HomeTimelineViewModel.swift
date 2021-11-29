@@ -192,6 +192,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
 
                 return self.banklessService.getDAOOwnership()
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }
@@ -205,6 +206,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
                 
                 return self.achievementsService.getAchiements()
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }
@@ -220,8 +222,10 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
                 
                 return self.timelineService.getTimelineItems()
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
+            .debug()
     }
     
     // MARK: - Selection -

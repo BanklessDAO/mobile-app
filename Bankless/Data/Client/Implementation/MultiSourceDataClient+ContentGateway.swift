@@ -29,7 +29,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
             if let _ = graphQLResult.data?.banklessTokens?.data {
                 return .success(BANKAccount.generateMock())
             } else if let errors = graphQLResult.errors {
-                return .failure(DataError.generic(errors))
+                return .failure(DataError.rawCollection(errors))
             } else {
                 fatalError("not supported")
             }
@@ -44,7 +44,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
             if let _ = graphQLResult.data?.poapTokens?.data {
                 return .success(AttendanceToken.generateMocks(5))
             } else if let errors = graphQLResult.errors {
-                return .failure(DataError.generic(errors))
+                return .failure(DataError.rawCollection(errors))
             } else {
                 fatalError("not supported")
             }
@@ -138,7 +138,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 
                 return .success(response)
             } else if let errors = graphQLResult.errors {
-                return .failure(DataError.generic(errors))
+                return .failure(DataError.rawCollection(errors))
             } else {
                 fatalError("not supported")
             }

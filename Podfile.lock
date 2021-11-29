@@ -22,6 +22,14 @@ PODS:
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
+  - RxSwiftExt (6.0.1):
+    - RxSwiftExt/Core (= 6.0.1)
+    - RxSwiftExt/RxCocoa (= 6.0.1)
+  - RxSwiftExt/Core (6.0.1):
+    - RxSwift (~> 6.0)
+  - RxSwiftExt/RxCocoa (6.0.1):
+    - RxCocoa (~> 6.0)
+    - RxSwiftExt/Core
 
 DEPENDENCIES:
   - Apollo
@@ -36,6 +44,7 @@ DEPENDENCIES:
   - OAuthSwift (~> 2.2.0)
   - RxCocoa
   - RxSwift
+  - RxSwiftExt (~> 6)
 
 SPEC REPOS:
   trunk:
@@ -53,6 +62,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxSwiftExt
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -69,7 +79,8 @@ SPEC CHECKSUMS:
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
 
-PODFILE CHECKSUM: c732e4fabc819686e39cf93d2729097a80774fe0
+PODFILE CHECKSUM: 0e6529430e57339498e4d2704f4e418feee0f635
 
 COCOAPODS: 1.10.1

@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-06.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,26 @@
 
 import Foundation
 
-enum AuthError: Error {
-    case authRequest(Error)
-    case sessionExpired
+enum Localization {
+    enum Common {
+        enum Actions {
+            static let ok = NSLocalizedString(
+                "common.action.ok",
+                value: "OK",
+                comment: ""
+            )
+            
+            static let save = NSLocalizedString(
+                "common.action.save",
+                value: "Save",
+                comment: ""
+            )
+            
+            static let cancel = NSLocalizedString(
+                "common.action.cancel",
+                value: "Cancel",
+                comment: ""
+            )
+        }
+    }
 }

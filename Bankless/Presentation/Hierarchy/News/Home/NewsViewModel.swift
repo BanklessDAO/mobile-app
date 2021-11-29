@@ -112,6 +112,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
                             podcastItems: $0.podcastItems
                         )
                     })
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }

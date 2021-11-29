@@ -90,6 +90,7 @@ class BountyBoardViewModel: BaseViewModel, BountyBoardServiceDependency {
                 
                 return self.bountyBoardService.listBounties()
                     .map({ $0.bounties })
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }

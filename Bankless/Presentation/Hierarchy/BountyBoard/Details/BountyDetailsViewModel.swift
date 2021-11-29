@@ -142,6 +142,7 @@ final class BountyDetailsViewModel: BaseViewModel, BountyBoardServiceDependency 
                     name: NotificationEvent.bountyHasBeenUpdated.notificationName, object: bounty
                 )
             })
+            .handleError()
             .flatMap({ _ in Completable.empty() })
             .asCompletable()
     }

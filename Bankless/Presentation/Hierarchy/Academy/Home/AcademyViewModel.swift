@@ -89,6 +89,7 @@ class AcademyViewModel: BaseViewModel, AcademyServiceDependency {
                 
                 return self.academyService.listCourses()
                     .map({ $0.courses })
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }

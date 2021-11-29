@@ -197,6 +197,7 @@ final class AcademyCourseFlowViewModel: BaseViewModel,
                         )
                     )
                     .do(onCompleted: onCompleted)
+                    .handleError()
             })
             .asCompletable()
     }

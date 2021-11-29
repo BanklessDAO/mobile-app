@@ -35,7 +35,7 @@ extension MultiSourceDataClient {
                     if let errors = graphQLResult.errors {
                         print(errors)
                         
-                        let genericError = DataError.generic(errors)
+                        let genericError = DataError.rawCollection(errors)
                         observer.onError(genericError)
                     }
                     
@@ -54,7 +54,7 @@ extension MultiSourceDataClient {
                 case .failure(let error):
                     print(error)
                     
-                    let genericError = DataError.generic([error])
+                    let genericError = DataError.rawCollection([error])
                     observer.onError(genericError)
                 }
             }

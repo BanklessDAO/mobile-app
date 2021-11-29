@@ -10,6 +10,7 @@ target 'Bankless' do
   
   # Functional reactive extensions
   pod 'RxSwift'
+  pod 'RxSwiftExt', '~> 6'
   pod 'RxCocoa'
   
   # Autolayout library

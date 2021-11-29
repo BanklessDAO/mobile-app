@@ -71,6 +71,7 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
     private func ensureDiscordAccess() -> Completable {
         return authService.getDiscordAccess()
             .asObservable()
+            .handleError()
             .do(onCompleted: {
                 NotificationCenter.default
                     .post(

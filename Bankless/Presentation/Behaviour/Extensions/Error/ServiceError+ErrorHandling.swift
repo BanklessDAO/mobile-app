@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-10.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,14 +18,23 @@
     
 
 import Foundation
-import RxSwift
 
-extension MultiSourceDataClient: DiscordClient {
-    func getCurrentUser() -> Observable<DiscordUser> {
-        return discordAPI
-            .request(.me)
-            .asObservable()
-            .map(DiscordUser.self)
-            .catchMapError()
+extension ServiceError: ErrorHandling, DisplayableError, LocalizedError {
+    var errorDescription: String? {
+        switch self {
+            
+        case .unknown:
+            return NSLocalizedString(
+                "error.service.unknown.message",
+                value: "Unknown service error",
+                comment: ""
+            )
+        case .raw(let error):
+            return error.localizedDescription
+        }
+    }
+    
+    func handle() {
+        display()
     }
 }

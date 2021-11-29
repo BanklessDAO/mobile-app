@@ -96,6 +96,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
                 guard let self = self else { return .empty() }
                 
                 return self.achievementsService.getAchiements()
+                    .handleError()
                     .trackActivity(self.activityTracker)
             })
     }
