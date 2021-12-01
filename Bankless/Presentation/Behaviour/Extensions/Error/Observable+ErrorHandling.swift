@@ -22,7 +22,7 @@ import RxSwift
 
 extension PrimitiveSequence where Trait == CompletableTrait, Element == Swift.Never {
     func handleError() -> Completable {
-        return `catch`({ (error: Error) -> Completable in
+        return observe(on: MainScheduler.asyncInstance).`catch`({ (error: Error) -> Completable in
             if let handleableError = error as? ErrorHandling {
                 handleableError.handle()
             }
@@ -34,7 +34,7 @@ extension PrimitiveSequence where Trait == CompletableTrait, Element == Swift.Ne
 
 extension ObservableType {
     func handleError() -> Observable<Element> {
-        return `catch`({ (error: Error) -> Observable<Element> in
+        return observe(on: MainScheduler.asyncInstance).`catch`({ (error: Error) -> Observable<Element> in
             if let handleableError = error as? ErrorHandling {
                 handleableError.handle()
             }

@@ -21,10 +21,10 @@ import Foundation
 import BigInt
 
 extension BANKAccount: ERC20AmountPresentationBehaviour {
-    static let decimalPlaces: Int = 18
+    static let decimalPlaces: Int = 0
     var amount: BigInt { return balance }
 }
 
 extension BANKAccount.Transaction: ERC20AmountPresentationBehaviour {
-    static let decimalPlaces: Int = 18
+    static let decimalPlaces: Int = 0
 }

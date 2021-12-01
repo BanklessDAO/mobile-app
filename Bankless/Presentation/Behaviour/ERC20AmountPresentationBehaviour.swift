@@ -32,7 +32,7 @@ extension ERC20AmountPresentationBehaviour {
         return String(
             amountString[
                 amountString.startIndex
-                ... .init(utf16Offset: amountString.count - Self.decimalPlaces, in: amountString)
+                ..< .init(utf16Offset: amountString.count - Self.decimalPlaces, in: amountString)
             ]
         )
     }
