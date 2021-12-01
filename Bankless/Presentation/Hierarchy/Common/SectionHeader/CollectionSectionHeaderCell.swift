@@ -74,6 +74,12 @@ class CollectionSectionHeaderCell: BaseCollectionViewCell<SectionHeaderViewModel
             title.height == expand.height
             title.centerY == expand.centerY
             title.edges == view.edges
+                .inseted(by: .init(
+                    top: 0,
+                    left: Appearance.contentInsets.left * 2,
+                    bottom: Appearance.contentInsets.bottom,
+                    right: Appearance.contentInsets.right * 2
+                ))
         }
         
         constrain(expandButton, contentView) { expand, view in

@@ -100,7 +100,7 @@ class FeaturedNewsItemView: BaseView<NewsItemViewModel> {
             title.left == category.left
             title.right == category.right
             title.top == category.bottom + contentPaddings.bottom
-            title.height <= Appearance.Text.Font.Label1.lineHeight * 3
+            title.height == Appearance.Text.Font.Label1.lineHeight * 2
             title.bottom == view.bottom - contentInsets.bottom
         }
     }

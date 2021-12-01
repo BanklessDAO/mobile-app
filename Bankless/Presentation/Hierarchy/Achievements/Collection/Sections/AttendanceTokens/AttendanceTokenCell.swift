@@ -32,6 +32,10 @@ class AttendanceTokenCell: BaseCollectionViewCell<AttendanceTokenViewModel> {
         return AttendanceTokenCell.reuseIdentifier
     }
     
+    // MARK: - Constants -
+    
+    private static let edgeInset: CGFloat = 0.0
+    
     // MARK: - Subviews -
     
     private var attendanceTokenView: AttendanceTokenView!
@@ -47,7 +51,7 @@ class AttendanceTokenCell: BaseCollectionViewCell<AttendanceTokenViewModel> {
     
     override func setUpConstraints() {
         constrain(attendanceTokenView, contentView) { (token, view) in
-            token.edges == view.edges
+            token.edges == view.edges.inseted(by: AttendanceTokenCell.edgeInset)
         }
     }
     

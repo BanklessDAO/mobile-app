@@ -106,8 +106,8 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
     func setUpConstraints() {
         constrain(collectionView, self) { (collection, view) in
             collection.top == view.safeAreaLayoutGuide.top
-            collection.left == view.left + contentInsets.left
-            collection.right == view.right - contentInsets.right
+            collection.left == view.left + contentInsets.left * 2
+            collection.right == view.right - contentInsets.right * 2
             collection.bottom == view.bottom
         }
     }
@@ -242,7 +242,7 @@ extension AchievementCollectionView: GridCollectionViewLayoutDelegate {
         case 1:
             return Appearance.Text.Font.Title1.lineHeight * 2
         default:
-            return (collectionView.bounds.width / 3) - contentInsets.left
+            return (collectionView.bounds.width / 3)
         }
     }
     
@@ -280,7 +280,11 @@ extension AchievementCollectionView: GridCollectionViewLayoutDelegate {
         heightForSupplementaryView kind: GridCollectionViewLayout.ElementKind,
         at section: Int
     ) -> CGFloat? {
-        return nil
+        guard kind == .footer else {
+            return nil
+        }
+        
+        return contentInsets.bottom * 2
     }
 }
 

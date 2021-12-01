@@ -46,7 +46,7 @@ class AchievementsViewController: BaseViewController<AchievementsViewModel> {
     func setUpConstraints() {
         constrain(collectionView, view) { (collection, view) in
             collection.left == view.left
-            collection.top == view.safeAreaLayoutGuide.top + contentPaddings.top
+            collection.top == view.safeAreaLayoutGuide.top
             collection.right == view.right
             collection.bottom == view.bottom
         }
