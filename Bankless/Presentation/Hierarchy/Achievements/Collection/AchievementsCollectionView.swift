@@ -78,6 +78,7 @@ final class AchievementCollectionView: BaseView<AchievementCollectionViewModel>,
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .backgroundBlack
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.dataSource = self
         collectionView.delegate = self

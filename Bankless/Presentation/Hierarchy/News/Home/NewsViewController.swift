@@ -53,6 +53,7 @@ class NewsViewController: BaseViewController<NewsViewModel>,
             frame: .init(x: 0, y: 0, width: 0, height: contentInsets.bottom * 2)
         )
         listView.contentInsetAdjustmentBehavior = .never
+        listView.showsVerticalScrollIndicator = false
         
         listView.dataSource = self
         listView.delegate = self

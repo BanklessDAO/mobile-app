@@ -72,6 +72,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             frame: .init(x: 0, y: 0, width: 0, height: contentInsets.bottom * 2)
         )
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.dataSource = self
         tableView.delegate = self
