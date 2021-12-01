@@ -9,29 +9,35 @@ public final class AcademyQuery: GraphQLQuery {
   public let operationDefinition: String =
     """
     query Academy {
-      Courses {
+      historical {
         __typename
-        data {
+        BanklessAcademyV1 {
           __typename
-          slug
-          name
-          duration
-          difficulty
-          description
-          knowledgeRequirements
-          learnings
-          learningActions
-          poapEventId
-          poapImageLink
-          sections {
+          allCourses: Courses {
             __typename
-            type
-            title
-            content
-            quiz {
+            data {
               __typename
-              answers
-              rightAnswerNumber
+              slug
+              name
+              duration
+              difficulty
+              description
+              knowledgeRequirements
+              learnings
+              learningActions
+              poapEventId
+              poapImageLink
+              slides {
+                __typename
+                type
+                title
+                content
+                quiz {
+                  __typename
+                  answers
+                  rightAnswerNumber
+                }
+              }
             }
           }
         }
@@ -49,7 +55,7 @@ public final class AcademyQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Courses", type: .object(Course.selections)),
+        GraphQLField("historical", type: .nonNull(.object(Historical.selections))),
       ]
     }
 
@@ -59,26 +65,27 @@ public final class AcademyQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(courses: Course? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "Courses": courses.flatMap { (value: Course) -> ResultMap in value.resultMap }])
+    public init(historical: Historical) {
+      self.init(unsafeResultMap: ["__typename": "Query", "historical": historical.resultMap])
     }
 
-    public var courses: Course? {
+    /// Contains all the queries that operate on historical data that might not be up to date
+    public var historical: Historical {
       get {
-        return (resultMap["Courses"] as? ResultMap).flatMap { Course(unsafeResultMap: $0) }
+        return Historical(unsafeResultMap: resultMap["historical"]! as! ResultMap)
       }
       set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "Courses")
+        resultMap.updateValue(newValue.resultMap, forKey: "historical")
       }
     }
 
-    public struct Course: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["CourseResults"]
+    public struct Historical: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["historical"]
 
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("data", type: .nonNull(.list(.nonNull(.object(Datum.selections))))),
+          GraphQLField("BanklessAcademyV1", type: .nonNull(.object(BanklessAcademyV1.selections))),
         ]
       }
 
@@ -88,8 +95,8 @@ public final class AcademyQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(data: [Datum]) {
-        self.init(unsafeResultMap: ["__typename": "CourseResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+      public init(banklessAcademyV1: BanklessAcademyV1) {
+        self.init(unsafeResultMap: ["__typename": "historical", "BanklessAcademyV1": banklessAcademyV1.resultMap])
       }
 
       public var __typename: String {
@@ -101,32 +108,22 @@ public final class AcademyQuery: GraphQLQuery {
         }
       }
 
-      public var data: [Datum] {
+      public var banklessAcademyV1: BanklessAcademyV1 {
         get {
-          return (resultMap["data"] as! [ResultMap]).map { (value: ResultMap) -> Datum in Datum(unsafeResultMap: value) }
+          return BanklessAcademyV1(unsafeResultMap: resultMap["BanklessAcademyV1"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue.map { (value: Datum) -> ResultMap in value.resultMap }, forKey: "data")
+          resultMap.updateValue(newValue.resultMap, forKey: "BanklessAcademyV1")
         }
       }
 
-      public struct Datum: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["Course"]
+      public struct BanklessAcademyV1: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["BanklessAcademyV1"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("slug", type: .scalar(String.self)),
-            GraphQLField("name", type: .scalar(String.self)),
-            GraphQLField("duration", type: .scalar(Double.self)),
-            GraphQLField("difficulty", type: .scalar(String.self)),
-            GraphQLField("description", type: .scalar(String.self)),
-            GraphQLField("knowledgeRequirements", type: .scalar(String.self)),
-            GraphQLField("learnings", type: .scalar(String.self)),
-            GraphQLField("learningActions", type: .scalar(String.self)),
-            GraphQLField("poapEventId", type: .scalar(Double.self)),
-            GraphQLField("poapImageLink", type: .scalar(String.self)),
-            GraphQLField("sections", type: .list(.object(Section.selections))),
+            GraphQLField("Courses", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
           ]
         }
 
@@ -136,8 +133,8 @@ public final class AcademyQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, sections: [Section?]? = nil) {
-          self.init(unsafeResultMap: ["__typename": "Course", "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "sections": sections.flatMap { (value: [Section?]) -> [ResultMap?] in value.map { (value: Section?) -> ResultMap? in value.flatMap { (value: Section) -> ResultMap in value.resultMap } } }])
+        public init(allCourses: AllCourse) {
+          self.init(unsafeResultMap: ["__typename": "BanklessAcademyV1", "allCourses": allCourses.resultMap])
         }
 
         public var __typename: String {
@@ -149,115 +146,23 @@ public final class AcademyQuery: GraphQLQuery {
           }
         }
 
-        public var slug: String? {
+        /// Returns a list of Courses. Supports pagination and filtering.
+        public var allCourses: AllCourse {
           get {
-            return resultMap["slug"] as? String
+            return AllCourse(unsafeResultMap: resultMap["allCourses"]! as! ResultMap)
           }
           set {
-            resultMap.updateValue(newValue, forKey: "slug")
+            resultMap.updateValue(newValue.resultMap, forKey: "allCourses")
           }
         }
 
-        public var name: String? {
-          get {
-            return resultMap["name"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "name")
-          }
-        }
-
-        public var duration: Double? {
-          get {
-            return resultMap["duration"] as? Double
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "duration")
-          }
-        }
-
-        public var difficulty: String? {
-          get {
-            return resultMap["difficulty"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "difficulty")
-          }
-        }
-
-        public var description: String? {
-          get {
-            return resultMap["description"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "description")
-          }
-        }
-
-        public var knowledgeRequirements: String? {
-          get {
-            return resultMap["knowledgeRequirements"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "knowledgeRequirements")
-          }
-        }
-
-        public var learnings: String? {
-          get {
-            return resultMap["learnings"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "learnings")
-          }
-        }
-
-        public var learningActions: String? {
-          get {
-            return resultMap["learningActions"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "learningActions")
-          }
-        }
-
-        public var poapEventId: Double? {
-          get {
-            return resultMap["poapEventId"] as? Double
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "poapEventId")
-          }
-        }
-
-        public var poapImageLink: String? {
-          get {
-            return resultMap["poapImageLink"] as? String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "poapImageLink")
-          }
-        }
-
-        public var sections: [Section?]? {
-          get {
-            return (resultMap["sections"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Section?] in value.map { (value: ResultMap?) -> Section? in value.flatMap { (value: ResultMap) -> Section in Section(unsafeResultMap: value) } } }
-          }
-          set {
-            resultMap.updateValue(newValue.flatMap { (value: [Section?]) -> [ResultMap?] in value.map { (value: Section?) -> ResultMap? in value.flatMap { (value: Section) -> ResultMap in value.resultMap } } }, forKey: "sections")
-          }
-        }
-
-        public struct Section: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["Section"]
+        public struct AllCourse: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["CourseResults"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("type", type: .scalar(String.self)),
-              GraphQLField("title", type: .scalar(String.self)),
-              GraphQLField("content", type: .scalar(String.self)),
-              GraphQLField("quiz", type: .object(Quiz.selections)),
+              GraphQLField("data", type: .nonNull(.list(.nonNull(.object(Datum.selections))))),
             ]
           }
 
@@ -267,8 +172,8 @@ public final class AcademyQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(type: String? = nil, title: String? = nil, content: String? = nil, quiz: Quiz? = nil) {
-            self.init(unsafeResultMap: ["__typename": "Section", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
+          public init(data: [Datum]) {
+            self.init(unsafeResultMap: ["__typename": "CourseResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -280,50 +185,33 @@ public final class AcademyQuery: GraphQLQuery {
             }
           }
 
-          public var type: String? {
+          /// Contains the results of the query.
+          public var data: [Datum] {
             get {
-              return resultMap["type"] as? String
+              return (resultMap["data"] as! [ResultMap]).map { (value: ResultMap) -> Datum in Datum(unsafeResultMap: value) }
             }
             set {
-              resultMap.updateValue(newValue, forKey: "type")
+              resultMap.updateValue(newValue.map { (value: Datum) -> ResultMap in value.resultMap }, forKey: "data")
             }
           }
 
-          public var title: String? {
-            get {
-              return resultMap["title"] as? String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "title")
-            }
-          }
-
-          public var content: String? {
-            get {
-              return resultMap["content"] as? String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "content")
-            }
-          }
-
-          public var quiz: Quiz? {
-            get {
-              return (resultMap["quiz"] as? ResultMap).flatMap { Quiz(unsafeResultMap: $0) }
-            }
-            set {
-              resultMap.updateValue(newValue?.resultMap, forKey: "quiz")
-            }
-          }
-
-          public struct Quiz: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Quiz"]
+          public struct Datum: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["Course"]
 
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("answers", type: .list(.scalar(String.self))),
-                GraphQLField("rightAnswerNumber", type: .scalar(Double.self)),
+                GraphQLField("slug", type: .scalar(String.self)),
+                GraphQLField("name", type: .scalar(String.self)),
+                GraphQLField("duration", type: .scalar(Double.self)),
+                GraphQLField("difficulty", type: .scalar(String.self)),
+                GraphQLField("description", type: .scalar(String.self)),
+                GraphQLField("knowledgeRequirements", type: .scalar(String.self)),
+                GraphQLField("learnings", type: .scalar(String.self)),
+                GraphQLField("learningActions", type: .scalar(String.self)),
+                GraphQLField("poapEventId", type: .scalar(Double.self)),
+                GraphQLField("poapImageLink", type: .scalar(String.self)),
+                GraphQLField("slides", type: .list(.object(Slide.selections))),
               ]
             }
 
@@ -333,8 +221,8 @@ public final class AcademyQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Quiz", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
+            public init(slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
+              self.init(unsafeResultMap: ["__typename": "Course", "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
             }
 
             public var __typename: String {
@@ -346,21 +234,220 @@ public final class AcademyQuery: GraphQLQuery {
               }
             }
 
-            public var answers: [String?]? {
+            public var slug: String? {
               get {
-                return resultMap["answers"] as? [String?]
+                return resultMap["slug"] as? String
               }
               set {
-                resultMap.updateValue(newValue, forKey: "answers")
+                resultMap.updateValue(newValue, forKey: "slug")
               }
             }
 
-            public var rightAnswerNumber: Double? {
+            public var name: String? {
               get {
-                return resultMap["rightAnswerNumber"] as? Double
+                return resultMap["name"] as? String
               }
               set {
-                resultMap.updateValue(newValue, forKey: "rightAnswerNumber")
+                resultMap.updateValue(newValue, forKey: "name")
+              }
+            }
+
+            public var duration: Double? {
+              get {
+                return resultMap["duration"] as? Double
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "duration")
+              }
+            }
+
+            public var difficulty: String? {
+              get {
+                return resultMap["difficulty"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "difficulty")
+              }
+            }
+
+            public var description: String? {
+              get {
+                return resultMap["description"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "description")
+              }
+            }
+
+            public var knowledgeRequirements: String? {
+              get {
+                return resultMap["knowledgeRequirements"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "knowledgeRequirements")
+              }
+            }
+
+            public var learnings: String? {
+              get {
+                return resultMap["learnings"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "learnings")
+              }
+            }
+
+            public var learningActions: String? {
+              get {
+                return resultMap["learningActions"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "learningActions")
+              }
+            }
+
+            public var poapEventId: Double? {
+              get {
+                return resultMap["poapEventId"] as? Double
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "poapEventId")
+              }
+            }
+
+            public var poapImageLink: String? {
+              get {
+                return resultMap["poapImageLink"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "poapImageLink")
+              }
+            }
+
+            public var slides: [Slide?]? {
+              get {
+                return (resultMap["slides"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Slide?] in value.map { (value: ResultMap?) -> Slide? in value.flatMap { (value: ResultMap) -> Slide in Slide(unsafeResultMap: value) } } }
+              }
+              set {
+                resultMap.updateValue(newValue.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }, forKey: "slides")
+              }
+            }
+
+            public struct Slide: GraphQLSelectionSet {
+              public static let possibleTypes: [String] = ["Slide"]
+
+              public static var selections: [GraphQLSelection] {
+                return [
+                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("type", type: .scalar(String.self)),
+                  GraphQLField("title", type: .scalar(String.self)),
+                  GraphQLField("content", type: .scalar(String.self)),
+                  GraphQLField("quiz", type: .object(Quiz.selections)),
+                ]
+              }
+
+              public private(set) var resultMap: ResultMap
+
+              public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+              }
+
+              public init(type: String? = nil, title: String? = nil, content: String? = nil, quiz: Quiz? = nil) {
+                self.init(unsafeResultMap: ["__typename": "Slide", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
+              }
+
+              public var __typename: String {
+                get {
+                  return resultMap["__typename"]! as! String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "__typename")
+                }
+              }
+
+              public var type: String? {
+                get {
+                  return resultMap["type"] as? String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "type")
+                }
+              }
+
+              public var title: String? {
+                get {
+                  return resultMap["title"] as? String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "title")
+                }
+              }
+
+              public var content: String? {
+                get {
+                  return resultMap["content"] as? String
+                }
+                set {
+                  resultMap.updateValue(newValue, forKey: "content")
+                }
+              }
+
+              public var quiz: Quiz? {
+                get {
+                  return (resultMap["quiz"] as? ResultMap).flatMap { Quiz(unsafeResultMap: $0) }
+                }
+                set {
+                  resultMap.updateValue(newValue?.resultMap, forKey: "quiz")
+                }
+              }
+
+              public struct Quiz: GraphQLSelectionSet {
+                public static let possibleTypes: [String] = ["Quiz"]
+
+                public static var selections: [GraphQLSelection] {
+                  return [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("answers", type: .list(.scalar(String.self))),
+                    GraphQLField("rightAnswerNumber", type: .scalar(Double.self)),
+                  ]
+                }
+
+                public private(set) var resultMap: ResultMap
+
+                public init(unsafeResultMap: ResultMap) {
+                  self.resultMap = unsafeResultMap
+                }
+
+                public init(answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "Quiz", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
+                }
+
+                public var __typename: String {
+                  get {
+                    return resultMap["__typename"]! as! String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                public var answers: [String?]? {
+                  get {
+                    return resultMap["answers"] as? [String?]
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "answers")
+                  }
+                }
+
+                public var rightAnswerNumber: Double? {
+                  get {
+                    return resultMap["rightAnswerNumber"] as? Double
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "rightAnswerNumber")
+                  }
+                }
               }
             }
           }

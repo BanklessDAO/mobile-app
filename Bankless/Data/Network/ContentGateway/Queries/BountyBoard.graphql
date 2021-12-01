@@ -1,38 +1,49 @@
 query BountyBoard {
-  Bounties {
-    data {
-      id
-      title
-      season
-      description
-      # criteria
-      rewardAmount
-      # status
-    #   createdBy {
-    #     discordId
-    #     discordHandle
-    #   }
-    #   createdAt
-    #   dueAt
-    #   discordMessageId
-    #   status
-    #   claimedBy {
-    #     discordId
-    #     discordHandle
-    #   }
-    #   claimedAt
-    #   submittedBy {
-    #     discordId
-    #     discordHandle
-    #   }
-    #   submittedAt
-    #   submissionNotes
-    #   submissionUrl
-    #   reviewedBy {
-    #     discordId
-    #     discordHandle
-    #   }
-    #   reviewedAt
+  historical {
+    BanklessBountyBoardV1 {
+      allBounties: Bounties {
+        data {
+          id
+          title
+          season
+          description
+          criteria
+          reward {
+            currency
+            scale
+            amount
+          }
+          status
+          createdBy {
+            discordHandle
+            discordId
+          }
+          createdAt
+          dueAt
+          discordMessageId
+          statusHistory {
+            setAt
+            status
+          }
+          claimedBy {
+            discordHandle
+            discordId
+          }
+          claimedAt
+          submissionUrl
+          submissionNotes
+          submittedBy {
+            discordHandle
+            discordId
+          }
+          submittedAt
+          reviewedBy {
+            discordHandle
+            discordId
+          }
+          reviewedAt
+        }
+      }
     }
   }
 }

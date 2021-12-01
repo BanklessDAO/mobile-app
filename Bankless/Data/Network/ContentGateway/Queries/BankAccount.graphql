@@ -1,0 +1,37 @@
+query BankAccount($ethAddress: String) {
+  historical {
+    BanklessTokenV1 {
+      myAccount: BANKAccounts(where: {
+        id: { equals: $ethAddress }
+       }) {
+        data {
+          id
+          balance
+          lastTransactionExecutedAt
+        }
+      }
+      fromTransfers: BANKTransfers(where: {
+        fromId: {
+          equals: $ethAddress
+        }
+      }) {
+        data {
+          fromId
+          toId
+          value
+        }
+      }
+      toTransfers: BANKTransfers(where: {
+        toId: {
+          equals: $ethAddress
+        }
+      }) {
+        data {
+          fromId
+          toId
+          value
+        }
+      }
+    }
+  }
+}
