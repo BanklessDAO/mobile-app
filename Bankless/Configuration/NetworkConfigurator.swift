@@ -61,7 +61,7 @@ class NetworkConfigurator: Configurator {
             object.banklessService = banklessService
         }
         
-        let achievementsService = NetworkAchievementsService(contentGatewayClient: dataClient)
+        let achievementsService = NetworkAchievementsService(poapClient: dataClient)
         container.register { (object: inout AchievementsServiceDependency) in
             object.achievementsService = achievementsService
         }
@@ -71,7 +71,7 @@ class NetworkConfigurator: Configurator {
             object.timelineService = timelineService
         }
         
-        let newsService = MockNewsService()
+        let newsService = NetworkNewsService(contentGatewayClient: dataClient)
         container.register { (object: inout NewsServiceDependency) in
             object.newsService = newsService
         }
@@ -81,7 +81,10 @@ class NetworkConfigurator: Configurator {
             object.bountyBoardService = bountyBoardService
         }
         
-        let academyService = MockAcademyService()
+        let academyService = NetworkAcademyService(
+            contentGatewayClient: dataClient,
+            banklessAcademyClient: dataClient
+        )
         container.register { (object: inout AcademyServiceDependency) in
             object.academyService = academyService
         }

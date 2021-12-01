@@ -29,8 +29,8 @@ final class NetworkBanklessService: BanklessService {
         self.contentGatewayClient = contentGatewayClient
     }
     
-    func getDAOOwnership() -> Observable<DAOOwnershipResponse> {
-        return contentGatewayClient.getUserBANKAccount()
+    func getDAOOwnership(request: DAOOwnershipRequest) -> Observable<DAOOwnershipResponse> {
+        return contentGatewayClient.getUserBANKAccount(request: request)
             .map({ DAOOwnershipResponse(bankAccount: $0) })
             .take(1)
     }

@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 
 final class MockBanklessService: BanklessService {
-    func getDAOOwnership() -> Observable<DAOOwnershipResponse> {
+    func getDAOOwnership(request: DAOOwnershipRequest) -> Observable<DAOOwnershipResponse> {
         return .just(
             .init(
                 bankAccount: .generateMock()

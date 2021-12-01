@@ -21,7 +21,6 @@ import Foundation
 import RxSwift
 
 protocol BanklessAcademyClient: DataClient {
-    func getUserBANKAccount() -> Observable<BANKAccount>
     func claimPoap(request: BanklessAcademyClaimPOAPRequest) -> Completable
 }
 

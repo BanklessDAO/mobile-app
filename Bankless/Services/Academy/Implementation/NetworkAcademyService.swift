@@ -21,16 +21,19 @@ import Foundation
 import RxSwift
 
 final class NetworkAcademyService: AcademyService {
+    private let contentGatewayClient: ContentGatewayClient
     private let banklessAcademyClient: BanklessAcademyClient
     
     init(
+        contentGatewayClient: ContentGatewayClient,
         banklessAcademyClient: BanklessAcademyClient
     ) {
+        self.contentGatewayClient = contentGatewayClient
         self.banklessAcademyClient = banklessAcademyClient
     }
     
     func listCourses() -> Observable<AcademyCourseListResponse> {
-        fatalError("not implemented")
+        return contentGatewayClient.getAcademyCourses().take(1)
     }
     
     func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable {

@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-14.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -18,14 +18,11 @@
     
 
 import Foundation
-import RxSwift
 
-final class MockAchievementsService: AchievementsService {
-    func getAchiements(request: AchievementsRequest) -> Observable<AchievementsResponse> {
-        return .just(
-            .init(
-                attendanceTokens: AttendanceToken.generateMocks(.random(in: 1 ... 10))
-            )
-        )
+struct AchievementsRequest {
+    let ethAddress: String
+    
+    internal init(ethAddress: String) {
+        self.ethAddress = ethAddress
     }
 }
