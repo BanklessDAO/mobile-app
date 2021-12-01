@@ -29,6 +29,7 @@ class MarkupView: BaseView<MarkupViewModel> {
     // MARK: - Properties -
     
     private var webViewSizeConstraints = ConstraintGroup()
+    private var content: String?
     
     // MARK: - Subviews -
     
@@ -43,6 +44,16 @@ class MarkupView: BaseView<MarkupViewModel> {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle -
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if let content = content {
+            webView.loadHTMLString(content, baseURL: nil)
+        }
     }
     
     // MARK: - Setup -
@@ -65,6 +76,7 @@ class MarkupView: BaseView<MarkupViewModel> {
         webView.scrollView.isScrollEnabled = false
         webView.backgroundColor = .backgroundBlack
         webView.isOpaque = false
+        webView.navigationDelegate = self
         addSubview(webView)
     }
     
@@ -75,14 +87,29 @@ class MarkupView: BaseView<MarkupViewModel> {
             content.top == view.top + contentInsets.top
             content.bottom == view.bottom - contentInsets.bottom
         }
+        
+        webView.scrollView.rx
+            .observe(CGSize.self, #keyPath(UIScrollView.contentSize))
+            .map({ return ($0?.height ?? 0) })
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] height in
+                guard let self = self else { return }
+                
+                constrain(
+                    self.webView, replace: self.webViewSizeConstraints
+                ) { content in
+                    content.height == height
+                }
+            })
+            .disposed(by: disposer)
     }
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         output.rawMarkup
             .drive(onNext: { [weak self] content in
+                self?.content = content
                 self?.webView.loadHTMLString(content, baseURL: nil)
-                self?.webView.navigationDelegate = self
             })
             .disposed(by: disposer)
     }
@@ -107,38 +134,5 @@ extension MarkupView: WKNavigationDelegate {
         } else {
             decisionHandler(.allow)
         }
-    }
-    
-    func webView(
-        _ webView: WKWebView,
-        didFinish navigation: WKNavigation!
-    ) {
-        webView.evaluateJavaScript(
-            "document.readyState",
-            completionHandler: { [weak self] result, error in
-                if result == nil || error != nil {
-                    return
-                }
-                
-                self?.webView.evaluateJavaScript(
-                    "document.body.offsetHeight",
-                    completionHandler: { result, error in
-                        guard let self = self else { return }
-                        
-                        if result == nil || error != nil {
-                            return
-                        }
-                        
-                        if let height = result as? CGFloat {
-                            constrain(
-                                self.webView, replace: self.webViewSizeConstraints
-                            ) { content in
-                                content.height == height
-                            }
-                        }
-                    }
-                )
-            }
-        )
     }
 }
