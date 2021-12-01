@@ -57,6 +57,7 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
     
     override func setUpSubviews() {
         backgroundColor = .backgroundBlack
+        selectionStyle = .none
         
         separatorInset = .init(
             top: 0,
