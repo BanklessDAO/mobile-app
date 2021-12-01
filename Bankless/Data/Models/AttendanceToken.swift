@@ -21,6 +21,43 @@ import Foundation
 
 struct AttendanceToken: Codable {
     let id: String
+    let ownerAddress: String
     let mintedAt: Date
     let imageUrl: URL
+    
+    init(id: String, ownerAddress: String, mintedAt: Date, imageUrl: URL) {
+        self.id = id
+        self.ownerAddress = ownerAddress
+        self.mintedAt = mintedAt
+        self.imageUrl = imageUrl
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try! decoder.container(keyedBy: AttendanceToken.CodingKey.self)
+        
+        self.id = try! container.decode(String.self, forKey: .tokenId)
+        self.ownerAddress = try! container.decode(String.self, forKey: .owner)
+        self.mintedAt = Date(
+            dateString: try! container.decode(String.self, forKey: .created),
+            format: "yyyy-MM-dd HH:mm:ss"
+        )
+        
+        let eventContainer = try! container
+            .nestedContainer(keyedBy: CodingKey.Event.self, forKey: .event)
+        
+        self.imageUrl = URL(string: try! eventContainer.decode(String.self, forKey: .image_url))!
+    }
+}
+
+extension AttendanceToken {
+    enum CodingKey: String, Swift.CodingKey {
+        case tokenId
+        case owner
+        case created
+        case event
+    
+        enum Event: String, Swift.CodingKey {
+            case image_url
+        }
+    }
 }

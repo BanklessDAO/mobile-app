@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-10-08.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,21 +19,10 @@
 
 import Foundation
 import RxSwift
-import Apollo
 
-class MultiSourceDataClient: DataClient {
-    let discordAPI: DiscordAPIProvider
-    let banklessAcademyAPI: BanklessAcademyAPIProvider
-    let poapAPI: PoapAPIProvider
-    let apollo: ApolloClient
-    
-    init(
-        contentGatewayAPIBaseURL: URL,
-        sessionStorage: SessionStorage
-    ) {
-        self.discordAPI = DiscordAPIProvider(sessionStorage: sessionStorage)
-        self.banklessAcademyAPI = BanklessAcademyAPIProvider(sessionStorage: sessionStorage)
-        self.poapAPI = PoapAPIProvider(sessionStorage: sessionStorage)
-        self.apollo = ApolloClient(url: contentGatewayAPIBaseURL)
-    }
+protocol PoapClient: DataClient {
+    func getPOAPCollection(request: POAPCollectionRequest) -> Observable<POAPCollectionResponse>
 }
+
+typealias POAPCollectionRequest = AchievementsRequest
+typealias POAPCollectionResponse = AchievementsResponse
