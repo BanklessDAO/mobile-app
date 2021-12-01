@@ -131,19 +131,13 @@ extension ObservableConvertibleType {
         /**
          No specific handle-able error identified
          */
-        if let error = error {
-            return DataError.raw(error)
-        }
-        
-        return error
+        return DataError.raw(moyaError)
     }
 }
 
 func catchClientError(
     from moyaError: MoyaError
 ) -> DataError? {
-    var error: DataError?
-    
     guard case let .statusCode(response) = moyaError, response.statusCode == 400 else {
         return nil
     }
@@ -153,7 +147,5 @@ func catchClientError(
      If the server returns an HTTP 400 error indicating that something should
      be different in the request — this function will be triggered.
      */
-    fatalError("client error code is undefined")
-    
-    return error
+    return DataError.raw(moyaError)
 }
