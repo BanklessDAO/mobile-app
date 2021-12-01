@@ -21,7 +21,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDependency {
+final class AchievementCollectionViewModel: BaseViewModel,
+                                            UserSettingsServiceDependency,
+                                            AchievementsServiceDependency
+{
     // MARK: - Input / Output -
     
     struct Input {
@@ -53,6 +56,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     
     // MARK: - Components -
     
+    var userSettingsService: UserSettingsService!
     var achievementsService: AchievementsService!
     
     // MARK: - Transformer -
@@ -90,12 +94,20 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     private func collectionItems(
         refreshInput: Driver<Void>
     ) -> Observable<AchievementsResponse> {
-        return refreshInput
+        let ethAddress = userSettingsService
+            .streamValue(for: .publicETHAddress)
+            .map({ $0 as? String })
+        
+        let inputTrigger = Observable
+            .combineLatest(refreshInput.asObservable(), ethAddress) { $1 }
+        
+        return inputTrigger
             .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<AchievementsResponse> in
+            .flatMapLatest({ [weak self] ethAddress -> Observable<AchievementsResponse> in
                 guard let self = self else { return .empty() }
                 
-                return self.achievementsService.getAchiements()
+                return self.achievementsService
+                    .getAchiements(request: .init(ethAddress: ethAddress!))
                     .handleError()
                     .trackActivity(self.activityTracker)
             })

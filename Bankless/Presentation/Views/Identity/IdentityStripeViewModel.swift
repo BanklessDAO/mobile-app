@@ -166,7 +166,7 @@ final class IdentityStripeViewModel: BaseViewModel,
                 let userString = identity.user?.handle
                     ?? IdentityStripeViewModel.placeholders.user
                 
-                let addressString = identity.address != nil
+                let addressString = identity.address?.isValidEVMAddress ?? false
                 ? String(identity.address![
                     String.Index(utf16Offset: 0, in: identity.address!)
                     ..< String.Index(utf16Offset: 4, in: identity.address!)
@@ -310,7 +310,7 @@ final class IdentityStripeViewModel: BaseViewModel,
                     
                 case .publicETHAddress:
                     return self.ethereumPublicAddressInput()
-                        .filter({ $0 != nil }).map({ $0! })
+                        .map({ ($0?.isValidEVMAddress ?? false) ? $0 : nil })
                         .flatMap({ [weak self] newAddress in
                             self?.userSettingsService
                                 .setValue(newAddress, for: .publicETHAddress)

@@ -119,6 +119,10 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         
+        output.isAnonymous
+            .map({ !$0 })
+            .drive(achievementsButton.rx.isEnabled)
+            .disposed(by: disposer)
         output.balance.drive(balanceTagView.rx.text).disposed(by: disposer)
         output.achievementImageURLs
             .drive(onNext: { [weak self] URLs in

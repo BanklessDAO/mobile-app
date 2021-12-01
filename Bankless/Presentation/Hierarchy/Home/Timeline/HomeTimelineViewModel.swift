@@ -22,6 +22,7 @@ import RxSwift
 import RxCocoa
 
 final class HomeTimelineViewModel: BaseViewModel,
+                                   UserSettingsServiceDependency,
                                    BanklessServiceDependency,
                                    AchievementsServiceDependency,
                                    TimelineServiceDependency
@@ -75,6 +76,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     // MARK: - Components -
     
+    var userSettingsService: UserSettingsService!
     var banklessService: BanklessService!
     var achievementsService: AchievementsService!
     var timelineService: TimelineService!
@@ -167,48 +169,54 @@ final class HomeTimelineViewModel: BaseViewModel,
     private func gaugeClusterViewModel(
         refreshInput: Driver<Void>
     ) -> Observable<GaugeClusterViewModel> {
-        let bankAccount = daoOwnership(refreshInput: refreshInput)
-            .map({ $0.bankAccount })
-        let attendanceTokens = achievements(refreshInput: refreshInput)
-            .map({ $0.attendanceTokens })
+        let ethAddress = userSettingsService
+            .streamValue(for: .publicETHAddress)
+            .map({ $0 as? String })
         
-        return .combineLatest(
-            bankAccount,
-            attendanceTokens
-        ) { bankAccount, attendanceTokens in
-            return GaugeClusterViewModel(
-                bankAccount: bankAccount,
-                attendanceTokens: attendanceTokens
-            )
-        }
+        let inputTrigger = Observable
+            .combineLatest(refreshInput.asObservable(), ethAddress) { $1 }
+        
+        return inputTrigger
+            .flatMap({ [weak self] ethAddress -> Observable<GaugeClusterViewModel> in
+                guard let self = self else { return .empty() }
+                
+                guard let ethAddress = ethAddress else {
+                    return .just(GaugeClusterViewModel(bankAccount: nil, attendanceTokens: nil))
+                }
+                
+                let bankAccount = self.daoOwnership(for: ethAddress)
+                    .map({ $0.bankAccount })
+                let attendanceTokens = self.achievements(for: ethAddress)
+                    .map({ $0.attendanceTokens })
+                
+                return .combineLatest(
+                    bankAccount,
+                    attendanceTokens
+                ) { bankAccount, attendanceTokens in
+                    return GaugeClusterViewModel(
+                        bankAccount: bankAccount,
+                        attendanceTokens: attendanceTokens
+                    ) 
+                }
+            })
     }
     
     private func daoOwnership(
-        refreshInput: Driver<Void>
+        for ethAddress: String
     ) -> Observable<DAOOwnershipResponse> {
-        return refreshInput
-            .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<DAOOwnershipResponse> in
-                guard let self = self else { return .empty() }
-
-                return self.banklessService.getDAOOwnership()
-                    .handleError()
-                    .trackActivity(self.activityTracker)
-            })
+        return self.banklessService
+            .getDAOOwnership(request: .init(ethAddress: ethAddress))
+            .handleError()
+            .trackActivity(self.activityTracker)
     }
     
     private func achievements(
-        refreshInput: Driver<Void>
+        for ethAddress: String
     ) -> Observable<AchievementsResponse> {
-        return refreshInput
-            .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<AchievementsResponse> in
-                guard let self = self else { return .empty() }
-                
-                return self.achievementsService.getAchiements()
-                    .handleError()
-                    .trackActivity(self.activityTracker)
-            })
+        return self.achievementsService
+            .getAchiements(request: .init(ethAddress: ethAddress))
+            .handleError()
+            .trackActivity(self.activityTracker)
     }
     
     // MARK: - Timeline -
@@ -225,7 +233,6 @@ final class HomeTimelineViewModel: BaseViewModel,
                     .handleError()
                     .trackActivity(self.activityTracker)
             })
-            .debug()
     }
     
     // MARK: - Selection -
