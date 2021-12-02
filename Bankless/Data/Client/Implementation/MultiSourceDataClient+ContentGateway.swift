@@ -191,6 +191,15 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         rawValue: section!.type!.lowercased()
                                     )!
                                     
+                                    let quiz = section!.quiz != nil
+                                    ? AcademyCourse.Section.Quiz(
+                                        id: UUID().uuidString,
+                                        answers: section!.quiz!.answers!.compactMap({ $0 }),
+                                        rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
+                                        - 1
+                                    )
+                                    : nil
+                                    
                                     return AcademyCourse.Section(
                                         id: UUID().uuidString,
                                         type: type,
@@ -198,7 +207,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         content: type == .learn
                                         ? section!.content!
                                         : nil,
-                                        quiz: nil,
+                                        quiz: quiz,
                                         component: nil,
                                         poapImageLink: type == .poap
                                         ? URL(string: course.poapImageLink!)!
