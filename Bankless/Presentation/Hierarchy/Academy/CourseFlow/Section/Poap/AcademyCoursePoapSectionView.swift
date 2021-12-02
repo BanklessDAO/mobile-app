@@ -31,17 +31,17 @@ class AcademyCoursePoapSectionView: BaseView<AcademyCoursePoapSectionViewModel>,
     
     private static let imageToViewWidthRatio: CGFloat = 0.5
     private static let title = NSLocalizedString(
-        "acedemy.course.section.poap.title",
+        "academy.course.section.poap.title",
         value: "Collect your POAP",
         comment: ""
     )
     private static let subtitle = NSLocalizedString(
-        "acedemy.course.section.poap.subtitle",
+        "academy.course.section.poap.subtitle",
         value: "You've completed the course! Collect your POAP to show off.",
         comment: ""
     )
     private static let claimActionTitle = NSLocalizedString(
-        "acedemy.course.section.poap.action.claim.title",
+        "academy.course.section.poap.action.claim.title",
         value: "Claim POAP",
         comment: ""
     )
@@ -124,28 +124,28 @@ class AcademyCoursePoapSectionView: BaseView<AcademyCoursePoapSectionViewModel>,
         
         constrain(poapImageView, containerView) { image, view in
             image.centerX == view.centerX
-            image.top == view.top + contentInsets.top
+            image.top == view.top + contentInsets.top * 2
             image.width == view.width * AcademyCoursePoapSectionView.imageToViewWidthRatio
             image.height == image.width
         }
         
         constrain(titleLabel, poapImageView, containerView) { title, image, view in
             title.top == image.bottom + contentInsets.bottom
-            title.left == view.left + contentInsets.left
-            title.right == view.right - contentInsets.right
+            title.left == view.left + contentInsets.left * 2
+            title.right == view.right - contentInsets.right * 2
         }
         
         constrain(subtitleLabel, titleLabel, containerView) { subtitle, title, view in
             subtitle.top == title.bottom + contentInsets.bottom
-            subtitle.left == view.left + contentInsets.left
-            subtitle.right == view.right - contentInsets.right
+            subtitle.left == view.left + contentInsets.left * 2
+            subtitle.right == view.right - contentInsets.right * 2
         }
         
         constrain(actionButton, subtitleLabel, containerView) { button, subtitle, view in
             button.top == subtitle.bottom + contentInsets.bottom
             button.centerX == view.centerX
             button.height == AcademyCoursePoapSectionView.buttonHeight
-            button.bottom == view.bottom - contentInsets.bottom
+            button.bottom == view.bottom - contentInsets.bottom * 2
         }
     }
     

@@ -58,4 +58,3 @@ final class AcademyCoursePoapSectionViewModel: BaseViewModel, AcademyCourseSecti
         )
     }
 }
-
