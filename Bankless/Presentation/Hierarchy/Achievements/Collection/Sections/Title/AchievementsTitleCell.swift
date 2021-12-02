@@ -71,6 +71,12 @@ class AchievementsTitleCell: UICollectionViewCell {
         constrain(titleLabel, contentView) { (title, view) in
             title.height == Appearance.Text.Font.Header1.lineHeight
             title.edges == view.edges
+                .inseted(by: .init(
+                    top: Appearance.contentInsets.top * 2,
+                    left: Appearance.contentInsets.left * 2,
+                    bottom: Appearance.contentInsets.bottom,
+                    right: Appearance.contentInsets.right * 2
+                ))
         }
     }
 }

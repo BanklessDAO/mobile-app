@@ -22,6 +22,7 @@ import RxSwift
 import RxCocoa
 
 final class HomeTimelineViewModel: BaseViewModel,
+                                   UserSettingsServiceDependency,
                                    BanklessServiceDependency,
                                    AchievementsServiceDependency,
                                    TimelineServiceDependency
@@ -35,6 +36,8 @@ final class HomeTimelineViewModel: BaseViewModel,
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
+        let isAnonymous: Driver<Bool>
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
         let featuredNewsViewModel: Driver<FeaturedNewsViewModel>
         let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
@@ -57,6 +60,11 @@ final class HomeTimelineViewModel: BaseViewModel,
         "home.timeline.section.academy.title", value: "Academy", comment: ""
     )
     
+    // MARK: - Properties -
+    
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
+    
     // MARK: - Events -
     
     let expandNewsTransitionRequested = PublishRelay<Void>()
@@ -69,6 +77,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     // MARK: - Components -
     
+    var userSettingsService: UserSettingsService!
     var banklessService: BanklessService!
     var achievementsService: AchievementsService!
     var timelineService: TimelineService!
@@ -76,7 +85,14 @@ final class HomeTimelineViewModel: BaseViewModel,
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let refreshTrigger = Driver<Void>.just(())
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
+        
+        let ethAddress = userSettingsService
+            .streamValue(for: .publicETHAddress)
+            .map({ $0 as? String })
+            .share(replay: 1)
         
         let timelineItems = self.timelineItems(refreshInput: refreshTrigger).share()
         
@@ -113,6 +129,7 @@ final class HomeTimelineViewModel: BaseViewModel,
         
         let featuredNewsViewModel = timelineItems
             .map({ ($0.newsletterItems + $0.podcastItems) as [NewsItemPreviewBehaviour] })
+            .map({ $0.sorted(by: { $0.date > $1.date }) })
             .map({ items -> FeaturedNewsViewModel in
                 let viewModel = FeaturedNewsViewModel(newsItems: items)
                 
@@ -143,7 +160,13 @@ final class HomeTimelineViewModel: BaseViewModel,
         bindSelection(input: input.selection)
         
         return Output(
-            gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
+            isRefreshing: activityTracker.asDriver(),
+            isAnonymous: ethAddress
+                .map({ $0?.isValidEVMAddress ?? false })
+                .asDriver(onErrorDriveWith: .empty()),
+            gaugeClusterViewModel: gaugeClusterViewModel(
+                refreshInput: refreshTrigger, ethAddress: ethAddress
+            )
                 .asDriver(onErrorDriveWith: .empty()),
             featuredNewsViewModel: featuredNewsViewModel.asDriver(onErrorDriveWith: .empty()),
             bountiesSectionHeaderViewModel: .just(bountiesHeaderVM),
@@ -156,46 +179,53 @@ final class HomeTimelineViewModel: BaseViewModel,
     // MARK: - Gauge cluster -
     
     private func gaugeClusterViewModel(
-        refreshInput: Driver<Void>
+        refreshInput: Driver<Void>,
+        ethAddress: Observable<String?>
     ) -> Observable<GaugeClusterViewModel> {
-        let bankAccount = daoOwnership(refreshInput: refreshInput)
-            .map({ $0.bankAccount })
-        let attendanceTokens = achievements(refreshInput: refreshInput)
-            .map({ $0.attendanceTokens })
+        let inputTrigger = Observable
+            .combineLatest(refreshInput.asObservable(), ethAddress) { $1 }
         
-        return .combineLatest(
-            bankAccount,
-            attendanceTokens
-        ) { bankAccount, attendanceTokens in
-            return GaugeClusterViewModel(
-                bankAccount: bankAccount,
-                attendanceTokens: attendanceTokens
-            )
-        }
+        return inputTrigger
+            .flatMap({ [weak self] ethAddress -> Observable<GaugeClusterViewModel> in
+                guard let self = self else { return .empty() }
+                
+                guard let ethAddress = ethAddress else {
+                    return .just(GaugeClusterViewModel(bankAccount: nil, attendanceTokens: nil))
+                }
+                
+                let bankAccount = self.daoOwnership(for: ethAddress)
+                    .map({ $0.bankAccount })
+                let attendanceTokens = self.achievements(for: ethAddress)
+                    .map({ $0.attendanceTokens })
+                
+                return .combineLatest(
+                    bankAccount,
+                    attendanceTokens
+                ) { bankAccount, attendanceTokens in
+                    return GaugeClusterViewModel(
+                        bankAccount: bankAccount,
+                        attendanceTokens: attendanceTokens
+                    ) 
+                }
+            })
     }
     
     private func daoOwnership(
-        refreshInput: Driver<Void>
+        for ethAddress: String
     ) -> Observable<DAOOwnershipResponse> {
-        return refreshInput
-            .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<DAOOwnershipResponse> in
-                guard let self = self else { return .empty() }
-
-                return self.banklessService.getDAOOwnership()
-            })
+        return self.banklessService
+            .getDAOOwnership(request: .init(ethAddress: ethAddress))
+            .handleError()
+            .trackActivity(self.activityTracker)
     }
     
     private func achievements(
-        refreshInput: Driver<Void>
+        for ethAddress: String
     ) -> Observable<AchievementsResponse> {
-        return refreshInput
-            .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<AchievementsResponse> in
-                guard let self = self else { return .empty() }
-                
-                return self.achievementsService.getAchiements()
-            })
+        return self.achievementsService
+            .getAchiements(request: .init(ethAddress: ethAddress))
+            .handleError()
+            .trackActivity(self.activityTracker)
     }
     
     // MARK: - Timeline -
@@ -209,6 +239,8 @@ final class HomeTimelineViewModel: BaseViewModel,
                 guard let self = self else { return .empty() }
                 
                 return self.timelineService.getTimelineItems()
+                    .handleError()
+                    .trackActivity(self.activityTracker)
             })
     }
     

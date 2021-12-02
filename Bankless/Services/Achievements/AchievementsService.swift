@@ -21,5 +21,5 @@ import Foundation
 import RxSwift
 
 protocol AchievementsService {
-    func getAchiements() -> Observable<AchievementsResponse>
+    func getAchiements(request: AchievementsRequest) -> Observable<AchievementsResponse>
 }

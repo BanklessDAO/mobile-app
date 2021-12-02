@@ -47,6 +47,14 @@ class FeaturedNewsItemCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemView.disposer = DisposeBag()
+        itemView.viewModel?.disposer = DisposeBag()
+    }
+    
     // MARK: - Setters -
     
     func set(itemView: FeaturedNewsItemView) {

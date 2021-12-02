@@ -71,10 +71,11 @@ class HomeViewModel: BaseViewModel, AuthServiceDependency, IdentityServiceDepend
     private func ensureDiscordAccess() -> Completable {
         return authService.getDiscordAccess()
             .asObservable()
+            .handleError()
             .do(onCompleted: {
                 NotificationCenter.default
                     .post(
-                        name: NotificationEvent.discordAccessHasBeenGranted.notificationName,
+                        name: NotificationEvent.discordAccessHasChanged.notificationName,
                         object: nil
                     )
             })

@@ -77,6 +77,9 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
         featuredNewsCollectionFlowLayout.estimatedItemSize
             = UICollectionViewFlowLayout.automaticSize
         featuredNewsCollectionFlowLayout.minimumLineSpacing = 10
+        featuredNewsCollectionFlowLayout.sectionInset = .init(
+            top: 0, left: 12, bottom: 0, right: 12
+        )
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         contentView.addSubview(collectionView)
@@ -85,8 +88,8 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     override func setUpConstraints() {
         constrain(titleLabel, contentView) { (title, view) in
             title.top == view.top + Appearance.contentInsets.top
-            title.left == view.left + Appearance.contentInsets.left
-            title.right == view.right - Appearance.contentInsets.right
+            title.left == view.left + Appearance.contentInsets.left * 2
+            title.right == view.right - Appearance.contentInsets.right * 2
             title.height == Appearance.Text.Font.Header1.lineHeight
         }
         

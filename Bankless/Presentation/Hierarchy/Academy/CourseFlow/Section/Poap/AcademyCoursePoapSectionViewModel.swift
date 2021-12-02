@@ -37,6 +37,10 @@ final class AcademyCoursePoapSectionViewModel: BaseViewModel, AcademyCourseSecti
     let section: AcademyCourse.Section
     let isLocking: BehaviorRelay<Bool> = .init(value: false)
     
+    // MARK: - Events -
+    
+    let claimPoapRequest = PublishRelay<Void>()
+    
     // MARK: - Initializers -
     
     init(section: AcademyCourse.Section, container: DependencyContainer? = nil) {
@@ -47,9 +51,10 @@ final class AcademyCoursePoapSectionViewModel: BaseViewModel, AcademyCourseSecti
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
+        input.claim.asObservable().bind(to: claimPoapRequest).disposed(by: disposer)
+        
         return Output(
             poapImageURL: .just(section.poapImageLink!)
         )
     }
 }
-

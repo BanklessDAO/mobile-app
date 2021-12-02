@@ -20,23 +20,31 @@
 import Foundation
 import UIKit
 
-final class AchievementsCoordinator {
+final class AchievementsCoordinator: Coordinator {
     private let container: DependencyContainer
     
-    var initialViewController: UIViewController!
+    weak var initialViewController: AchievementsViewController!
     
     init(
         container: DependencyContainer
     ) {
         self.container = container
-        initialViewController = createAchievementsViewController()
     }
     
-    private func createAchievementsViewController() -> UIViewController {
+    func start(from navigationController: UINavigationController) {
+        let viewController = createAchievementsViewController()
+        navigationController.pushViewController(viewController, animated: true)
+        
+        initialViewController = viewController
+    }
+    
+    private func createAchievementsViewController() -> AchievementsViewController {
         let viewModel = AchievementsViewModel(container: container)
         
-        let viewController = AchievementsViewController.init(nibName: nil, bundle: nil)
+        let viewController = AchievementsViewController(nibName: nil, bundle: nil)
         viewController.set(viewModel: viewModel)
+        viewController.coordinator = self
+        
         return viewController
     }
 }

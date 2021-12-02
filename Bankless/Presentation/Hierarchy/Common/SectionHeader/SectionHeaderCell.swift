@@ -57,6 +57,7 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
     
     override func setUpSubviews() {
         backgroundColor = .backgroundBlack
+        selectionStyle = .none
         
         separatorInset = .init(
             top: 0,
@@ -81,9 +82,9 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
             title.edges == view.edges.inseted(
                 by: .init(
                     top: Appearance.contentInsets.top * 2,
-                    left: Appearance.contentInsets.left,
+                    left: Appearance.contentInsets.left * 2,
                     bottom: Appearance.contentInsets.bottom,
-                    right: Appearance.contentInsets.right
+                    right: Appearance.contentInsets.right * 2
                 )
             )
         }
@@ -91,7 +92,7 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
         constrain(expandButton, titleLabel, contentView) { expand, title, view in
             expand.height == title.height
             expand.centerY == title.centerY
-            expand.right == view.right - Appearance.contentInsets.right
+            expand.right == view.right - Appearance.contentInsets.right * 2
             expand.width == 0 ~ .defaultLow
         }
     }

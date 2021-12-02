@@ -148,6 +148,7 @@ extension AttendanceToken: Mock {
     static func generateMock() -> AttendanceToken {
         return .init(
             id: UUID().uuidString,
+            ownerAddress: UUID().uuidString,
             mintedAt: faker.date.backward(days: .random(in: 0 ... 1_000)),
             imageUrl: URL(
                 string: [
@@ -168,7 +169,8 @@ extension BANKAccount: Mock {
         return .init(
             address: "0x" + faker.lorem.characters(amount: 40),
             balance: randomERC20Amount(),
-            transactions: Transaction.generateMocks(.random(in: 10 ... 20))
+            transactions: Transaction.generateMocks(.random(in: 10 ... 20)),
+            lastTransactionTimestamp: faker.date.backward(days: .random(in: 1 ... 30))
         )
     }
 }
@@ -178,12 +180,7 @@ extension BANKAccount.Transaction: Mock {
         return .init(
             fromAddress: "0x" + faker.lorem.characters(amount: 40),
             toAddress: "0x" + faker.lorem.characters(amount: 40),
-            amount: randomERC20Amount(10 ... 500),
-            blockTimestamp: Int(
-                faker.date
-                    .backward(days: .random(in: 0 ... 1_000))
-                    .timeIntervalSince1970
-            )
+            amount: randomERC20Amount(10 ... 500)
         )
     }
 }

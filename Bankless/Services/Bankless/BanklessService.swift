@@ -21,5 +21,5 @@ import Foundation
 import RxSwift
 
 protocol BanklessService {
-    func getDAOOwnership() -> Observable<DAOOwnershipResponse>
+    func getDAOOwnership(request: DAOOwnershipRequest) -> Observable<DAOOwnershipResponse>
 }

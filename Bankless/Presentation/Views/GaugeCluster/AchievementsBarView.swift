@@ -31,7 +31,7 @@ class AchievementsBarView: UIView {
     private static let itemPadding: CGFloat = 5.0
     private static let placeholderMessage = NSLocalizedString(
         "achievements.event.bar.placeholder.message",
-        value: "Tap to learn more",
+        value: "0 Achievements",
         comment: ""
     )
     
@@ -112,8 +112,8 @@ class AchievementsBarView: UIView {
     // MARK: - Dynamic layout -
     
     private func resetAchievementsLayout() {
-        for subview in achievementsStackView.arrangedSubviews {
-            achievementsStackView.removeArrangedSubview(subview)
+        for subview in achievementsStackView.subviews {
+            subview.removeFromSuperview()
         }
         truncationLabel.text = ""
         

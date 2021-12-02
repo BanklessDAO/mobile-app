@@ -26,7 +26,7 @@ import Cartography
 class NavigationBar: BaseNavigationView {
     // MARK: - Constants -
     
-    private static let itemPadding: CGFloat = 20.0
+    private static let itemPadding: CGFloat = 0.0
     
     // MARK: - Properties -
     
@@ -79,10 +79,10 @@ class NavigationBar: BaseNavigationView {
     
     private func setUpConstraints() {
         constrain(stackView, self) { stack, view in
-            stack.left == view.left + Appearance.contentInsets.left
+            stack.left == view.left + Appearance.contentInsets.left * 2
             stack.top == view.top
             stack.bottom == view.bottom - Appearance.contentPaddings.bottom
-            stack.right == view.right - Appearance.contentInsets.left
+            stack.right == view.right - Appearance.contentInsets.left * 2
         }
     }
     

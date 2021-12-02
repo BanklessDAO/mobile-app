@@ -102,6 +102,30 @@ public enum Environment {
         return value
     }()
     
+    static let banklessAcademyAPIBaseURL: String = {
+        guard let value = Environment.infoDictionary["BANKLESS_ACADEMY_API_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let poapAPIBaseURL: String = {
+        guard let value = Environment.infoDictionary["POAP_API_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let sentryDSN: String = {
+        guard let value = Environment.infoDictionary["SENTRY_DSN"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
     fileprivate static let infoDictionary: [String: Any] = {
         guard let dict = Bundle.main.infoDictionary else {
             fatalError("Not found")

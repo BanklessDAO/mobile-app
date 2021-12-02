@@ -21,7 +21,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDependency {
+final class AchievementCollectionViewModel: BaseViewModel,
+                                            UserSettingsServiceDependency,
+                                            AchievementsServiceDependency
+{
     // MARK: - Input / Output -
     
     struct Input {
@@ -30,6 +33,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     }
     
     struct Output {
+        let isRefreshing: Driver<Bool>
         let title: Driver<String>
         let attendanceTokensSectionTitle: Driver<String>
         let attendanceTokenViewModels: Driver<[AttendanceTokenViewModel]>
@@ -45,14 +49,22 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
         "home.collection.section.attendance_tokens.title", value: "POAP Tokens", comment: ""
     )
     
+    // MARK: - Properties -
+    
+    private let activityTracker = ActivityTracker()
+    private let autorefresh = PublishRelay<Void>()
+    
     // MARK: - Components -
     
+    var userSettingsService: UserSettingsService!
     var achievementsService: AchievementsService!
     
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let refreshTrigger = Driver<Void>.just(())
+        let refreshTrigger = Driver
+            .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
+            .startWith(())
         
         let collectionItems = self.collectionItems(refreshInput: refreshTrigger).share()
         
@@ -67,6 +79,7 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
        bindSelection(input: input.selection)
         
         return Output(
+            isRefreshing: activityTracker.asDriver(),
             title: .just(AchievementCollectionViewModel.collectionTitle),
             attendanceTokensSectionTitle: .just(
                 AchievementCollectionViewModel.attendanceTokensSectionTitle
@@ -81,12 +94,22 @@ final class AchievementCollectionViewModel: BaseViewModel, AchievementsServiceDe
     private func collectionItems(
         refreshInput: Driver<Void>
     ) -> Observable<AchievementsResponse> {
-        return refreshInput
+        let ethAddress = userSettingsService
+            .streamValue(for: .publicETHAddress)
+            .map({ $0 as? String })
+        
+        let inputTrigger = Observable
+            .combineLatest(refreshInput.asObservable(), ethAddress) { $1 }
+        
+        return inputTrigger
             .asObservable()
-            .flatMapLatest({ [weak self] _ -> Observable<AchievementsResponse> in
+            .flatMapLatest({ [weak self] ethAddress -> Observable<AchievementsResponse> in
                 guard let self = self else { return .empty() }
                 
-                return self.achievementsService.getAchiements()
+                return self.achievementsService
+                    .getAchiements(request: .init(ethAddress: ethAddress!))
+                    .handleError()
+                    .trackActivity(self.activityTracker)
             })
     }
     

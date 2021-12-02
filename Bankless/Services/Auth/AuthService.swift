@@ -22,4 +22,5 @@ import RxSwift
 
 protocol AuthService {
     func getDiscordAccess() -> Completable
+    func terminateDiscordAccess() -> Completable
 }

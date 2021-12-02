@@ -30,6 +30,7 @@ final class GaugeClusterViewModel: BaseViewModel {
     }
     
     struct Output {
+        let isAnonymous: Driver<Bool>
         let balance: Driver<String>
         let lastTransaction: Driver<String>
         let achievementImageURLs: Driver<[URL]?>
@@ -52,6 +53,11 @@ final class GaugeClusterViewModel: BaseViewModel {
         )
     )
     private static let transactionStringFormats = (
+        generic: NSLocalizedString(
+            "bankless.token.transaction.sent.message",
+            value: "Last transaction: %@",
+            comment: ""
+        ),
         received: NSLocalizedString(
             "bankless.token.transaction.received.message",
             value: "Received %@ %@",
@@ -74,14 +80,14 @@ final class GaugeClusterViewModel: BaseViewModel {
     
     // MARK: - Data -
     
-    private let bankAccount: BANKAccount
-    private let attendanceTokens: [AttendanceToken]
+    private let bankAccount: BANKAccount?
+    private let attendanceTokens: [AttendanceToken]?
     
     // MARK: - Initializers -
     
     init(
-        bankAccount: BANKAccount,
-        attendanceTokens: [AttendanceToken]
+        bankAccount: BANKAccount?,
+        attendanceTokens: [AttendanceToken]?
     ) {
         self.bankAccount = bankAccount
         self.attendanceTokens = attendanceTokens
@@ -92,10 +98,12 @@ final class GaugeClusterViewModel: BaseViewModel {
     func transform(input: Input) -> Output {
         bind(tapAchievements: input.tapAchievements)
         
-        let attendanceTokenImages = attendanceTokens
+        let attendanceTokenImages = attendanceTokens?
             .map({ $0.imageUrl })
+            ?? []
         
         return Output(
+            isAnonymous: .just(bankAccount == nil),
             balance: balanceString().asDriver(onErrorDriveWith: .empty()),
             lastTransaction: lastTransactionString().asDriver(onErrorDriveWith: .empty()),
             achievementImageURLs: .just(attendanceTokenImages),
@@ -105,36 +113,29 @@ final class GaugeClusterViewModel: BaseViewModel {
     
     private func balanceString() -> Observable<String> {
         return .just(
-            bankAccount.amountString() + " " + GaugeClusterViewModel.defaultBalanceCurrency
+            (bankAccount?.amountString() ?? "0")
+            + " " + GaugeClusterViewModel.defaultBalanceCurrency
         )
     }
     
     private func lastTransactionString() -> Observable<String> {
-        guard let lastTransaction = bankAccount.transactions
-                .sorted(by: { $0.blockTimestamp > $1.blockTimestamp })
-                .first
+        guard let lastTransactionTimestamp = bankAccount?.lastTransactionTimestamp
         else {
             return .just(GaugeClusterViewModel.placeholderStrings.lastTransaction)
         }
         
-        let transactionStringFormat = lastTransaction.fromAddress == bankAccount.address
-            ? GaugeClusterViewModel.transactionStringFormats.sent
-            : GaugeClusterViewModel.transactionStringFormats.received
-        
-        let amountString = lastTransaction.amountString()
-            + " " + GaugeClusterViewModel.defaultBalanceCurrency
-        
-        let timeString = Date(
-            timeIntervalSince1970: TimeInterval(lastTransaction.blockTimestamp)
-        ).timeAgoSinceNow.lowercased()
+        let timeString = lastTransactionTimestamp.timeAgoSinceNow.lowercased()
         
         return .just(
-            String.localizedStringWithFormat(transactionStringFormat, amountString, timeString)
+            String.localizedStringWithFormat(
+                GaugeClusterViewModel.transactionStringFormats.generic,
+                timeString
+            )
         )
     }
     
     private func lastAchievementMessage() -> Observable<String> {
-        guard let lastAttendanceToken = attendanceTokens
+        guard let lastAttendanceToken = attendanceTokens?
                 .sorted(by: { $0.mintedAt > $1.mintedAt })
                 .first
         else {

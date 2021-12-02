@@ -28,14 +28,19 @@ extension MultiSourceDataClient {
         resultMapper: @escaping (Apollo.GraphQLResult<Q.Data>) -> Result<T, Error>
     ) -> Observable<T> where Q: Apollo.GraphQLQuery {
         return Observable<T>.create { [weak self] observer in
-            self?.apollo.fetch(query: apolloQuery) { result in
+            self?.apollo.fetch(
+                query: apolloQuery,
+                cachePolicy: .fetchIgnoringCacheData,
+                contextIdentifier: nil,
+                queue: .global(qos: .background)
+            ) { result in
                 switch result {
                     
                 case .success(let graphQLResult):
                     if let errors = graphQLResult.errors {
                         print(errors)
                         
-                        let genericError = DataError.generic(errors)
+                        let genericError = DataError.rawCollection(errors)
                         observer.onError(genericError)
                     }
                     
@@ -54,7 +59,7 @@ extension MultiSourceDataClient {
                 case .failure(let error):
                     print(error)
                     
-                    let genericError = DataError.generic([error])
+                    let genericError = DataError.rawCollection([error])
                     observer.onError(genericError)
                 }
             }

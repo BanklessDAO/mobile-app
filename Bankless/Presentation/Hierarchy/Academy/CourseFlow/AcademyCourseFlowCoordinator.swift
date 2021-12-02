@@ -61,6 +61,13 @@ final class AcademyCourseFlowCoordinator: Coordinator {
     }
     
     private func subscibeToEvents(in viewModel: AcademyCourseFlowViewModel) {
-        
+        viewModel.events.academyCourseCompletionRequest.asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                
+                _ = self.initialViewController.navigationController!
+                    .popToRootViewController(animated: true)
+            })
+            .disposed(by: initialViewController.disposer)
     }
 }

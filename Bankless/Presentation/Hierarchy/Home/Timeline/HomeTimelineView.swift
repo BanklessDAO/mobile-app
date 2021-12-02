@@ -27,14 +27,18 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
                               UITableViewDataSource,
                               UITableViewDelegate
 {
+    // MARK: - Constants -
+    
+    private static let tableViewResetScrollDelayInMilliseconds = 500
+    
     // MARK: - Properties -
     
-    let refreshTrigger = PublishRelay<Void>()
     private let sectionExpandButtonRelay = PublishRelay<Int>()
     
     // MARK: - Subviews -
     
     private(set) var tableView: UITableView!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - Source -
     
@@ -72,6 +76,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             frame: .init(x: 0, y: 0, width: 0, height: contentInsets.bottom * 2)
         )
         tableView.contentInsetAdjustmentBehavior = .never
+        tableView.showsVerticalScrollIndicator = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -101,6 +106,9 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             forCellReuseIdentifier: AcademyCourseListCell.reuseIdentifier
         )
         
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl)
+        
         addSubview(tableView)
     }
     
@@ -115,6 +123,14 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
+        
+        output.isAnonymous.distinctUntilChanged().skip(1)
+            .delay(.milliseconds(HomeTimelineView.tableViewResetScrollDelayInMilliseconds))
+            .drive(onNext: { [weak self] _ in
+                self?.tableView
+                .scrollToRow(at: .init(row: 0, section: 0), at: .top, animated: true) })
+            .disposed(by: disposer)
+        output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let bountiesOutput = Driver.combineLatest(
             output.bountiesSectionHeaderViewModel,
@@ -175,7 +191,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             .filter({ $0 != nil }).map({ $0! })
         
         return HomeTimelineViewModel.Input(
-            refresh: refreshTrigger.asDriver(onErrorDriveWith: .empty()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
             selection: selection.asDriver(),
             expandSection: sectionExpandButtonRelay.asDriver(onErrorDriveWith: .empty())
         )

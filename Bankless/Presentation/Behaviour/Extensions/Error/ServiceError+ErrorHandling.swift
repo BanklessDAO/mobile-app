@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-06.
+//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,20 @@
 
 import Foundation
 
-enum AuthError: Error {
-    case authRequest(Error)
-    case sessionExpired
+extension ServiceError: ErrorHandling, DisplayableError, ErrorLogging { }
+
+extension ServiceError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+            
+        case .unknown:
+            return NSLocalizedString(
+                "error.service.unknown.message",
+                value: "Unknown service error",
+                comment: ""
+            )
+        case .raw(let error):
+            return error.localizedDescription
+        }
+    }
 }

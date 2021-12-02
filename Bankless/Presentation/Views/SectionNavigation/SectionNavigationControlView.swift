@@ -38,7 +38,9 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
     // MARK: - Subviews -
     
     private var progressBarView: UIView!
+    private var prevNavIconView: UIImageView!
     private var prevNavButton: UIButton!
+    private var nextNavIconView: UIImageView!
     private var nextNavButton: UIButton!
     private var titleLabel: UILabel!
     
@@ -70,16 +72,26 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
         progressBarView.backgroundColor = .primaryRed.withAlphaComponent(0.3)
         addSubview(progressBarView)
         
+        prevNavIconView = UIImageView()
+        prevNavIconView.contentMode = .scaleAspectFit
+        prevNavIconView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        prevNavIconView.isHidden = true
+        prevNavIconView.image = SectionNavigationControlView.prevNavigationIcon
+        addSubview(prevNavIconView)
+        
         prevNavButton = UIButton(type: .custom)
-        prevNavButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         prevNavButton.isHidden = true
-        prevNavButton.setImage(SectionNavigationControlView.prevNavigationIcon, for: .normal)
         addSubview(prevNavButton)
         
+        nextNavIconView = UIImageView()
+        nextNavIconView.contentMode = .scaleAspectFit
+        nextNavIconView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        nextNavIconView.isHidden = true
+        nextNavIconView.image = SectionNavigationControlView.nextNavigationIcon
+        addSubview(nextNavIconView)
+        
         nextNavButton = UIButton(type: .custom)
-        nextNavButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         nextNavButton.isHidden = true
-        nextNavButton.setImage(SectionNavigationControlView.nextNavigationIcon, for: .normal)
         addSubview(nextNavButton)
         
         titleLabel = UILabel()
@@ -94,10 +106,22 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
             progress.left == view.left
         }
         
+        constrain(prevNavIconView, self) { prev, view in
+            prev.left == view.left + contentInsets.left
+            prev.top == view.top + contentInsets.top
+            prev.bottom == view.bottom - contentInsets.bottom
+        }
+        
         constrain(prevNavButton, self) { prev, view in
             prev.left == view.left + contentInsets.left
             prev.top == view.top + contentInsets.top
             prev.bottom == view.bottom - contentInsets.bottom
+        }
+        
+        constrain(nextNavIconView, self) { next, view in
+            next.right == view.right - contentInsets.right
+            next.top == view.top + contentInsets.top
+            next.bottom == view.bottom - contentInsets.bottom
         }
         
         constrain(nextNavButton, self) { next, view in
@@ -117,45 +141,59 @@ class SectionNavigationControlView: BaseView<SectionNavigationViewModel> {
             
         case .start:
             titleLabel.textAlignment = .left
+            prevNavIconView.isHidden = true
             prevNavButton.isHidden = true
+            nextNavIconView.isHidden = false
             nextNavButton.isHidden = false
             progressBarView.isHidden = true
             
             constrain(
-                titleLabel, nextNavButton, self, replace: dynamicConstraints
-            ) { title, next, view in
+                titleLabel, nextNavIconView, nextNavButton, self,
+                replace: dynamicConstraints
+            ) { title, next, nextBtn, view in
                 title.left == view.left + contentInsets.left
                 title.right == next.left - contentPaddings.left
+                nextBtn.width == view.width
             }
         case .middle(let progress):
             titleLabel.textAlignment = .center
             
             let validProgress = progress > 1.0 ? 1.0 : progress
             
+            prevNavIconView.isHidden = false
             prevNavButton.isHidden = false
+            nextNavIconView.isHidden = false
             nextNavButton.isHidden = false
             progressBarView.isHidden = false
             
             constrain(
-                progressBarView, titleLabel, prevNavButton, nextNavButton, self,
+                progressBarView, titleLabel,
+                prevNavIconView, prevNavButton, nextNavIconView, nextNavButton,
+                self,
                 replace: dynamicConstraints
-            ) { progress, title, prev, next, view in
+            ) { progress, title, prev, prevBtn, next, nextBtn, view in
                 progress.width == view.width * validProgress
                 title.left == prev.right + contentPaddings.right
                 title.right == next.left - contentPaddings.left
+                prevBtn.width == view.width / 2
+                nextBtn.width == view.width / 2
             }
         case .end:
             titleLabel.textAlignment = .right
             
-            prevNavButton.isHidden = false
+            prevNavIconView.isHidden = false
+            nextNavButton.isHidden = false
+            nextNavIconView.isHidden = true
             nextNavButton.isHidden = true
             progressBarView.isHidden = true
             
             constrain(
-                titleLabel, prevNavButton, self, replace: dynamicConstraints
-            ) { title, prev, view in
+                titleLabel, prevNavIconView, prevNavButton, self,
+                replace: dynamicConstraints
+            ) { title, prev, prevBtn, view in
                 title.right == view.right - contentInsets.right
                 title.left == prev.right - contentPaddings.right
+                prevBtn.width == view.width * 2
             }
         case .none:
             fatalError("unexpected state")

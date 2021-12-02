@@ -31,15 +31,6 @@ final class OAuth2AuthProvider: AuthProvider {
         self.server = server
         self.sessionStorage = sessionStorage
         
-        print("Auth Request Data:")
-        print(server.clientId)
-        print(server.clientSecret)
-        print(server.autorizationURL)
-        print(server.redirectURL)
-        print(server.responseType)
-        print(server.requestedScope)
-        print(server.stateHandler?.generate() ?? "")
-        
         self.oAuthHandler = OAuth2Swift(
             consumerKey:    server.clientId,
             consumerSecret: server.clientSecret,
@@ -77,7 +68,7 @@ final class OAuth2AuthProvider: AuthProvider {
                                 "Error while authorizing the client: "
                                     + error.localizedDescription
                             )
-                            observer(.error(AuthError.authRequest(error)))
+                            observer(.error(DataError.authRequest(error)))
                         }
                     }
                 )
@@ -91,13 +82,23 @@ final class OAuth2AuthProvider: AuthProvider {
             }
     }
     
+    func deauthorizeClient(for server: AuthProviderServer) -> Completable {
+        self.sessionStorage.clear()
+        return .empty()
+    }
+    
     func useCurrentSession() -> Completable {
         return Completable.create { [weak self] observer in
             guard self?.sessionStorage
                     .tokenExpirationTimestamp ?? 0
                     > Int(Date().timeIntervalSince1970)
             else {
-                observer(.error(AuthError.sessionExpired))
+                observer(.error(DataError.sessionExpired))
+                
+                // TODO: Implement OAuth token refresh flow
+                // In Beta let's just clean the session storage and force-re-login
+                self?.sessionStorage.clear()
+                
                 return Disposables.create()
             }
             

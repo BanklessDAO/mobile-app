@@ -47,6 +47,12 @@
 	<string>https://${DISCORD_API_BASE_PATH}</string>
 	<key>DISCORD_SERVER_URL</key>
 	<string>https://${DISCORD_SERVER_LINK}</string>
+	<key>BANKLESS_ACADEMY_API_BASE_URL</key>
+	<string>https://${BANKLESS_ACADEMY_API_BASE_PATH}</string>
+	<key>POAP_API_BASE_URL</key>
+	<string>https://${POAP_API_BASE_PATH}</string>
+	<key>SENTRY_DSN</key>
+	<string>https://${SENTRY_DSN_PATH}</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -68,5 +74,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 </dict>
 </plist>

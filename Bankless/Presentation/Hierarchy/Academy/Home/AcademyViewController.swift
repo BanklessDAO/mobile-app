@@ -33,6 +33,7 @@ class AcademyViewController: BaseViewController<AcademyViewModel>,
     // MARK: - Subviews -
     
     private var listView: UITableView!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - Setup -
     
@@ -52,6 +53,7 @@ class AcademyViewController: BaseViewController<AcademyViewModel>,
             frame: .init(x: 0, y: 0, width: 0, height: contentInsets.bottom * 2)
         )
         listView.contentInsetAdjustmentBehavior = .never
+        listView.showsVerticalScrollIndicator = false
         
         listView.dataSource = self
         listView.delegate = self
@@ -65,6 +67,9 @@ class AcademyViewController: BaseViewController<AcademyViewModel>,
             AcademyCourseListCell.self,
             forCellReuseIdentifier: AcademyCourseListCell.reuseIdentifier
         )
+        
+        refreshControl = UIRefreshControl()
+        listView.addSubview(refreshControl)
         
         view.addSubview(listView)
     }
@@ -80,6 +85,8 @@ class AcademyViewController: BaseViewController<AcademyViewModel>,
     
     func bindViewModel() {
         let output = viewModel.transform(input: input())
+        
+        output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let source = Driver<ListSource>
             .combineLatest(
@@ -117,7 +124,7 @@ class AcademyViewController: BaseViewController<AcademyViewModel>,
             .filter({ $0 != nil }).map({ $0! })
         
         return AcademyViewModel.Input(
-            refresh: .just(()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
             selection: selection
         )
     }

@@ -21,11 +21,15 @@ import Foundation
 import RxSwift
 
 protocol ContentGatewayClient: DataClient {
-    func getUserBANKAccount() -> Observable<BANKAccount>
-    func getUserAttendanceTokens() -> Observable<[AttendanceToken]>
+    func getUserBANKAccount(request: BANKAccountRequest) -> Observable<BANKAccount>
+    func getUserAttendanceTokens(request: AttendanceTokensRequest) -> Observable<[AttendanceToken]>
     func getTimelineContent() -> Observable<TimelineContentResponse>
     func getNewsContent() -> Observable<NewsContentResponse>
+    func getAcademyCourses() -> Observable<AcademyCoursesResponse>
 }
 
+typealias BANKAccountRequest = DAOOwnershipRequest
+typealias AttendanceTokensRequest = AchievementsRequest
 typealias TimelineContentResponse = TimelineItemsResponse
 typealias NewsContentResponse = NewsItemsResponse
+typealias AcademyCoursesResponse = AcademyCourseListResponse

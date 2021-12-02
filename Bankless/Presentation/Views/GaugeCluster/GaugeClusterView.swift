@@ -85,8 +85,8 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     
     func setUpConstraints() {
         constrain(balanceTagView, self) { balance, view in
-            balance.top == view.top + contentInsets.top
-            balance.right == view.right - contentInsets.right
+            balance.top == view.top + contentInsets.top * 2
+            balance.right == view.right - contentInsets.right * 2
             balance.height == GaugeClusterView.tagHeight
         }
         
@@ -98,14 +98,14 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
         }
         
         constrain(lastTransactionLabel, balanceTagView, self) { tx, balance, view in
-            tx.left == view.left + contentInsets.left
+            tx.left == view.left + contentInsets.left * 2
             tx.height == balance.height
             tx.centerY == balance.centerY
             tx.right == balance.left - contentPaddings.left
         }
         
         constrain(lastAchievementLabel, achievementsBarView, self) { event, events, view in
-            event.left == view.left + contentInsets.left
+            event.left == view.left + contentInsets.left * 2
             event.height == events.height
             event.centerY == events.centerY
             event.right == events.left - contentPaddings.left
@@ -119,6 +119,10 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         
+        output.isAnonymous
+            .map({ !$0 })
+            .drive(achievementsButton.rx.isEnabled)
+            .disposed(by: disposer)
         output.balance.drive(balanceTagView.rx.text).disposed(by: disposer)
         output.achievementImageURLs
             .drive(onNext: { [weak self] URLs in

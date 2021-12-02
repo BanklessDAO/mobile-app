@@ -26,5 +26,6 @@ extension MultiSourceDataClient: DiscordClient {
             .request(.me)
             .asObservable()
             .map(DiscordUser.self)
+            .catchMapError()
     }
 }

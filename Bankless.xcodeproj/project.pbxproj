@@ -189,6 +189,39 @@
 		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
 		FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* SectionHeaderCell.swift */; };
 		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
+		FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */; };
+		FFC4D66427507CE1008E10D8 /* BanklessAcademyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */; };
+		FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */; };
+		FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */; };
+		FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */; };
+		FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */; };
+		FFC4D6722751B170008E10D8 /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6712751B170008E10D8 /* ActivityTracker.swift */; };
+		FFC4D674275334B7008E10D8 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D673275334B7008E10D8 /* ApplicationError.swift */; };
+		FFC4D67E27545EB8008E10D8 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D67D27545EB8008E10D8 /* ServiceError.swift */; };
+		FFC4D6832755515A008E10D8 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6822755515A008E10D8 /* DataError.swift */; };
+		FFC4D68527555316008E10D8 /* BaseNetworkProvider+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D68427555316008E10D8 /* BaseNetworkProvider+Error.swift */; };
+		FFC4D68727555B45008E10D8 /* DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D68627555B45008E10D8 /* DisplayableError.swift */; };
+		FFC4D68A27555B87008E10D8 /* DisplayableError+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D68927555B87008E10D8 /* DisplayableError+Alert.swift */; };
+		FFC4D68C27555C5E008E10D8 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D68B27555C5E008E10D8 /* Localization.swift */; };
+		FFC4D68E275560F6008E10D8 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D68D275560F6008E10D8 /* ErrorHandling.swift */; };
+		FFC4D69227556130008E10D8 /* ServiceError+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69127556130008E10D8 /* ServiceError+ErrorHandling.swift */; };
+		FFC4D6942755613C008E10D8 /* DataError+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6932755613C008E10D8 /* DataError+ErrorHandling.swift */; };
+		FFC4D69627556450008E10D8 /* ApplicationError+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69527556450008E10D8 /* ApplicationError+ErrorHandling.swift */; };
+		FFC4D69827556497008E10D8 /* Observable+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69727556497008E10D8 /* Observable+ErrorHandling.swift */; };
+		FFC4D69A27559030008E10D8 /* DAOOwnershipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69927559030008E10D8 /* DAOOwnershipRequest.swift */; };
+		FFC4D69C275590DB008E10D8 /* AchievementsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69B275590DB008E10D8 /* AchievementsRequest.swift */; };
+		FFC4D69F2755C704008E10D8 /* PoapAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D69E2755C704008E10D8 /* PoapAPIProvider.swift */; };
+		FFC4D6A12755C718008E10D8 /* PoapAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A02755C718008E10D8 /* PoapAPIMethod.swift */; };
+		FFC4D6A42755C924008E10D8 /* PoapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A32755C924008E10D8 /* PoapClient.swift */; };
+		FFC4D6A62755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */; };
+		FFC4D6A82756A9C1008E10D8 /* BankAccount.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */; };
+		FFC4D6AA2756AA79008E10D8 /* BankAccount.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */; };
+		FFC4D6AC2756D3F7008E10D8 /* News.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FFC4D6AB2756D3F7008E10D8 /* News.graphql */; };
+		FFC4D6AE2756D533008E10D8 /* News.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AD2756D533008E10D8 /* News.graphql.swift */; };
+		FFC4D6B02756E000008E10D8 /* EVMAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */; };
+		FFC4D6B22756E043008E10D8 /* String+EVMAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B12756E043008E10D8 /* String+EVMAddress.swift */; };
+		FFC4D6B5275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */; };
+		FFC4D6B7275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */; };
 		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
 		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
 		FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */; };
@@ -199,7 +232,6 @@
 		FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FFC6F4802736075300EA8F12 /* Secrets.xcconfig */; };
 		FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F48227360BCB00EA8F12 /* OAuth2ConsumerInfo.swift */; };
 		FFC6F4852736FE7E00EA8F12 /* OAuth2ServerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4842736FE7E00EA8F12 /* OAuth2ServerInfo.swift */; };
-		FFC6F48A27370A7800EA8F12 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F48927370A7800EA8F12 /* AuthError.swift */; };
 		FFCC9FA22718B62800CAB3A3 /* MockAchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA12718B62800CAB3A3 /* MockAchievementsService.swift */; };
 		FFCC9FA42718B63400CAB3A3 /* NetworkAchievementsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA32718B63400CAB3A3 /* NetworkAchievementsService.swift */; };
 		FFCC9FA62718B64000CAB3A3 /* MockBanklessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FA52718B64000CAB3A3 /* MockBanklessService.swift */; };
@@ -210,6 +242,11 @@
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
+		FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45827596443007B4E3A /* ErrorLogging.swift */; };
+		FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */; };
+		FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */; };
+		FFE4D46127596884007B4E3A /* SentryErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */; };
+		FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */; };
 		FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */; };
 		FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */; };
 		FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */; };
@@ -227,7 +264,6 @@
 		FFEB12272710CF7E003EF90D /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = FFEB12262710CF7E003EF90D /* schema.json */; };
 		FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12302710FBCC003EF90D /* DataClient.swift */; };
 		FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12332710FC63003EF90D /* MultiSourceDataClient.swift */; };
-		FFEB123F27110B8D003EF90D /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB123E27110B8D003EF90D /* DataError.swift */; };
 		FFEB1242271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */; };
 		FFEB124427189C33003EF90D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB124327189C33003EF90D /* Environment.swift */; };
 		FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12452718A781003EF90D /* AttendanceToken.swift */; };
@@ -431,6 +467,39 @@
 		FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCell.swift; sourceTree = "<group>"; };
 		FFAE9876270F6F270047405D /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
 		FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsViewModel.swift; sourceTree = "<group>"; };
+		FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyClient.swift; sourceTree = "<group>"; };
+		FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyClaimProofOfAttendanceRequest.swift; sourceTree = "<group>"; };
+		FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+BanklessAcademy.swift"; sourceTree = "<group>"; };
+		FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIProvider.swift; sourceTree = "<group>"; };
+		FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessAcademyAPIMethod.swift; sourceTree = "<group>"; };
+		FFC4D6712751B170008E10D8 /* ActivityTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTracker.swift; sourceTree = "<group>"; };
+		FFC4D673275334B7008E10D8 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
+		FFC4D67D27545EB8008E10D8 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		FFC4D6822755515A008E10D8 /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
+		FFC4D68427555316008E10D8 /* BaseNetworkProvider+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseNetworkProvider+Error.swift"; sourceTree = "<group>"; };
+		FFC4D68627555B45008E10D8 /* DisplayableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableError.swift; sourceTree = "<group>"; };
+		FFC4D68927555B87008E10D8 /* DisplayableError+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DisplayableError+Alert.swift"; sourceTree = "<group>"; };
+		FFC4D68B27555C5E008E10D8 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		FFC4D68D275560F6008E10D8 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		FFC4D69127556130008E10D8 /* ServiceError+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceError+ErrorHandling.swift"; sourceTree = "<group>"; };
+		FFC4D6932755613C008E10D8 /* DataError+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataError+ErrorHandling.swift"; sourceTree = "<group>"; };
+		FFC4D69527556450008E10D8 /* ApplicationError+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ApplicationError+ErrorHandling.swift"; sourceTree = "<group>"; };
+		FFC4D69727556497008E10D8 /* Observable+ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+ErrorHandling.swift"; sourceTree = "<group>"; };
+		FFC4D69927559030008E10D8 /* DAOOwnershipRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOOwnershipRequest.swift; sourceTree = "<group>"; };
+		FFC4D69B275590DB008E10D8 /* AchievementsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsRequest.swift; sourceTree = "<group>"; };
+		FFC4D69E2755C704008E10D8 /* PoapAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoapAPIProvider.swift; sourceTree = "<group>"; };
+		FFC4D6A02755C718008E10D8 /* PoapAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoapAPIMethod.swift; sourceTree = "<group>"; };
+		FFC4D6A32755C924008E10D8 /* PoapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoapClient.swift; sourceTree = "<group>"; };
+		FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultisourceDataClient+PoapClient.swift"; sourceTree = "<group>"; };
+		FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BankAccount.graphql; sourceTree = "<group>"; };
+		FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.graphql.swift; sourceTree = "<group>"; };
+		FFC4D6AB2756D3F7008E10D8 /* News.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = News.graphql; sourceTree = "<group>"; };
+		FFC4D6AD2756D533008E10D8 /* News.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.graphql.swift; sourceTree = "<group>"; };
+		FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVMAddress.swift; sourceTree = "<group>"; };
+		FFC4D6B12756E043008E10D8 /* String+EVMAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EVMAddress.swift"; sourceTree = "<group>"; };
+		FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseUnsupportedSectionViewModel.swift; sourceTree = "<group>"; };
+		FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseUnsupportedSectionView.swift; sourceTree = "<group>"; };
 		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
@@ -442,7 +511,6 @@
 		FFC6F48227360BCB00EA8F12 /* OAuth2ConsumerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2ConsumerInfo.swift; sourceTree = "<group>"; };
 		FFC6F4842736FE7E00EA8F12 /* OAuth2ServerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2ServerInfo.swift; sourceTree = "<group>"; };
 		FFC6F4882736FF5500EA8F12 /* Environment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Environment.xcconfig; sourceTree = "<group>"; };
-		FFC6F48927370A7800EA8F12 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		FFCC9FA12718B62800CAB3A3 /* MockAchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAchievementsService.swift; sourceTree = "<group>"; };
 		FFCC9FA32718B63400CAB3A3 /* NetworkAchievementsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAchievementsService.swift; sourceTree = "<group>"; };
 		FFCC9FA52718B64000CAB3A3 /* MockBanklessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBanklessService.swift; sourceTree = "<group>"; };
@@ -453,6 +521,11 @@
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
+		FFE4D45827596443007B4E3A /* ErrorLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogging.swift; sourceTree = "<group>"; };
+		FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorLogging+ErrorReporter.swift"; sourceTree = "<group>"; };
+		FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
+		FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentryErrorReporter.swift; sourceTree = "<group>"; };
+		FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandling+Display+Log.swift"; sourceTree = "<group>"; };
 		FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCoordinator.swift; sourceTree = "<group>"; };
 		FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
@@ -473,7 +546,6 @@
 		FFEB12262710CF7E003EF90D /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		FFEB12302710FBCC003EF90D /* DataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClient.swift; sourceTree = "<group>"; };
 		FFEB12332710FC63003EF90D /* MultiSourceDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSourceDataClient.swift; sourceTree = "<group>"; };
-		FFEB123E27110B8D003EF90D /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+ApolloRequest.swift"; sourceTree = "<group>"; };
 		FFEB124327189C33003EF90D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		FFEB12452718A781003EF90D /* AttendanceToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceToken.swift; sourceTree = "<group>"; };
@@ -582,6 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				FF1AC648274643B5003025E0 /* AcademyService.swift */,
+				FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */,
 				FF1AC64A274643E5003025E0 /* AcademyCourseListResponse.swift */,
 				FF1AC64C2746444A003025E0 /* Implementation */,
 			);
@@ -658,6 +731,7 @@
 				FF1AC699274C6F75003025E0 /* Learn */,
 				FF1AC69A274C6F7D003025E0 /* Quiz */,
 				FF1AC69B274C6F8A003025E0 /* Poap */,
+				FFC4D6B3275844B3008E10D8 /* Unsupported */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -957,6 +1031,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F39A270635B000A47A91 /* DependencyContainer */,
+				FFE4D45C27596709007B4E3A /* Reporting */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -970,7 +1045,6 @@
 				FF78F39327062C8300A47A91 /* Base */,
 				FFAE9852270E41780047405D /* Hierarchy */,
 				FFAE9851270E3F590047405D /* Views */,
-				FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -978,6 +1052,7 @@
 		FF78F3732705547700A47A91 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FFC4D6812755514D008E10D8 /* Common */,
 				FFA95ABC274EC30C00D72978 /* Settings */,
 				FFC6F4752735F54500EA8F12 /* Auth */,
 				FF0B6BFE27373C7100CB33BF /* Session */,
@@ -993,6 +1068,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3982706357C00A47A91 /* ServiceDependencies.swift */,
+				FFC4D67C27545E9B008E10D8 /* Common */,
 				FFA95AB7274EC0C300D72978 /* Settings */,
 				FFC6F46D2735F3D200EA8F12 /* Auth */,
 				FF7A33B4273CA6870037899B /* Identity */,
@@ -1054,6 +1130,7 @@
 				FFE60019271C8F5800F73FA1 /* BaseCollectionViewCell.swift */,
 				FF5BCDA1273DE0A9000D3FEF /* BaseSectionedSource.swift */,
 				FF7A33D9273CCCA60037899B /* Navigation */,
+				FFC4D65F274F14F2008E10D8 /* Collection */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1107,6 +1184,7 @@
 			children = (
 				FF78F3BE270673C000A47A91 /* ApplicationAppearance.swift */,
 				FF78F3C02706741100A47A91 /* Colors.swift */,
+				FFC4D68B27555C5E008E10D8 /* Localization.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -1115,6 +1193,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F3C8270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift */,
+				FFC4D6B12756E043008E10D8 /* String+EVMAddress.swift */,
 				FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */,
 				FF5BCD9A273DD889000D3FEF /* Bounty+TitleBehaviour.swift */,
 				FF5BCD9E273DD93E000D3FEF /* Bounty+ColorBehaviour.swift */,
@@ -1123,6 +1202,7 @@
 				FF5BCE032745A399000D3FEF /* PodcastItem+VideoSource.swift */,
 				FF1AC6632747153A003025E0 /* String+MarkupRenderable.swift */,
 				FF60C99F274DD80A00C794C1 /* AcademyCourse+QuizItem.swift */,
+				FFC4D68827555B74008E10D8 /* Error */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1132,11 +1212,15 @@
 			children = (
 				FF78F3CB270695E800A47A91 /* TitleBehaviour.swift */,
 				FF5BCD9C273DD915000D3FEF /* ColorBehaviour.swift */,
+				FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */,
 				FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */,
 				FF5BCDCC27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift */,
 				FF5BCE0027459C5B000D3FEF /* VideoSource.swift */,
 				FF1AC6612747150E003025E0 /* MarkupRenderable.swift */,
 				FFA9C165274DA564003F4B11 /* QuizItem.swift */,
+				FFC4D68627555B45008E10D8 /* DisplayableError.swift */,
+				FFC4D68D275560F6008E10D8 /* ErrorHandling.swift */,
+				FFE4D45827596443007B4E3A /* ErrorLogging.swift */,
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
 			path = Behaviour;
@@ -1156,6 +1240,7 @@
 			children = (
 				FF7A339F273C684F0037899B /* NetworkProvider.swift */,
 				FF7A339D273C68240037899B /* BaseNetworkProvider.swift */,
+				FFC4D68427555316008E10D8 /* BaseNetworkProvider+Error.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1279,6 +1364,7 @@
 				FF78F3742705549700A47A91 /* Services */,
 				FF78F3732705547700A47A91 /* Data */,
 				FF9F5CE7270546E200629D79 /* Resources */,
+				FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */,
 				FF7D494127053EF300F0244B /* AppDelegate.swift */,
 				FF7D494F27053EF400F0244B /* Info.plist */,
 			);
@@ -1416,8 +1502,8 @@
 			children = (
 				FF5BCDAA273DEB72000D3FEF /* Common */,
 				FF5BCDB2273F715C000D3FEF /* Base */,
-				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF78F37F2706271B00A47A91 /* Home */,
+				FFE60005271C83EC00F73FA1 /* Achievements */,
 				FF5BCDE227457F86000D3FEF /* News */,
 				FF5BCD7F273DD2F6000D3FEF /* BountyBoard */,
 				FF1AC63D2746425C003025E0 /* Academy */,
@@ -1498,6 +1584,87 @@
 			path = News;
 			sourceTree = "<group>";
 		};
+		FFC4D65F274F14F2008E10D8 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		FFC4D66227507CC3008E10D8 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
+		FFC4D66927507F6E008E10D8 /* Academy */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D66A27507F83008E10D8 /* BanklessAcademyAPIProvider.swift */,
+				FFC4D66C27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift */,
+			);
+			path = Academy;
+			sourceTree = "<group>";
+		};
+		FFC4D67C27545E9B008E10D8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D67D27545EB8008E10D8 /* ServiceError.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FFC4D6812755514D008E10D8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D6822755515A008E10D8 /* DataError.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FFC4D68827555B74008E10D8 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */,
+				FFC4D68927555B87008E10D8 /* DisplayableError+Alert.swift */,
+				FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */,
+				FFC4D69527556450008E10D8 /* ApplicationError+ErrorHandling.swift */,
+				FFC4D69127556130008E10D8 /* ServiceError+ErrorHandling.swift */,
+				FFC4D6932755613C008E10D8 /* DataError+ErrorHandling.swift */,
+				FFC4D69727556497008E10D8 /* Observable+ErrorHandling.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		FFC4D69D2755C6E4008E10D8 /* Poap */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D69E2755C704008E10D8 /* PoapAPIProvider.swift */,
+				FFC4D6A02755C718008E10D8 /* PoapAPIMethod.swift */,
+			);
+			path = Poap;
+			sourceTree = "<group>";
+		};
+		FFC4D6A22755C908008E10D8 /* Poap */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D6A32755C924008E10D8 /* PoapClient.swift */,
+			);
+			path = Poap;
+			sourceTree = "<group>";
+		};
+		FFC4D6B3275844B3008E10D8 /* Unsupported */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */,
+				FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */,
+			);
+			path = Unsupported;
+			sourceTree = "<group>";
+		};
 		FFC6F46D2735F3D200EA8F12 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -1521,7 +1688,6 @@
 			children = (
 				FFC6F4762735FC5D00EA8F12 /* AuthProvider.swift */,
 				FFC6F4782735FDC100EA8F12 /* AuthProviderServer.swift */,
-				FFC6F48927370A7800EA8F12 /* AuthError.swift */,
 				FFC6F47A2735FEA100EA8F12 /* Implementation */,
 			);
 			path = Auth;
@@ -1580,6 +1746,23 @@
 				FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */,
 			);
 			path = GaugeCluster;
+			sourceTree = "<group>";
+		};
+		FFE4D45C27596709007B4E3A /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */,
+				FFE4D45F27596861007B4E3A /* Implementation */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		FFE4D45F27596861007B4E3A /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		FFE60005271C83EC00F73FA1 /* Achievements */ = {
@@ -1642,6 +1825,8 @@
 			isa = PBXGroup;
 			children = (
 				FFE60028271E33C300F73FA1 /* NotificationEvent.swift */,
+				FFC4D6712751B170008E10D8 /* ActivityTracker.swift */,
+				FFC4D673275334B7008E10D8 /* ApplicationError.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1652,6 +1837,8 @@
 				FF7A339C273C67070037899B /* Base */,
 				FF7A339B273C66AD0037899B /* Discord */,
 				FFEB12232710CD1A003EF90D /* ContentGateway */,
+				FFC4D66927507F6E008E10D8 /* Academy */,
+				FFC4D69D2755C6E4008E10D8 /* Poap */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1669,9 +1856,11 @@
 		FFEB12292710F57D003EF90D /* Queries */ = {
 			isa = PBXGroup;
 			children = (
+				FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */,
 				FF1AC671274C25E8003025E0 /* Timeline.graphql */,
 				FF1AC675274C2640003025E0 /* Academy.graphql */,
 				FF1AC677274C2658003025E0 /* BountyBoard.graphql */,
+				FFC4D6AB2756D3F7008E10D8 /* News.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -1680,9 +1869,10 @@
 			isa = PBXGroup;
 			children = (
 				FFEB12302710FBCC003EF90D /* DataClient.swift */,
-				FFEB123E27110B8D003EF90D /* DataError.swift */,
 				FF7A33A9273CA29E0037899B /* Discord */,
 				FF7A33AB273CA2D10037899B /* ContentGateway */,
+				FFC4D66227507CC3008E10D8 /* Academy */,
+				FFC4D6A22755C908008E10D8 /* Poap */,
 				FFEB12322710FC56003EF90D /* Implementation */,
 			);
 			path = Client;
@@ -1695,6 +1885,8 @@
 				FF7A33BE273CA87E0037899B /* MultiSourceDataClient+Discord.swift */,
 				FF7A33C2273CA9CF0037899B /* MultiSourceDataClient+ContentGateway.swift */,
 				FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */,
+				FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */,
+				FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1702,9 +1894,11 @@
 		FFEB12352710FE17003EF90D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */,
+				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
+				FFC4D6AD2756D533008E10D8 /* News.graphql.swift */,
 				FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */,
 				FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */,
-				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
 				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -1714,6 +1908,7 @@
 			isa = PBXGroup;
 			children = (
 				FFEB12492718AAAC003EF90D /* AchievementsService.swift */,
+				FFC4D69B275590DB008E10D8 /* AchievementsRequest.swift */,
 				FFEB124D2718AB18003EF90D /* AchievementsResponse.swift */,
 				FFCC9F9F2718B5FB00CAB3A3 /* Implementation */,
 			);
@@ -1724,6 +1919,7 @@
 			isa = PBXGroup;
 			children = (
 				FFEB124B2718AAC2003EF90D /* BanklessService.swift */,
+				FFC4D69927559030008E10D8 /* DAOOwnershipRequest.swift */,
 				FFEB124F2718ABA2003EF90D /* DAOOwnershipResponse.swift */,
 				FFCC9FA02718B60300CAB3A3 /* Implementation */,
 			);
@@ -1803,6 +1999,7 @@
 				FF1AC678274C2658003025E0 /* BountyBoard.graphql in Resources */,
 				FF1AC676274C2640003025E0 /* Academy.graphql in Resources */,
 				FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */,
+				FFC4D6AC2756D3F7008E10D8 /* News.graphql in Resources */,
 				FF9F5CF22705494100629D79 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1851,7 +2048,7 @@
 		};
 		FFEB12212710CBA6003EF90D /* Generate Content Gateway GraphQL API */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1863,7 +2060,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
 		};
@@ -1879,21 +2076,28 @@
 				FFA9C166274DA564003F4B11 /* QuizItem.swift in Sources */,
 				FF5BCDB9273F8878000D3FEF /* TextField.swift in Sources */,
 				FF5BCD97273DD444000D3FEF /* BountySubmissionViewController.swift in Sources */,
+				FFC4D6AE2756D533008E10D8 /* News.graphql.swift in Sources */,
 				FF1AC696274C6D83003025E0 /* AcademyCourseSectionView.swift in Sources */,
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
+				FFC4D6832755515A008E10D8 /* DataError.swift in Sources */,
+				FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
+				FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
 				FFC6F47C2735FEC400EA8F12 /* OAuth2AuthProvider.swift in Sources */,
 				FF5BCDAD273F0E06000D3FEF /* SectionHeaderViewModel.swift in Sources */,
 				FF5BCD85273DD326000D3FEF /* BountyBoardViewModel.swift in Sources */,
 				FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */,
+				FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
 				FF7A33BB273CA7210037899B /* MockIdentityService.swift in Sources */,
 				FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */,
+				FFC4D6AA2756AA79008E10D8 /* BankAccount.graphql.swift in Sources */,
 				FF7A33A0273C684F0037899B /* NetworkProvider.swift in Sources */,
 				FF5BCDF3274588F2000D3FEF /* NewsItemListCell.swift in Sources */,
 				FF5BCDBC2742DFD5000D3FEF /* TextView.swift in Sources */,
 				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
+				FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
 				FFA9C164274DA52D003F4B11 /* QuizItemView.swift in Sources */,
@@ -1903,6 +2107,8 @@
 				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
 				FF7A33D8273CCC630037899B /* BaseNavigationBar.swift in Sources */,
 				FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */,
+				FFC4D68A27555B87008E10D8 /* DisplayableError+Alert.swift in Sources */,
+				FFC4D6A82756A9C1008E10D8 /* BankAccount.graphql in Sources */,
 				FFEB124E2718AB18003EF90D /* AchievementsResponse.swift in Sources */,
 				FF5BCD9F273DD93E000D3FEF /* Bounty+ColorBehaviour.swift in Sources */,
 				FF5BCD81273DD30E000D3FEF /* BountyBoardCoordinator.swift in Sources */,
@@ -1918,7 +2124,6 @@
 				FF1AC66E2747220F003025E0 /* SectionNavigationViewModel.swift in Sources */,
 				FF5BCDEF27457FDD000D3FEF /* NewsHeaderCell.swift in Sources */,
 				FF7A33C8273CB4F40037899B /* NavigationBar.swift in Sources */,
-				FFC6F48A27370A7800EA8F12 /* AuthError.swift in Sources */,
 				FF5BCDCB27445474000D3FEF /* NetworkNewsService.swift in Sources */,
 				FF1AC66927471A01003025E0 /* AcademyCourseDetailCard.swift in Sources */,
 				FFCC9FAB2718CA1700CAB3A3 /* GaugeClusterViewModel.swift in Sources */,
@@ -1933,6 +2138,7 @@
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
 				FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */,
+				FFC4D6B5275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift in Sources */,
 				FFA95ABB274EC1B300D72978 /* UserSetting.swift in Sources */,
 				FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */,
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
@@ -1954,7 +2160,9 @@
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
 				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
 				FFEB124A2718AAAC003EF90D /* AchievementsService.swift in Sources */,
+				FFC4D6942755613C008E10D8 /* DataError+ErrorHandling.swift in Sources */,
 				FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */,
+				FFC4D69F2755C704008E10D8 /* PoapAPIProvider.swift in Sources */,
 				FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */,
 				FF7A33B8273CA6C30037899B /* UserIdentityResponse.swift in Sources */,
 				FF5BCD90273DD3FD000D3FEF /* BountyDetailsViewController.swift in Sources */,
@@ -1977,20 +2185,28 @@
 				FF7A33D4273CB9F10037899B /* IdentityStripeView.swift in Sources */,
 				FFE60012271C887900F73FA1 /* AttendanceTokenViewModel.swift in Sources */,
 				FF5BCDC327444E7B000D3FEF /* NewsletterItem.swift in Sources */,
+				FFC4D6A42755C924008E10D8 /* PoapClient.swift in Sources */,
 				FFAE9850270D194E0047405D /* MockConfigurator.swift in Sources */,
+				FFC4D6722751B170008E10D8 /* ActivityTracker.swift in Sources */,
 				FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */,
 				FF5BCD7C273DD1D0000D3FEF /* BountyReferenceRequest.swift in Sources */,
 				FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */,
 				FF1AC68F274C6B70003025E0 /* AcademyCourseFlowViewController.swift in Sources */,
+				FFC4D69C275590DB008E10D8 /* AchievementsRequest.swift in Sources */,
 				FF1AC64E27464461003025E0 /* MockAcademyService.swift in Sources */,
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
+				FFC4D6B22756E043008E10D8 /* String+EVMAddress.swift in Sources */,
 				FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */,
 				FF1AC6622747150E003025E0 /* MarkupRenderable.swift in Sources */,
 				FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */,
+				FFC4D67E27545EB8008E10D8 /* ServiceError.swift in Sources */,
 				FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */,
+				FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */,
 				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
 				FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */,
+				FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */,
+				FFC4D68C27555C5E008E10D8 /* Localization.swift in Sources */,
 				FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */,
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
 				FF7A33DB273CCCBB0037899B /* BaseNavigationView.swift in Sources */,
@@ -1998,21 +2214,27 @@
 				FF1AC65827470DD5003025E0 /* AcademyCourseDetailsCoordinator.swift in Sources */,
 				FF5BCDD627446873000D3FEF /* NewsItemViewModel.swift in Sources */,
 				FFA95AC4274EC52700D72978 /* DefaultUserSettingsService.swift in Sources */,
+				FFC4D6A12755C718008E10D8 /* PoapAPIMethod.swift in Sources */,
+				FFC4D69627556450008E10D8 /* ApplicationError+ErrorHandling.swift in Sources */,
 				FF5BCDB4273F716B000D3FEF /* Coordinator.swift in Sources */,
 				FF1AC69F274C6FC9003025E0 /* AcademyCourseQuizSectionViewModel.swift in Sources */,
 				FF1AC6A9274C71D5003025E0 /* AcademyCourseSectionFactory.swift in Sources */,
 				FFA95ABE274EC33F00D72978 /* SettingsStorage.swift in Sources */,
 				FF5BCDF82745977B000D3FEF /* PodcastDetailsViewModel.swift in Sources */,
 				FF1AC667274719F8003025E0 /* AcademyCourseDetailViewModel.swift in Sources */,
+				FFC4D66427507CE1008E10D8 /* BanklessAcademyClient.swift in Sources */,
 				FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */,
 				FF7A33B6273CA69C0037899B /* IdentityService.swift in Sources */,
 				FF5BCDCF27445D54000D3FEF /* NewsletterItem+NewsItemPreviewBehaviour.swift in Sources */,
+				FFC4D6B02756E000008E10D8 /* EVMAddress.swift in Sources */,
 				FF1AC65427464697003025E0 /* AcademyHeaderCell.swift in Sources */,
 				FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */,
 				FF7A33C5273CACD60037899B /* DiscordUser.swift in Sources */,
 				FFA95AB9274EC0E400D72978 /* UserSettingsService.swift in Sources */,
+				FFC4D69227556130008E10D8 /* ServiceError+ErrorHandling.swift in Sources */,
 				FF1AC64427464367003025E0 /* AcademyViewController.swift in Sources */,
 				FFC6F47F2736058200EA8F12 /* OAuth2WebViewController.swift in Sources */,
+				FFC4D674275334B7008E10D8 /* ApplicationError.swift in Sources */,
 				FF7D494227053EF300F0244B /* AppDelegate.swift in Sources */,
 				FF1AC649274643B5003025E0 /* AcademyService.swift in Sources */,
 				FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */,
@@ -2021,6 +2243,7 @@
 				FFEB124C2718AAC2003EF90D /* BanklessService.swift in Sources */,
 				FF7A33A4273C69970037899B /* DiscordAPIMethod.swift in Sources */,
 				FF5BCE092745CAEC000D3FEF /* NewsletterDetailsCoordinator.swift in Sources */,
+				FFC4D69A27559030008E10D8 /* DAOOwnershipRequest.swift in Sources */,
 				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
 				FFA95AC1274EC3FB00D72978 /* AppLevelPersistentSettingsStorage.swift in Sources */,
 				FF5BCDED27457FD4000D3FEF /* NewsHeaderViewModel.swift in Sources */,
@@ -2032,6 +2255,7 @@
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
 				FF7A33AD273CA3DA0037899B /* DiscordClient.swift in Sources */,
 				FF5BCDC527444E84000D3FEF /* PodcastItem.swift in Sources */,
+				FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */,
 				FFAE9847270D173A0047405D /* ApplicationCoordinator.swift in Sources */,
 				FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */,
 				FF1AC6A1274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift in Sources */,
@@ -2040,6 +2264,7 @@
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FF5BCDCD27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift in Sources */,
 				FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */,
+				FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */,
 				FF60C9A0274DD80A00C794C1 /* AcademyCourse+QuizItem.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
@@ -2062,7 +2287,9 @@
 				FF5BCDC92744546A000D3FEF /* MockNewsService.swift in Sources */,
 				FF78F3B8270665A300A47A91 /* NetworkTimelineService.swift in Sources */,
 				FFEB1242271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift in Sources */,
+				FFC4D68527555316008E10D8 /* BaseNetworkProvider+Error.swift in Sources */,
 				FF1AC688274C4FD0003025E0 /* Academy.graphql.swift in Sources */,
+				FFC4D68E275560F6008E10D8 /* ErrorHandling.swift in Sources */,
 				FF5BCE0127459C5C000D3FEF /* VideoSource.swift in Sources */,
 				FF78F3CC270695E800A47A91 /* TitleBehaviour.swift in Sources */,
 				FF5BCE0B2745CAF7000D3FEF /* NewsletterDetailsViewController.swift in Sources */,
@@ -2072,17 +2299,23 @@
 				FF7A339E273C68240037899B /* BaseNetworkProvider.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
 				FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */,
+				FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */,
 				FFAE985F270E43D00047405D /* TagView.swift in Sources */,
 				FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
+				FFC4D68727555B45008E10D8 /* DisplayableError.swift in Sources */,
+				FFE4D46127596884007B4E3A /* SentryErrorReporter.swift in Sources */,
+				FFC4D6A62755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift in Sources */,
 				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
 				FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
 				FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */,
+				FFC4D6B7275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
 				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
 				FF5BCDE727457FA6000D3FEF /* NewsViewController.swift in Sources */,
 				FF5BCDB6273F8052000D3FEF /* Bounty+LifecycleAction.swift in Sources */,
+				FFC4D69827556497008E10D8 /* Observable+ErrorHandling.swift in Sources */,
 				FF5BCD9D273DD915000D3FEF /* ColorBehaviour.swift in Sources */,
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
 				FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */,
@@ -2090,7 +2323,6 @@
 				FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */,
 				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
-				FFEB123F27110B8D003EF90D /* DataError.swift in Sources */,
 				FF1AC65A27470DDE003025E0 /* AcademyCourseDetailsViewController.swift in Sources */,
 				FF1AC64B274643E5003025E0 /* AcademyCourseListResponse.swift in Sources */,
 				FF78F3AC27063C3E00A47A91 /* Member.swift in Sources */,

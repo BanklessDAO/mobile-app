@@ -23,16 +23,17 @@ import Apollo
 
 class MultiSourceDataClient: DataClient {
     let discordAPI: DiscordAPIProvider
+    let banklessAcademyAPI: BanklessAcademyAPIProvider
+    let poapAPI: PoapAPIProvider
     let apollo: ApolloClient
     
     init(
         contentGatewayAPIBaseURL: URL,
         sessionStorage: SessionStorage
     ) {
-        self.discordAPI = DiscordAPIProvider(
-            sessionStorage: sessionStorage
-        )
-        
+        self.discordAPI = DiscordAPIProvider(sessionStorage: sessionStorage)
+        self.banklessAcademyAPI = BanklessAcademyAPIProvider(sessionStorage: sessionStorage)
+        self.poapAPI = PoapAPIProvider(sessionStorage: sessionStorage)
         self.apollo = ApolloClient(url: contentGatewayAPIBaseURL)
     }
 }

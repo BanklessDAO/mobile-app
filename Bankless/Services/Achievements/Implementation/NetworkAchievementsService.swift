@@ -21,16 +21,15 @@ import Foundation
 import RxSwift
 
 final class NetworkAchievementsService: AchievementsService {
-    private let contentGatewayClient: ContentGatewayClient
+    private let poapClient: PoapClient
     
     init(
-        contentGatewayClient: ContentGatewayClient
+        poapClient: PoapClient
     ) {
-        self.contentGatewayClient = contentGatewayClient
+        self.poapClient = poapClient
     }
     
-    func getAchiements() -> Observable<AchievementsResponse> {
-        return contentGatewayClient.getUserAttendanceTokens()
-            .map({ AchievementsResponse(attendanceTokens: $0) })
+    func getAchiements(request: AchievementsRequest) -> Observable<AchievementsResponse> {
+        return poapClient.getPOAPCollection(request: request).take(1)
     }
 }

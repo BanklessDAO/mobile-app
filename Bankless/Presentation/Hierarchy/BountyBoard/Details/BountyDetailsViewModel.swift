@@ -83,11 +83,21 @@ final class BountyDetailsViewModel: BaseViewModel, BountyBoardServiceDependency 
             criteria: bounty.map({ $0.criteria }).asDriver(onErrorDriveWith: .empty()),
             requestedByViewModel: bounty
                 .map({ $0.createdBy })
-                .map({ IdentityStripeViewModel(mode: .user($0)) })
+                .map({ [weak self] in
+                    let vm = IdentityStripeViewModel(mode: .user($0))
+                    self?.container?.resolve(vm)
+                    return vm
+                })
                 .asDriver(onErrorDriveWith: .empty()),
             claimedByViewModel: bounty
                 .map({ $0.claimedBy })
-                .map({ $0 != nil ? IdentityStripeViewModel(mode: .user($0!)) : nil })
+                .map({ [weak self] in
+                    guard $0 != nil else { return nil }
+                    
+                    let vm = IdentityStripeViewModel(mode: .user($0!))
+                    self?.container?.resolve(vm)
+                    return vm
+                })
                 .asDriver(onErrorDriveWith: .empty())
         )
     }
@@ -132,6 +142,7 @@ final class BountyDetailsViewModel: BaseViewModel, BountyBoardServiceDependency 
                     name: NotificationEvent.bountyHasBeenUpdated.notificationName, object: bounty
                 )
             })
+            .handleError()
             .flatMap({ _ in Completable.empty() })
             .asCompletable()
     }

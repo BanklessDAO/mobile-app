@@ -99,8 +99,8 @@ class FeaturedNewsItemView: BaseView<NewsItemViewModel> {
         constrain(titleLabel, categoryTitleLabel, self) { title, category, view in
             title.left == category.left
             title.right == category.right
-            title.top == category.bottom + contentPaddings.bottom
-            title.height <= Appearance.Text.Font.Label1.lineHeight * 3
+            title.top == category.bottom
+            title.height == Appearance.Text.Font.Label1.lineHeight * 3
             title.bottom == view.bottom - contentInsets.bottom
         }
     }

@@ -31,8 +31,8 @@ enum ApplicationAppearance {
 }
 
 extension ApplicationAppearance {
-    static let contentInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-    static let contentPaddings = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
+    static let contentInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    static let contentPaddings = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     static let cornerRadius: CGFloat = 10.0
     
     enum Text {

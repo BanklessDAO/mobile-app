@@ -33,6 +33,7 @@ class BountyBoardViewController: BaseViewController<BountyBoardViewModel>,
     // MARK: - Subviews -
     
     private var listView: UITableView!
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - Setup -
     
@@ -66,6 +67,9 @@ class BountyBoardViewController: BaseViewController<BountyBoardViewModel>,
             forCellReuseIdentifier: BountyListCell.reuseIdentifier
         )
         
+        refreshControl = UIRefreshControl()
+        listView.addSubview(refreshControl)
+        
         view.addSubview(listView)
     }
     
@@ -80,6 +84,8 @@ class BountyBoardViewController: BaseViewController<BountyBoardViewModel>,
     
    func bindViewModel() {
         let output = viewModel.transform(input: input())
+       
+       output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let source = Driver<ListSource>
             .combineLatest(
@@ -117,7 +123,7 @@ class BountyBoardViewController: BaseViewController<BountyBoardViewModel>,
             .filter({ $0 != nil }).map({ $0! })
         
         return BountyBoardViewModel.Input(
-            refresh: .just(()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
             selection: selection
         )
     }

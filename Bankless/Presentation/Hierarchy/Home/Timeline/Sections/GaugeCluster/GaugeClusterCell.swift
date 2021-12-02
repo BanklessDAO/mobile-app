@@ -32,6 +32,14 @@ class GaugeClusterCell: BaseTableViewCell<GaugeClusterViewModel> {
     
     private var gaugeClusterView: GaugeClusterView!
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        gaugeClusterView.disposer = DisposeBag()
+        gaugeClusterView.viewModel?.disposer = DisposeBag()
+    }
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {

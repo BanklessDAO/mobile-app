@@ -22,6 +22,7 @@ import RxSwift
 import RxCocoa
 
 final class IdentityStripeViewModel: BaseViewModel,
+                                     AuthServiceDependency,
                                      IdentityServiceDependency,
                                      UserSettingsServiceDependency
 {
@@ -67,6 +68,11 @@ final class IdentityStripeViewModel: BaseViewModel,
             value: "Open Discord",
             comment: ""
         ),
+        logIn: NSLocalizedString(
+            "user.menu.item.log_in.title",
+            value: "Log In",
+            comment: ""
+        ),
         logOut: NSLocalizedString(
             "user.menu.item.log_out.title",
             value: "Log Out",
@@ -103,6 +109,9 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Properties -
     
+    private let userRelay = BehaviorRelay<DiscordUser?>(value: nil)
+    private let logInRequest = PublishSubject<Void>()
+    private let logOutRequest = PublishSubject<Void>()
     private let settingUpdateRequest = PublishSubject<UserSetting>()
     
     // MARK: - Data -
@@ -111,6 +120,7 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Components -
     
+    var authService: AuthService!
     var identityService: IdentityService!
     var userSettingsService: UserSettingsService!
     
@@ -123,18 +133,21 @@ final class IdentityStripeViewModel: BaseViewModel,
     // MARK: - Transformer -
     
     func transform(input: Input) -> Output {
-        let user = loadUser().map({ $0 as DiscordUser? }).startWith(nil)
+        loadUser().map({ $0 as DiscordUser? }).startWith(nil)
+            .bind(to: userRelay).disposed(by: disposer)
         let ethAddress = userSettingsService
             .streamValue(for: .publicETHAddress)
             .map({ $0 as? String })
         
         let titleString = titleString(
-            user: user,
+            user: userRelay.asObservable(),
             ethAddress: ethAddress
         )
         
         bind(tap: input.tap)
         bindSettingsInput()
+        bindLogInInput()
+        bindLogOutInput()
         
         return Output(
             domainIcon: .just(IdentityStripeViewModel.discordIcon),
@@ -147,11 +160,13 @@ final class IdentityStripeViewModel: BaseViewModel,
         ethAddress: Observable<String?>
     ) -> Observable<String> {
         return Observable.combineLatest(user, ethAddress) { (user: $0, address: $1) }
-            .map({ identity in
+            .map({ [weak self] identity in
+                guard let self = self else { return "" }
+                
                 let userString = identity.user?.handle
                     ?? IdentityStripeViewModel.placeholders.user
                 
-                let addressString = identity.address != nil
+                let addressString = identity.address?.isValidEVMAddress ?? false
                 ? String(identity.address![
                     String.Index(utf16Offset: 0, in: identity.address!)
                     ..< String.Index(utf16Offset: 4, in: identity.address!)
@@ -161,7 +176,13 @@ final class IdentityStripeViewModel: BaseViewModel,
                 ])
                 : IdentityStripeViewModel.placeholders.address
                 
-                return userString + " (\(addressString))"
+                switch self.mode {
+                    
+                case .currentUser:
+                    return userString + " (\(addressString))"
+                case .user:
+                    return userString
+                }
             })
             .startWith(
                 IdentityStripeViewModel.placeholders.user
@@ -171,8 +192,8 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     // MARK: - Discord data -
     
-    private func loadUser() -> Observable<DiscordUser> {
-        let user: Observable<DiscordUser>
+    private func loadUser() -> Observable<DiscordUser?> {
+        let user: Observable<DiscordUser?>
         
         switch mode {
             
@@ -181,7 +202,7 @@ final class IdentityStripeViewModel: BaseViewModel,
         case .currentUser:
             user = NotificationCenter.default.rx
                 .notification(
-                    NotificationEvent.discordAccessHasBeenGranted.notificationName,
+                    NotificationEvent.discordAccessHasChanged.notificationName,
                     object: nil
                 )
                 .map({ _ in () })
@@ -214,8 +235,8 @@ final class IdentityStripeViewModel: BaseViewModel,
                     
                 case .currentUser:
                     self.presentUserMenu()
-                case .user(let discordUser):
-                    fatalError("not implemented")
+                case .user:
+                    break
                 }
             })
             .disposed(by: disposer)
@@ -249,13 +270,23 @@ final class IdentityStripeViewModel: BaseViewModel,
             )
         )
         
-        menu.addAction(
-            .init(
-                title: IdentityStripeViewModel.userMenuItemTitles.logOut,
-                style: .destructive,
-                handler: { _ in  }
+        if userRelay.value == nil {
+            menu.addAction(
+                .init(
+                    title: IdentityStripeViewModel.userMenuItemTitles.logIn,
+                    style: .default,
+                    handler: { [weak self] _ in self?.logInRequest.onNext(()) }
+                )
             )
-        )
+        } else {
+            menu.addAction(
+                .init(
+                    title: IdentityStripeViewModel.userMenuItemTitles.logOut,
+                    style: .destructive,
+                    handler: { [weak self] _ in self?.logOutRequest.onNext(()) }
+                )
+            )
+        }
         
         menu.addAction(
             .init(
@@ -279,7 +310,7 @@ final class IdentityStripeViewModel: BaseViewModel,
                     
                 case .publicETHAddress:
                     return self.ethereumPublicAddressInput()
-                        .filter({ $0 != nil }).map({ $0! })
+                        .map({ ($0?.isValidEVMAddress ?? false) ? $0 : nil })
                         .flatMap({ [weak self] newAddress in
                             self?.userSettingsService
                                 .setValue(newAddress, for: .publicETHAddress)
@@ -289,6 +320,43 @@ final class IdentityStripeViewModel: BaseViewModel,
                 }
             })
             .asCompletable()
+            .subscribe()
+            .disposed(by: disposer)
+    }
+    
+    private func bindLogInInput() {
+        logInRequest.asObservable()
+            .flatMapLatest({ [weak self] in
+                return self?.authService.getDiscordAccess()
+                    .asObservable()
+                    .do(onCompleted: {
+                        NotificationCenter.default
+                            .post(
+                                name: NotificationEvent.discordAccessHasChanged.notificationName,
+                                object: nil
+                            )
+                    }) ?? .empty()
+            })
+            .asCompletable()
+            .subscribe()
+            .disposed(by: disposer)
+            
+    }
+    
+    private func bindLogOutInput() {
+        logOutRequest.asObservable()
+            .flatMapLatest({ [weak self] in
+                return self?.authService
+                    .terminateDiscordAccess()
+                    .do(onCompleted: {
+                        NotificationCenter.default
+                            .post(
+                                name: NotificationEvent.discordAccessHasChanged.notificationName,
+                                object: nil
+                            )
+                    })
+                ?? .empty()
+            })
             .subscribe()
             .disposed(by: disposer)
     }

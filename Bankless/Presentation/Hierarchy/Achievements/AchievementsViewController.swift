@@ -26,7 +26,6 @@ import RxCocoa
 class AchievementsViewController: BaseViewController<AchievementsViewModel> {
     // MARK: - Subviews -
     
-    private var backButton: UIButton!
     private var collectionView: AchievementCollectionView!
     
     // MARK: - Setup -
@@ -40,29 +39,14 @@ class AchievementsViewController: BaseViewController<AchievementsViewModel> {
     func setUpSubviews() {
         view.backgroundColor = .backgroundBlack
         
-        backButton = UIButton(type: .custom)
-        backButton.setImage(.init(named: "arrow_left"), for: .normal)
-        backButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: self.viewModel.disposer)
-        view.addSubview(backButton)
-        
         collectionView = AchievementCollectionView()
         view.addSubview(collectionView)
     }
     
     func setUpConstraints() {
-        constrain(backButton, view) { back, view in
-            back.top == view.safeAreaLayoutGuide.top
-            back.left == view.left + contentInsets.left
-            back.height == 20.0
-        }
-        
-        constrain(collectionView, backButton, view) { (collection, back, view) in
+        constrain(collectionView, view) { (collection, view) in
             collection.left == view.left
-            collection.top == back.bottom + contentPaddings.bottom
+            collection.top == view.safeAreaLayoutGuide.top
             collection.right == view.right
             collection.bottom == view.bottom
         }
@@ -70,7 +54,6 @@ class AchievementsViewController: BaseViewController<AchievementsViewModel> {
     
     func bindViewModel() {
         let output = viewModel.transform(input: .init())
-        
         collectionView.bind(viewModel: output.collectionViewModel)
     }
 }

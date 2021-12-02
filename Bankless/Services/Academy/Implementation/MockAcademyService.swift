@@ -28,4 +28,8 @@ final class MockAcademyService: AcademyService {
             )
         )
     }
+    
+    func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable {
+        return .empty()
+    }
 }

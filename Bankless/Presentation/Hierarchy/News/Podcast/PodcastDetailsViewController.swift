@@ -34,6 +34,10 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
     
     private static let videoRatio: CGSize = .init(width: 16, height: 9)
     
+    // MARK: - Properties -
+    
+    private let descriptionViewSizeConstraints = ConstraintGroup()
+    
     // MARK: - Subviews -
     
     private var scrollView: UIScrollView!
@@ -42,7 +46,7 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
     private var navigationLabel: UILabel!
     private var videoView: VideoView!
     private var titleLabel: UILabel!
-    private var descriptionLabel: UILabel!
+    private var descriptionView: UITextView!
     
     // MARK: - Setup -
     
@@ -75,11 +79,13 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
         titleLabel.font = Appearance.Text.Font.Title2.font(bold: true)
         containerView.addSubview(titleLabel)
         
-        descriptionLabel = UILabel()
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = .secondaryWhite
-        descriptionLabel.font = Appearance.Text.Font.Body.font(bold: false)
-        containerView.addSubview(descriptionLabel)
+        descriptionView = UITextView()
+        descriptionView.backgroundColor = .clear
+        descriptionView.isEditable = false
+        descriptionView.textColor = .secondaryWhite
+        descriptionView.font = Appearance.Text.Font.Body.font(bold: false)
+        descriptionView.dataDetectorTypes = .all
+        containerView.addSubview(descriptionView)
     }
     
     func setUpConstraints() {
@@ -92,8 +98,16 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
         
         constrain(containerView, scrollView, view) { container, scroll, view in
             container.edges == scroll.edges
-            container.width == view.width
-            container.height == view.height ~ .defaultLow
+                .inseted(by: .init(
+                    top: contentInsets.top,
+                    left: contentInsets.left,
+                    bottom: contentInsets.bottom,
+                    right: contentInsets.right
+                ))
+            container.width == view.width - contentInsets.left - contentInsets.right
+            container.height == view.height
+            - contentInsets.top - contentInsets.bottom
+            ~ .defaultLow
         }
         
         constrain(navigationLabel, containerView) { nav, view in
@@ -118,12 +132,27 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
             title.top == video.bottom + contentInsets.bottom * 2
         }
         
-        constrain(descriptionLabel, titleLabel, containerView) { desc, title, view in
+        constrain(descriptionView, titleLabel, containerView) { desc, title, view in
             desc.left == view.left + contentInsets.left
             desc.right == view.right - contentInsets.right
             desc.top == title.bottom + contentInsets.bottom * 2
             desc.bottom == view.bottom - contentInsets.bottom
         }
+        
+        descriptionView.rx
+            .observe(CGSize.self, #keyPath(UITextView.contentSize))
+            .map({ return ($0?.height ?? 0) })
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] height in
+                guard let self = self else { return }
+                
+                constrain(
+                    self.descriptionView, replace: self.descriptionViewSizeConstraints
+                ) { desc in
+                    desc.height == height
+                }
+            })
+            .disposed(by: disposer)
     }
     
     func bindViewModel() {
@@ -156,7 +185,7 @@ class PodcastDetailsViewController: BaseViewController<PodcastDetailsViewModel> 
             .disposed(by: disposer)
         videoView.bind(viewModel: output.videoViewModel)
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
-        output.description.drive(descriptionLabel.rx.text).disposed(by: disposer)
+        output.description.drive(descriptionView.rx.text).disposed(by: disposer)
     }
     
     private func input() -> PodcastDetailsViewModel.Input {

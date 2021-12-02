@@ -1,0 +1,41 @@
+query News {
+  historical {
+    BanklessPodcastV1 {
+      playlist: Podcasts {
+        data {
+          id
+          contentDetails {
+            videoId
+            videoPublishedAt
+          }
+          snippet {
+            publishedAt
+            thumbnails {
+              kind
+              url
+            }
+            title
+            description
+          }
+        }
+      }
+    }
+    BanklessWebsiteV1 {
+      posts {
+        data {
+          id
+        title
+        slug
+        excerpt
+        createdAt
+        updatedAt
+        featureImage
+        url
+        html
+        readingTime
+        featured
+        }
+      }
+    }
+  }
+}

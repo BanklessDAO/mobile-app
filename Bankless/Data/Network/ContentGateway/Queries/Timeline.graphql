@@ -1,123 +1,111 @@
 query Timeline {
-  BanklessTokens(
-    where: {
-      address_equals: "0xbbc3d8108069b10a5859a08f31d140b9f357f73f"
-    }
-  ) {
-    data {
-      address
-      balance
-      transactions {
-        amount
-        toAddress
-        fromAddress
+  historical {
+    BanklessPodcastV1 {
+      playlist: Podcasts {
+        data {
+          id
+          contentDetails {
+            videoId
+            videoPublishedAt
+          }
+          snippet {
+            publishedAt
+            thumbnails {
+              kind
+              url
+            }
+            title
+            description
+          }
+        }
       }
     }
-  }
-  
-  # TODO: Have a separate flat filterable entity collection for BANK transactions
-  
-  POAPTokens(
-    where: {
-      owner_equals: "0xbbc3d8108069b10a5859a08f31d140b9f357f73f"
-    }
-  ) {
-    data {
-      id
-      owner
-      mintedAt
-      #imageUrl
-    }
-  }
-  
-#   NewsletterItems(
-#     first: 3
-#   ) {
-#     id
-#     title
-#     slug
-#     excerpt
-#     createdAt
-#     updatedAt
-#     coverPictureUrl
-#     url
-#     htmlContent
-#     readingTimeInMinutes
-#     isFeatured
-#   }
-  
-#   PodcastItems(
-#     first: 3
-#   ) {
-#     id
-#     title
-#     description
-#     publishedAt
-#     thumbnailUrl
-#     videoURL
-#   }
-  
-  Bounties {
-    data {
-      id
-      title
-      season
-      description
-      #criteria
-      rewardAmount
-      # status
-      # createdBy {
-      #   discordId
-      #   discordHandle
-      # }
-      # createdAt
-      # dueAt
-      # discordMessageId
-      # status
-      # claimedBy {
-      #   discordId
-      #   discordHandle
-      # }
-      # claimedAt
-      # submittedBy {
-      #   discordId
-      #   discordHandle
-      # }
-      # submittedAt
-      # submissionNotes
-      # submissionUrl
-      # reviewedBy {
-      #   discordId
-      #   discordHandle
-      # }
-      # reviewedAt
-    }
-  }
-  
-  Courses(
-    first: 3
-  ) {
-    data {
-      slug
-      name
-      duration
-      difficulty
-      description
-      knowledgeRequirements
-      learnings
-      learningActions
-      poapEventId
-      poapImageLink
-      sections {
-        type
+    BanklessWebsiteV1 {
+      posts {
+        data {
+          id
         title
-        content
-        quiz {
-          answers
-          rightAnswerNumber
+        slug
+        excerpt
+        createdAt
+        updatedAt
+        featureImage
+        url
+        html
+        readingTime
+        featured
+        }
+      }
+    }
+    BanklessAcademyV1 {
+       allCourses: Courses {
+         data {
+           slug
+           name
+           duration
+           difficulty
+           description
+           knowledgeRequirements
+           learnings
+           learningActions
+           poapEventId
+           poapImageLink
+           slides {
+             type
+             title
+             content
+             quiz {
+               answers
+               rightAnswerNumber
+             }
+           }
+         }
+       }
+    }
+    BanklessBountyBoardV1 {
+      allBounties: Bounties {
+        data {
+          id
+          title
+          season
+          description
+          criteria
+          reward {
+            currency
+            scale
+            amount
+          }
+          status
+          createdBy {
+            discordHandle
+            discordId
+          }
+          createdAt
+          dueAt
+          discordMessageId
+          statusHistory {
+            setAt
+            status
+          }
+          claimedBy {
+            discordHandle
+            discordId
+          }
+          claimedAt
+          submissionUrl
+          submissionNotes
+          submittedBy {
+            discordHandle
+            discordId
+          }
+          submittedAt
+          reviewedBy {
+            discordHandle
+            discordId
+          }
+          reviewedAt
         }
       }
     }
   }
 }
-

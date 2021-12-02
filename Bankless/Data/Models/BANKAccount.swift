@@ -24,6 +24,7 @@ struct BANKAccount: Codable {
     let address: String
     let balance: BigInt
     let transactions: [Transaction]
+    let lastTransactionTimestamp: Date?
 }
 
 extension BANKAccount {
@@ -31,6 +32,5 @@ extension BANKAccount {
         let fromAddress: String
         let toAddress: String
         let amount: BigInt
-        let blockTimestamp: Int
     }
 }

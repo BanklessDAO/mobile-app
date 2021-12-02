@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 
 final class MockAchievementsService: AchievementsService {
-    func getAchiements() -> Observable<AchievementsResponse> {
+    func getAchiements(request: AchievementsRequest) -> Observable<AchievementsResponse> {
         return .just(
             .init(
                 attendanceTokens: AttendanceToken.generateMocks(.random(in: 1 ... 10))

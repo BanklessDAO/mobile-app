@@ -124,6 +124,7 @@ final class BountySubmissionViewModel: BaseViewModel, BountyBoardServiceDependen
                         
                         self.events.bountyHasBeenSubmitted.accept(bounty)
                     })
+                    .handleError()
                     .flatMap({ _ in Completable.empty() })
                     .asCompletable()
             })

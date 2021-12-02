@@ -27,6 +27,7 @@ import Kingfisher
 class AcademyCourseFlowViewController: BaseViewController<AcademyCourseFlowViewModel> {
     // MARK: - Constants -
     
+    private static let animationStepDuration: TimeInterval = 0.25
     private static let buttonHeight: CGFloat = 50.0
     private static let separatorHeight: CGFloat = 1
     
@@ -138,8 +139,16 @@ class AcademyCourseFlowViewController: BaseViewController<AcademyCourseFlowViewM
         
         constrain(scrollContainerView, scrollView, contentView) { container, scroll, view in
             container.edges == scroll.edges
-            container.width == view.width
-            container.height == view.height ~ .defaultLow
+                .inseted(by: .init(
+                    top: contentInsets.top,
+                    left: contentInsets.left,
+                    bottom: contentInsets.bottom,
+                    right: contentInsets.right
+                ))
+            container.width == view.width - contentInsets.left - contentInsets.right
+            container.height == view.height
+            - contentInsets.top - contentInsets.bottom
+            ~ .defaultLow
         }
         
         constrain(navigationLabel, scrollContainerView) { nav, view in
@@ -187,6 +196,7 @@ class AcademyCourseFlowViewController: BaseViewController<AcademyCourseFlowViewM
     }
     
     private func loadSection(for sectionViewModel: AcademyCourseSectionViewModel) {
+        sectionContainerView.alpha = 0.0
         sectionContainerView.subviews.forEach({ $0.removeFromSuperview() })
         
         let sectionView = AcademyCourseSectionFactory
@@ -196,6 +206,14 @@ class AcademyCourseFlowViewController: BaseViewController<AcademyCourseFlowViewM
         
         constrain(sectionView as UIView, sectionContainerView) { section, container in
             section.edges == container.edges
+        }
+        
+        UIView.animate(
+            withDuration: AcademyCourseFlowViewController.animationStepDuration,
+            delay: AcademyCourseFlowViewController.animationStepDuration,
+            options: []
+        ) { [weak self] in
+            self?.sectionContainerView.alpha = 1.0
         }
     }
     

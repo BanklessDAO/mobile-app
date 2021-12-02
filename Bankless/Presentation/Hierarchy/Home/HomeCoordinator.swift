@@ -100,8 +100,7 @@ final class HomeCoordinator: Coordinator {
         let coordinator = AchievementsCoordinator(container: container)
         container.resolve(coordinator)
         
-        initialViewController.navigationController?
-            .pushViewController(coordinator.initialViewController, animated: true)
+        coordinator.start(from: initialViewController.navigationController!)
     }
     
     private func openBountyBoard() {
