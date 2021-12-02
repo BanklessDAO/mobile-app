@@ -32,7 +32,8 @@ final class AcademyCourseSectionFactory {
             let viewModel = AcademyCourseQuizSectionViewModel(section: section)
             return viewModel
         case .quest:
-            fatalError("not implemented")
+            let viewModel = AcademyCourseUnsupportedSectionViewModel(section: section)
+            return viewModel
         case .poap:
             let viewModel = AcademyCoursePoapSectionViewModel(section: section)
             return viewModel
@@ -54,6 +55,10 @@ final class AcademyCourseSectionFactory {
             return view
         case let targetVM as AcademyCoursePoapSectionViewModel:
             let view = AcademyCoursePoapSectionView()
+            view.set(viewModel: targetVM)
+            return view
+        case let targetVM as AcademyCourseUnsupportedSectionViewModel:
+            let view = AcademyCourseUnsupportedSectionView()
             view.set(viewModel: targetVM)
             return view
         default:
