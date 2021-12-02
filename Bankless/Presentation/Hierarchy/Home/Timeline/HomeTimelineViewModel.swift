@@ -129,6 +129,7 @@ final class HomeTimelineViewModel: BaseViewModel,
         
         let featuredNewsViewModel = timelineItems
             .map({ ($0.newsletterItems + $0.podcastItems) as [NewsItemPreviewBehaviour] })
+            .map({ $0.sorted(by: { $0.date > $1.date }) })
             .map({ items -> FeaturedNewsViewModel in
                 let viewModel = FeaturedNewsViewModel(newsItems: items)
                 

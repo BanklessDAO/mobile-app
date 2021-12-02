@@ -109,7 +109,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
             responseType: TimelineContentResponse.self
         ) { graphQLResult in
             if let timelineData = graphQLResult.data {
-                let newsletterItems = timelineData.historical.banklessWebsiteV1.posts.data[0 ..< 5]
+                let newsletterItems = timelineData.historical.banklessWebsiteV1.posts.data
                     .map({ post in
                         NewsletterItem(
                             id: post.id!,
@@ -125,8 +125,9 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             isFeatured: post.featured!
                         )
                     })
+                    .sorted(by: { $0.date > $1.date })[0 ..< 5]
                 
-                let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data[0 ..< 5]
+                let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data
                     .map({ playlistItem -> PodcastItem in
                         let thumbnailURL = URL(
                             string: playlistItem.snippet!.thumbnails!
@@ -147,6 +148,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             videoURL: videoURL
                         )
                     })
+                    .sorted(by: { $0.publishedAt > $1.publishedAt })[0 ..< 5]
                 
                 let bounties = Array(
                     timelineData.historical.banklessBountyBoardV1.allBounties.data
@@ -235,8 +237,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                     })
                 
                 let response = TimelineContentResponse(
-                    newsletterItems: newsletterItems,
-                    podcastItems: podcastItems,
+                    newsletterItems: Array(newsletterItems),
+                    podcastItems: Array(podcastItems),
                     bounties: bounties,
                     academyCourses: academyCourses
                 )
@@ -263,8 +265,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             title: post.title!,
                             slug: post.slug!,
                             excerpt: post.excerpt!,
-                            createdAt: Date(timeIntervalSince1970: post.createdAt!),
-                            updatedAt: Date(timeIntervalSince1970: post.updatedAt!),
+                            createdAt: Date(timeIntervalSince1970: post.createdAt!  / 1000),
+                            updatedAt: Date(timeIntervalSince1970: post.updatedAt!  / 1000),
                             coverPictureURL: URL(string: post.featureImage!)!,
                             url: URL(string: post.url!)!,
                             htmlContent: post.html!,
@@ -288,7 +290,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             title: playlistItem.snippet!.title!,
                             description: playlistItem.snippet!.description!,
                             publishedAt: Date(
-                                timeIntervalSince1970: playlistItem.snippet!.publishedAt!
+                                timeIntervalSince1970: playlistItem.snippet!.publishedAt!  / 1000
                             ),
                             thumbnailURL: thumbnailURL,
                             videoURL: videoURL
