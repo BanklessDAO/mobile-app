@@ -220,6 +220,8 @@
 		FFC4D6AE2756D533008E10D8 /* News.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AD2756D533008E10D8 /* News.graphql.swift */; };
 		FFC4D6B02756E000008E10D8 /* EVMAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */; };
 		FFC4D6B22756E043008E10D8 /* String+EVMAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B12756E043008E10D8 /* String+EVMAddress.swift */; };
+		FFC4D6B5275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */; };
+		FFC4D6B7275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */; };
 		FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F46E2735F41500EA8F12 /* AuthService.swift */; };
 		FFC6F4722735F48800EA8F12 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4712735F48800EA8F12 /* MockAuthService.swift */; };
 		FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */; };
@@ -491,6 +493,8 @@
 		FFC4D6AD2756D533008E10D8 /* News.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.graphql.swift; sourceTree = "<group>"; };
 		FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVMAddress.swift; sourceTree = "<group>"; };
 		FFC4D6B12756E043008E10D8 /* String+EVMAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EVMAddress.swift"; sourceTree = "<group>"; };
+		FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseUnsupportedSectionViewModel.swift; sourceTree = "<group>"; };
+		FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseUnsupportedSectionView.swift; sourceTree = "<group>"; };
 		FFC6F46E2735F41500EA8F12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FFC6F4712735F48800EA8F12 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		FFC6F4732735F49400EA8F12 /* NetworkAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAuthService.swift; sourceTree = "<group>"; };
@@ -717,6 +721,7 @@
 				FF1AC699274C6F75003025E0 /* Learn */,
 				FF1AC69A274C6F7D003025E0 /* Quiz */,
 				FF1AC69B274C6F8A003025E0 /* Poap */,
+				FFC4D6B3275844B3008E10D8 /* Unsupported */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -1637,6 +1642,15 @@
 			path = Poap;
 			sourceTree = "<group>";
 		};
+		FFC4D6B3275844B3008E10D8 /* Unsupported */ = {
+			isa = PBXGroup;
+			children = (
+				FFC4D6B6275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift */,
+				FFC4D6B4275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift */,
+			);
+			path = Unsupported;
+			sourceTree = "<group>";
+		};
 		FFC6F46D2735F3D200EA8F12 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -2091,6 +2105,7 @@
 				FFAE9868270E83D60047405D /* BountyViewModel.swift in Sources */,
 				FFE6000E271C866500F73FA1 /* AchievementCollectionViewModel.swift in Sources */,
 				FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */,
+				FFC4D6B5275844D3008E10D8 /* AcademyCourseUnsupportedSectionViewModel.swift in Sources */,
 				FFA95ABB274EC1B300D72978 /* UserSetting.swift in Sources */,
 				FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */,
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
@@ -2259,6 +2274,7 @@
 				FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
 				FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */,
+				FFC4D6B7275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,
 				FFAE984A270D17CC0047405D /* Configurator.swift in Sources */,
 				FF5BCDE727457FA6000D3FEF /* NewsViewController.swift in Sources */,
