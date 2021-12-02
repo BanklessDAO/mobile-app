@@ -32,6 +32,14 @@ class NewsItemListCell: BaseTableViewCell<NewsItemViewModel> {
     
     private var newsItemView: NewsItemView!
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        newsItemView.disposer = DisposeBag()
+        newsItemView.viewModel?.disposer = DisposeBag()
+    }
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {
