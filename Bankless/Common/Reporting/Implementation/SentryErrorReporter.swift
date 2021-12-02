@@ -112,7 +112,9 @@ extension SentryErrorReporter {
                 preferredStyle: .alert
             )
             
-            feedbackAlert.addTextField(configurationHandler: { _ in })
+            feedbackAlert.addTextField(configurationHandler: { input in
+                input.autocapitalizationType = .sentences
+            })
             
             feedbackAlert.addAction(
                 .init(

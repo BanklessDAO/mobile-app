@@ -22,7 +22,7 @@ import UIKit
 
 private let errorFormTitle = NSLocalizedString(
     "issue.error.title",
-    value: "Error Feedback",
+    value: "Error",
     comment: ""
 )
 
