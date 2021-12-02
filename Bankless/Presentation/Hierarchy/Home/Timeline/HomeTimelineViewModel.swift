@@ -37,6 +37,7 @@ final class HomeTimelineViewModel: BaseViewModel,
     
     struct Output {
         let isRefreshing: Driver<Bool>
+        let isAnonymous: Driver<Bool>
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
         let featuredNewsViewModel: Driver<FeaturedNewsViewModel>
         let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
@@ -87,6 +88,11 @@ final class HomeTimelineViewModel: BaseViewModel,
         let refreshTrigger = Driver
             .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
             .startWith(())
+        
+        let ethAddress = userSettingsService
+            .streamValue(for: .publicETHAddress)
+            .map({ $0 as? String })
+            .share(replay: 1)
         
         let timelineItems = self.timelineItems(refreshInput: refreshTrigger).share()
         
@@ -154,7 +160,12 @@ final class HomeTimelineViewModel: BaseViewModel,
         
         return Output(
             isRefreshing: activityTracker.asDriver(),
-            gaugeClusterViewModel: gaugeClusterViewModel(refreshInput: refreshTrigger)
+            isAnonymous: ethAddress
+                .map({ $0?.isValidEVMAddress ?? false })
+                .asDriver(onErrorDriveWith: .empty()),
+            gaugeClusterViewModel: gaugeClusterViewModel(
+                refreshInput: refreshTrigger, ethAddress: ethAddress
+            )
                 .asDriver(onErrorDriveWith: .empty()),
             featuredNewsViewModel: featuredNewsViewModel.asDriver(onErrorDriveWith: .empty()),
             bountiesSectionHeaderViewModel: .just(bountiesHeaderVM),
@@ -167,12 +178,9 @@ final class HomeTimelineViewModel: BaseViewModel,
     // MARK: - Gauge cluster -
     
     private func gaugeClusterViewModel(
-        refreshInput: Driver<Void>
+        refreshInput: Driver<Void>,
+        ethAddress: Observable<String?>
     ) -> Observable<GaugeClusterViewModel> {
-        let ethAddress = userSettingsService
-            .streamValue(for: .publicETHAddress)
-            .map({ $0 as? String })
-        
         let inputTrigger = Observable
             .combineLatest(refreshInput.asObservable(), ethAddress) { $1 }
         

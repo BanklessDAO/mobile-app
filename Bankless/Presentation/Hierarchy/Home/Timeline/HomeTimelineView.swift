@@ -27,6 +27,10 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
                               UITableViewDataSource,
                               UITableViewDelegate
 {
+    // MARK: - Constants -
+    
+    private static let tableViewResetScrollDelayInMilliseconds = 500
+    
     // MARK: - Properties -
     
     private let sectionExpandButtonRelay = PublishRelay<Int>()
@@ -120,6 +124,12 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
     override func bindViewModel() {
         let output = viewModel.transform(input: input())
         
+        output.isAnonymous.distinctUntilChanged().skip(1)
+            .delay(.milliseconds(HomeTimelineView.tableViewResetScrollDelayInMilliseconds))
+            .drive(onNext: { [weak self] _ in
+                self?.tableView
+                .scrollToRow(at: .init(row: 0, section: 0), at: .top, animated: true) })
+            .disposed(by: disposer)
         output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
         let bountiesOutput = Driver.combineLatest(
