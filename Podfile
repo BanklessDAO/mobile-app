@@ -37,4 +37,7 @@ target 'Bankless' do
   
   # OAuth2 authorization
   pod 'OAuthSwift', '~> 2.2.0'
+  
+  # Error reporting
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.5.4'
 end

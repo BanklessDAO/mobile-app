@@ -20,10 +20,16 @@
 import Foundation
 import UIKit
 
+private let errorFormTitle = NSLocalizedString(
+    "issue.error.title",
+    value: "Error Feedback",
+    comment: ""
+)
+
 extension DisplayableError {
-    func display() {
+    func display(completion: (() -> Void)? = nil) {
         let errorAlert = UIAlertController(
-            title: nil,
+            title: errorFormTitle,
             message: localizedDescription,
             preferredStyle: .alert
         )
@@ -32,7 +38,7 @@ extension DisplayableError {
             .init(
                 title: Localization.Common.Actions.ok,
                 style: .cancel,
-                handler: { _ in  }
+                handler: { _ in completion?() }
             )
         )
         

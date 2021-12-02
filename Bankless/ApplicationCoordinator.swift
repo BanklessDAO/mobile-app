@@ -27,6 +27,10 @@ class ApplicationCoordinator: NSObject {
     
     private let disposer = DisposeBag()
     
+    // MARK: - App services -
+    
+    let errorReporter: ErrorReporter
+    
     // MARK: - View hierarchy -
     
     private let window: UIWindow
@@ -47,7 +51,11 @@ class ApplicationCoordinator: NSObject {
     ) {
         self.window = window
         self.container = container
+        
         homeCoordinator = HomeCoordinator(container: container)
+        
+        errorReporter = SentryErrorReporter()
+        errorReporter.start()
         
         super.init()
         

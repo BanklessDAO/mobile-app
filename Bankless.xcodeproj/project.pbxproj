@@ -242,6 +242,11 @@
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
+		FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45827596443007B4E3A /* ErrorLogging.swift */; };
+		FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */; };
+		FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */; };
+		FFE4D46127596884007B4E3A /* SentryErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */; };
+		FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */; };
 		FFE60007271C842900F73FA1 /* AchievementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */; };
 		FFE60009271C843700F73FA1 /* AchievementsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */; };
 		FFE6000B271C844600F73FA1 /* AchievementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */; };
@@ -516,6 +521,11 @@
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
+		FFE4D45827596443007B4E3A /* ErrorLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogging.swift; sourceTree = "<group>"; };
+		FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorLogging+ErrorReporter.swift"; sourceTree = "<group>"; };
+		FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
+		FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentryErrorReporter.swift; sourceTree = "<group>"; };
+		FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorHandling+Display+Log.swift"; sourceTree = "<group>"; };
 		FFE60006271C842900F73FA1 /* AchievementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewModel.swift; sourceTree = "<group>"; };
 		FFE60008271C843700F73FA1 /* AchievementsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCoordinator.swift; sourceTree = "<group>"; };
 		FFE6000A271C844600F73FA1 /* AchievementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsViewController.swift; sourceTree = "<group>"; };
@@ -1021,6 +1031,7 @@
 			isa = PBXGroup;
 			children = (
 				FF78F39A270635B000A47A91 /* DependencyContainer */,
+				FFE4D45C27596709007B4E3A /* Reporting */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1034,7 +1045,6 @@
 				FF78F39327062C8300A47A91 /* Base */,
 				FFAE9852270E41780047405D /* Hierarchy */,
 				FFAE9851270E3F590047405D /* Views */,
-				FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1210,6 +1220,7 @@
 				FFA9C165274DA564003F4B11 /* QuizItem.swift */,
 				FFC4D68627555B45008E10D8 /* DisplayableError.swift */,
 				FFC4D68D275560F6008E10D8 /* ErrorHandling.swift */,
+				FFE4D45827596443007B4E3A /* ErrorLogging.swift */,
 				FF78F3C62706955B00A47A91 /* Extensions */,
 			);
 			path = Behaviour;
@@ -1353,6 +1364,7 @@
 				FF78F3742705549700A47A91 /* Services */,
 				FF78F3732705547700A47A91 /* Data */,
 				FF9F5CE7270546E200629D79 /* Resources */,
+				FFAE9846270D173A0047405D /* ApplicationCoordinator.swift */,
 				FF7D494127053EF300F0244B /* AppDelegate.swift */,
 				FF7D494F27053EF400F0244B /* Info.plist */,
 			);
@@ -1616,7 +1628,9 @@
 		FFC4D68827555B74008E10D8 /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				FFE4D4622759794D007B4E3A /* ErrorHandling+Display+Log.swift */,
 				FFC4D68927555B87008E10D8 /* DisplayableError+Alert.swift */,
+				FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */,
 				FFC4D69527556450008E10D8 /* ApplicationError+ErrorHandling.swift */,
 				FFC4D69127556130008E10D8 /* ServiceError+ErrorHandling.swift */,
 				FFC4D6932755613C008E10D8 /* DataError+ErrorHandling.swift */,
@@ -1732,6 +1746,23 @@
 				FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */,
 			);
 			path = GaugeCluster;
+			sourceTree = "<group>";
+		};
+		FFE4D45C27596709007B4E3A /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */,
+				FFE4D45F27596861007B4E3A /* Implementation */,
+			);
+			path = Reporting;
+			sourceTree = "<group>";
+		};
+		FFE4D45F27596861007B4E3A /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				FFE4D46027596884007B4E3A /* SentryErrorReporter.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		FFE60005271C83EC00F73FA1 /* Achievements */ = {
@@ -2049,6 +2080,7 @@
 				FF1AC696274C6D83003025E0 /* AcademyCourseSectionView.swift in Sources */,
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFC4D6832755515A008E10D8 /* DataError.swift in Sources */,
+				FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
@@ -2065,6 +2097,7 @@
 				FF5BCDF3274588F2000D3FEF /* NewsItemListCell.swift in Sources */,
 				FF5BCDBC2742DFD5000D3FEF /* TextView.swift in Sources */,
 				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
+				FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
 				FFEB12462718A781003EF90D /* AttendanceToken.swift in Sources */,
 				FFA9C164274DA52D003F4B11 /* QuizItemView.swift in Sources */,
@@ -2169,8 +2202,10 @@
 				FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */,
 				FFC4D67E27545EB8008E10D8 /* ServiceError.swift in Sources */,
 				FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */,
+				FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */,
 				FF78F3992706357C00A47A91 /* ServiceDependencies.swift in Sources */,
 				FF78F39527062C9200A47A91 /* BaseViewModel.swift in Sources */,
+				FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */,
 				FFC4D68C27555C5E008E10D8 /* Localization.swift in Sources */,
 				FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */,
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
@@ -2269,6 +2304,7 @@
 				FF5BCDB1273F5A2A000D3FEF /* BountyDetailsViewModel.swift in Sources */,
 				FFCC9FB02718CA8000CAB3A3 /* GaugeClusterView.swift in Sources */,
 				FFC4D68727555B45008E10D8 /* DisplayableError.swift in Sources */,
+				FFE4D46127596884007B4E3A /* SentryErrorReporter.swift in Sources */,
 				FFC4D6A62755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift in Sources */,
 				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
 				FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */,

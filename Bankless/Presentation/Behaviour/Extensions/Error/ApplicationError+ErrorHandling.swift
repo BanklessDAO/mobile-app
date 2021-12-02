@@ -19,8 +19,4 @@
 
 import Foundation
 
-extension ApplicationError: ErrorHandling, DisplayableError {
-    func handle() {
-        display()
-    }
-}
+extension ApplicationError: ErrorHandling, DisplayableError, ErrorLogging { }

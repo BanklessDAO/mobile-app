@@ -30,6 +30,9 @@ PODS:
   - RxSwiftExt/RxCocoa (6.0.1):
     - RxCocoa (~> 6.0)
     - RxSwiftExt/Core
+  - Sentry (7.5.4):
+    - Sentry/Core (= 7.5.4)
+  - Sentry/Core (7.5.4)
 
 DEPENDENCIES:
   - Apollo
@@ -45,6 +48,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - RxSwiftExt (~> 6)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `7.5.4`)
 
 SPEC REPOS:
   trunk:
@@ -64,6 +68,16 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
 
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 7.5.4
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 7.5.4
+
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Apollo: 69f35ed8f8d87c32ef89e99e4f8c682399e9192b
@@ -80,7 +94,8 @@ SPEC CHECKSUMS:
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
+  Sentry: 5c5dd4005f3b7b9765d5a8871232cddbd0d888b7
 
-PODFILE CHECKSUM: 0e6529430e57339498e4d2704f4e418feee0f635
+PODFILE CHECKSUM: 52bd9b015d47c55cd017e6d7d6efad28c5866757
 
 COCOAPODS: 1.10.1

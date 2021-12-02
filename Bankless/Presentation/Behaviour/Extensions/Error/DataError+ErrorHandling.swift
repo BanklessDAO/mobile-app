@@ -19,7 +19,9 @@
 
 import Foundation
 
-extension DataError: ErrorHandling, DisplayableError, LocalizedError {
+extension DataError: ErrorHandling, DisplayableError, ErrorLogging { }
+
+extension DataError: LocalizedError {
     var errorDescription: String? {
         switch self {
             
@@ -62,13 +64,9 @@ extension DataError: ErrorHandling, DisplayableError, LocalizedError {
         case .mappingError(let error):
             return NSLocalizedString(
                 "error.data.mapping.message",
-                value: "Unexpected data: \(error.localizedDescription).",
+                value: "Unexpected data: \"\(error.localizedDescription)\".",
                 comment: ""
             )
         }
-    }
-    
-    func handle() {
-        display()
     }
 }

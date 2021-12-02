@@ -20,5 +20,5 @@
 import Foundation
 
 protocol DisplayableError: Error {
-    func display()
+    func display(completion: (() -> Void)?)
 }

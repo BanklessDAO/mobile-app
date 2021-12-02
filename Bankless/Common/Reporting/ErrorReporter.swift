@@ -1,5 +1,5 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-29.
+//  Created with ♥ by BanklessDAO contributors on 2021-12-02.
 //  Copyright (C) 2021 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
@@ -19,20 +19,7 @@
 
 import Foundation
 
-extension ServiceError: ErrorHandling, DisplayableError, ErrorLogging { }
-
-extension ServiceError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-            
-        case .unknown:
-            return NSLocalizedString(
-                "error.service.unknown.message",
-                value: "Unknown service error",
-                comment: ""
-            )
-        case .raw(let error):
-            return error.localizedDescription
-        }
-    }
+protocol ErrorReporter {
+    func start()
+    func report(error: Error, beforeFeedback: ((@escaping () -> Void) -> Void)?)
 }
