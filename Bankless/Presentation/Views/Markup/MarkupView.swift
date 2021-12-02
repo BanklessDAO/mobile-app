@@ -26,6 +26,10 @@ import Kingfisher
 import WebKit
 
 class MarkupView: BaseView<MarkupViewModel> {
+    // MARK: - Constants -
+    
+    private static let animationStepDuration: TimeInterval = 0.25
+    
     // MARK: - Properties -
     
     private var webViewSizeConstraints = ConstraintGroup()
@@ -73,6 +77,7 @@ class MarkupView: BaseView<MarkupViewModel> {
         }
         
         webView = WKWebView(frame: .zero, configuration: config)
+        webView.alpha = 0.0
         webView.scrollView.isScrollEnabled = false
         webView.backgroundColor = .backgroundBlack
         webView.isOpaque = false
@@ -134,5 +139,24 @@ extension MarkupView: WKNavigationDelegate {
         } else {
             decisionHandler(.allow)
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.evaluateJavaScript(
+            "document.readyState",
+            completionHandler: { [weak self] result, error in
+                if result == nil || error != nil {
+                    return
+                }
+                
+                UIView.animate(
+                    withDuration: MarkupView.animationStepDuration,
+                    delay: MarkupView.animationStepDuration,
+                    options: []
+                ) {
+                    self?.webView.alpha = 1.0
+                }
+            }
+        )
     }
 }
