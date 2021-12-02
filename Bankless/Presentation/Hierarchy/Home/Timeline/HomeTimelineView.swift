@@ -158,7 +158,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
                         gaugeClusterViewModel: gaugeCluster,
                         featuredNewsViewModel: featuredNews,
                         bountiesHeaderViewModel: bounties.0,
-                        bountyViewModels: [],
+                        bountyViewModels: bounties.1,
                         academyHeaderViewModel: academy.0,
                         academyCourseViewModels: academy.1
                     )

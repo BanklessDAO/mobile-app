@@ -152,7 +152,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 
                 let bounties = Array(
                     timelineData.historical.banklessBountyBoardV1.allBounties.data
-                        .reversed()[0 ..< 2]
+                        .reversed()[0 ..< 0]
                 )
                     .map({
                         Bounty(
