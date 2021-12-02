@@ -24,6 +24,10 @@ import RxCocoa
 import Cartography
 
 class IconButtonNavigationBarItem: UIView {
+    // MARK: - Constants -
+    
+    private static let itemPadding: CGFloat = 10.0
+    
     // MARK: - Properties -
     
     private let icon: UIImage
@@ -71,6 +75,12 @@ class IconButtonNavigationBarItem: UIView {
         UIView.performWithoutAnimation {
             constrain(button, self) { button, view in
                 button.edges == view.edges
+                    .inseted(
+                        top: 0,
+                        leading: 0,
+                        bottom: 0,
+                        trailing: IconButtonNavigationBarItem.itemPadding
+                    )
             }
         }
     }

@@ -26,7 +26,7 @@ import Cartography
 class NavigationBar: BaseNavigationView {
     // MARK: - Constants -
     
-    private static let itemPadding: CGFloat = 20.0
+    private static let itemPadding: CGFloat = 0.0
     
     // MARK: - Properties -
     
