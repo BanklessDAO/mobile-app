@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BANKLESS_ACADEMY_API_BASE_URL</key>
+	<string>https://${BANKLESS_ACADEMY_API_BASE_PATH}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -27,34 +29,32 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>GRAPHQL_API_ENDPOINT</key>
-	<string>https://${GRAPHQL_API_ENDPOINT}</string>
-	<key>DISCORD_AUTH_URL</key>
-	<string>https://${DISCORD_AUTH_PATH}</string>
-	<key>DISCORD_AUTH_REDIRECT_URL_SCHEME</key>
-	<string>${DISCORD_AUTH_REDIRECT_URL_SCHEME}</string>
+	<key>DISCORD_ACCESS_TOKEN_URL</key>
+	<string>https://${DISCORD_ACCESS_TOKEN_PATH}</string>
+	<key>DISCORD_API_BASE_URL</key>
+	<string>https://${DISCORD_API_BASE_PATH}</string>
 	<key>DISCORD_AUTH_REDIRECT_PATH</key>
 	<string>${DISCORD_AUTH_REDIRECT_PATH}</string>
 	<key>DISCORD_AUTH_REDIRECT_URL</key>
 	<string>${DISCORD_AUTH_REDIRECT_URL_SCHEME}://${DISCORD_AUTH_REDIRECT_PATH}</string>
-	<key>DISCORD_ACCESS_TOKEN_URL</key>
-	<string>https://${DISCORD_ACCESS_TOKEN_PATH}</string>
+	<key>DISCORD_AUTH_REDIRECT_URL_SCHEME</key>
+	<string>${DISCORD_AUTH_REDIRECT_URL_SCHEME}</string>
+	<key>DISCORD_AUTH_URL</key>
+	<string>https://${DISCORD_AUTH_PATH}</string>
 	<key>DISCORD_CLIENT_ID</key>
 	<string>${DISCORD_CLIENT_ID}</string>
 	<key>DISCORD_CLIENT_SECRET</key>
 	<string>${DISCORD_CLIENT_SECRET}</string>
-	<key>DISCORD_API_BASE_URL</key>
-	<string>https://${DISCORD_API_BASE_PATH}</string>
 	<key>DISCORD_SERVER_URL</key>
 	<string>https://${DISCORD_SERVER_LINK}</string>
-	<key>BANKLESS_ACADEMY_API_BASE_URL</key>
-	<string>https://${BANKLESS_ACADEMY_API_BASE_PATH}</string>
+	<key>GRAPHQL_API_ENDPOINT</key>
+	<string>https://${GRAPHQL_API_ENDPOINT}</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>POAP_API_BASE_URL</key>
 	<string>https://${POAP_API_BASE_PATH}</string>
 	<key>SENTRY_DSN</key>
 	<string>https://${SENTRY_DSN_PATH}</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
