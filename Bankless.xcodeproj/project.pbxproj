@@ -2062,7 +2062,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
+			shellScript = "# SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n# cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

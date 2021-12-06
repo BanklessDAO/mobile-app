@@ -178,16 +178,15 @@ final class AcademyCourseFlowViewModel: BaseViewModel,
     ) -> Completable {
         return Observable
             .combineLatest(request, userSettingsService.streamValue(for: .publicETHAddress)) {
-                _, addressSetting -> String in
-                
-                guard let ethAddress = addressSetting as? String else {
-                    fatalError("eth address is not set by the user")
-                }
-                
-                return ethAddress
+                _, addressSetting -> Any? in return addressSetting
             }
             .flatMapLatest({ [weak self] ethAddress -> Completable in
                 guard let self = self else { return .empty() }
+                
+                guard let ethAddress = ethAddress as? String else {
+                    return .error(ApplicationError.ethAddressIsNotSet)
+                        .handleError()
+                }
                 
                 return self.academyService
                     .claimProofOfAttendance(

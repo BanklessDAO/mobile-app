@@ -300,17 +300,17 @@ class AcademyCourseDetailsViewController: BaseViewController<AcademyCourseDetail
         }
         
         constrain(footerSeparatorView, navControl, view) { sep, nav, view in
-            sep.left == view.left + contentInsets.left
-            sep.right == view.right - contentInsets.right
+            sep.left == view.left + contentInsets.left * 2
+            sep.right == view.right - contentInsets.right * 2
             sep.bottom == nav.top - contentInsets.bottom * 2
             sep.height == AcademyCourseDetailsViewController.separatorHeight
         }
         
         constrain(navControl, view) { nav, view in
-            nav.left == view.left + contentInsets.left
-            nav.right == view.right - contentInsets.right
+            nav.left == view.left + contentInsets.left * 2
+            nav.right == view.right - contentInsets.right * 2
             nav.height == AcademyCourseDetailsViewController.buttonHeight
-            nav.bottom == view.safeAreaLayoutGuide.bottom - contentInsets.bottom
+            nav.bottom == view.safeAreaLayoutGuide.bottom - contentInsets.bottom * 2
         }
     }
     
