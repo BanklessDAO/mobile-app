@@ -22,6 +22,7 @@ import Foundation
 enum ApplicationError: Error, LocalizedError {
     case unknown
     case raw(error: Error)
+    case ethAddressIsNotSet
     
     var errorDescription: String? {
         switch self {
@@ -34,6 +35,12 @@ enum ApplicationError: Error, LocalizedError {
             )
         case .raw(let error):
             return error.localizedDescription
+        case .ethAddressIsNotSet:
+            return NSLocalizedString(
+                "error.app.eth_address_is_not_set.message",
+                value: "We don't have your ETH address. Please set it in the user settings.",
+                comment: ""
+            )
         }
     }
 }
