@@ -1,8 +1,9 @@
-## v0.1.0 - 2021-10-07
+## v0.2.1 - 2021-12-06 - Beta 1
 
-### Added
-- Base app architecture framework.
-- Initial Home screen implementation.
+### Changed
+- [Improvement] Better error communication when POAP is being claimed without wallet address known
+- [Improvement] Various UI layout updates
+- [Improvement] Reduced Discord authorization scope to avoid over-asking permissions
 
 ## v0.2.0 - 2021-12-02 - Beta 1
 
@@ -13,9 +14,9 @@
 - Bankless Podcast videos
 - Bankless Academy courses
 
-## v0.2.1 - 2021-12-06 - Beta 1
+## v0.1.0 - 2021-10-07
 
-### Changed
-- [Improvement] Better error communication when POAP is being claimed without wallet address known
-- [Improvement] Various UI layout updates
-- [Improvement] Reduced Discord authorization scope to avoid over-asking permissions
+### Added
+- Base app architecture framework.
+- Initial Home screen implementation.
+
