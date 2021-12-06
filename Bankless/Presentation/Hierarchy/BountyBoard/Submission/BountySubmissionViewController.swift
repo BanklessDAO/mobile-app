@@ -208,8 +208,16 @@ class BountySubmissionViewController: BaseViewController<BountySubmissionViewMod
         
         constrain(containerView, scrollView, view) { container, scroll, view in
             container.edges == scroll.edges
-            container.width == view.width
-            container.height == view.height ~ .defaultLow
+                .inseted(by: .init(
+                    top: contentInsets.top,
+                    left: contentInsets.left,
+                    bottom: contentInsets.bottom,
+                    right: contentInsets.right
+                ))
+            container.width == view.width - contentInsets.left - contentInsets.right
+            container.height == view.height
+            - contentInsets.top - contentInsets.bottom
+            ~ .defaultLow
         }
         
         constrain(navigationLabel, containerView) { nav, view in
