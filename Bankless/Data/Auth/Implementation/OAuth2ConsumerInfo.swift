@@ -61,7 +61,7 @@ extension AuthProviderServer: OAuth2ConsumerInfo {
         switch self {
             
         case .discord:
-            return "identify guilds guilds.members.read rpc.notifications.read"
+            return "identify guilds guilds.members.read"
         }
     }
     
