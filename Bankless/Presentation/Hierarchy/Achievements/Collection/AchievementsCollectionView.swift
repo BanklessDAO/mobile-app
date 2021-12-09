@@ -226,7 +226,7 @@ extension AchievementCollectionView: GridCollectionViewLayoutDelegate {
         case 0:
             return Appearance.Text.Font.Header1.lineHeight * 2
         case 1:
-            return Appearance.Text.Font.Title1.lineHeight * 2
+            return Appearance.Text.Font.Title2.lineHeight
         default:
             return (collectionView.bounds.width / 3) - contentInsets.left
         }
@@ -241,7 +241,7 @@ extension AchievementCollectionView: GridCollectionViewLayoutDelegate {
         case 0:
             return Appearance.Text.Font.Header1.lineHeight * 2
         case 1:
-            return Appearance.Text.Font.Title1.lineHeight * 2
+            return Appearance.Text.Font.Title2.lineHeight
         default:
             return (collectionView.bounds.width / 3)
         }
