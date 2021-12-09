@@ -73,12 +73,12 @@ final class IdentityStripeViewModel: BaseViewModel,
         ),
         logIn: NSLocalizedString(
             "user.menu.item.log_in.title",
-            value: "Log In",
+            value: "Connect Discord",
             comment: ""
         ),
         logOut: NSLocalizedString(
             "user.menu.item.log_out.title",
-            value: "Log Out",
+            value: "Disconnect Discord",
             comment: ""
         ),
         cancel: NSLocalizedString(
