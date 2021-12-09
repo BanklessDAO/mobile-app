@@ -81,12 +81,24 @@ final class AchievementCollectionViewModel: BaseViewModel,
         return Output(
             isRefreshing: activityTracker.asDriver(),
             title: .just(AchievementCollectionViewModel.collectionTitle),
-            attendanceTokensSectionTitle: .just(
-                AchievementCollectionViewModel.attendanceTokensSectionTitle
-            ),
+            attendanceTokensSectionTitle: self
+                .attendanceTokensSectionTitle(attendanceTokens: attendanceTokens)
+                .asDriver(onErrorDriveWith: .empty()),
             attendanceTokenViewModels: attendanceTokenViewModels
                 .asDriver(onErrorDriveWith: .empty())
         )
+    }
+    
+    // MARK: - Titles -
+    
+    private func attendanceTokensSectionTitle(
+        attendanceTokens: Observable<[AttendanceToken]>
+    ) -> Observable<String> {
+        return attendanceTokens
+            .map({ tokens in
+                AchievementCollectionViewModel.attendanceTokensSectionTitle
+                + " (\(tokens.count))"
+            })
     }
     
     // MARK: - Timeline -
