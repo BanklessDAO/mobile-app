@@ -43,7 +43,7 @@ final class GaugeClusterViewModel: BaseViewModel {
     private static let placeholderStrings = (
         lastTransaction: NSLocalizedString(
             "bankless.token.transaction.placeholder.message",
-            value: "No transactions on the record",
+            value: "No transactions on record",
             comment: ""
         ),
         achievements: NSLocalizedString(
