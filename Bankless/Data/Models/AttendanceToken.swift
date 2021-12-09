@@ -37,10 +37,15 @@ struct AttendanceToken: Codable {
         
         self.id = try! container.decode(String.self, forKey: .tokenId)
         self.ownerAddress = try! container.decode(String.self, forKey: .owner)
-        self.mintedAt = Date(
-            dateString: try! container.decode(String.self, forKey: .created),
-            format: "yyyy-MM-dd HH:mm:ss"
-        )
+        
+        if let dateString = try? container.decode(String.self, forKey: .created) {
+            self.mintedAt = Date(
+                dateString: dateString,
+                format: "yyyy-MM-dd HH:mm:ss"
+            )
+        } else {
+            self.mintedAt = Date()
+        }
         
         let eventContainer = try! container
             .nestedContainer(keyedBy: CodingKey.Event.self, forKey: .event)
