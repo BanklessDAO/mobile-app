@@ -62,7 +62,7 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
         )
         
         titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Font.Header1.font(bold: true)
+        titleLabel.font = Appearance.Text.Font.Title1.font(bold: true)
         titleLabel.textColor = .secondaryWhite
         contentView.addSubview(titleLabel)
         
@@ -96,7 +96,7 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
             title.top == view.top + Appearance.contentInsets.top
             title.left == view.left + Appearance.contentInsets.left * 2
             title.right == view.right - Appearance.contentInsets.right * 2
-            title.height == Appearance.Text.Font.Header1.lineHeight
+            title.height == Appearance.Text.Font.Title1.lineHeight
         }
         
         constrain(collectionView, titleLabel, contentView) { items, title, view in

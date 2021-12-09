@@ -36,7 +36,7 @@ final class FeaturedNewsViewModel: BaseViewModel {
     // MARK: - Constants -
     
     private static let title = NSLocalizedString(
-        "home.timeline.news.title", value: "Today", comment: ""
+        "home.timeline.news.title", value: "Latest", comment: ""
     )
     
     // MARK: - Data -
