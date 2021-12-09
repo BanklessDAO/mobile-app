@@ -276,17 +276,6 @@ final class IdentityStripeViewModel: BaseViewModel,
             )
         )
         
-        menu.addAction(
-            .init(
-                title: IdentityStripeViewModel.userMenuItemTitles.openDiscord,
-                style: .default,
-                handler: { _ in
-                    UIApplication.shared
-                        .open(URL(string: Environment.discordServerURL)!, options: [:])
-                }
-            )
-        )
-        
         if userRelay.value == nil {
             menu.addAction(
                 .init(
