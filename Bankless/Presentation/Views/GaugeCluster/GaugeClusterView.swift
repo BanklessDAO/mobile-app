@@ -117,6 +117,8 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     }
     
     override func bindViewModel() {
+        viewModel?.disposer = DisposeBag()
+        
         let output = viewModel.transform(input: input())
         
         output.isAnonymous

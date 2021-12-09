@@ -43,6 +43,12 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     private var titleLabel: UILabel!
     private var collectionView: UICollectionView!
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {

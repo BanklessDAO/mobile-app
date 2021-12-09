@@ -32,6 +32,13 @@ class BountyListCell: BaseTableViewCell<BountyViewModel> {
     
     private var card: BountyCard!
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        card.disposer = DisposeBag()
+    }
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {

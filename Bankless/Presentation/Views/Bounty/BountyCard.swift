@@ -33,7 +33,7 @@ class BountyCard: CardView {
     
     // MARK: - Properties -
     
-    private let disposer = DisposeBag()
+    var disposer = DisposeBag()
     
     // MARK: - Subviews -
     

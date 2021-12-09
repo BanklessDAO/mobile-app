@@ -32,6 +32,13 @@ class AcademyCourseListCell: BaseTableViewCell<AcademyCourseViewModel> {
     
     private var card: AcademyCourseCard!
     
+    // MARK: - Lifecycle -
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        card.disposer = DisposeBag()
+    }
+    
     // MARK: - Setup -
     
     override func setUpSubviews() {

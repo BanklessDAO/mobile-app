@@ -36,7 +36,7 @@ class AcademyCourseCard: CardView {
     
     // MARK: - Properties -
     
-    private let disposer = DisposeBag()
+    var disposer = DisposeBag()
     
     // MARK: - Subviews -
     
