@@ -1,13 +1,34 @@
-## v0.2.1 - 2021-12-06 - Beta 1
+## v0.2.2 - 2021-12-09 - Beta
 
-### Changed
-- [Improvement] Better error communication when POAP is being claimed without wallet address known
-- [Improvement] Various UI layout updates
-- [Improvement] Reduced Discord authorization scope to avoid over-asking permissions
+### Fixed
 
-## v0.2.0 - 2021-12-02 - Beta 1
+- Duplicate navigation and other unexpected events that happened occasionally.
+- Corrupt data in some POAPs is handled to avoid crashes. 
 
-### Added
+### Updated
+
+- Disabled Discord login popup on launch.
+- Improved POAP token collection layout and added counter on Achievements screen.
+- Improved BANK balance amount readability.
+- User Identity & Settings bar now looks more actionable.
+- Removed 'Open Discord' action.
+- Renamed 'Login / Logout' to 'Connect / Disconnect Discord'.
+- Tweaked section and screen titles for better UX.
+- Fonts, paddings, colors and layout across the app are polished.
+- Updated app icon.
+
+## v0.2.1 - 2021-12-06 - Beta
+
+### Updated
+
+- Better error communication when POAP is being claimed without wallet address known
+- Various UI layout updates
+- Reduced Discord authorization scope to avoid over-asking permissions
+
+## v0.2.0 - 2021-12-02 - Beta
+
+### New
+
 - BANK token balance and last transaction indicator
 - Achievements screen with a collection of POAP tokens user owns
 - BanklessDAO Newsletter
@@ -16,7 +37,7 @@
 
 ## v0.1.0 - 2021-10-07
 
-### Added
+### New
+
 - Base app architecture framework.
 - Initial Home screen implementation.
-
