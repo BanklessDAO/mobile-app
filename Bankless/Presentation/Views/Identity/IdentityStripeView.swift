@@ -24,12 +24,22 @@ import RxCocoa
 import Cartography
 
 class IdentityStripeView: BaseView<IdentityStripeViewModel> {
+    // MARK: - Constants -
+    
+    private static let domainIconInsets: UIEdgeInsets = .init(
+        top: 2,
+        left: Appearance.contentPaddings.left,
+        bottom: 2,
+        right: Appearance.contentPaddings.right
+    )
+    
     // MARK: - Properties -
     
     private let layoutDirection: LayoutDirection
     
     // MARK: - Subviews -
     
+    private var iconArea: UIView!
     private var domainIconView: UIImageView!
     private var button: UIButton!
     private var titleLabel: UILabel!
@@ -63,13 +73,15 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
     }
     
     private func setUpSubviews() {
+        iconArea = UIView()
+        iconArea.backgroundColor = .backgroundGrey.withAlphaComponent(0.75)
+        addSubview(iconArea)
+        
         domainIconView = UIImageView()
-        domainIconView.backgroundColor = .backgroundGrey.withAlphaComponent(0.75)
-        domainIconView.alpha = 0.75
         domainIconView.contentMode = .scaleAspectFit
         domainIconView.setContentHuggingPriority(.required, for: .horizontal)
         domainIconView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        addSubview(domainIconView)
+        iconArea.addSubview(domainIconView)
         
         button = UIButton(type: .custom)
         addSubview(button)
@@ -84,22 +96,29 @@ class IdentityStripeView: BaseView<IdentityStripeViewModel> {
         switch layoutDirection {
             
         case .leftHand:
-            constrain(domainIconView, titleLabel, self) { icon, title, view in
+            constrain(iconArea, titleLabel, self) { icon, title, view in
                 icon.left == view.left
                 title.left == icon.right + contentPaddings.right
                 title.right == view.right - contentPaddings.left
             }
         case .rightHand:
-            constrain(domainIconView, titleLabel, self) { icon, title, view in
+            constrain(iconArea, titleLabel, self) { icon, title, view in
                 icon.right == view.right
                 title.right == icon.left - contentPaddings.left
                 title.left == view.left + contentPaddings.right
             }
         }
         
-        constrain(domainIconView, self) { icon, view in
-            icon.centerY == view.centerY
-            icon.height == view.height
+        constrain(iconArea, domainIconView, self) { area, icon, view in
+            area.centerY == view.centerY
+            area.height == view.height
+            icon.edges == area.edges
+                .inseted(
+                    top: 0,
+                    leading: contentPaddings.left,
+                    bottom: 0,
+                    trailing: contentPaddings.right
+                )
         }
         
         constrain(titleLabel, self) { title, view in

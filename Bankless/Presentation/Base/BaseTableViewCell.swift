@@ -60,6 +60,8 @@ class TableViewCellFoundation<VM: ViewModel>: UITableViewCell {
     // MARK: - Setters -
     
     func set(viewModel: VM) {
+        (self.viewModel as? ViewModelFoundation)?.disposer = DisposeBag()
+        
         self.viewModel = viewModel
         bindViewModel()
     }

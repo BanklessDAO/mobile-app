@@ -47,7 +47,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     // MARK: - Constants -
     
     private static let title = NSLocalizedString(
-        "news.list.title", value: "News", comment: ""
+        "news.list.title", value: "Updates", comment: ""
     )
     
     // MARK: - Properties -

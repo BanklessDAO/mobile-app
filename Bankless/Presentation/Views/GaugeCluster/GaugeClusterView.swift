@@ -69,14 +69,14 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
         
         lastTransactionLabel = UILabel()
         lastTransactionLabel.numberOfLines = 0
-        lastTransactionLabel.font = Appearance.Text.Font.Label2.font(bold: false)
-        lastTransactionLabel.textColor = .secondaryWhite.withAlphaComponent(0.5)
+        lastTransactionLabel.font = Appearance.Text.Font.Label2.font(bold: true)
+        lastTransactionLabel.textColor = .secondaryWhite.withAlphaComponent(0.3)
         addSubview(lastTransactionLabel)
         
         lastAchievementLabel = UILabel()
         lastAchievementLabel.numberOfLines = 0
-        lastAchievementLabel.font = Appearance.Text.Font.Label2.font(bold: false)
-        lastAchievementLabel.textColor = .secondaryWhite.withAlphaComponent(0.5)
+        lastAchievementLabel.font = Appearance.Text.Font.Label2.font(bold: true)
+        lastAchievementLabel.textColor = .secondaryWhite.withAlphaComponent(0.3)
         addSubview(lastAchievementLabel)
         
         achievementsButton = UIButton(type: .custom)
@@ -117,6 +117,8 @@ class GaugeClusterView: BaseView<GaugeClusterViewModel> {
     }
     
     override func bindViewModel() {
+        viewModel?.disposer = DisposeBag()
+        
         let output = viewModel.transform(input: input())
         
         output.isAnonymous

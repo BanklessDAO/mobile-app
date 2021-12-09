@@ -56,14 +56,16 @@ class AttendanceTokenView: BaseView<AttendanceTokenViewModel> {
     
     func setUpSubviews() {
         imageView = UIImageView()
-        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
         addSubview(imageView)
     }
     
     func setUpConstraints() {
         constrain(imageView, self) { image, view in
-            image.edges == view.edges
+            image.center == view.center
+            image.width == image.height
+            image.height == view.height - contentInsets.top - contentInsets.bottom
         }
     }
     

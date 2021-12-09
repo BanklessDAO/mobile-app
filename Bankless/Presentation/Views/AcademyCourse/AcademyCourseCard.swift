@@ -36,7 +36,7 @@ class AcademyCourseCard: CardView {
     
     // MARK: - Properties -
     
-    private let disposer = DisposeBag()
+    var disposer = DisposeBag()
     
     // MARK: - Subviews -
     
@@ -105,7 +105,7 @@ class AcademyCourseCard: CardView {
         durationTagView.font = Appearance.Text.Font.Label2.font(bold: true)
         durationTagView.cornerRadius = Appearance.cornerRadius
         durationTagView.backgroundColor = .backgroundGrey
-        difficultyTagView.horizontalPadding = AcademyCourseCard.tagPadding
+        durationTagView.horizontalPadding = AcademyCourseCard.tagPadding
         addSubview(durationTagView)
     }
     

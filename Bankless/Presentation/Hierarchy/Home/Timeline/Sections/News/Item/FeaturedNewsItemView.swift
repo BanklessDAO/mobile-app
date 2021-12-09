@@ -106,6 +106,8 @@ class FeaturedNewsItemView: BaseView<NewsItemViewModel> {
     }
     
     override func bindViewModel() {
+        viewModel?.disposer = DisposeBag()
+        
         let output = viewModel.transform(input: input())
         
         output.previewImageURL

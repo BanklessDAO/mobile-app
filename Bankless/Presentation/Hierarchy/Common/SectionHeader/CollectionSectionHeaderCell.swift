@@ -59,7 +59,7 @@ class CollectionSectionHeaderCell: BaseCollectionViewCell<SectionHeaderViewModel
         backgroundColor = .backgroundBlack
         
         titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Font.Title1.font(bold: false)
+        titleLabel.font = Appearance.Text.Font.Title2.font(bold: false)
         titleLabel.textColor = .secondaryWhite
         contentView.addSubview(titleLabel)
         
@@ -70,15 +70,14 @@ class CollectionSectionHeaderCell: BaseCollectionViewCell<SectionHeaderViewModel
     
     override func setUpConstraints() {
         constrain(titleLabel, expandButton, contentView) { title, expand, view in
-            title.height == Appearance.Text.Font.Title1.lineHeight
-            title.height == expand.height
+            title.height == Appearance.Text.Font.Title2.lineHeight
             title.centerY == expand.centerY
             title.edges == view.edges
                 .inseted(by: .init(
                     top: 0,
-                    left: Appearance.contentInsets.left * 2,
-                    bottom: Appearance.contentInsets.bottom,
-                    right: Appearance.contentInsets.right * 2
+                    left: Appearance.contentInsets.left,
+                    bottom: 0,
+                    right: Appearance.contentInsets.right
                 ))
         }
         

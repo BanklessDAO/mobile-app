@@ -60,8 +60,8 @@ class AchievementsBarView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        for view in achievementsStackView.arrangedSubviews {
-            view.layer.cornerRadius = view.bounds.height / 2
+        for view in achievementsStackView.subviews {
+            view.layer.cornerRadius = achievementsStackView.bounds.height / 2
         }
     }
     
@@ -129,6 +129,7 @@ class AchievementsBarView: UIView {
         
         for imageURL in achievementImageURLs[0 ..< previewItemCount] {
             let imageView = UIImageView()
+            imageView.layer.masksToBounds = true
             imageView.contentMode = .scaleAspectFit
             
             imageView.kf.setImage(with: imageURL)
@@ -145,11 +146,7 @@ class AchievementsBarView: UIView {
             truncationLabel.text = " +" + String(hiddenCount)
         }
         
+        setNeedsLayout()
         layoutIfNeeded()
-        
-        for subview in achievementsStackView.arrangedSubviews {
-            subview.clipsToBounds = true
-            subview.layer.cornerRadius = subview.bounds.height / 2
-        }
     }
 }

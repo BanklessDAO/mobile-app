@@ -29,11 +29,22 @@ extension ERC20AmountPresentationBehaviour {
     func amountString() -> String {
         let amountString = String(amount)
         
-        return String(
+        let scaledAmountString = String(
             amountString[
                 amountString.startIndex
                 ..< .init(utf16Offset: amountString.count - Self.decimalPlaces, in: amountString)
             ]
         )
+        
+        guard let intAmount = Int(scaledAmountString) else {
+            return scaledAmountString
+        }
+        
+        let formatter = NumberFormatter()
+        formatter.locale = .current
+        formatter.usesGroupingSeparator = true
+        formatter.groupingSize = 3
+        
+        return formatter.string(from: NSNumber(value: intAmount)) ?? scaledAmountString
     }
 }

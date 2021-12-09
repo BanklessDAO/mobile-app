@@ -37,7 +37,6 @@ class GaugeClusterCell: BaseTableViewCell<GaugeClusterViewModel> {
     override func prepareForReuse() {
         super.prepareForReuse()
         gaugeClusterView.disposer = DisposeBag()
-        gaugeClusterView.viewModel?.disposer = DisposeBag()
     }
     
     // MARK: - Setup -

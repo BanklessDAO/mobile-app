@@ -52,7 +52,6 @@ class FeaturedNewsItemCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         itemView.disposer = DisposeBag()
-        itemView.viewModel?.disposer = DisposeBag()
     }
     
     // MARK: - Setters -

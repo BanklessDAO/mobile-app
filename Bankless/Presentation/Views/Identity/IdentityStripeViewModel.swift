@@ -33,13 +33,16 @@ final class IdentityStripeViewModel: BaseViewModel,
     }
     
     struct Output {
-        let domainIcon: Driver<UIImage>
+        let domainIcon: Driver<UIImage?>
         let title: Driver<String>
     }
     
     // MARK: - Constants -
     
-    private static let discordIcon = UIImage(named: "discord_icon")!
+    private static let icons = (
+        discord: UIImage(named: "discord_icon")!,
+        identity: UIImage(named: "fingerprint")!
+    )
     private static let placeholders = (
         user: NSLocalizedString(
             "identity.user.title.placeholder",
@@ -70,12 +73,12 @@ final class IdentityStripeViewModel: BaseViewModel,
         ),
         logIn: NSLocalizedString(
             "user.menu.item.log_in.title",
-            value: "Log In",
+            value: "Connect Discord",
             comment: ""
         ),
         logOut: NSLocalizedString(
             "user.menu.item.log_out.title",
-            value: "Log Out",
+            value: "Disconnect Discord",
             comment: ""
         ),
         cancel: NSLocalizedString(
@@ -139,6 +142,8 @@ final class IdentityStripeViewModel: BaseViewModel,
             .streamValue(for: .publicETHAddress)
             .map({ $0 as? String })
         
+        let domainIcon = domainIcon(user: userRelay.asObservable())
+        
         let titleString = titleString(
             user: userRelay.asObservable(),
             ethAddress: ethAddress
@@ -150,9 +155,21 @@ final class IdentityStripeViewModel: BaseViewModel,
         bindLogOutInput()
         
         return Output(
-            domainIcon: .just(IdentityStripeViewModel.discordIcon),
+            domainIcon: domainIcon.asDriver(onErrorDriveWith: .empty()),
             title: titleString.asDriver(onErrorDriveWith: .empty())
         )
+    }
+    
+    private func domainIcon(
+        user: Observable<DiscordUser?>
+    ) -> Observable<UIImage?> {
+        switch self.mode {
+            
+        case .currentUser:
+            return .just(IdentityStripeViewModel.icons.identity)
+        case .user:
+            return .just(IdentityStripeViewModel.icons.discord)
+        }
     }
     
     private func titleString(
@@ -256,17 +273,6 @@ final class IdentityStripeViewModel: BaseViewModel,
                 title: IdentityStripeViewModel.userMenuItemTitles.setWalletAddress,
                 style: .default,
                 handler: { [weak self] _ in self?.settingUpdateRequest.onNext(.publicETHAddress) }
-            )
-        )
-        
-        menu.addAction(
-            .init(
-                title: IdentityStripeViewModel.userMenuItemTitles.openDiscord,
-                style: .default,
-                handler: { _ in
-                    UIApplication.shared
-                        .open(URL(string: Environment.discordServerURL)!, options: [:])
-                }
             )
         )
         

@@ -37,7 +37,6 @@ class NewsItemListCell: BaseTableViewCell<NewsItemViewModel> {
     override func prepareForReuse() {
         super.prepareForReuse()
         newsItemView.disposer = DisposeBag()
-        newsItemView.viewModel?.disposer = DisposeBag()
     }
     
     // MARK: - Setup -
