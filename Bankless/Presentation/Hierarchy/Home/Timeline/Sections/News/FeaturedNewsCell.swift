@@ -17,8 +17,6 @@
 //
     
 
-import Foundation
-import UIKit
 import Cartography
 import RxSwift
 import RxCocoa
@@ -31,6 +29,7 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     // MARK: - Constants -
     
     private static let collectionRatio: CGSize = .init(width: 16, height: 10)
+    private static let maxNumberOfCarouselItems = 3
     
     // MARK: - Properties -
     
@@ -131,7 +130,7 @@ extension FeaturedNewsCell: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return itemsSource.value.count
+        itemsSource.value.prefix(FeaturedNewsCell.maxNumberOfCarouselItems).count
     }
     
     func collectionView(
