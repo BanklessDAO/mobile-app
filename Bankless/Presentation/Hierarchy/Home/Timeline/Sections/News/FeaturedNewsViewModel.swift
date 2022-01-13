@@ -26,6 +26,7 @@ final class FeaturedNewsViewModel: BaseViewModel {
     
     struct Input {
         let selection: Driver<Int>
+        let expand: Driver<Void>
     }
     
     struct Output {
@@ -72,8 +73,13 @@ final class FeaturedNewsViewModel: BaseViewModel {
                 }
                 
                 self.selectionRelay.accept(index)
-            })
-            .disposed(by: disposer)
+            }).disposed(by: disposer)
+        
+        input.expand.drive(onNext: { [weak self] in
+            guard let self = self else { return }
+            
+            self.expandRequestRelay.accept(())
+        }).disposed(by: disposer)
         
         return Output(
             title: .just(FeaturedNewsViewModel.title),

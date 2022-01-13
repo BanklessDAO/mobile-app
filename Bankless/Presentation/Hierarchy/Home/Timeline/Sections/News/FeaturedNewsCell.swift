@@ -124,7 +124,7 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     
     override func bindViewModel() {
         let output = viewModel.transform(
-            input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()))
+            input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()), expand: expandButton.rx.tap.asDriver())
         )
         
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
