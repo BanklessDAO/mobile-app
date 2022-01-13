@@ -81,10 +81,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
             FeaturedNewsItemCell.self,
             forCellWithReuseIdentifier: String(describing: FeaturedNewsItemCell.self)
         )
-        collectionView.register(
-            FeaturedNewsExpandCell.self,
-            forCellWithReuseIdentifier: String(describing: FeaturedNewsExpandCell.self)
-        )
         featuredNewsCollectionFlowLayout.estimatedItemSize
             = UICollectionViewFlowLayout.automaticSize
         featuredNewsCollectionFlowLayout.minimumLineSpacing = 10
@@ -153,20 +149,7 @@ extension FeaturedNewsCell: UICollectionViewDataSource {
         indexPath: IndexPath
     ) -> UICollectionViewCell {
         let sourceItem = itemsSource.value[indexPath.row]
-        
-        guard !(sourceItem is ShowMorePlaceholderItem) else {
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: FeaturedNewsExpandCell.self),
-                for: indexPath
-            ) as! FeaturedNewsExpandCell
-            
-            cell.set(placeholderItem: sourceItem as! ShowMorePlaceholderItem)
-            
-            return cell
-        }
-        
         let newsItemViewModel = NewsItemViewModel(newsItem: sourceItem)
-        
         let newsItemView = FeaturedNewsItemView()
         newsItemView.set(viewModel: newsItemViewModel)
         
