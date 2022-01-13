@@ -30,6 +30,7 @@ final class FeaturedNewsViewModel: BaseViewModel {
     
     struct Output {
         let title: Driver<String>
+        let expandButtonTitle: Driver<String>
         let items: Driver<[NewsItemPreviewBehaviour]>
     }
     
@@ -37,6 +38,10 @@ final class FeaturedNewsViewModel: BaseViewModel {
     
     private static let title = NSLocalizedString(
         "home.timeline.news.title", value: "Latest", comment: ""
+    )
+    
+    static let expandButtonTitle = NSLocalizedString(
+        "home.timeline.news.controls.expand.title", value: "See All", comment: ""
     )
     
     // MARK: - Data -
@@ -72,6 +77,7 @@ final class FeaturedNewsViewModel: BaseViewModel {
         
         return Output(
             title: .just(FeaturedNewsViewModel.title),
+            expandButtonTitle: .just(FeaturedNewsViewModel.expandButtonTitle),
             items: .just(newsItems)
         )
     }
