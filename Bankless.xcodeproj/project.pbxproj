@@ -91,8 +91,6 @@
 		FF5BCDD92744BC31000D3FEF /* FeaturedNewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */; };
 		FF5BCDDB2744C342000D3FEF /* FeaturedNewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */; };
 		FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDC2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift */; };
-		FF5BCDDF2744D389000D3FEF /* ShowMorePlaceholderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */; };
-		FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */; };
 		FF5BCDE527457F9E000D3FEF /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE427457F9D000D3FEF /* NewsCoordinator.swift */; };
 		FF5BCDE727457FA6000D3FEF /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE627457FA6000D3FEF /* NewsViewController.swift */; };
 		FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE827457FAF000D3FEF /* NewsViewModel.swift */; };
@@ -364,8 +362,6 @@
 		FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsItemCell.swift; sourceTree = "<group>"; };
 		FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsItemView.swift; sourceTree = "<group>"; };
 		FF5BCDDC2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCollectionFlowLayout.swift; sourceTree = "<group>"; };
-		FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMorePlaceholderItem.swift; sourceTree = "<group>"; };
-		FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsExpandCell.swift; sourceTree = "<group>"; };
 		FF5BCDE427457F9D000D3FEF /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
 		FF5BCDE627457FA6000D3FEF /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		FF5BCDE827457FAF000D3FEF /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
@@ -928,8 +924,6 @@
 			children = (
 				FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */,
 				FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */,
-				FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */,
-				FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -2149,7 +2143,6 @@
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FF5BCDDB2744C342000D3FEF /* FeaturedNewsItemView.swift in Sources */,
 				FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */,
-				FF5BCDDF2744D389000D3FEF /* ShowMorePlaceholderItem.swift in Sources */,
 				FF5BCDF62745976F000D3FEF /* PodcastDetailsCoordinator.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
 				FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */,
@@ -2320,7 +2313,6 @@
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
 				FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */,
 				FF1AC6A3274C7119003025E0 /* AcademyCourseLearnSectionView.swift in Sources */,
-				FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */,
 				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
 				FF1AC65A27470DDE003025E0 /* AcademyCourseDetailsViewController.swift in Sources */,
