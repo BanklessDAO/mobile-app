@@ -183,7 +183,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                         )
                     })
                 
-                let academyCourses = timelineData.historical.banklessAcademyV1.allCourses
+                let academyCourses = timelineData.historical.banklessAcademyV4.allCourses
                     .data[0 ..< 2]
                     .map({ course -> AcademyCourse in
                         let sections = course.slides
@@ -222,7 +222,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             id: UUID().uuidString,
                             name: course.name!,
                             slug: course.slug!,
-                            backgroundImageURL: URL(string: course.poapImageLink!)!,
+                            backgroundImageURL: URL(string: course.lessonImageLink!)!,
                             notionId: UUID().uuidString,
                             poapEventId: Int(course.poapEventId!),
                             description: course.description!,
@@ -326,7 +326,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
             responseType: AcademyCoursesResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
-                let academyCourses = responseData.historical.banklessAcademyV1.allCourses.data
+                let academyCourses = responseData.historical.banklessAcademyV4.allCourses.data
                     .map({ course -> AcademyCourse in
                         let sections = course.slides
                             .map({
@@ -335,6 +335,15 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         rawValue: section!.type!.lowercased()
                                     )!
                                     
+                                    let quiz = section!.quiz != nil
+                                    ? AcademyCourse.Section.Quiz(
+                                        id: UUID().uuidString,
+                                        answers: section!.quiz!.answers!.compactMap({ $0 }),
+                                        rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
+                                        - 1
+                                    )
+                                    : nil
+                                    
                                     return AcademyCourse.Section(
                                         id: UUID().uuidString,
                                         type: type,
@@ -342,7 +351,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         content: type == .learn
                                         ? section!.content!
                                         : nil,
-                                        quiz: nil,
+                                        quiz: quiz,
                                         component: nil,
                                         poapImageLink: type == .poap
                                         ? URL(string: course.poapImageLink!)!
@@ -355,7 +364,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             id: UUID().uuidString,
                             name: course.name!,
                             slug: course.slug!,
-                            backgroundImageURL: URL(string: course.poapImageLink!)!,
+                            backgroundImageURL: URL(string: course.lessonImageLink!)!,
                             notionId: UUID().uuidString,
                             poapEventId: Int(course.poapEventId!),
                             description: course.description!,
