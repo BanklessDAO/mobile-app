@@ -125,7 +125,6 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             isFeatured: post.featured!
                         )
                     })
-                    .sorted(by: { $0.date > $1.date })[0 ..< 5]
                 
                 let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data
                     .map({ playlistItem -> PodcastItem in
@@ -146,40 +145,6 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             ),
                             thumbnailURL: thumbnailURL,
                             videoURL: videoURL
-                        )
-                    })
-                    .sorted(by: { $0.publishedAt > $1.publishedAt })[0 ..< 5]
-                
-                let bounties = Array(
-                    timelineData.historical.banklessBountyBoardV1.allBounties.data
-                        .reversed()[0 ..< 0]
-                )
-                    .map({
-                        Bounty(
-                            id: $0.id!,
-                            season: String($0.season!),
-                            title: $0.title!,
-                            descrtiption: $0.description!,
-                            criteria: "TBD",
-                            reward: .init(
-                                currency: "BANK",
-                                amount: Float($0.reward!.amount!),
-                                scale: 1
-                            ),
-                            createdBy: .generateMock(),
-                            createdAt: nil,
-                            dueAt: nil,
-                            discordMessageId: nil,
-                            status: .open,
-                            statusHistory: [],
-                            claimedBy: nil,
-                            claimedAt: nil,
-                            submissionNotes: nil,
-                            submissionUrl: nil,
-                            submittedAt: nil,
-                            submittedBy: nil,
-                            reviewedAt: nil,
-                            reviewedBy: nil
                         )
                     })
                 
@@ -239,7 +204,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 let response = TimelineContentResponse(
                     newsletterItems: Array(newsletterItems),
                     podcastItems: Array(podcastItems),
-                    bounties: bounties,
+                    bounties: [],
                     academyCourses: academyCourses
                 )
                 
