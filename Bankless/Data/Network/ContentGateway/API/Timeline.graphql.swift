@@ -13,7 +13,10 @@ public final class TimelineQuery: GraphQLQuery {
         __typename
         BanklessPodcastV1 {
           __typename
-          playlist: Podcasts {
+          playlist: BanklessPodcastPodcastV1s(
+            orderBy: {fieldPath: "snippet.publishedAt", direction: desc}
+            first: 3
+          ) {
             __typename
             data {
               __typename
@@ -39,7 +42,10 @@ public final class TimelineQuery: GraphQLQuery {
         }
         BanklessWebsiteV1 {
           __typename
-          posts {
+          posts: BanklessWebsitePostV1s(
+            orderBy: {fieldPath: "publishedAt", direction: desc}
+            first: 3
+          ) {
             __typename
             data {
               __typename
@@ -57,12 +63,15 @@ public final class TimelineQuery: GraphQLQuery {
             }
           }
         }
-        BanklessAcademyV1 {
+        BanklessAcademyV4 {
           __typename
-          allCourses: Courses {
+          allCourses: BanklessAcademyCourseV4s(first: 3) {
             __typename
             data {
               __typename
+              id
+              lessonImageLink
+              marketingDescription
               slug
               name
               duration
@@ -84,60 +93,6 @@ public final class TimelineQuery: GraphQLQuery {
                   rightAnswerNumber
                 }
               }
-            }
-          }
-        }
-        BanklessBountyBoardV1 {
-          __typename
-          allBounties: Bounties {
-            __typename
-            data {
-              __typename
-              id
-              title
-              season
-              description
-              criteria
-              reward {
-                __typename
-                currency
-                scale
-                amount
-              }
-              status
-              createdBy {
-                __typename
-                discordHandle
-                discordId
-              }
-              createdAt
-              dueAt
-              discordMessageId
-              statusHistory {
-                __typename
-                setAt
-                status
-              }
-              claimedBy {
-                __typename
-                discordHandle
-                discordId
-              }
-              claimedAt
-              submissionUrl
-              submissionNotes
-              submittedBy {
-                __typename
-                discordHandle
-                discordId
-              }
-              submittedAt
-              reviewedBy {
-                __typename
-                discordHandle
-                discordId
-              }
-              reviewedAt
             }
           }
         }
@@ -187,8 +142,7 @@ public final class TimelineQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("BanklessPodcastV1", type: .nonNull(.object(BanklessPodcastV1.selections))),
           GraphQLField("BanklessWebsiteV1", type: .nonNull(.object(BanklessWebsiteV1.selections))),
-          GraphQLField("BanklessAcademyV1", type: .nonNull(.object(BanklessAcademyV1.selections))),
-          GraphQLField("BanklessBountyBoardV1", type: .nonNull(.object(BanklessBountyBoardV1.selections))),
+          GraphQLField("BanklessAcademyV4", type: .nonNull(.object(BanklessAcademyV4.selections))),
         ]
       }
 
@@ -198,8 +152,8 @@ public final class TimelineQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(banklessPodcastV1: BanklessPodcastV1, banklessWebsiteV1: BanklessWebsiteV1, banklessAcademyV1: BanklessAcademyV1, banklessBountyBoardV1: BanklessBountyBoardV1) {
-        self.init(unsafeResultMap: ["__typename": "historical", "BanklessPodcastV1": banklessPodcastV1.resultMap, "BanklessWebsiteV1": banklessWebsiteV1.resultMap, "BanklessAcademyV1": banklessAcademyV1.resultMap, "BanklessBountyBoardV1": banklessBountyBoardV1.resultMap])
+      public init(banklessPodcastV1: BanklessPodcastV1, banklessWebsiteV1: BanklessWebsiteV1, banklessAcademyV4: BanklessAcademyV4) {
+        self.init(unsafeResultMap: ["__typename": "historical", "BanklessPodcastV1": banklessPodcastV1.resultMap, "BanklessWebsiteV1": banklessWebsiteV1.resultMap, "BanklessAcademyV4": banklessAcademyV4.resultMap])
       }
 
       public var __typename: String {
@@ -229,21 +183,12 @@ public final class TimelineQuery: GraphQLQuery {
         }
       }
 
-      public var banklessAcademyV1: BanklessAcademyV1 {
+      public var banklessAcademyV4: BanklessAcademyV4 {
         get {
-          return BanklessAcademyV1(unsafeResultMap: resultMap["BanklessAcademyV1"]! as! ResultMap)
+          return BanklessAcademyV4(unsafeResultMap: resultMap["BanklessAcademyV4"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue.resultMap, forKey: "BanklessAcademyV1")
-        }
-      }
-
-      public var banklessBountyBoardV1: BanklessBountyBoardV1 {
-        get {
-          return BanklessBountyBoardV1(unsafeResultMap: resultMap["BanklessBountyBoardV1"]! as! ResultMap)
-        }
-        set {
-          resultMap.updateValue(newValue.resultMap, forKey: "BanklessBountyBoardV1")
+          resultMap.updateValue(newValue.resultMap, forKey: "BanklessAcademyV4")
         }
       }
 
@@ -253,7 +198,7 @@ public final class TimelineQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("Podcasts", alias: "playlist", type: .nonNull(.object(Playlist.selections))),
+            GraphQLField("BanklessPodcastPodcastV1s", alias: "playlist", arguments: ["orderBy": ["fieldPath": "snippet.publishedAt", "direction": "desc"], "first": 3], type: .nonNull(.object(Playlist.selections))),
           ]
         }
 
@@ -276,7 +221,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of Podcasts. Supports pagination and filtering.
+        /// Returns a list of BanklessPodcastPodcastV1s. Supports pagination and filtering.
         public var playlist: Playlist {
           get {
             return Playlist(unsafeResultMap: resultMap["playlist"]! as! ResultMap)
@@ -287,7 +232,7 @@ public final class TimelineQuery: GraphQLQuery {
         }
 
         public struct Playlist: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PodcastResults"]
+          public static let possibleTypes: [String] = ["BanklessPodcastPodcastV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -303,7 +248,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "PodcastResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessPodcastPodcastV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -326,7 +271,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Podcast"]
+            public static let possibleTypes: [String] = ["BanklessPodcastPodcastV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -344,7 +289,7 @@ public final class TimelineQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, contentDetails: ContentDetail? = nil, snippet: Snippet? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Podcast", "id": id, "contentDetails": contentDetails.flatMap { (value: ContentDetail) -> ResultMap in value.resultMap }, "snippet": snippet.flatMap { (value: Snippet) -> ResultMap in value.resultMap }])
+              self.init(unsafeResultMap: ["__typename": "BanklessPodcastPodcastV1", "id": id, "contentDetails": contentDetails.flatMap { (value: ContentDetail) -> ResultMap in value.resultMap }, "snippet": snippet.flatMap { (value: Snippet) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
@@ -384,7 +329,7 @@ public final class TimelineQuery: GraphQLQuery {
             }
 
             public struct ContentDetail: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["ContentDetails"]
+              public static let possibleTypes: [String] = ["BanklessPodcastContentDetailsV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -401,7 +346,7 @@ public final class TimelineQuery: GraphQLQuery {
               }
 
               public init(videoId: String? = nil, videoPublishedAt: Double? = nil) {
-                self.init(unsafeResultMap: ["__typename": "ContentDetails", "videoId": videoId, "videoPublishedAt": videoPublishedAt])
+                self.init(unsafeResultMap: ["__typename": "BanklessPodcastContentDetailsV1", "videoId": videoId, "videoPublishedAt": videoPublishedAt])
               }
 
               public var __typename: String {
@@ -433,7 +378,7 @@ public final class TimelineQuery: GraphQLQuery {
             }
 
             public struct Snippet: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["Snippet"]
+              public static let possibleTypes: [String] = ["BanklessPodcastSnippetV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -452,7 +397,7 @@ public final class TimelineQuery: GraphQLQuery {
               }
 
               public init(publishedAt: Double? = nil, thumbnails: [Thumbnail?]? = nil, title: String? = nil, description: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "Snippet", "publishedAt": publishedAt, "thumbnails": thumbnails.flatMap { (value: [Thumbnail?]) -> [ResultMap?] in value.map { (value: Thumbnail?) -> ResultMap? in value.flatMap { (value: Thumbnail) -> ResultMap in value.resultMap } } }, "title": title, "description": description])
+                self.init(unsafeResultMap: ["__typename": "BanklessPodcastSnippetV1", "publishedAt": publishedAt, "thumbnails": thumbnails.flatMap { (value: [Thumbnail?]) -> [ResultMap?] in value.map { (value: Thumbnail?) -> ResultMap? in value.flatMap { (value: Thumbnail) -> ResultMap in value.resultMap } } }, "title": title, "description": description])
               }
 
               public var __typename: String {
@@ -501,7 +446,7 @@ public final class TimelineQuery: GraphQLQuery {
               }
 
               public struct Thumbnail: GraphQLSelectionSet {
-                public static let possibleTypes: [String] = ["Thumbnail"]
+                public static let possibleTypes: [String] = ["BanklessPodcastThumbnailV1"]
 
                 public static var selections: [GraphQLSelection] {
                   return [
@@ -518,7 +463,7 @@ public final class TimelineQuery: GraphQLQuery {
                 }
 
                 public init(kind: String? = nil, url: String? = nil) {
-                  self.init(unsafeResultMap: ["__typename": "Thumbnail", "kind": kind, "url": url])
+                  self.init(unsafeResultMap: ["__typename": "BanklessPodcastThumbnailV1", "kind": kind, "url": url])
                 }
 
                 public var __typename: String {
@@ -559,7 +504,7 @@ public final class TimelineQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("posts", type: .nonNull(.object(Post.selections))),
+            GraphQLField("BanklessWebsitePostV1s", alias: "posts", arguments: ["orderBy": ["fieldPath": "publishedAt", "direction": "desc"], "first": 3], type: .nonNull(.object(Post.selections))),
           ]
         }
 
@@ -582,7 +527,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of posts. Supports pagination and filtering.
+        /// Returns a list of BanklessWebsitePostV1s. Supports pagination and filtering.
         public var posts: Post {
           get {
             return Post(unsafeResultMap: resultMap["posts"]! as! ResultMap)
@@ -593,7 +538,7 @@ public final class TimelineQuery: GraphQLQuery {
         }
 
         public struct Post: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["postResults"]
+          public static let possibleTypes: [String] = ["BanklessWebsitePostV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -609,7 +554,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "postResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessWebsitePostV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -632,7 +577,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["post"]
+            public static let possibleTypes: [String] = ["BanklessWebsitePostV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -658,7 +603,7 @@ public final class TimelineQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, title: String? = nil, slug: String? = nil, excerpt: String? = nil, createdAt: Double? = nil, updatedAt: Double? = nil, featureImage: String? = nil, url: String? = nil, html: String? = nil, readingTime: Double? = nil, featured: Bool? = nil) {
-              self.init(unsafeResultMap: ["__typename": "post", "id": id, "title": title, "slug": slug, "excerpt": excerpt, "createdAt": createdAt, "updatedAt": updatedAt, "featureImage": featureImage, "url": url, "html": html, "readingTime": readingTime, "featured": featured])
+              self.init(unsafeResultMap: ["__typename": "BanklessWebsitePostV1", "id": id, "title": title, "slug": slug, "excerpt": excerpt, "createdAt": createdAt, "updatedAt": updatedAt, "featureImage": featureImage, "url": url, "html": html, "readingTime": readingTime, "featured": featured])
             }
 
             public var __typename: String {
@@ -772,13 +717,13 @@ public final class TimelineQuery: GraphQLQuery {
         }
       }
 
-      public struct BanklessAcademyV1: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["BanklessAcademyV1"]
+      public struct BanklessAcademyV4: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["BanklessAcademyV4"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("Courses", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
+            GraphQLField("BanklessAcademyCourseV4s", alias: "allCourses", arguments: ["first": 3], type: .nonNull(.object(AllCourse.selections))),
           ]
         }
 
@@ -789,7 +734,7 @@ public final class TimelineQuery: GraphQLQuery {
         }
 
         public init(allCourses: AllCourse) {
-          self.init(unsafeResultMap: ["__typename": "BanklessAcademyV1", "allCourses": allCourses.resultMap])
+          self.init(unsafeResultMap: ["__typename": "BanklessAcademyV4", "allCourses": allCourses.resultMap])
         }
 
         public var __typename: String {
@@ -801,7 +746,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of Courses. Supports pagination and filtering.
+        /// Returns a list of BanklessAcademyCourseV4s. Supports pagination and filtering.
         public var allCourses: AllCourse {
           get {
             return AllCourse(unsafeResultMap: resultMap["allCourses"]! as! ResultMap)
@@ -812,7 +757,7 @@ public final class TimelineQuery: GraphQLQuery {
         }
 
         public struct AllCourse: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["CourseResults"]
+          public static let possibleTypes: [String] = ["BanklessAcademyCourseV4Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -828,7 +773,7 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "CourseResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV4Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -851,11 +796,14 @@ public final class TimelineQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Course"]
+            public static let possibleTypes: [String] = ["BanklessAcademyCourseV4"]
 
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("id", type: .scalar(String.self)),
+                GraphQLField("lessonImageLink", type: .scalar(String.self)),
+                GraphQLField("marketingDescription", type: .scalar(String.self)),
                 GraphQLField("slug", type: .scalar(String.self)),
                 GraphQLField("name", type: .scalar(String.self)),
                 GraphQLField("duration", type: .scalar(Double.self)),
@@ -876,8 +824,8 @@ public final class TimelineQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Course", "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
+            public init(id: String? = nil, lessonImageLink: String? = nil, marketingDescription: String? = nil, slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
+              self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV4", "id": id, "lessonImageLink": lessonImageLink, "marketingDescription": marketingDescription, "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
             }
 
             public var __typename: String {
@@ -886,6 +834,33 @@ public final class TimelineQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var id: String? {
+              get {
+                return resultMap["id"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            public var lessonImageLink: String? {
+              get {
+                return resultMap["lessonImageLink"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "lessonImageLink")
+              }
+            }
+
+            public var marketingDescription: String? {
+              get {
+                return resultMap["marketingDescription"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "marketingDescription")
               }
             }
 
@@ -989,7 +964,7 @@ public final class TimelineQuery: GraphQLQuery {
             }
 
             public struct Slide: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["Slide"]
+              public static let possibleTypes: [String] = ["BanklessAcademySlideV4"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -1008,7 +983,7 @@ public final class TimelineQuery: GraphQLQuery {
               }
 
               public init(type: String? = nil, title: String? = nil, content: String? = nil, quiz: Quiz? = nil) {
-                self.init(unsafeResultMap: ["__typename": "Slide", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
+                self.init(unsafeResultMap: ["__typename": "BanklessAcademySlideV4", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
               }
 
               public var __typename: String {
@@ -1057,7 +1032,7 @@ public final class TimelineQuery: GraphQLQuery {
               }
 
               public struct Quiz: GraphQLSelectionSet {
-                public static let possibleTypes: [String] = ["Quiz"]
+                public static let possibleTypes: [String] = ["BanklessAcademyQuizV4"]
 
                 public static var selections: [GraphQLSelection] {
                   return [
@@ -1074,7 +1049,7 @@ public final class TimelineQuery: GraphQLQuery {
                 }
 
                 public init(answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
-                  self.init(unsafeResultMap: ["__typename": "Quiz", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
+                  self.init(unsafeResultMap: ["__typename": "BanklessAcademyQuizV4", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
                 }
 
                 public var __typename: String {
@@ -1102,619 +1077,6 @@ public final class TimelineQuery: GraphQLQuery {
                   set {
                     resultMap.updateValue(newValue, forKey: "rightAnswerNumber")
                   }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      public struct BanklessBountyBoardV1: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["BanklessBountyBoardV1"]
-
-        public static var selections: [GraphQLSelection] {
-          return [
-            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("Bounties", alias: "allBounties", type: .nonNull(.object(AllBounty.selections))),
-          ]
-        }
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(allBounties: AllBounty) {
-          self.init(unsafeResultMap: ["__typename": "BanklessBountyBoardV1", "allBounties": allBounties.resultMap])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        /// Returns a list of Bountys. Supports pagination and filtering.
-        public var allBounties: AllBounty {
-          get {
-            return AllBounty(unsafeResultMap: resultMap["allBounties"]! as! ResultMap)
-          }
-          set {
-            resultMap.updateValue(newValue.resultMap, forKey: "allBounties")
-          }
-        }
-
-        public struct AllBounty: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["BountyResults"]
-
-          public static var selections: [GraphQLSelection] {
-            return [
-              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-              GraphQLField("data", type: .nonNull(.list(.nonNull(.object(Datum.selections))))),
-            ]
-          }
-
-          public private(set) var resultMap: ResultMap
-
-          public init(unsafeResultMap: ResultMap) {
-            self.resultMap = unsafeResultMap
-          }
-
-          public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "BountyResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
-          }
-
-          public var __typename: String {
-            get {
-              return resultMap["__typename"]! as! String
-            }
-            set {
-              resultMap.updateValue(newValue, forKey: "__typename")
-            }
-          }
-
-          /// Contains the results of the query.
-          public var data: [Datum] {
-            get {
-              return (resultMap["data"] as! [ResultMap]).map { (value: ResultMap) -> Datum in Datum(unsafeResultMap: value) }
-            }
-            set {
-              resultMap.updateValue(newValue.map { (value: Datum) -> ResultMap in value.resultMap }, forKey: "data")
-            }
-          }
-
-          public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Bounty"]
-
-            public static var selections: [GraphQLSelection] {
-              return [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("id", type: .scalar(String.self)),
-                GraphQLField("title", type: .scalar(String.self)),
-                GraphQLField("season", type: .scalar(Double.self)),
-                GraphQLField("description", type: .scalar(String.self)),
-                GraphQLField("criteria", type: .scalar(String.self)),
-                GraphQLField("reward", type: .object(Reward.selections)),
-                GraphQLField("status", type: .scalar(String.self)),
-                GraphQLField("createdBy", type: .object(CreatedBy.selections)),
-                GraphQLField("createdAt", type: .scalar(Double.self)),
-                GraphQLField("dueAt", type: .scalar(Double.self)),
-                GraphQLField("discordMessageId", type: .scalar(String.self)),
-                GraphQLField("statusHistory", type: .list(.object(StatusHistory.selections))),
-                GraphQLField("claimedBy", type: .object(ClaimedBy.selections)),
-                GraphQLField("claimedAt", type: .scalar(Double.self)),
-                GraphQLField("submissionUrl", type: .scalar(String.self)),
-                GraphQLField("submissionNotes", type: .scalar(String.self)),
-                GraphQLField("submittedBy", type: .object(SubmittedBy.selections)),
-                GraphQLField("submittedAt", type: .scalar(Double.self)),
-                GraphQLField("reviewedBy", type: .object(ReviewedBy.selections)),
-                GraphQLField("reviewedAt", type: .scalar(Double.self)),
-              ]
-            }
-
-            public private(set) var resultMap: ResultMap
-
-            public init(unsafeResultMap: ResultMap) {
-              self.resultMap = unsafeResultMap
-            }
-
-            public init(id: String? = nil, title: String? = nil, season: Double? = nil, description: String? = nil, criteria: String? = nil, reward: Reward? = nil, status: String? = nil, createdBy: CreatedBy? = nil, createdAt: Double? = nil, dueAt: Double? = nil, discordMessageId: String? = nil, statusHistory: [StatusHistory?]? = nil, claimedBy: ClaimedBy? = nil, claimedAt: Double? = nil, submissionUrl: String? = nil, submissionNotes: String? = nil, submittedBy: SubmittedBy? = nil, submittedAt: Double? = nil, reviewedBy: ReviewedBy? = nil, reviewedAt: Double? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Bounty", "id": id, "title": title, "season": season, "description": description, "criteria": criteria, "reward": reward.flatMap { (value: Reward) -> ResultMap in value.resultMap }, "status": status, "createdBy": createdBy.flatMap { (value: CreatedBy) -> ResultMap in value.resultMap }, "createdAt": createdAt, "dueAt": dueAt, "discordMessageId": discordMessageId, "statusHistory": statusHistory.flatMap { (value: [StatusHistory?]) -> [ResultMap?] in value.map { (value: StatusHistory?) -> ResultMap? in value.flatMap { (value: StatusHistory) -> ResultMap in value.resultMap } } }, "claimedBy": claimedBy.flatMap { (value: ClaimedBy) -> ResultMap in value.resultMap }, "claimedAt": claimedAt, "submissionUrl": submissionUrl, "submissionNotes": submissionNotes, "submittedBy": submittedBy.flatMap { (value: SubmittedBy) -> ResultMap in value.resultMap }, "submittedAt": submittedAt, "reviewedBy": reviewedBy.flatMap { (value: ReviewedBy) -> ResultMap in value.resultMap }, "reviewedAt": reviewedAt])
-            }
-
-            public var __typename: String {
-              get {
-                return resultMap["__typename"]! as! String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "__typename")
-              }
-            }
-
-            public var id: String? {
-              get {
-                return resultMap["id"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "id")
-              }
-            }
-
-            public var title: String? {
-              get {
-                return resultMap["title"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "title")
-              }
-            }
-
-            public var season: Double? {
-              get {
-                return resultMap["season"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "season")
-              }
-            }
-
-            public var description: String? {
-              get {
-                return resultMap["description"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "description")
-              }
-            }
-
-            public var criteria: String? {
-              get {
-                return resultMap["criteria"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "criteria")
-              }
-            }
-
-            public var reward: Reward? {
-              get {
-                return (resultMap["reward"] as? ResultMap).flatMap { Reward(unsafeResultMap: $0) }
-              }
-              set {
-                resultMap.updateValue(newValue?.resultMap, forKey: "reward")
-              }
-            }
-
-            public var status: String? {
-              get {
-                return resultMap["status"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "status")
-              }
-            }
-
-            public var createdBy: CreatedBy? {
-              get {
-                return (resultMap["createdBy"] as? ResultMap).flatMap { CreatedBy(unsafeResultMap: $0) }
-              }
-              set {
-                resultMap.updateValue(newValue?.resultMap, forKey: "createdBy")
-              }
-            }
-
-            public var createdAt: Double? {
-              get {
-                return resultMap["createdAt"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "createdAt")
-              }
-            }
-
-            public var dueAt: Double? {
-              get {
-                return resultMap["dueAt"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "dueAt")
-              }
-            }
-
-            public var discordMessageId: String? {
-              get {
-                return resultMap["discordMessageId"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "discordMessageId")
-              }
-            }
-
-            public var statusHistory: [StatusHistory?]? {
-              get {
-                return (resultMap["statusHistory"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [StatusHistory?] in value.map { (value: ResultMap?) -> StatusHistory? in value.flatMap { (value: ResultMap) -> StatusHistory in StatusHistory(unsafeResultMap: value) } } }
-              }
-              set {
-                resultMap.updateValue(newValue.flatMap { (value: [StatusHistory?]) -> [ResultMap?] in value.map { (value: StatusHistory?) -> ResultMap? in value.flatMap { (value: StatusHistory) -> ResultMap in value.resultMap } } }, forKey: "statusHistory")
-              }
-            }
-
-            public var claimedBy: ClaimedBy? {
-              get {
-                return (resultMap["claimedBy"] as? ResultMap).flatMap { ClaimedBy(unsafeResultMap: $0) }
-              }
-              set {
-                resultMap.updateValue(newValue?.resultMap, forKey: "claimedBy")
-              }
-            }
-
-            public var claimedAt: Double? {
-              get {
-                return resultMap["claimedAt"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "claimedAt")
-              }
-            }
-
-            public var submissionUrl: String? {
-              get {
-                return resultMap["submissionUrl"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "submissionUrl")
-              }
-            }
-
-            public var submissionNotes: String? {
-              get {
-                return resultMap["submissionNotes"] as? String
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "submissionNotes")
-              }
-            }
-
-            public var submittedBy: SubmittedBy? {
-              get {
-                return (resultMap["submittedBy"] as? ResultMap).flatMap { SubmittedBy(unsafeResultMap: $0) }
-              }
-              set {
-                resultMap.updateValue(newValue?.resultMap, forKey: "submittedBy")
-              }
-            }
-
-            public var submittedAt: Double? {
-              get {
-                return resultMap["submittedAt"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "submittedAt")
-              }
-            }
-
-            public var reviewedBy: ReviewedBy? {
-              get {
-                return (resultMap["reviewedBy"] as? ResultMap).flatMap { ReviewedBy(unsafeResultMap: $0) }
-              }
-              set {
-                resultMap.updateValue(newValue?.resultMap, forKey: "reviewedBy")
-              }
-            }
-
-            public var reviewedAt: Double? {
-              get {
-                return resultMap["reviewedAt"] as? Double
-              }
-              set {
-                resultMap.updateValue(newValue, forKey: "reviewedAt")
-              }
-            }
-
-            public struct Reward: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["Reward"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("currency", type: .scalar(String.self)),
-                  GraphQLField("scale", type: .scalar(Double.self)),
-                  GraphQLField("amount", type: .scalar(Double.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(currency: String? = nil, scale: Double? = nil, amount: Double? = nil) {
-                self.init(unsafeResultMap: ["__typename": "Reward", "currency": currency, "scale": scale, "amount": amount])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var currency: String? {
-                get {
-                  return resultMap["currency"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "currency")
-                }
-              }
-
-              public var scale: Double? {
-                get {
-                  return resultMap["scale"] as? Double
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "scale")
-                }
-              }
-
-              public var amount: Double? {
-                get {
-                  return resultMap["amount"] as? Double
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "amount")
-                }
-              }
-            }
-
-            public struct CreatedBy: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["DiscordUser"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("discordHandle", type: .scalar(String.self)),
-                  GraphQLField("discordId", type: .scalar(String.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(discordHandle: String? = nil, discordId: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "DiscordUser", "discordHandle": discordHandle, "discordId": discordId])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var discordHandle: String? {
-                get {
-                  return resultMap["discordHandle"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordHandle")
-                }
-              }
-
-              public var discordId: String? {
-                get {
-                  return resultMap["discordId"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordId")
-                }
-              }
-            }
-
-            public struct StatusHistory: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["StatusEvent"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("setAt", type: .scalar(Double.self)),
-                  GraphQLField("status", type: .scalar(String.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(setAt: Double? = nil, status: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "StatusEvent", "setAt": setAt, "status": status])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var setAt: Double? {
-                get {
-                  return resultMap["setAt"] as? Double
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "setAt")
-                }
-              }
-
-              public var status: String? {
-                get {
-                  return resultMap["status"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "status")
-                }
-              }
-            }
-
-            public struct ClaimedBy: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["DiscordUser"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("discordHandle", type: .scalar(String.self)),
-                  GraphQLField("discordId", type: .scalar(String.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(discordHandle: String? = nil, discordId: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "DiscordUser", "discordHandle": discordHandle, "discordId": discordId])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var discordHandle: String? {
-                get {
-                  return resultMap["discordHandle"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordHandle")
-                }
-              }
-
-              public var discordId: String? {
-                get {
-                  return resultMap["discordId"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordId")
-                }
-              }
-            }
-
-            public struct SubmittedBy: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["DiscordUser"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("discordHandle", type: .scalar(String.self)),
-                  GraphQLField("discordId", type: .scalar(String.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(discordHandle: String? = nil, discordId: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "DiscordUser", "discordHandle": discordHandle, "discordId": discordId])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var discordHandle: String? {
-                get {
-                  return resultMap["discordHandle"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordHandle")
-                }
-              }
-
-              public var discordId: String? {
-                get {
-                  return resultMap["discordId"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordId")
-                }
-              }
-            }
-
-            public struct ReviewedBy: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["DiscordUser"]
-
-              public static var selections: [GraphQLSelection] {
-                return [
-                  GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                  GraphQLField("discordHandle", type: .scalar(String.self)),
-                  GraphQLField("discordId", type: .scalar(String.self)),
-                ]
-              }
-
-              public private(set) var resultMap: ResultMap
-
-              public init(unsafeResultMap: ResultMap) {
-                self.resultMap = unsafeResultMap
-              }
-
-              public init(discordHandle: String? = nil, discordId: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "DiscordUser", "discordHandle": discordHandle, "discordId": discordId])
-              }
-
-              public var __typename: String {
-                get {
-                  return resultMap["__typename"]! as! String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "__typename")
-                }
-              }
-
-              public var discordHandle: String? {
-                get {
-                  return resultMap["discordHandle"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordHandle")
-                }
-              }
-
-              public var discordId: String? {
-                get {
-                  return resultMap["discordId"] as? String
-                }
-                set {
-                  resultMap.updateValue(newValue, forKey: "discordId")
                 }
               }
             }

@@ -1,7 +1,13 @@
 query Timeline {
   historical {
     BanklessPodcastV1 {
-      playlist: Podcasts {
+      playlist: BanklessPodcastPodcastV1s(
+          orderBy: {
+            fieldPath: "snippet.publishedAt",
+            direction: desc
+          },
+          first: 3
+      ) {
         data {
           id
           contentDetails {
@@ -21,7 +27,13 @@ query Timeline {
       }
     }
     BanklessWebsiteV1 {
-      posts {
+      posts: BanklessWebsitePostV1s(
+         orderBy: {
+            fieldPath: "publishedAt",
+            direction: desc
+         },
+         first: 3
+      ) {
         data {
           id
         title
@@ -37,9 +49,14 @@ query Timeline {
         }
       }
     }
-    BanklessAcademyV1 {
-       allCourses: Courses {
+    BanklessAcademyV4 {
+       allCourses: BanklessAcademyCourseV4s(
+         first: 3
+       ) {
          data {
+           id
+           lessonImageLink
+           marketingDescription
            slug
            name
            duration
@@ -61,51 +78,6 @@ query Timeline {
            }
          }
        }
-    }
-    BanklessBountyBoardV1 {
-      allBounties: Bounties {
-        data {
-          id
-          title
-          season
-          description
-          criteria
-          reward {
-            currency
-            scale
-            amount
-          }
-          status
-          createdBy {
-            discordHandle
-            discordId
-          }
-          createdAt
-          dueAt
-          discordMessageId
-          statusHistory {
-            setAt
-            status
-          }
-          claimedBy {
-            discordHandle
-            discordId
-          }
-          claimedAt
-          submissionUrl
-          submissionNotes
-          submittedBy {
-            discordHandle
-            discordId
-          }
-          submittedAt
-          reviewedBy {
-            discordHandle
-            discordId
-          }
-          reviewedAt
-        }
-      }
     }
   }
 }

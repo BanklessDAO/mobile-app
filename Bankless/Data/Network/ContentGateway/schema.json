@@ -9,7 +9,7 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": null,
+        "description": "Contains all the queries that can be executed against the Content Gateway API.",
         "fields": [
           {
             "name": "historical",
@@ -26,6 +26,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "live",
+            "description": "Contains all the queries that operate on live data that are up to date",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "live",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -36,7 +52,7 @@
       {
         "kind": "OBJECT",
         "name": "historical",
-        "description": null,
+        "description": "Historical queries return data that might not be up to date.\n                                    This usually means that the data you see was updated 5-10 minutes ago.\n                                    Queries are grouped into namespaces.",
         "fields": [
           {
             "name": "BanklessBountyBoardV1",
@@ -119,7 +135,7 @@
             "deprecationReason": null
           },
           {
-            "name": "BanklessAcademyV1",
+            "name": "TestV1",
             "description": null,
             "args": [],
             "type": {
@@ -127,7 +143,39 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "BanklessAcademyV1",
+                "name": "TestV1",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EnsV1",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "EnsV1",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BanklessAcademyV4",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessAcademyV4",
                 "ofType": null
               }
             },
@@ -146,7 +194,7 @@
         "description": null,
         "fields": [
           {
-            "name": "Bounty",
+            "name": "BanklessBountyBoardBountyV1",
             "description": null,
             "args": [
               {
@@ -154,7 +202,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -162,19 +210,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Bounty",
+              "name": "BanklessBountyBoardBountyV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "Bounties",
-            "description": "Returns a list of Bountys. Supports pagination and filtering.",
+            "name": "BanklessBountyBoardBountyV1s",
+            "description": "Returns a list of BanklessBountyBoardBountyV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -184,20 +232,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "BountyFilters",
+                  "name": "BanklessBountyBoardBountyV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -208,7 +266,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "BountyResults",
+                "name": "BanklessBountyBoardBountyV1Results",
                 "ofType": null
               }
             },
@@ -223,25 +281,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Bounty",
+        "name": "BanklessBountyBoardBountyV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -255,7 +297,7 @@
             "deprecationReason": null
           },
           {
-            "name": "dueAt",
+            "name": "season",
             "description": null,
             "args": [],
             "type": {
@@ -279,31 +321,7 @@
             "deprecationReason": null
           },
           {
-            "name": "reward",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Reward",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "season",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
+            "name": "description",
             "description": null,
             "args": [],
             "type": {
@@ -327,24 +345,64 @@
             "deprecationReason": null
           },
           {
-            "name": "claimedAt",
+            "name": "status",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "claimedBy",
+            "name": "customerId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reward",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "DiscordUser",
+              "name": "BanklessBountyBoardRewardV1",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "statusHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessBountyBoardStatusEventV1",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dueAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -368,26 +426,14 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "DiscordUser",
+              "name": "BanklessBountyBoardDiscordUserV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "customerId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "reviewedAt",
+            "name": "claimedAt",
             "description": null,
             "args": [],
             "type": {
@@ -399,24 +445,12 @@
             "deprecationReason": null
           },
           {
-            "name": "reviewedBy",
+            "name": "claimedBy",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "DiscordUser",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "description",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "name": "BanklessBountyBoardDiscordUserV1",
               "ofType": null
             },
             "isDeprecated": false,
@@ -440,30 +474,38 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "DiscordUser",
+              "name": "BanklessBountyBoardDiscordUserV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "statusHistory",
+            "name": "reviewedAt",
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "StatusEvent",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "submissionUrl",
+            "name": "reviewedBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BanklessBountyBoardDiscordUserV1",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discordMessageId",
             "description": null,
             "args": [],
             "type": {
@@ -487,7 +529,7 @@
             "deprecationReason": null
           },
           {
-            "name": "discordMessageId",
+            "name": "submissionUrl",
             "description": null,
             "args": [],
             "type": {
@@ -501,16 +543,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "ID",
-        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -536,12 +568,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Reward",
+        "name": "BanklessBountyBoardRewardV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -556,12 +588,12 @@
             "deprecationReason": null
           },
           {
-            "name": "scale",
+            "name": "currency",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -580,103 +612,50 @@
             "deprecationReason": null
           },
           {
-            "name": "currency",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "DiscordUser",
-        "description": null,
-        "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "discordId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "discordHandle",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "StatusEvent",
-        "description": null,
-        "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "setAt",
+            "name": "scale",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID",
+        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessBountyBoardStatusEventV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -692,6 +671,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "setAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -700,19 +691,60 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-        "fields": null,
+        "kind": "OBJECT",
+        "name": "BanklessBountyBoardDiscordUserV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discordHandle",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "discordId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "inputFields": null,
-        "interfaces": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
-        "name": "BountyResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessBountyBoardBountyV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -745,7 +777,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "Bounty",
+                    "name": "BanklessBountyBoardBountyV1",
                     "ofType": null
                   }
                 }
@@ -803,11 +835,11 @@
       {
         "kind": "OBJECT",
         "name": "PageInfo",
-        "description": "Pagination uses the _id field to paginate startCursor and endCursor point to the first and last element's _id in the result set.",
+        "description": "\n    Pagination uses opaque strings (tokens) that contain information about how to access the next page.\n    If the value of `hasNextPage` is `true` it means that there is a next page.\n    If you want to access it you'll have to pass `nextPageToken` as the `after` parameter.\n    ",
         "fields": [
           {
             "name": "hasNextPage",
-            "description": "Tells whether there are more pages after endCursor.",
+            "description": "Tells whether there are more pages after the current one.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -823,32 +855,36 @@
           },
           {
             "name": "startCursor",
-            "description": "Points to the first element on the page.",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Backwards paging is not implemented yet, don't use this."
           },
           {
             "name": "endCursor",
-            "description": "Points to the last element on the page.",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Deprecated, use nextPageToken instead."
+          },
+          {
+            "name": "nextPageToken",
+            "description": "Pass this token in your next query as the value for the `after` parameter to access the next page.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -870,8 +906,72 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
-        "name": "BountyFilters",
+        "name": "OrderBy",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "fieldPath",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "direction",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "Direction",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "Direction",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "asc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "desc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "BanklessBountyBoardBountyV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -886,7 +986,7 @@
             "defaultValue": null
           },
           {
-            "name": "dueAt",
+            "name": "season",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -906,17 +1006,7 @@
             "defaultValue": null
           },
           {
-            "name": "season",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "status",
+            "name": "description",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -936,7 +1026,27 @@
             "defaultValue": null
           },
           {
-            "name": "claimedAt",
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customerId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "dueAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -956,31 +1066,11 @@
             "defaultValue": null
           },
           {
-            "name": "customerId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "reviewedAt",
+            "name": "claimedAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "description",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -996,7 +1086,17 @@
             "defaultValue": null
           },
           {
-            "name": "submissionUrl",
+            "name": "reviewedAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "discordMessageId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1016,7 +1116,7 @@
             "defaultValue": null
           },
           {
-            "name": "discordMessageId",
+            "name": "submissionUrl",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -1199,7 +1299,7 @@
         "description": null,
         "fields": [
           {
-            "name": "Podcast",
+            "name": "BanklessPodcastPodcastV1",
             "description": null,
             "args": [
               {
@@ -1207,7 +1307,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1215,19 +1315,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Podcast",
+              "name": "BanklessPodcastPodcastV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "Podcasts",
-            "description": "Returns a list of Podcasts. Supports pagination and filtering.",
+            "name": "BanklessPodcastPodcastV1s",
+            "description": "Returns a list of BanklessPodcastPodcastV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -1237,20 +1337,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "PodcastFilters",
+                  "name": "BanklessPodcastPodcastV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -1261,7 +1371,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "PodcastResults",
+                "name": "BanklessPodcastPodcastV1Results",
                 "ofType": null
               }
             },
@@ -1276,25 +1386,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Podcast",
+        "name": "BanklessPodcastPodcastV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -1320,24 +1414,12 @@
             "deprecationReason": null
           },
           {
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Status",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "snippet",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Snippet",
+              "name": "BanklessPodcastSnippetV1",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1349,46 +1431,19 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ContentDetails",
+              "name": "BanklessPodcastContentDetailsV1",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Status",
-        "description": null,
-        "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "privacyStatus",
+            "name": "status",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "BanklessPodcastStatusV1",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1402,12 +1457,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Snippet",
+        "name": "BanklessPodcastSnippetV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1434,19 +1489,7 @@
             "deprecationReason": null
           },
           {
-            "name": "position",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "channelId",
+            "name": "channelTitle",
             "description": null,
             "args": [],
             "type": {
@@ -1470,29 +1513,13 @@
             "deprecationReason": null
           },
           {
-            "name": "resourceId",
+            "name": "position",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "ResourceId",
+              "kind": "SCALAR",
+              "name": "Float",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "thumbnails",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Thumbnail",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1504,6 +1531,30 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "channelId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "resourceId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BanklessPodcastResourceIdV1",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1522,7 +1573,7 @@
             "deprecationReason": null
           },
           {
-            "name": "channelTitle",
+            "name": "videoOwnerChannelTitle",
             "description": null,
             "args": [],
             "type": {
@@ -1546,13 +1597,17 @@
             "deprecationReason": null
           },
           {
-            "name": "videoOwnerChannelTitle",
+            "name": "thumbnails",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessPodcastThumbnailV1",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1565,12 +1620,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ResourceId",
+        "name": "BanklessPodcastResourceIdV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1616,12 +1671,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Thumbnail",
+        "name": "BanklessPodcastThumbnailV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1636,7 +1691,7 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
+            "name": "kind",
             "description": null,
             "args": [],
             "type": {
@@ -1648,7 +1703,7 @@
             "deprecationReason": null
           },
           {
-            "name": "kind",
+            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -1691,12 +1746,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ContentDetails",
+        "name": "BanklessPodcastContentDetailsV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1742,8 +1797,47 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PodcastResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessPodcastStatusV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "privacyStatus",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessPodcastPodcastV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -1776,7 +1870,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "Podcast",
+                    "name": "BanklessPodcastPodcastV1",
                     "ofType": null
                   }
                 }
@@ -1833,7 +1927,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "PodcastFilters",
+        "name": "BanklessPodcastPodcastV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -1868,7 +1962,7 @@
         "description": null,
         "fields": [
           {
-            "name": "post",
+            "name": "BanklessWebsitePostV1",
             "description": null,
             "args": [
               {
@@ -1876,7 +1970,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1884,19 +1978,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "post",
+              "name": "BanklessWebsitePostV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "posts",
-            "description": "Returns a list of posts. Supports pagination and filtering.",
+            "name": "BanklessWebsitePostV1s",
+            "description": "Returns a list of BanklessWebsitePostV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -1906,20 +2000,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "postFilters",
+                  "name": "BanklessWebsitePostV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -1930,7 +2034,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "postResults",
+                "name": "BanklessWebsitePostV1Results",
                 "ofType": null
               }
             },
@@ -1945,25 +2049,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "post",
+        "name": "BanklessWebsitePostV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -1972,58 +2060,6 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "html",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "slug",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tags",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BanklessWebsiteTag",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2053,35 +2089,43 @@
             "deprecationReason": null
           },
           {
-            "name": "access",
+            "name": "slug",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Boolean",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "authors",
+            "name": "html",
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BanklessWebsiteAuthor",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "excerpt",
+            "name": "commentId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "featureImage",
             "description": null,
             "args": [],
             "type": {
@@ -2105,7 +2149,19 @@
             "deprecationReason": null
           },
           {
-            "name": "commentId",
+            "name": "visibility",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "emailRecipientFilter",
             "description": null,
             "args": [],
             "type": {
@@ -2141,7 +2197,19 @@
             "deprecationReason": null
           },
           {
-            "name": "visibility",
+            "name": "publishedAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "customExcerpt",
             "description": null,
             "args": [],
             "type": {
@@ -2153,12 +2221,24 @@
             "deprecationReason": null
           },
           {
-            "name": "publishedAt",
+            "name": "url",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "excerpt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2172,6 +2252,62 @@
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "access",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sendEmailWhenPublished",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tags",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessWebsiteBanklessWebsiteTagV1",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "authors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessWebsiteBanklessWebsiteAuthorV1",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2199,54 +2335,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "featureImage",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "customExcerpt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "emailRecipientFilter",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sendEmailWhenPublished",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2256,39 +2344,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BanklessWebsiteTag",
+        "name": "BanklessWebsiteBanklessWebsiteTagV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -2334,6 +2394,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2343,51 +2415,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BanklessWebsiteAuthor",
+        "name": "BanklessWebsiteBanklessWebsiteAuthorV1",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "bio",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -2421,6 +2453,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bio",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2430,8 +2486,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "postResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessWebsitePostV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -2464,7 +2520,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "post",
+                    "name": "BanklessWebsitePostV1",
                     "ofType": null
                   }
                 }
@@ -2521,7 +2577,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "postFilters",
+        "name": "BanklessWebsitePostV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -2531,36 +2587,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "IDFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "url",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "html",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "slug",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -2586,17 +2612,37 @@
             "defaultValue": null
           },
           {
-            "name": "access",
+            "name": "slug",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "BooleanFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "excerpt",
+            "name": "html",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "commentId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "featureImage",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2616,7 +2662,17 @@
             "defaultValue": null
           },
           {
-            "name": "commentId",
+            "name": "visibility",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "emailRecipientFilter",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -2646,16 +2702,6 @@
             "defaultValue": null
           },
           {
-            "name": "visibility",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "publishedAt",
             "description": null,
             "type": {
@@ -2666,11 +2712,61 @@
             "defaultValue": null
           },
           {
+            "name": "customExcerpt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "excerpt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "readingTime",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "access",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "sendEmailWhenPublished",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -2691,46 +2787,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "featureImage",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customExcerpt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "emailRecipientFilter",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "sendEmailWhenPublished",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -2777,7 +2833,7 @@
         "description": null,
         "fields": [
           {
-            "name": "BANKAccount",
+            "name": "BanklessTokenAccountV1",
             "description": null,
             "args": [
               {
@@ -2785,7 +2841,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -2793,19 +2849,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "BANKAccount",
+              "name": "BanklessTokenAccountV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "BANKAccounts",
-            "description": "Returns a list of BANKAccounts. Supports pagination and filtering.",
+            "name": "BanklessTokenAccountV1s",
+            "description": "Returns a list of BanklessTokenAccountV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -2815,20 +2871,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "BANKAccountFilters",
+                  "name": "BanklessTokenAccountV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -2839,7 +2905,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "BANKAccountResults",
+                "name": "BanklessTokenAccountV1Results",
                 "ofType": null
               }
             },
@@ -2847,7 +2913,7 @@
             "deprecationReason": null
           },
           {
-            "name": "BANKTransaction",
+            "name": "BanklessTokenTransactionV1",
             "description": null,
             "args": [
               {
@@ -2855,7 +2921,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -2863,19 +2929,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "BANKTransaction",
+              "name": "BanklessTokenTransactionV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "BANKTransactions",
-            "description": "Returns a list of BANKTransactions. Supports pagination and filtering.",
+            "name": "BanklessTokenTransactionV1s",
+            "description": "Returns a list of BanklessTokenTransactionV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -2885,20 +2951,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "BANKTransactionFilters",
+                  "name": "BanklessTokenTransactionV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -2909,7 +2985,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "BANKTransactionResults",
+                "name": "BanklessTokenTransactionV1Results",
                 "ofType": null
               }
             },
@@ -2917,7 +2993,7 @@
             "deprecationReason": null
           },
           {
-            "name": "BANKTransfer",
+            "name": "BanklessTokenTransferV1",
             "description": null,
             "args": [
               {
@@ -2925,7 +3001,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -2933,19 +3009,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "BANKTransfer",
+              "name": "BanklessTokenTransferV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "BANKTransfers",
-            "description": "Returns a list of BANKTransfers. Supports pagination and filtering.",
+            "name": "BanklessTokenTransferV1s",
+            "description": "Returns a list of BanklessTokenTransferV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -2955,20 +3031,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "BANKTransferFilters",
+                  "name": "BanklessTokenTransferV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -2979,7 +3065,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "BANKTransferResults",
+                "name": "BanklessTokenTransferV1Results",
                 "ofType": null
               }
             },
@@ -2994,25 +3080,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKAccount",
+        "name": "BanklessTokenAccountV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -3057,8 +3127,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKAccountResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessTokenAccountV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -3091,7 +3161,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "BANKAccount",
+                    "name": "BanklessTokenAccountV1",
                     "ofType": null
                   }
                 }
@@ -3148,7 +3218,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "BANKAccountFilters",
+        "name": "BanklessTokenAccountV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3189,25 +3259,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKTransaction",
+        "name": "BanklessTokenTransactionV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -3252,8 +3306,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKTransactionResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessTokenTransactionV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -3286,7 +3340,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "BANKTransaction",
+                    "name": "BanklessTokenTransactionV1",
                     "ofType": null
                   }
                 }
@@ -3343,7 +3397,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "BANKTransactionFilters",
+        "name": "BanklessTokenTransactionV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3384,25 +3438,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKTransfer",
+        "name": "BanklessTokenTransferV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -3416,7 +3454,7 @@
             "deprecationReason": null
           },
           {
-            "name": "toId",
+            "name": "transactionId",
             "description": null,
             "args": [],
             "type": {
@@ -3440,18 +3478,6 @@
             "deprecationReason": null
           },
           {
-            "name": "fromId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "args": [],
@@ -3464,7 +3490,19 @@
             "deprecationReason": null
           },
           {
-            "name": "transactionId",
+            "name": "fromId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toId",
             "description": null,
             "args": [],
             "type": {
@@ -3483,8 +3521,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BANKTransferResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessTokenTransferV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -3517,7 +3555,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "BANKTransfer",
+                    "name": "BanklessTokenTransferV1",
                     "ofType": null
                   }
                 }
@@ -3574,7 +3612,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "BANKTransferFilters",
+        "name": "BanklessTokenTransferV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -3589,7 +3627,7 @@
             "defaultValue": null
           },
           {
-            "name": "toId",
+            "name": "transactionId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3609,16 +3647,6 @@
             "defaultValue": null
           },
           {
-            "name": "fromId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "createdAt",
             "description": null,
             "type": {
@@ -3629,7 +3657,17 @@
             "defaultValue": null
           },
           {
-            "name": "transactionId",
+            "name": "fromId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3649,7 +3687,7 @@
         "description": null,
         "fields": [
           {
-            "name": "POAPEvent",
+            "name": "PoapEventV1",
             "description": null,
             "args": [
               {
@@ -3657,7 +3695,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3665,19 +3703,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "POAPEvent",
+              "name": "PoapEventV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "POAPEvents",
-            "description": "Returns a list of POAPEvents. Supports pagination and filtering.",
+            "name": "PoapEventV1s",
+            "description": "Returns a list of PoapEventV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3687,20 +3725,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "POAPEventFilters",
+                  "name": "PoapEventV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -3711,7 +3759,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "POAPEventResults",
+                "name": "PoapEventV1Results",
                 "ofType": null
               }
             },
@@ -3719,7 +3767,7 @@
             "deprecationReason": null
           },
           {
-            "name": "POAPToken",
+            "name": "PoapTokenV1",
             "description": null,
             "args": [
               {
@@ -3727,7 +3775,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3735,19 +3783,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "POAPToken",
+              "name": "PoapTokenV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "POAPTokens",
-            "description": "Returns a list of POAPTokens. Supports pagination and filtering.",
+            "name": "PoapTokenV1s",
+            "description": "Returns a list of PoapTokenV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3757,20 +3805,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "POAPTokenFilters",
+                  "name": "PoapTokenV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -3781,7 +3839,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "POAPTokenResults",
+                "name": "PoapTokenV1Results",
                 "ofType": null
               }
             },
@@ -3789,7 +3847,7 @@
             "deprecationReason": null
           },
           {
-            "name": "POAPAccount",
+            "name": "PoapAccountV1",
             "description": null,
             "args": [
               {
@@ -3797,7 +3855,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3805,19 +3863,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "POAPAccount",
+              "name": "PoapAccountV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "POAPAccounts",
-            "description": "Returns a list of POAPAccounts. Supports pagination and filtering.",
+            "name": "PoapAccountV1s",
+            "description": "Returns a list of PoapAccountV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3827,20 +3885,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "POAPAccountFilters",
+                  "name": "PoapAccountV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -3851,7 +3919,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "POAPAccountResults",
+                "name": "PoapAccountV1Results",
                 "ofType": null
               }
             },
@@ -3859,7 +3927,7 @@
             "deprecationReason": null
           },
           {
-            "name": "POAPTransfer",
+            "name": "PoapTransferV1",
             "description": null,
             "args": [
               {
@@ -3867,7 +3935,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -3875,19 +3943,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "POAPTransfer",
+              "name": "PoapTransferV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "POAPTransfers",
-            "description": "Returns a list of POAPTransfers. Supports pagination and filtering.",
+            "name": "PoapTransferV1s",
+            "description": "Returns a list of PoapTransferV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -3897,20 +3965,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "POAPTransferFilters",
+                  "name": "PoapTransferV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -3921,7 +3999,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "POAPTransferResults",
+                "name": "PoapTransferV1Results",
                 "ofType": null
               }
             },
@@ -3936,39 +4014,23 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPEvent",
+        "name": "PoapEventV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "city",
+            "name": "fancyId",
             "description": null,
             "args": [],
             "type": {
@@ -3981,54 +4043,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "year",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "endsAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "country",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "fancyId",
             "description": null,
             "args": [],
             "type": {
@@ -4064,31 +4078,43 @@
             "deprecationReason": null
           },
           {
-            "name": "startsAt",
+            "name": "country",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "createdAt",
+            "name": "city",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Float",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "expiresAt",
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
             "description": null,
             "args": [],
             "type": {
@@ -4112,31 +4138,7 @@
             "deprecationReason": null
           },
           {
-            "name": "description",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "eventHostId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "privateEvent",
+            "name": "virtualEvent",
             "description": null,
             "args": [],
             "type": {
@@ -4148,7 +4150,7 @@
             "deprecationReason": null
           },
           {
-            "name": "virtualEvent",
+            "name": "privateEvent",
             "description": null,
             "args": [],
             "type": {
@@ -4170,6 +4172,66 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "eventHostId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "startsAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "endsAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "expiresAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -4179,8 +4241,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPEventResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "PoapEventV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -4213,7 +4275,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "POAPEvent",
+                    "name": "PoapEventV1",
                     "ofType": null
                   }
                 }
@@ -4270,7 +4332,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "POAPEventFilters",
+        "name": "PoapEventV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4279,13 +4341,13 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "IDFilter",
+              "name": "NumberFilter",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "city",
+            "name": "fancyId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4296,46 +4358,6 @@
           },
           {
             "name": "name",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "year",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "endsAt",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "country",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "fancyId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4365,27 +4387,37 @@
             "defaultValue": null
           },
           {
-            "name": "startsAt",
+            "name": "country",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "createdAt",
+            "name": "city",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "expiresAt",
+            "name": "description",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "year",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4405,27 +4437,7 @@
             "defaultValue": null
           },
           {
-            "name": "description",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "eventHostId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "privateEvent",
+            "name": "virtualEvent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4435,7 +4447,7 @@
             "defaultValue": null
           },
           {
-            "name": "virtualEvent",
+            "name": "privateEvent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4453,6 +4465,56 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "eventHostId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "startsAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "endsAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "expiresAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -4461,25 +4523,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPToken",
+        "name": "PoapTokenV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -4493,7 +4539,7 @@
             "deprecationReason": null
           },
           {
-            "name": "eventId",
+            "name": "ownerId",
             "description": null,
             "args": [],
             "type": {
@@ -4505,7 +4551,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ownerId",
+            "name": "eventId",
             "description": null,
             "args": [],
             "type": {
@@ -4536,8 +4582,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPTokenResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "PoapTokenV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -4570,7 +4616,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "POAPToken",
+                    "name": "PoapTokenV1",
                     "ofType": null
                   }
                 }
@@ -4627,7 +4673,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "POAPTokenFilters",
+        "name": "PoapTokenV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4642,7 +4688,7 @@
             "defaultValue": null
           },
           {
-            "name": "eventId",
+            "name": "ownerId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4652,7 +4698,7 @@
             "defaultValue": null
           },
           {
-            "name": "ownerId",
+            "name": "eventId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -4678,25 +4724,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPAccount",
+        "name": "PoapAccountV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -4717,8 +4747,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPAccountResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "PoapAccountV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -4751,7 +4781,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "POAPAccount",
+                    "name": "PoapAccountV1",
                     "ofType": null
                   }
                 }
@@ -4808,7 +4838,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "POAPAccountFilters",
+        "name": "PoapAccountV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -4829,25 +4859,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPTransfer",
+        "name": "PoapTransferV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -4861,31 +4875,7 @@
             "deprecationReason": null
           },
           {
-            "name": "toId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "fromId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tokenId",
+            "name": "transaction",
             "description": null,
             "args": [],
             "type": {
@@ -4909,7 +4899,31 @@
             "deprecationReason": null
           },
           {
-            "name": "transaction",
+            "name": "tokenId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fromId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toId",
             "description": null,
             "args": [],
             "type": {
@@ -4928,8 +4942,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "POAPTransferResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "PoapTransferV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -4962,7 +4976,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "POAPTransfer",
+                    "name": "PoapTransferV1",
                     "ofType": null
                   }
                 }
@@ -5019,7 +5033,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "POAPTransferFilters",
+        "name": "PoapTransferV1Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5034,27 +5048,7 @@
             "defaultValue": null
           },
           {
-            "name": "toId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "fromId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "tokenId",
+            "name": "transaction",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5074,7 +5068,27 @@
             "defaultValue": null
           },
           {
-            "name": "transaction",
+            "name": "tokenId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fromId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "toId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5090,11 +5104,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "BanklessAcademyV1",
+        "name": "TestV1",
         "description": null,
         "fields": [
           {
-            "name": "Course",
+            "name": "TestPostV1",
             "description": null,
             "args": [
               {
@@ -5102,7 +5116,7 @@
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "String",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5110,19 +5124,19 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Course",
+              "name": "TestPostV1",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "Courses",
-            "description": "Returns a list of Courses. Supports pagination and filtering.",
+            "name": "TestPostV1s",
+            "description": "Returns a list of TestPostV1s. Supports pagination and filtering.",
             "args": [
               {
                 "name": "first",
-                "description": null,
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -5132,20 +5146,30 @@
               },
               {
                 "name": "after",
-                "description": null,
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"0\""
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
               },
               {
                 "name": "where",
-                "description": null,
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CourseFilters",
+                  "name": "TestPostV1Filters",
                   "ofType": null
                 },
                 "defaultValue": "{}"
@@ -5156,7 +5180,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CourseResults",
+                "name": "TestPostV1Results",
                 "ofType": null
               }
             },
@@ -5171,25 +5195,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Course",
+        "name": "TestPostV1",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -5203,7 +5211,7 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "content",
             "description": null,
             "args": [],
             "type": {
@@ -5215,19 +5223,7 @@
             "deprecationReason": null
           },
           {
-            "name": "slug",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "slides",
+            "name": "comments",
             "description": null,
             "args": [],
             "type": {
@@ -5235,9 +5231,670 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Slide",
+                "name": "TestCommentV1",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TestCommentV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TestPostV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
+        "fields": [
+          {
+            "name": "pageInfo",
+            "description": "Contains information necessary for pagination",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": "Contains the results of the query.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "TestPostV1",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notes",
+            "description": "Additional information about the query",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "TestPostV1Filters",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IDFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "content",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "EnsV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "EnsDomainV1",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "EnsDomainV1",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EnsDomainV1s",
+            "description": "Returns a list of EnsDomainV1s. Supports pagination and filtering.",
+            "args": [
+              {
+                "name": "first",
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "100"
+              },
+              {
+                "name": "after",
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "EnsDomainV1Filters",
+                  "ofType": null
+                },
+                "defaultValue": "{}"
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "EnsDomainV1Results",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "EnsDomainV1",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "labelName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "address",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "EnsDomainV1Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
+        "fields": [
+          {
+            "name": "pageInfo",
+            "description": "Contains information necessary for pagination",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": "Contains the results of the query.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "EnsDomainV1",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notes",
+            "description": "Additional information about the query",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "EnsDomainV1Filters",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IDFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "labelName",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessAcademyV4",
+        "description": null,
+        "fields": [
+          {
+            "name": "BanklessAcademyCourseV4",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BanklessAcademyCourseV4",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BanklessAcademyCourseV4s",
+            "description": "Returns a list of BanklessAcademyCourseV4s. Supports pagination and filtering.",
+            "args": [
+              {
+                "name": "first",
+                "description": "Limits the amount of items returned.\n                             Note that if there are less items than `after`, all items will be returned (you might get less items than the value you passed to after).",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "100"
+              },
+              {
+                "name": "after",
+                "description": "**(Optional)** The cursor that you can use to access the next page of items.\n                            You can obtain this value from the `pageInfo` field of the response. (`nextPageToken`).\n                            See the results type for more information on pagination.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "**(Optional)** Sets the ordering of the items returned. You can order by top level fields (eg: you can't use `\"fieldA.fieldB\"` for now).",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderBy",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "**(Optional)** Filters the items returned.\n                             All filters have to be **true** for each item in the collection (this is an AND filter).\n                             See the results type for more information on filtering.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BanklessAcademyCourseV4Filters",
+                  "ofType": null
+                },
+                "defaultValue": "{}"
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessAcademyCourseV4Results",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessAcademyCourseV4",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "poapImageLink",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "lessonImageLink",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "learningActions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "marketingDescription",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "knowledgeRequirements",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "poapEventId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5249,18 +5906,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "notionId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5303,19 +5948,7 @@
             "deprecationReason": null
           },
           {
-            "name": "poapEventId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "poapImageLink",
+            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -5327,7 +5960,7 @@
             "deprecationReason": null
           },
           {
-            "name": "learningActions",
+            "name": "notionId",
             "description": null,
             "args": [],
             "type": {
@@ -5339,13 +5972,29 @@
             "deprecationReason": null
           },
           {
-            "name": "knowledgeRequirements",
+            "name": "slug",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slides",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessAcademySlideV4",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5358,12 +6007,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Slide",
+        "name": "BanklessAcademySlideV4",
         "description": null,
         "fields": [
           {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
+            "name": "id",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5373,18 +6022,6 @@
                 "name": "ID",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "quiz",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Quiz",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5414,12 +6051,36 @@
             "deprecationReason": null
           },
           {
+            "name": "notionId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "content",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quiz",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BanklessAcademyQuizV4",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5445,25 +6106,9 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Quiz",
+        "name": "BanklessAcademyQuizV4",
         "description": null,
         "fields": [
-          {
-            "name": "_id",
-            "description": "The unique identifier for this object generated by Content Gateway",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "id",
             "description": null,
@@ -5512,8 +6157,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CourseResults",
-        "description": "Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object. Check PageInfo to learn how to perform pagination.",
+        "name": "BanklessAcademyCourseV4Results",
+        "description": "\n            Wrapper object that contains the results of the query and also the possible errors, notes, and a page info object.\n            Check `pageInfo` to learn how to perform pagination.",
         "fields": [
           {
             "name": "pageInfo",
@@ -5546,7 +6191,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "Course",
+                    "name": "BanklessAcademyCourseV4",
                     "ofType": null
                   }
                 }
@@ -5603,7 +6248,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CourseFilters",
+        "name": "BanklessAcademyCourseV4Filters",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5618,7 +6263,7 @@
             "defaultValue": null
           },
           {
-            "name": "name",
+            "name": "poapImageLink",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5628,11 +6273,51 @@
             "defaultValue": null
           },
           {
-            "name": "slug",
+            "name": "lessonImageLink",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "learningActions",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "marketingDescription",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "knowledgeRequirements",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "poapEventId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "NumberFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -5643,16 +6328,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "notionId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null
@@ -5688,17 +6363,7 @@
             "defaultValue": null
           },
           {
-            "name": "poapEventId",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "NumberFilter",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "poapImageLink",
+            "name": "name",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5708,7 +6373,7 @@
             "defaultValue": null
           },
           {
-            "name": "learningActions",
+            "name": "notionId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5718,7 +6383,7 @@
             "defaultValue": null
           },
           {
-            "name": "knowledgeRequirements",
+            "name": "slug",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5729,6 +6394,804 @@
           }
         ],
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "live",
+        "description": "Live queries return up to date data, but don't support filtering or ordering.",
+        "fields": [
+          {
+            "name": "BanklessToken",
+            "description": null,
+            "args": [
+              {
+                "name": "address",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BanklessTokenResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "LivePOAPToken",
+            "description": null,
+            "args": [
+              {
+                "name": "address",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "LivePOAPTokensResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessTokenResult",
+        "description": "Wrapper object that contains the result of the query and also the possible errors and notes.",
+        "fields": [
+          {
+            "name": "data",
+            "description": "Contains the result of the query.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BanklessToken",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notes",
+            "description": "Additional information about the query",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": "If there were errors during the execution of the query you'll be able to see them here.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "BanklessToken",
+        "description": null,
+        "fields": [
+          {
+            "name": "account",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LiveBanklessAccount",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "erc20Balances",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "LiveBanklessErc20Balance",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fromTransfers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "LiveBanklessTransfer",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "toTransfers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "LiveBanklessTransfer",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LiveBanklessAccount",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "lastTransactionTimestamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LiveBanklessErc20Balance",
+        "description": null,
+        "fields": [
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LiveBanklessTransfer",
+        "description": null,
+        "fields": [
+          {
+            "name": "from",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LIveBanklessTransferFrom",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "to",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LiveBanklessTransferTo",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LIveBanklessTransferFrom",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LiveBanklessTransferTo",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LivePOAPTokensResult",
+        "description": "Wrapper object that contains the result of the query and also the possible errors and notes.",
+        "fields": [
+          {
+            "name": "data",
+            "description": "Contains the result of the query.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LivePOAPTokens",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "notes",
+            "description": "Additional information about the query",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "errors",
+            "description": "If there were errors during the execution of the query you'll be able to see them here.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LivePOAPTokens",
+        "description": null,
+        "fields": [
+          {
+            "name": "tokens",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LivePOAPToken",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LivePOAPToken",
+        "description": null,
+        "fields": [
+          {
+            "name": "event",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LivePOAPEvent",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tokenId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "owner",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "created",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "supply",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "LivePOAPEvent",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fancy_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event_url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image_url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "country",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "city",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "start_date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "end_date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "expiry_date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "created_date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "supply",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },

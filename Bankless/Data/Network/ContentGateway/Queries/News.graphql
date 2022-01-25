@@ -1,7 +1,17 @@
-query News {
+query News($lastPodcastId: String, $lastWebsitePostId: String) {
   historical {
     BanklessPodcastV1 {
-      playlist: Podcasts {
+      playlist: BanklessPodcastPodcastV1s(
+        orderBy: {
+          fieldPath: "snippet.publishedAt",
+          direction: desc
+        }
+        after: $lastPodcastId
+      ) {
+        pageInfo {
+          hasNextPage
+          nextPageToken
+        }
         data {
           id
           contentDetails {
@@ -21,9 +31,19 @@ query News {
       }
     }
     BanklessWebsiteV1 {
-      posts {
+      posts: BanklessWebsitePostV1s(
+        orderBy: {
+          fieldPath: "publishedAt",
+          direction: desc
+        },
+        after: $lastWebsitePostId
+      ) {
+        pageInfo {
+          hasNextPage
+          nextPageToken
+        }
         data {
-          id
+        id
         title
         slug
         excerpt

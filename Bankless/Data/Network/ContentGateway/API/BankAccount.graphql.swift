@@ -13,7 +13,7 @@ public final class BankAccountQuery: GraphQLQuery {
         __typename
         BanklessTokenV1 {
           __typename
-          myAccount: BANKAccounts(where: {id: {equals: $ethAddress}}) {
+          myAccount: BanklessTokenAccountV1s(where: {id: {equals: $ethAddress}}) {
             __typename
             data {
               __typename
@@ -22,7 +22,7 @@ public final class BankAccountQuery: GraphQLQuery {
               lastTransactionExecutedAt
             }
           }
-          fromTransfers: BANKTransfers(where: {fromId: {equals: $ethAddress}}) {
+          fromTransfers: BanklessTokenTransferV1s(where: {fromId: {equals: $ethAddress}}) {
             __typename
             data {
               __typename
@@ -31,7 +31,7 @@ public final class BankAccountQuery: GraphQLQuery {
               value
             }
           }
-          toTransfers: BANKTransfers(where: {toId: {equals: $ethAddress}}) {
+          toTransfers: BanklessTokenTransferV1s(where: {toId: {equals: $ethAddress}}) {
             __typename
             data {
               __typename
@@ -130,9 +130,9 @@ public final class BankAccountQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("BANKAccounts", alias: "myAccount", arguments: ["where": ["id": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(MyAccount.selections))),
-            GraphQLField("BANKTransfers", alias: "fromTransfers", arguments: ["where": ["fromId": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(FromTransfer.selections))),
-            GraphQLField("BANKTransfers", alias: "toTransfers", arguments: ["where": ["toId": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(ToTransfer.selections))),
+            GraphQLField("BanklessTokenAccountV1s", alias: "myAccount", arguments: ["where": ["id": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(MyAccount.selections))),
+            GraphQLField("BanklessTokenTransferV1s", alias: "fromTransfers", arguments: ["where": ["fromId": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(FromTransfer.selections))),
+            GraphQLField("BanklessTokenTransferV1s", alias: "toTransfers", arguments: ["where": ["toId": ["equals": GraphQLVariable("ethAddress")]]], type: .nonNull(.object(ToTransfer.selections))),
           ]
         }
 
@@ -155,7 +155,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of BANKAccounts. Supports pagination and filtering.
+        /// Returns a list of BanklessTokenAccountV1s. Supports pagination and filtering.
         public var myAccount: MyAccount {
           get {
             return MyAccount(unsafeResultMap: resultMap["myAccount"]! as! ResultMap)
@@ -165,7 +165,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of BANKTransfers. Supports pagination and filtering.
+        /// Returns a list of BanklessTokenTransferV1s. Supports pagination and filtering.
         public var fromTransfers: FromTransfer {
           get {
             return FromTransfer(unsafeResultMap: resultMap["fromTransfers"]! as! ResultMap)
@@ -175,7 +175,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of BANKTransfers. Supports pagination and filtering.
+        /// Returns a list of BanklessTokenTransferV1s. Supports pagination and filtering.
         public var toTransfers: ToTransfer {
           get {
             return ToTransfer(unsafeResultMap: resultMap["toTransfers"]! as! ResultMap)
@@ -186,7 +186,7 @@ public final class BankAccountQuery: GraphQLQuery {
         }
 
         public struct MyAccount: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["BANKAccountResults"]
+          public static let possibleTypes: [String] = ["BanklessTokenAccountV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -202,7 +202,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "BANKAccountResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessTokenAccountV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -225,7 +225,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["BANKAccount"]
+            public static let possibleTypes: [String] = ["BanklessTokenAccountV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -243,7 +243,7 @@ public final class BankAccountQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, balance: String? = nil, lastTransactionExecutedAt: String? = nil) {
-              self.init(unsafeResultMap: ["__typename": "BANKAccount", "id": id, "balance": balance, "lastTransactionExecutedAt": lastTransactionExecutedAt])
+              self.init(unsafeResultMap: ["__typename": "BanklessTokenAccountV1", "id": id, "balance": balance, "lastTransactionExecutedAt": lastTransactionExecutedAt])
             }
 
             public var __typename: String {
@@ -285,7 +285,7 @@ public final class BankAccountQuery: GraphQLQuery {
         }
 
         public struct FromTransfer: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["BANKTransferResults"]
+          public static let possibleTypes: [String] = ["BanklessTokenTransferV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -301,7 +301,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "BANKTransferResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessTokenTransferV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -324,7 +324,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["BANKTransfer"]
+            public static let possibleTypes: [String] = ["BanklessTokenTransferV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -342,7 +342,7 @@ public final class BankAccountQuery: GraphQLQuery {
             }
 
             public init(fromId: String? = nil, toId: String? = nil, value: String? = nil) {
-              self.init(unsafeResultMap: ["__typename": "BANKTransfer", "fromId": fromId, "toId": toId, "value": value])
+              self.init(unsafeResultMap: ["__typename": "BanklessTokenTransferV1", "fromId": fromId, "toId": toId, "value": value])
             }
 
             public var __typename: String {
@@ -384,7 +384,7 @@ public final class BankAccountQuery: GraphQLQuery {
         }
 
         public struct ToTransfer: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["BANKTransferResults"]
+          public static let possibleTypes: [String] = ["BanklessTokenTransferV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -400,7 +400,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "BANKTransferResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessTokenTransferV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -423,7 +423,7 @@ public final class BankAccountQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["BANKTransfer"]
+            public static let possibleTypes: [String] = ["BanklessTokenTransferV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -441,7 +441,7 @@ public final class BankAccountQuery: GraphQLQuery {
             }
 
             public init(fromId: String? = nil, toId: String? = nil, value: String? = nil) {
-              self.init(unsafeResultMap: ["__typename": "BANKTransfer", "fromId": fromId, "toId": toId, "value": value])
+              self.init(unsafeResultMap: ["__typename": "BanklessTokenTransferV1", "fromId": fromId, "toId": toId, "value": value])
             }
 
             public var __typename: String {
