@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-25.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-01-24.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -18,21 +18,7 @@
     
 
 import Foundation
-import RxSwift
 
-extension MultiSourceDataClient: BanklessAcademyClient {
-    func claimPoap(
-        request: BanklessAcademyClaimPOAPRequest
-    ) -> Observable<AttendanceTokenClaimCode> {
-        return banklessAcademyAPI
-            .request(
-                .claimPoap(
-                    poapEventId: Int(request.eventId)!,
-                    address: request.ethAddress
-                )
-            )
-            .map(AttendanceTokenClaimCode.self)
-            .asObservable()
-            .catchMapError()
-    }
+struct AttendanceTokenClaimCode: Codable {
+    let code: String
 }

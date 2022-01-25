@@ -21,7 +21,7 @@ import Foundation
 import RxSwift
 
 protocol BanklessAcademyClient: DataClient {
-    func claimPoap(request: BanklessAcademyClaimPOAPRequest) -> Completable
+    func claimPoap(request: BanklessAcademyClaimPOAPRequest) -> Observable<AttendanceTokenClaimCode>
 }
 
 typealias BanklessAcademyClaimPOAPRequest = AcademyClaimProofOfAttendanceRequest

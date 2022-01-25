@@ -119,7 +119,7 @@ extension BanklessAcademyAPIMethod: TargetType, AccessTokenAuthorizable, Cacheab
         switch self {
             
         default:
-            return .useProtocolCachePolicy
+            return .reloadIgnoringLocalCacheData
         }
     }
 }

@@ -118,6 +118,14 @@ public enum Environment {
         return value
     }()
     
+    static let poapAppBaseURL: String = {
+        guard let value = Environment.infoDictionary["POAP_APP_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
     static let sentryDSN: String = {
         guard let value = Environment.infoDictionary["SENTRY_DSN"] as? String else {
             fatalError("Not found")
