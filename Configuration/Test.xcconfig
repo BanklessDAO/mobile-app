@@ -2,4 +2,4 @@
 #include "Secrets.xcconfig"
 
 PRODUCT_DISPLAY_NAME = Bankless Test
-PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app.test
+PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app.test
