@@ -29,6 +29,7 @@ class NewsViewController: BaseViewController<NewsViewModel>,
     // MARK: - Properties -
     
     let source = BehaviorRelay<ListSource>(value: .init())
+    let endOfListRelay = PublishRelay<Int>()
     
     // MARK: - Subviews -
     
@@ -125,6 +126,7 @@ class NewsViewController: BaseViewController<NewsViewModel>,
         
         return NewsViewModel.Input(
             refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
+            endOfList: endOfListRelay.asDriver(onErrorDriveWith: .empty()).distinctUntilChanged(),
             selection: selection
         )
     }
@@ -178,6 +180,18 @@ class NewsViewController: BaseViewController<NewsViewModel>,
     }
     
     // MARK: - Delegate -
+    
+    func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        guard indexPath.row == self.source.value.numberOfRows - 1 else {
+            return
+        }
+        
+        endOfListRelay.accept(self.source.value.numberOfRows)
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         listView.deselectRow(at: indexPath, animated: false)

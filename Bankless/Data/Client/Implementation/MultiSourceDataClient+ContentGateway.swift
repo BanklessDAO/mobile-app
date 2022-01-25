@@ -252,12 +252,17 @@ extension MultiSourceDataClient: ContentGatewayClient {
         }
     }
     
-    func getNewsContent() -> Observable<NewsContentResponse> {
+    func getNewsContent(request: NewsContentRequest) -> Observable<NewsContentResponse> {
         return apolloRequest(
-            apolloQuery: NewsQuery(),
+            apolloQuery: NewsQuery(
+                lastPodcastId: request.lastPodcastItemId,
+                lastWebsitePostId: request.lastNewsletterItemId
+            ),
             responseType: NewsContentResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
+                let newsletterPageInfo = responseData.historical.banklessWebsiteV1.posts.pageInfo
+                
                 let newsletterItems = responseData.historical.banklessWebsiteV1.posts.data
                     .map({ post in
                         NewsletterItem(
@@ -274,6 +279,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             isFeatured: post.featured!
                         )
                     })
+                
+                let podcastsPageInfo = responseData.historical.banklessPodcastV1.playlist.pageInfo
                 
                 let podcastItems = responseData.historical.banklessPodcastV1.playlist.data
                     .map({ playlistItem -> PodcastItem in
@@ -299,7 +306,9 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 
                 let response = NewsContentResponse(
                     newsletterItems: newsletterItems,
-                    podcastItems: podcastItems
+                    newsletterNextPageToken: newsletterPageInfo.nextPageToken,
+                    podcastItems: podcastItems,
+                    podcastNextPageToken: podcastsPageInfo.nextPageToken
                 )
                 
                 return .success(response)

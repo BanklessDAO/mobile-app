@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-16.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-01-22.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -18,18 +18,16 @@
     
 
 import Foundation
-import RxSwift
 
-final class NetworkNewsService: NewsService {
-    private let contentGatewayClient: ContentGatewayClient
+struct NewsItemsRequest {
+    let lastNewsletterItemId: String?
+    let lastPodcastItemId: String?
     
-    init(
-        contentGatewayClient: ContentGatewayClient
+    internal init(
+        lastNewsletterItemId: String? = nil,
+        lastPodcastItemId: String? = nil
     ) {
-        self.contentGatewayClient = contentGatewayClient
-    }
-    
-    func listNewsItems(request: NewsItemsRequest) -> Observable<NewsItemsResponse> {
-        return contentGatewayClient.getNewsContent(request: request).take(1)
+        self.lastNewsletterItemId = lastNewsletterItemId
+        self.lastPodcastItemId = lastPodcastItemId
     }
 }
