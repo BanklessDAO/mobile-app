@@ -39,6 +39,7 @@ final class HomeTimelineViewModel: BaseViewModel,
         let isRefreshing: Driver<Bool>
         let isAnonymous: Driver<Bool>
         let gaugeClusterViewModel: Driver<GaugeClusterViewModel>
+        let featuredNewsSectionHeaderViewModel: Driver<SectionHeaderViewModel>
         let featuredNewsViewModel: Driver<FeaturedNewsViewModel>
         let bountiesSectionHeaderViewModel: Driver<SectionHeaderViewModel>
         let bountyViewModels: Driver<[BountyViewModel]>
@@ -52,13 +53,19 @@ final class HomeTimelineViewModel: BaseViewModel,
         "home.timeline.section.controls.expand.title", value: "See All", comment: ""
     )
     
-   static let bountiesSectionTitle = NSLocalizedString(
+    static let featuredNewsSectionTitle = NSLocalizedString(
+        "home.timeline.section.news.title", value: "Latest", comment: ""
+    )
+    
+    static let bountiesSectionTitle = NSLocalizedString(
         "home.timeline.section.bounties.title", value: "Bounties", comment: ""
     )
     
     static let academySectionTitle = NSLocalizedString(
         "home.timeline.section.academy.title", value: "Academy", comment: ""
     )
+    
+    static let maxNewsItemPreviewCount = 3
     
     // MARK: - Properties -
     
@@ -127,9 +134,17 @@ final class HomeTimelineViewModel: BaseViewModel,
                     .map({ return AcademyCourseViewModel(academyCourse: $0) })
             })
         
+        let featuredNewsHeaderVM = SectionHeaderViewModel()
+        featuredNewsHeaderVM.set(title: HomeTimelineViewModel.featuredNewsSectionTitle)
+        featuredNewsHeaderVM.setExpandButton(
+            title: HomeTimelineViewModel.expandSectionButtonTitle
+        ) { [weak self] in
+            self?.expandNewsTransitionRequested.accept(())
+        }
         let featuredNewsViewModel = timelineItems
             .map({ ($0.newsletterItems + $0.podcastItems) as [NewsItemPreviewBehaviour] })
             .map({ $0.sorted(by: { $0.date > $1.date }) })
+            .map({ Array($0.prefix(HomeTimelineViewModel.maxNewsItemPreviewCount)) })
             .map({ items -> FeaturedNewsViewModel in
                 let viewModel = FeaturedNewsViewModel(newsItems: items)
                 
@@ -144,12 +159,6 @@ final class HomeTimelineViewModel: BaseViewModel,
                         default:
                             fatalError("unexpected type")
                         }
-                    })
-                    .disposed(by: viewModel.disposer)
-                
-                viewModel.expandRequestRelay.asDriver(onErrorDriveWith: .empty())
-                    .drive(onNext: { [weak self] _ in
-                        self?.expandNewsTransitionRequested.accept(())
                     })
                     .disposed(by: viewModel.disposer)
                 
@@ -168,6 +177,7 @@ final class HomeTimelineViewModel: BaseViewModel,
                 refreshInput: refreshTrigger, ethAddress: ethAddress
             )
                 .asDriver(onErrorDriveWith: .empty()),
+            featuredNewsSectionHeaderViewModel: .just(featuredNewsHeaderVM),
             featuredNewsViewModel: featuredNewsViewModel.asDriver(onErrorDriveWith: .empty()),
             bountiesSectionHeaderViewModel: .just(bountiesHeaderVM),
             bountyViewModels: bountyViewModels.asDriver(onErrorDriveWith: .empty()),

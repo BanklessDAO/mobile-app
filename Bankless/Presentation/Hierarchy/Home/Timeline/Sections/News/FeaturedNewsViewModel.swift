@@ -26,12 +26,10 @@ final class FeaturedNewsViewModel: BaseViewModel {
     
     struct Input {
         let selection: Driver<Int>
-        let expand: Driver<Void>
     }
     
     struct Output {
         let title: Driver<String>
-        let expandButtonTitle: Driver<String>
         let items: Driver<[NewsItemPreviewBehaviour]>
     }
     
@@ -41,10 +39,6 @@ final class FeaturedNewsViewModel: BaseViewModel {
         "home.timeline.news.title", value: "Latest", comment: ""
     )
     
-    static let expandButtonTitle = NSLocalizedString(
-        "home.timeline.news.controls.expand.title", value: "See All", comment: ""
-    )
-    
     // MARK: - Data -
     
     private let newsItems: [NewsItemPreviewBehaviour]
@@ -52,7 +46,6 @@ final class FeaturedNewsViewModel: BaseViewModel {
     // MARK: - Events -
     
     let selectionRelay = PublishRelay<Int>()
-    let expandRequestRelay = PublishRelay<Void>()
     
     // MARK: - Initializets -
     
@@ -70,15 +63,8 @@ final class FeaturedNewsViewModel: BaseViewModel {
                 self.selectionRelay.accept(index)
             }).disposed(by: disposer)
         
-        input.expand.drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            
-            self.expandRequestRelay.accept(())
-        }).disposed(by: disposer)
-        
         return Output(
             title: .just(FeaturedNewsViewModel.title),
-            expandButtonTitle: .just(FeaturedNewsViewModel.expandButtonTitle),
             items: .just(newsItems)
         )
     }

@@ -29,8 +29,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     // MARK: - Constants -
     
     private static let collectionRatio: CGSize = .init(width: 16, height: 10)
-    private static let maxNumberOfCarouselItems = 3
-    private static let expandButtonColor: UIColor = .primaryRed
     
     // MARK: - Properties -
     
@@ -40,8 +38,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     
     // MARK: - Subviews -
     
-    private var titleLabel: UILabel!
-    private var expandButton: UIButton!
     private var collectionView: UICollectionView!
     
     // MARK: - Lifecycle -
@@ -61,15 +57,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
             bottom: 0,
             right: 0
         )
-        
-        titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Font.Title1.font(bold: true)
-        titleLabel.textColor = .secondaryWhite
-        contentView.addSubview(titleLabel)
-        
-        expandButton = UIButton(type: .custom)
-        expandButton.setTitleColor(FeaturedNewsCell.expandButtonColor, for: .normal)
-        contentView.addSubview(expandButton)
         
         collectionView = UICollectionView(
             featuredNewsCollectionFlowLayout: featuredNewsCollectionFlowLayout
@@ -93,22 +80,8 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     }
     
     override func setUpConstraints() {
-        constrain(titleLabel, contentView) { (title, view) in
-            title.top == view.top + Appearance.contentInsets.top
-            title.left == view.left + Appearance.contentInsets.left * 2
-            title.height == Appearance.Text.Font.Title1.lineHeight
-        }
-        
-        constrain(expandButton, titleLabel, contentView) { expand, title, view in
-            expand.height == title.height
-            expand.centerY == title.centerY
-            expand.left == title.right + Appearance.contentInsets.left
-            expand.right == view.right - Appearance.contentInsets.right * 2
-            expand.width == 0 ~ .defaultLow
-        }
-        
-        constrain(collectionView, titleLabel, contentView) { items, title, view in
-            items.top == title.bottom + Appearance.contentPaddings.bottom
+        constrain(collectionView, contentView) { items, view in
+            items.top == view.top + Appearance.contentInsets.top
             items.left == view.left
             items.right == view.right
             items.height == view.width
@@ -120,11 +93,9 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     
     override func bindViewModel() {
         let output = viewModel.transform(
-            input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()), expand: expandButton.rx.tap.asDriver())
+            input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()))
         )
         
-        output.title.drive(titleLabel.rx.text).disposed(by: disposer)
-        output.expandButtonTitle.drive(expandButton.rx.title(for: .normal)).disposed(by: disposer)
         output.items.drive(itemsSource).disposed(by: disposer)
         
         itemsSource.asDriver()
@@ -140,7 +111,7 @@ extension FeaturedNewsCell: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        itemsSource.value.prefix(FeaturedNewsCell.maxNumberOfCarouselItems).count
+        itemsSource.value.count
     }
     
     func collectionView(
