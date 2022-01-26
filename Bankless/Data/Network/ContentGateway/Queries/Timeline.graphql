@@ -49,8 +49,8 @@ query Timeline {
         }
       }
     }
-    BanklessAcademyV4 {
-       allCourses: BanklessAcademyCourseV4s(
+    BanklessAcademyV1 {
+       allCourses: BanklessAcademyCourseV1s(
          first: 3
        ) {
          data {
@@ -72,6 +72,7 @@ query Timeline {
              title
              content
              quiz {
+               question
                answers
                rightAnswerNumber
              }

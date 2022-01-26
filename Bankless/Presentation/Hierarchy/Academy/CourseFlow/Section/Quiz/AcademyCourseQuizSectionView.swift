@@ -35,6 +35,7 @@ class AcademyCourseQuizSectionView: BaseView<AcademyCourseQuizSectionViewModel>,
     
     private var titleLabel: UILabel!
     private var separatorView: UIView!
+    private var questionLabel: UILabel!
     private var quizItemView: QuizItemView!
     
     // MARK: - Initializers -
@@ -66,6 +67,12 @@ class AcademyCourseQuizSectionView: BaseView<AcademyCourseQuizSectionViewModel>,
         separatorView.backgroundColor = AcademyCourseLearnSectionView.separatorColor
         addSubview(separatorView)
         
+        questionLabel = UILabel()
+        questionLabel.numberOfLines = 0
+        questionLabel.textColor = .secondaryWhite
+        questionLabel.font = Appearance.Text.Font.Body.font(bold: false)
+        addSubview(questionLabel)
+        
         quizItemView = QuizItemView()
         addSubview(quizItemView)
     }
@@ -84,10 +91,16 @@ class AcademyCourseQuizSectionView: BaseView<AcademyCourseQuizSectionViewModel>,
             sep.width == AcademyCourseLearnSectionView.separatorSize.width
         }
         
-        constrain(quizItemView, separatorView, self) { quiz, sep, view in
+        constrain(questionLabel, separatorView, self) { question, sep, view in
+            question.left == view.left
+            question.right == view.right
+            question.top == sep.bottom + contentInsets.bottom * 2
+        }
+        
+        constrain(quizItemView, questionLabel, self) { quiz, question, view in
             quiz.left == view.left
             quiz.right == view.right
-            quiz.top == sep.bottom + contentInsets.bottom * 2
+            quiz.top == question.bottom + contentInsets.bottom * 2
             quiz.bottom == view.bottom
         }
     }
@@ -96,6 +109,7 @@ class AcademyCourseQuizSectionView: BaseView<AcademyCourseQuizSectionViewModel>,
         let output = viewModel.transform(input: .init())
         
         output.title.drive(titleLabel.rx.text).disposed(by: disposer)
+        output.question.drive(questionLabel.rx.text).disposed(by: disposer)
         quizItemView.bind(viewModel: output.quizItemViewModel)
     }
 }

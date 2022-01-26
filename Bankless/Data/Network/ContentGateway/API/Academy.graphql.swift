@@ -11,9 +11,9 @@ public final class AcademyQuery: GraphQLQuery {
     query Academy {
       historical {
         __typename
-        BanklessAcademyV4 {
+        BanklessAcademyV1 {
           __typename
-          allCourses: BanklessAcademyCourseV4s {
+          allCourses: BanklessAcademyCourseV1s {
             __typename
             data {
               __typename
@@ -37,6 +37,7 @@ public final class AcademyQuery: GraphQLQuery {
                 content
                 quiz {
                   __typename
+                  question
                   answers
                   rightAnswerNumber
                 }
@@ -88,7 +89,7 @@ public final class AcademyQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("BanklessAcademyV4", type: .nonNull(.object(BanklessAcademyV4.selections))),
+          GraphQLField("BanklessAcademyV1", type: .nonNull(.object(BanklessAcademyV1.selections))),
         ]
       }
 
@@ -98,8 +99,8 @@ public final class AcademyQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(banklessAcademyV4: BanklessAcademyV4) {
-        self.init(unsafeResultMap: ["__typename": "historical", "BanklessAcademyV4": banklessAcademyV4.resultMap])
+      public init(banklessAcademyV1: BanklessAcademyV1) {
+        self.init(unsafeResultMap: ["__typename": "historical", "BanklessAcademyV1": banklessAcademyV1.resultMap])
       }
 
       public var __typename: String {
@@ -111,22 +112,22 @@ public final class AcademyQuery: GraphQLQuery {
         }
       }
 
-      public var banklessAcademyV4: BanklessAcademyV4 {
+      public var banklessAcademyV1: BanklessAcademyV1 {
         get {
-          return BanklessAcademyV4(unsafeResultMap: resultMap["BanklessAcademyV4"]! as! ResultMap)
+          return BanklessAcademyV1(unsafeResultMap: resultMap["BanklessAcademyV1"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue.resultMap, forKey: "BanklessAcademyV4")
+          resultMap.updateValue(newValue.resultMap, forKey: "BanklessAcademyV1")
         }
       }
 
-      public struct BanklessAcademyV4: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["BanklessAcademyV4"]
+      public struct BanklessAcademyV1: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["BanklessAcademyV1"]
 
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("BanklessAcademyCourseV4s", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
+            GraphQLField("BanklessAcademyCourseV1s", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
           ]
         }
 
@@ -137,7 +138,7 @@ public final class AcademyQuery: GraphQLQuery {
         }
 
         public init(allCourses: AllCourse) {
-          self.init(unsafeResultMap: ["__typename": "BanklessAcademyV4", "allCourses": allCourses.resultMap])
+          self.init(unsafeResultMap: ["__typename": "BanklessAcademyV1", "allCourses": allCourses.resultMap])
         }
 
         public var __typename: String {
@@ -149,7 +150,7 @@ public final class AcademyQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of BanklessAcademyCourseV4s. Supports pagination and filtering.
+        /// Returns a list of BanklessAcademyCourseV1s. Supports pagination and filtering.
         public var allCourses: AllCourse {
           get {
             return AllCourse(unsafeResultMap: resultMap["allCourses"]! as! ResultMap)
@@ -160,7 +161,7 @@ public final class AcademyQuery: GraphQLQuery {
         }
 
         public struct AllCourse: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["BanklessAcademyCourseV4Results"]
+          public static let possibleTypes: [String] = ["BanklessAcademyCourseV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -176,7 +177,7 @@ public final class AcademyQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV4Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -199,7 +200,7 @@ public final class AcademyQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["BanklessAcademyCourseV4"]
+            public static let possibleTypes: [String] = ["BanklessAcademyCourseV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -228,7 +229,7 @@ public final class AcademyQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, lessonImageLink: String? = nil, marketingDescription: String? = nil, slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
-              self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV4", "id": id, "lessonImageLink": lessonImageLink, "marketingDescription": marketingDescription, "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
+              self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV1", "id": id, "lessonImageLink": lessonImageLink, "marketingDescription": marketingDescription, "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
             }
 
             public var __typename: String {
@@ -367,7 +368,7 @@ public final class AcademyQuery: GraphQLQuery {
             }
 
             public struct Slide: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["BanklessAcademySlideV4"]
+              public static let possibleTypes: [String] = ["BanklessAcademySlideV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -386,7 +387,7 @@ public final class AcademyQuery: GraphQLQuery {
               }
 
               public init(type: String? = nil, title: String? = nil, content: String? = nil, quiz: Quiz? = nil) {
-                self.init(unsafeResultMap: ["__typename": "BanklessAcademySlideV4", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
+                self.init(unsafeResultMap: ["__typename": "BanklessAcademySlideV1", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
               }
 
               public var __typename: String {
@@ -435,11 +436,12 @@ public final class AcademyQuery: GraphQLQuery {
               }
 
               public struct Quiz: GraphQLSelectionSet {
-                public static let possibleTypes: [String] = ["BanklessAcademyQuizV4"]
+                public static let possibleTypes: [String] = ["BanklessAcademyQuizV1"]
 
                 public static var selections: [GraphQLSelection] {
                   return [
                     GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("question", type: .scalar(String.self)),
                     GraphQLField("answers", type: .list(.scalar(String.self))),
                     GraphQLField("rightAnswerNumber", type: .scalar(Double.self)),
                   ]
@@ -451,8 +453,8 @@ public final class AcademyQuery: GraphQLQuery {
                   self.resultMap = unsafeResultMap
                 }
 
-                public init(answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
-                  self.init(unsafeResultMap: ["__typename": "BanklessAcademyQuizV4", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
+                public init(question: String? = nil, answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "BanklessAcademyQuizV1", "question": question, "answers": answers, "rightAnswerNumber": rightAnswerNumber])
                 }
 
                 public var __typename: String {
@@ -461,6 +463,15 @@ public final class AcademyQuery: GraphQLQuery {
                   }
                   set {
                     resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                public var question: String? {
+                  get {
+                    return resultMap["question"] as? String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "question")
                   }
                 }
 

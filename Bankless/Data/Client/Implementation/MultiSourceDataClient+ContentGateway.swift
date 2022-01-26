@@ -148,8 +148,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                         )
                     })
                 
-                let academyCourses = timelineData.historical.banklessAcademyV4.allCourses
-                    .data[0 ..< 2]
+                let academyCourses = timelineData.historical.banklessAcademyV1.allCourses
+                    .data
                     .map({ course -> AcademyCourse in
                         let sections = course.slides
                             .map({
@@ -161,6 +161,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                     let quiz = section!.quiz != nil
                                     ? AcademyCourse.Section.Quiz(
                                         id: UUID().uuidString,
+                                        question: section!.quiz!.question!,
                                         answers: section!.quiz!.answers!.compactMap({ $0 }),
                                         rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
                                         - 1
@@ -291,7 +292,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
             responseType: AcademyCoursesResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
-                let academyCourses = responseData.historical.banklessAcademyV4.allCourses.data
+                let academyCourses = responseData.historical.banklessAcademyV1.allCourses.data
                     .map({ course -> AcademyCourse in
                         let sections = course.slides
                             .map({
@@ -303,6 +304,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                     let quiz = section!.quiz != nil
                                     ? AcademyCourse.Section.Quiz(
                                         id: UUID().uuidString,
+                                        question: section!.quiz!.question!,
                                         answers: section!.quiz!.answers!.compactMap({ $0 }),
                                         rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
                                         - 1

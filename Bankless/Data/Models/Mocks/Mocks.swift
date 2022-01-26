@@ -89,6 +89,7 @@ extension AcademyCourse.Section.Quiz: Mock {
     static func generateMock() -> AcademyCourse.Section.Quiz {
         return .init(
             id: UUID().uuidString,
+            question: faker.lorem.sentence(wordsAmount: 5),
             answers: [
                 faker.lorem.word(),
                 faker.lorem.word(),

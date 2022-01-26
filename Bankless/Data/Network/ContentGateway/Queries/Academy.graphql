@@ -1,7 +1,7 @@
 query Academy {
   historical {
-    BanklessAcademyV4 {
-       allCourses: BanklessAcademyCourseV4s {
+    BanklessAcademyV1 {
+       allCourses: BanklessAcademyCourseV1s {
          data {
            id
            lessonImageLink
@@ -21,6 +21,7 @@ query Academy {
              title
              content
              quiz {
+               question
                answers
                rightAnswerNumber
              }
