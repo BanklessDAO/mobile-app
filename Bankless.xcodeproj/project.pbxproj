@@ -10,6 +10,7 @@
 		D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F156FCF430E914EC318C70E /* Pods_Bankless.framework */; };
 		FF0B6C0027373C8A00CB33BF /* SessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */; };
 		FF0B6C0327373CC500CB33BF /* KeychainBasedSessionStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */; };
+		FF0CFCBD279CD35C005A8A09 /* NewsItemsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0CFCBC279CD35C005A8A09 /* NewsItemsRequest.swift */; };
 		FF1AC6422746435F003025E0 /* AcademyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6412746435F003025E0 /* AcademyCoordinator.swift */; };
 		FF1AC64427464367003025E0 /* AcademyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64327464367003025E0 /* AcademyViewController.swift */; };
 		FF1AC64627464371003025E0 /* AcademyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC64527464371003025E0 /* AcademyViewModel.swift */; };
@@ -32,10 +33,8 @@
 		FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */; };
 		FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC671274C25E8003025E0 /* Timeline.graphql */; };
 		FF1AC676274C2640003025E0 /* Academy.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC675274C2640003025E0 /* Academy.graphql */; };
-		FF1AC678274C2658003025E0 /* BountyBoard.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF1AC677274C2658003025E0 /* BountyBoard.graphql */; };
 		FF1AC67B274C474C003025E0 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = FF1AC67A274C474C003025E0 /* YouTubePlayerKit */; };
 		FF1AC688274C4FD0003025E0 /* Academy.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */; };
-		FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */; };
 		FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */; };
 		FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC687274C4FD0003025E0 /* Types.graphql.swift */; };
 		FF1AC68D274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC68C274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift */; };
@@ -91,8 +90,6 @@
 		FF5BCDD92744BC31000D3FEF /* FeaturedNewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */; };
 		FF5BCDDB2744C342000D3FEF /* FeaturedNewsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */; };
 		FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDC2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift */; };
-		FF5BCDDF2744D389000D3FEF /* ShowMorePlaceholderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */; };
-		FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */; };
 		FF5BCDE527457F9E000D3FEF /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE427457F9D000D3FEF /* NewsCoordinator.swift */; };
 		FF5BCDE727457FA6000D3FEF /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE627457FA6000D3FEF /* NewsViewController.swift */; };
 		FF5BCDE927457FAF000D3FEF /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCDE827457FAF000D3FEF /* NewsViewModel.swift */; };
@@ -242,6 +239,7 @@
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
+		FFDD61A9279F726F000F0BEC /* AttendanceTokenClaimCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */; };
 		FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45827596443007B4E3A /* ErrorLogging.swift */; };
 		FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */; };
 		FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */; };
@@ -284,6 +282,7 @@
 		C4F3A936DC476C1FA58282F3 /* Pods-Bankless.release mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bankless.release mock.xcconfig"; path = "Target Support Files/Pods-Bankless/Pods-Bankless.release mock.xcconfig"; sourceTree = "<group>"; };
 		FF0B6BFF27373C8A00CB33BF /* SessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStorage.swift; sourceTree = "<group>"; };
 		FF0B6C0227373CC500CB33BF /* KeychainBasedSessionStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainBasedSessionStorage.swift; sourceTree = "<group>"; };
+		FF0CFCBC279CD35C005A8A09 /* NewsItemsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemsRequest.swift; sourceTree = "<group>"; };
 		FF1AC6412746435F003025E0 /* AcademyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCoordinator.swift; sourceTree = "<group>"; };
 		FF1AC64327464367003025E0 /* AcademyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyViewController.swift; sourceTree = "<group>"; };
 		FF1AC64527464371003025E0 /* AcademyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyViewModel.swift; sourceTree = "<group>"; };
@@ -306,9 +305,7 @@
 		FF1AC66F27472218003025E0 /* SectionNavigationControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionNavigationControlView.swift; sourceTree = "<group>"; };
 		FF1AC671274C25E8003025E0 /* Timeline.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Timeline.graphql; sourceTree = "<group>"; };
 		FF1AC675274C2640003025E0 /* Academy.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Academy.graphql; sourceTree = "<group>"; };
-		FF1AC677274C2658003025E0 /* BountyBoard.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BountyBoard.graphql; sourceTree = "<group>"; };
 		FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Academy.graphql.swift; sourceTree = "<group>"; };
-		FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BountyBoard.graphql.swift; sourceTree = "<group>"; };
 		FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.graphql.swift; sourceTree = "<group>"; };
 		FF1AC687274C4FD0003025E0 /* Types.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.graphql.swift; sourceTree = "<group>"; };
 		FF1AC68C274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -364,8 +361,6 @@
 		FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsItemCell.swift; sourceTree = "<group>"; };
 		FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsItemView.swift; sourceTree = "<group>"; };
 		FF5BCDDC2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsCollectionFlowLayout.swift; sourceTree = "<group>"; };
-		FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMorePlaceholderItem.swift; sourceTree = "<group>"; };
-		FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedNewsExpandCell.swift; sourceTree = "<group>"; };
 		FF5BCDE427457F9D000D3FEF /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
 		FF5BCDE627457FA6000D3FEF /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		FF5BCDE827457FAF000D3FEF /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
@@ -521,6 +516,7 @@
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
+		FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenClaimCode.swift; sourceTree = "<group>"; };
 		FFE4D45827596443007B4E3A /* ErrorLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogging.swift; sourceTree = "<group>"; };
 		FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorLogging+ErrorReporter.swift"; sourceTree = "<group>"; };
 		FFE4D45D275967FF007B4E3A /* ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
@@ -899,6 +895,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5BCDBE27444E1A000D3FEF /* NewsService.swift */,
+				FF0CFCBC279CD35C005A8A09 /* NewsItemsRequest.swift */,
 				FF5BCDC027444E4B000D3FEF /* NewsItemsResponse.swift */,
 				FF5BCDC727445457000D3FEF /* Implementation */,
 			);
@@ -928,8 +925,6 @@
 			children = (
 				FF5BCDD82744BC31000D3FEF /* FeaturedNewsItemCell.swift */,
 				FF5BCDDA2744C342000D3FEF /* FeaturedNewsItemView.swift */,
-				FF5BCDE02744D4F9000D3FEF /* FeaturedNewsExpandCell.swift */,
-				FF5BCDDE2744D389000D3FEF /* ShowMorePlaceholderItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -1166,6 +1161,7 @@
 				FFEB12512718ABFD003EF90D /* BANKAccount.swift */,
 				FF5BCDC227444E7B000D3FEF /* NewsletterItem.swift */,
 				FF5BCDC427444E84000D3FEF /* PodcastItem.swift */,
+				FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1859,7 +1855,6 @@
 				FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */,
 				FF1AC671274C25E8003025E0 /* Timeline.graphql */,
 				FF1AC675274C2640003025E0 /* Academy.graphql */,
-				FF1AC677274C2658003025E0 /* BountyBoard.graphql */,
 				FFC4D6AB2756D3F7008E10D8 /* News.graphql */,
 			);
 			path = Queries;
@@ -1898,7 +1893,6 @@
 				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
 				FFC4D6AD2756D533008E10D8 /* News.graphql.swift */,
 				FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */,
-				FF1AC685274C4FD0003025E0 /* BountyBoard.graphql.swift */,
 				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -1996,7 +1990,6 @@
 				FFEB12272710CF7E003EF90D /* schema.json in Resources */,
 				FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */,
 				FF9F5CF32705494100629D79 /* Main.storyboard in Resources */,
-				FF1AC678274C2658003025E0 /* BountyBoard.graphql in Resources */,
 				FF1AC676274C2640003025E0 /* Academy.graphql in Resources */,
 				FF9F5CF12705494100629D79 /* Assets.xcassets in Resources */,
 				FFC4D6AC2756D3F7008E10D8 /* News.graphql in Resources */,
@@ -2048,7 +2041,7 @@
 		};
 		FFEB12212710CBA6003EF90D /* Generate Content Gateway GraphQL API */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -2060,9 +2053,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n# cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
+			shellScript = " SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2149,7 +2142,6 @@
 				FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */,
 				FF5BCDDB2744C342000D3FEF /* FeaturedNewsItemView.swift in Sources */,
 				FFE60014271C888400F73FA1 /* AttendanceTokenView.swift in Sources */,
-				FF5BCDDF2744D389000D3FEF /* ShowMorePlaceholderItem.swift in Sources */,
 				FF5BCDF62745976F000D3FEF /* PodcastDetailsCoordinator.swift in Sources */,
 				FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */,
 				FF1AC672274C25E8003025E0 /* Timeline.graphql in Sources */,
@@ -2197,7 +2189,6 @@
 				FF78F3832706277200A47A91 /* HomeViewController.swift in Sources */,
 				FFAE985E270E43D00047405D /* AutoWidthLabel.swift in Sources */,
 				FFC4D6B22756E043008E10D8 /* String+EVMAddress.swift in Sources */,
-				FF1AC689274C4FD0003025E0 /* BountyBoard.graphql.swift in Sources */,
 				FF1AC6622747150E003025E0 /* MarkupRenderable.swift in Sources */,
 				FF1AC656274646A0003025E0 /* AcademyHeaderViewModel.swift in Sources */,
 				FFC4D67E27545EB8008E10D8 /* ServiceError.swift in Sources */,
@@ -2253,6 +2244,7 @@
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
+				FF0CFCBD279CD35C005A8A09 /* NewsItemsRequest.swift in Sources */,
 				FF7A33AD273CA3DA0037899B /* DiscordClient.swift in Sources */,
 				FF5BCDC527444E84000D3FEF /* PodcastItem.swift in Sources */,
 				FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */,
@@ -2282,6 +2274,7 @@
 				FFAE986B270E86250047405D /* AcademyCourseViewModel.swift in Sources */,
 				FFCC9FA22718B62800CAB3A3 /* MockAchievementsService.swift in Sources */,
 				FF5BCE102745CC93000D3FEF /* MarkupViewModel.swift in Sources */,
+				FFDD61A9279F726F000F0BEC /* AttendanceTokenClaimCode.swift in Sources */,
 				FF5BCE042745A399000D3FEF /* PodcastItem+VideoSource.swift in Sources */,
 				FFAE984E270D19410047405D /* NetworkConfigurator.swift in Sources */,
 				FF5BCDC92744546A000D3FEF /* MockNewsService.swift in Sources */,
@@ -2320,7 +2313,6 @@
 				FF78F3D62706ADD100A47A91 /* BaseNavigationController.swift in Sources */,
 				FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */,
 				FF1AC6A3274C7119003025E0 /* AcademyCourseLearnSectionView.swift in Sources */,
-				FF5BCDE12744D4F9000D3FEF /* FeaturedNewsExpandCell.swift in Sources */,
 				FF5BCD78273DD0E9000D3FEF /* NetworkBountyBoardService.swift in Sources */,
 				FF78F3812706276200A47A91 /* HomeViewModel.swift in Sources */,
 				FF1AC65A27470DDE003025E0 /* AcademyCourseDetailsViewController.swift in Sources */,
@@ -2422,7 +2414,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2430,9 +2422,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2021120801;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2022011801;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2509,7 +2501,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2517,9 +2509,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2021120801;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2022011801;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2591,7 +2583,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -2600,9 +2592,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2021120601;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2022012401;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2674,7 +2666,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -2683,9 +2675,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2021120601;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2022012401;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2819,7 +2811,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2827,9 +2819,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2021120801;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_Dev_2022011801;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2844,7 +2836,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20211209115902;
-				DEVELOPMENT_TEAM = T55G7JLVK5;
+				DEVELOPMENT_TEAM = MCY3653WAR;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = Bankless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
@@ -2853,9 +2845,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bankless.app;
+				PRODUCT_BUNDLE_IDENTIFIER = hq.bankless.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2021120601;
+				PROVISIONING_PROFILE_SPECIFIER = Bankless_AppStore_2022012401;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

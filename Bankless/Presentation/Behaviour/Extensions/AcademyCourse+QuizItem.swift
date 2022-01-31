@@ -21,7 +21,7 @@ import Foundation
 
 extension AcademyCourse.Section: QuizItem {
     var question: String {
-        return title
+        return quiz?.question ?? ""
     }
     
     var options: [String] {

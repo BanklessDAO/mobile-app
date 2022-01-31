@@ -1,8 +1,11 @@
 query Academy {
   historical {
     BanklessAcademyV1 {
-       allCourses: Courses {
+       allCourses: BanklessAcademyCourseV1s {
          data {
+           id
+           lessonImageLink
+           marketingDescription
            slug
            name
            duration
@@ -18,6 +21,7 @@ query Academy {
              title
              content
              quiz {
+               question
                answers
                rightAnswerNumber
              }

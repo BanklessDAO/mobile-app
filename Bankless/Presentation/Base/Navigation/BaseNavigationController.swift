@@ -17,8 +17,6 @@
 //
     
 
-import Foundation
-import UIKit
 import Cartography
 import RxSwift
 import RxCocoa
@@ -56,7 +54,8 @@ final class BaseNavigationController: UINavigationController {
     
     override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         let vc = super.popToRootViewController(animated: animated)
-        controllerStack.accept(viewControllers)
+        guard let rootVC = viewControllers.first else { return vc }
+        controllerStack.accept([rootVC])
         return vc
     }
     

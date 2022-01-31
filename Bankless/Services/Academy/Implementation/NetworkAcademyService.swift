@@ -21,6 +21,21 @@ import Foundation
 import RxSwift
 
 final class NetworkAcademyService: AcademyService {
+    // MARK: - Static -
+    
+    private static func generatePoapClaimURL(
+        claimCode: String,
+        ethAddress: String
+    ) -> URL {
+        return URL(
+            string: Environment.poapAppBaseURL
+            + "/claim/" + claimCode
+            + "?address=" + ethAddress
+        )!
+    }
+    
+    // MARK: - Components -
+    
     private let contentGatewayClient: ContentGatewayClient
     private let banklessAcademyClient: BanklessAcademyClient
     
@@ -38,5 +53,15 @@ final class NetworkAcademyService: AcademyService {
     
     func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable {
         return banklessAcademyClient.claimPoap(request: request)
+            .observe(on: MainScheduler.asyncInstance)
+            .do(onNext: { claimCode in
+                let claimURL = NetworkAcademyService.generatePoapClaimURL(
+                    claimCode: claimCode.code, ethAddress: request.ethAddress
+                )
+                
+                UIApplication.shared.open(claimURL, options: [:], completionHandler: nil)
+            })
+            .flatMap({ _ in Completable.empty() })
+            .asCompletable()
     }
 }

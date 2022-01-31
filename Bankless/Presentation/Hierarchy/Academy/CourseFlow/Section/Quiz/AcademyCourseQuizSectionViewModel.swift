@@ -28,6 +28,7 @@ final class AcademyCourseQuizSectionViewModel: BaseViewModel, AcademyCourseSecti
     
     struct Output {
         let title: Driver<String>
+        let question: Driver<String>
         let quizItemViewModel: Driver<QuizItemViewModel>
     }
     
@@ -59,6 +60,7 @@ final class AcademyCourseQuizSectionViewModel: BaseViewModel, AcademyCourseSecti
         
         return Output(
             title: .just(title),
+            question: .just(quiz.question),
             quizItemViewModel: .just(quizItemViewModel)
         )
     }

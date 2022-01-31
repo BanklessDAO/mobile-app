@@ -13,10 +13,13 @@ public final class AcademyQuery: GraphQLQuery {
         __typename
         BanklessAcademyV1 {
           __typename
-          allCourses: Courses {
+          allCourses: BanklessAcademyCourseV1s {
             __typename
             data {
               __typename
+              id
+              lessonImageLink
+              marketingDescription
               slug
               name
               duration
@@ -34,6 +37,7 @@ public final class AcademyQuery: GraphQLQuery {
                 content
                 quiz {
                   __typename
+                  question
                   answers
                   rightAnswerNumber
                 }
@@ -123,7 +127,7 @@ public final class AcademyQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("Courses", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
+            GraphQLField("BanklessAcademyCourseV1s", alias: "allCourses", type: .nonNull(.object(AllCourse.selections))),
           ]
         }
 
@@ -146,7 +150,7 @@ public final class AcademyQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of Courses. Supports pagination and filtering.
+        /// Returns a list of BanklessAcademyCourseV1s. Supports pagination and filtering.
         public var allCourses: AllCourse {
           get {
             return AllCourse(unsafeResultMap: resultMap["allCourses"]! as! ResultMap)
@@ -157,7 +161,7 @@ public final class AcademyQuery: GraphQLQuery {
         }
 
         public struct AllCourse: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["CourseResults"]
+          public static let possibleTypes: [String] = ["BanklessAcademyCourseV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
@@ -173,7 +177,7 @@ public final class AcademyQuery: GraphQLQuery {
           }
 
           public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "CourseResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+            self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV1Results", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -196,11 +200,14 @@ public final class AcademyQuery: GraphQLQuery {
           }
 
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Course"]
+            public static let possibleTypes: [String] = ["BanklessAcademyCourseV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("id", type: .scalar(String.self)),
+                GraphQLField("lessonImageLink", type: .scalar(String.self)),
+                GraphQLField("marketingDescription", type: .scalar(String.self)),
                 GraphQLField("slug", type: .scalar(String.self)),
                 GraphQLField("name", type: .scalar(String.self)),
                 GraphQLField("duration", type: .scalar(Double.self)),
@@ -221,8 +228,8 @@ public final class AcademyQuery: GraphQLQuery {
               self.resultMap = unsafeResultMap
             }
 
-            public init(slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Course", "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
+            public init(id: String? = nil, lessonImageLink: String? = nil, marketingDescription: String? = nil, slug: String? = nil, name: String? = nil, duration: Double? = nil, difficulty: String? = nil, description: String? = nil, knowledgeRequirements: String? = nil, learnings: String? = nil, learningActions: String? = nil, poapEventId: Double? = nil, poapImageLink: String? = nil, slides: [Slide?]? = nil) {
+              self.init(unsafeResultMap: ["__typename": "BanklessAcademyCourseV1", "id": id, "lessonImageLink": lessonImageLink, "marketingDescription": marketingDescription, "slug": slug, "name": name, "duration": duration, "difficulty": difficulty, "description": description, "knowledgeRequirements": knowledgeRequirements, "learnings": learnings, "learningActions": learningActions, "poapEventId": poapEventId, "poapImageLink": poapImageLink, "slides": slides.flatMap { (value: [Slide?]) -> [ResultMap?] in value.map { (value: Slide?) -> ResultMap? in value.flatMap { (value: Slide) -> ResultMap in value.resultMap } } }])
             }
 
             public var __typename: String {
@@ -231,6 +238,33 @@ public final class AcademyQuery: GraphQLQuery {
               }
               set {
                 resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            public var id: String? {
+              get {
+                return resultMap["id"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "id")
+              }
+            }
+
+            public var lessonImageLink: String? {
+              get {
+                return resultMap["lessonImageLink"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "lessonImageLink")
+              }
+            }
+
+            public var marketingDescription: String? {
+              get {
+                return resultMap["marketingDescription"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "marketingDescription")
               }
             }
 
@@ -334,7 +368,7 @@ public final class AcademyQuery: GraphQLQuery {
             }
 
             public struct Slide: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["Slide"]
+              public static let possibleTypes: [String] = ["BanklessAcademySlideV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -353,7 +387,7 @@ public final class AcademyQuery: GraphQLQuery {
               }
 
               public init(type: String? = nil, title: String? = nil, content: String? = nil, quiz: Quiz? = nil) {
-                self.init(unsafeResultMap: ["__typename": "Slide", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
+                self.init(unsafeResultMap: ["__typename": "BanklessAcademySlideV1", "type": type, "title": title, "content": content, "quiz": quiz.flatMap { (value: Quiz) -> ResultMap in value.resultMap }])
               }
 
               public var __typename: String {
@@ -402,11 +436,12 @@ public final class AcademyQuery: GraphQLQuery {
               }
 
               public struct Quiz: GraphQLSelectionSet {
-                public static let possibleTypes: [String] = ["Quiz"]
+                public static let possibleTypes: [String] = ["BanklessAcademyQuizV1"]
 
                 public static var selections: [GraphQLSelection] {
                   return [
                     GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("question", type: .scalar(String.self)),
                     GraphQLField("answers", type: .list(.scalar(String.self))),
                     GraphQLField("rightAnswerNumber", type: .scalar(Double.self)),
                   ]
@@ -418,8 +453,8 @@ public final class AcademyQuery: GraphQLQuery {
                   self.resultMap = unsafeResultMap
                 }
 
-                public init(answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
-                  self.init(unsafeResultMap: ["__typename": "Quiz", "answers": answers, "rightAnswerNumber": rightAnswerNumber])
+                public init(question: String? = nil, answers: [String?]? = nil, rightAnswerNumber: Double? = nil) {
+                  self.init(unsafeResultMap: ["__typename": "BanklessAcademyQuizV1", "question": question, "answers": answers, "rightAnswerNumber": rightAnswerNumber])
                 }
 
                 public var __typename: String {
@@ -428,6 +463,15 @@ public final class AcademyQuery: GraphQLQuery {
                   }
                   set {
                     resultMap.updateValue(newValue, forKey: "__typename")
+                  }
+                }
+
+                public var question: String? {
+                  get {
+                    return resultMap["question"] as? String
+                  }
+                  set {
+                    resultMap.updateValue(newValue, forKey: "question")
                   }
                 }
 

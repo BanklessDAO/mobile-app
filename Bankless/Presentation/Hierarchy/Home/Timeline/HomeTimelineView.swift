@@ -132,6 +132,11 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
             .disposed(by: disposer)
         output.isRefreshing.drive(refreshControl.rx.isRefreshing).disposed(by: disposer)
         
+        let featuredNewsOutput = Driver.combineLatest(
+            output.featuredNewsSectionHeaderViewModel,
+            output.featuredNewsViewModel
+        )
+        
         let bountiesOutput = Driver.combineLatest(
             output.bountiesSectionHeaderViewModel,
             output.bountyViewModels
@@ -145,7 +150,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         let source = Driver<ListSource>
             .combineLatest(
                 output.gaugeClusterViewModel,
-                output.featuredNewsViewModel,
+                featuredNewsOutput,
                 bountiesOutput,
                 academyOutput,
                 resultSelector: {
@@ -156,7 +161,8 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
                     
                     return ListSource(
                         gaugeClusterViewModel: gaugeCluster,
-                        featuredNewsViewModel: featuredNews,
+                        featuredNewsHeaderViewModel: featuredNews.0,
+                        featuredNewsViewModel: featuredNews.1,
                         bountiesHeaderViewModel: bounties.0,
                         bountyViewModels: bounties.1,
                         academyHeaderViewModel: academy.0,
@@ -229,8 +235,14 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         case .news:
             switch self.source.value.newsSection.rowPayload(at: row.index) {
                 
-            case .header:
-                fatalError("not implemented")
+            case let .header(viewModel):
+                let featuredNewsHeaderCell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: SectionHeaderCell.reuseIdentifier,
+                        for: indexPath
+                    ) as! SectionHeaderCell
+                featuredNewsHeaderCell.set(viewModel: viewModel)
+                cell = featuredNewsHeaderCell
             case let .content(viewModel):
                 let newsCell = tableView
                     .dequeueReusableCell(
@@ -302,7 +314,9 @@ extension HomeTimelineView {
         typealias Row = SectionRow
         
         let gaugeClusterSection: ListSource.Section<Void, GaugeClusterViewModel>
-        let newsSection: ListSource.Section<Void, FeaturedNewsViewModel>
+        let newsSection: ListSource.Section<
+            SectionHeaderViewModel, FeaturedNewsViewModel
+        >
         let bountiesSection: ListSource.Section<
             SectionHeaderViewModel, BountyViewModel
         >
@@ -319,6 +333,7 @@ extension HomeTimelineView {
         
         init(
             gaugeClusterViewModel: GaugeClusterViewModel,
+            featuredNewsHeaderViewModel: SectionHeaderViewModel,
             featuredNewsViewModel: FeaturedNewsViewModel,
             bountiesHeaderViewModel: SectionHeaderViewModel,
             bountyViewModels: [BountyViewModel],
@@ -332,6 +347,7 @@ extension HomeTimelineView {
             
             self.newsSection = .init(
                 type: .news,
+                headerViewModel: featuredNewsHeaderViewModel,
                 viewModels: [featuredNewsViewModel]
             )
             

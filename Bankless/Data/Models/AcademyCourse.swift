@@ -64,6 +64,7 @@ extension AcademyCourse.Section {
     
     struct Quiz: Codable {
         let id: String
+        let question: String
         let answers: [String]?
         let rightAnswerNumber: Int
     }

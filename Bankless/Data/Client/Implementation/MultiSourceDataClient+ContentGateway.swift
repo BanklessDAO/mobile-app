@@ -125,7 +125,6 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             isFeatured: post.featured!
                         )
                     })
-                    .sorted(by: { $0.date > $1.date })[0 ..< 5]
                 
                 let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data
                     .map({ playlistItem -> PodcastItem in
@@ -148,43 +147,9 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             videoURL: videoURL
                         )
                     })
-                    .sorted(by: { $0.publishedAt > $1.publishedAt })[0 ..< 5]
-                
-                let bounties = Array(
-                    timelineData.historical.banklessBountyBoardV1.allBounties.data
-                        .reversed()[0 ..< 0]
-                )
-                    .map({
-                        Bounty(
-                            id: $0.id!,
-                            season: String($0.season!),
-                            title: $0.title!,
-                            descrtiption: $0.description!,
-                            criteria: "TBD",
-                            reward: .init(
-                                currency: "BANK",
-                                amount: Float($0.reward!.amount!),
-                                scale: 1
-                            ),
-                            createdBy: .generateMock(),
-                            createdAt: nil,
-                            dueAt: nil,
-                            discordMessageId: nil,
-                            status: .open,
-                            statusHistory: [],
-                            claimedBy: nil,
-                            claimedAt: nil,
-                            submissionNotes: nil,
-                            submissionUrl: nil,
-                            submittedAt: nil,
-                            submittedBy: nil,
-                            reviewedAt: nil,
-                            reviewedBy: nil
-                        )
-                    })
                 
                 let academyCourses = timelineData.historical.banklessAcademyV1.allCourses
-                    .data[0 ..< 2]
+                    .data
                     .map({ course -> AcademyCourse in
                         let sections = course.slides
                             .map({
@@ -196,6 +161,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                     let quiz = section!.quiz != nil
                                     ? AcademyCourse.Section.Quiz(
                                         id: UUID().uuidString,
+                                        question: section!.quiz!.question!,
                                         answers: section!.quiz!.answers!.compactMap({ $0 }),
                                         rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
                                         - 1
@@ -222,7 +188,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             id: UUID().uuidString,
                             name: course.name!,
                             slug: course.slug!,
-                            backgroundImageURL: URL(string: course.poapImageLink!)!,
+                            backgroundImageURL: URL(string: course.lessonImageLink!)!,
                             notionId: UUID().uuidString,
                             poapEventId: Int(course.poapEventId!),
                             description: course.description!,
@@ -239,7 +205,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 let response = TimelineContentResponse(
                     newsletterItems: Array(newsletterItems),
                     podcastItems: Array(podcastItems),
-                    bounties: bounties,
+                    bounties: [],
                     academyCourses: academyCourses
                 )
                 
@@ -252,12 +218,17 @@ extension MultiSourceDataClient: ContentGatewayClient {
         }
     }
     
-    func getNewsContent() -> Observable<NewsContentResponse> {
+    func getNewsContent(request: NewsContentRequest) -> Observable<NewsContentResponse> {
         return apolloRequest(
-            apolloQuery: NewsQuery(),
+            apolloQuery: NewsQuery(
+                lastPodcastId: request.lastPodcastItemId,
+                lastWebsitePostId: request.lastNewsletterItemId
+            ),
             responseType: NewsContentResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
+                let newsletterPageInfo = responseData.historical.banklessWebsiteV1.posts.pageInfo
+                
                 let newsletterItems = responseData.historical.banklessWebsiteV1.posts.data
                     .map({ post in
                         NewsletterItem(
@@ -274,6 +245,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             isFeatured: post.featured!
                         )
                     })
+                
+                let podcastsPageInfo = responseData.historical.banklessPodcastV1.playlist.pageInfo
                 
                 let podcastItems = responseData.historical.banklessPodcastV1.playlist.data
                     .map({ playlistItem -> PodcastItem in
@@ -299,7 +272,9 @@ extension MultiSourceDataClient: ContentGatewayClient {
                 
                 let response = NewsContentResponse(
                     newsletterItems: newsletterItems,
-                    podcastItems: podcastItems
+                    newsletterNextPageToken: newsletterPageInfo.nextPageToken,
+                    podcastItems: podcastItems,
+                    podcastNextPageToken: podcastsPageInfo.nextPageToken
                 )
                 
                 return .success(response)
@@ -326,6 +301,16 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         rawValue: section!.type!.lowercased()
                                     )!
                                     
+                                    let quiz = section!.quiz != nil
+                                    ? AcademyCourse.Section.Quiz(
+                                        id: UUID().uuidString,
+                                        question: section!.quiz!.question!,
+                                        answers: section!.quiz!.answers!.compactMap({ $0 }),
+                                        rightAnswerNumber: Int(section!.quiz!.rightAnswerNumber!)
+                                        - 1
+                                    )
+                                    : nil
+                                    
                                     return AcademyCourse.Section(
                                         id: UUID().uuidString,
                                         type: type,
@@ -333,7 +318,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                                         content: type == .learn
                                         ? section!.content!
                                         : nil,
-                                        quiz: nil,
+                                        quiz: quiz,
                                         component: nil,
                                         poapImageLink: type == .poap
                                         ? URL(string: course.poapImageLink!)!
@@ -346,7 +331,7 @@ extension MultiSourceDataClient: ContentGatewayClient {
                             id: UUID().uuidString,
                             name: course.name!,
                             slug: course.slug!,
-                            backgroundImageURL: URL(string: course.poapImageLink!)!,
+                            backgroundImageURL: URL(string: course.lessonImageLink!)!,
                             notionId: UUID().uuidString,
                             poapEventId: Int(course.poapEventId!),
                             description: course.description!,

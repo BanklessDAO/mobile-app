@@ -21,13 +21,19 @@ import Foundation
 
 struct NewsItemsResponse {
     let newsletterItems: [NewsletterItem]
+    let newsletterNextPageToken: String?
     let podcastItems: [PodcastItem]
+    let podcastNextPageToken: String?
     
     internal init(
         newsletterItems: [NewsletterItem],
-        podcastItems: [PodcastItem]
+        newsletterNextPageToken: String?,
+        podcastItems: [PodcastItem],
+        podcastNextPageToken: String?
     ) {
         self.newsletterItems = newsletterItems
+        self.newsletterNextPageToken = newsletterNextPageToken
         self.podcastItems = podcastItems
+        self.podcastNextPageToken = podcastNextPageToken
     }
 }

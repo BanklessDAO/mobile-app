@@ -20,6 +20,7 @@
 import Foundation
 
 protocol QuizItem {
+    var title: String { get }
     var question: String { get }
     var options: [String] { get }
     var validOptionIndex: Int { get }

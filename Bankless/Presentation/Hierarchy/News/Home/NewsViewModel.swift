@@ -26,6 +26,7 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     
     struct Input {
         let refresh: Driver<Void>
+        let endOfList: Driver<Int>
         let selection: Driver<ViewModelFoundation>
     }
     
@@ -54,6 +55,30 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     
     private let activityTracker = ActivityTracker()
     private let autorefresh = PublishRelay<Void>()
+    private let newsItemsRelay = BehaviorRelay<[NewsItemPreviewBehaviour]>(value: [])
+    
+    // MARK: - Pagination -
+    
+    private struct NextItemPage {
+        let doesNewsletterPageExist: Bool
+        let newsletterToken: String?
+        let doesPodcastPageExist: Bool
+        let podcastToken: String?
+        
+        init(
+            doesNewsletterPageExist: Bool = true,
+            newsletterToken: String? = nil,
+            doesPodcastPageExist: Bool = true,
+            podcastToken: String? = nil
+        ) {
+            self.doesNewsletterPageExist = doesNewsletterPageExist
+            self.newsletterToken = newsletterToken
+            self.podcastToken = podcastToken
+            self.doesPodcastPageExist = doesPodcastPageExist
+        }
+    }
+    
+    private let nextItemPageRelay = BehaviorRelay<NextItemPage>(value: .init())
     
     // MARK: - Components -
     
@@ -65,15 +90,22 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
         let refreshTrigger = Driver
             .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
             .startWith(())
+            .do(onNext: { [weak self] in
+                self?.newsItemsRelay.accept([])
+                self?.nextItemPageRelay.accept(.init())
+            })
+        
+        let nextPageTrigger = Driver<NextItemPage>
+            .merge([
+                refreshTrigger.map({ .init() }),
+                input.endOfList.map({ [weak self] _ in self?.nextItemPageRelay.value ?? .init() })
+            ])
         
         bindSelection(input: input.selection)
-        
-        let newsItemViewModels = newsItems(refreshInput: refreshTrigger)
-            .map({
-                ($0.newsletterItems as [NewsItemPreviewBehaviour])
-                + ($0.podcastItems as [NewsItemPreviewBehaviour])
-            })
+                
+        let newsItemViewModels = newsItems(nextPageInput: nextPageTrigger)
             .map({ $0.sorted(by: { $0.date > $1.date }) })
+            .do(onNext: { [weak self] items in self?.newsItemsRelay.accept(items) })
             .map({ $0.map(NewsItemViewModel.init) })
         
         return Output(
@@ -86,31 +118,39 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     // MARK: - List -
     
     private func newsItems(
-        refreshInput: Driver<Void>
-    ) -> Observable<
-        (
-            newsletterItems: [NewsletterItem],
-            podcastItems: [PodcastItem]
-        )
-    > {
-        return refreshInput
+        nextPageInput: Driver<NextItemPage>
+    ) -> Observable<[NewsItemPreviewBehaviour]> {
+        return nextPageInput
             .asObservable()
-            .flatMapLatest({
-                [weak self] _ -> Observable<
-                    (
-                        newsletterItems: [NewsletterItem],
-                        podcastItems: [PodcastItem]
-                    )
-                > in
-                
+            .flatMapLatest({ [weak self] nextPage -> Observable<[NewsItemPreviewBehaviour]> in
                 guard let self = self else { return .empty() }
                 
-                return self.newsService.listNewsItems()
-                    .map({
-                        return (
-                            newsletterItems: $0.newsletterItems,
-                            podcastItems: $0.podcastItems
+                return self.newsService
+                    .listNewsItems(
+                        request: .init(
+                            lastNewsletterItemId: nextPage.newsletterToken,
+                            lastPodcastItemId: nextPage.podcastToken
                         )
+                    )
+                    .map({ [weak self] response -> [NewsItemPreviewBehaviour] in
+                        guard let self = self else { return [] }
+                        
+                        let newsItemsPage: [NewsItemPreviewBehaviour]
+                        = (self.nextItemPageRelay.value.doesNewsletterPageExist
+                            ? response.newsletterItems : [])
+                        + (self.nextItemPageRelay.value.doesPodcastPageExist
+                            ? response.podcastItems : [])
+                        
+                        self.nextItemPageRelay.accept(
+                            .init(
+                                doesNewsletterPageExist: response.newsletterNextPageToken != nil,
+                                newsletterToken: response.newsletterNextPageToken,
+                                doesPodcastPageExist: response.podcastNextPageToken != nil,
+                                podcastToken: response.podcastNextPageToken
+                            )
+                        )
+                        
+                        return self.newsItemsRelay.value + newsItemsPage
                     })
                     .handleError()
                     .trackActivity(self.activityTracker)

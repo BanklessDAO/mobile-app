@@ -24,12 +24,13 @@ protocol ContentGatewayClient: DataClient {
     func getUserBANKAccount(request: BANKAccountRequest) -> Observable<BANKAccount>
     func getUserAttendanceTokens(request: AttendanceTokensRequest) -> Observable<[AttendanceToken]>
     func getTimelineContent() -> Observable<TimelineContentResponse>
-    func getNewsContent() -> Observable<NewsContentResponse>
+    func getNewsContent(request: NewsContentRequest) -> Observable<NewsContentResponse>
     func getAcademyCourses() -> Observable<AcademyCoursesResponse>
 }
 
 typealias BANKAccountRequest = DAOOwnershipRequest
 typealias AttendanceTokensRequest = AchievementsRequest
 typealias TimelineContentResponse = TimelineItemsResponse
+typealias NewsContentRequest = NewsItemsRequest
 typealias NewsContentResponse = NewsItemsResponse
 typealias AcademyCoursesResponse = AcademyCourseListResponse

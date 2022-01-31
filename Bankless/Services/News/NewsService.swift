@@ -21,5 +21,5 @@ import Foundation
 import RxSwift
 
 protocol NewsService {
-    func listNewsItems() -> Observable<NewsItemsResponse>
+    func listNewsItems(request: NewsItemsRequest) -> Observable<NewsItemsResponse>
 }

@@ -8,13 +8,21 @@ public final class NewsQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query News {
+    query News($lastPodcastId: String, $lastWebsitePostId: String) {
       historical {
         __typename
         BanklessPodcastV1 {
           __typename
-          playlist: Podcasts {
+          playlist: BanklessPodcastPodcastV1s(
+            orderBy: {fieldPath: "snippet.publishedAt", direction: desc}
+            after: $lastPodcastId
+          ) {
             __typename
+            pageInfo {
+              __typename
+              hasNextPage
+              nextPageToken
+            }
             data {
               __typename
               id
@@ -39,8 +47,16 @@ public final class NewsQuery: GraphQLQuery {
         }
         BanklessWebsiteV1 {
           __typename
-          posts {
+          posts: BanklessWebsitePostV1s(
+            orderBy: {fieldPath: "publishedAt", direction: desc}
+            after: $lastWebsitePostId
+          ) {
             __typename
+            pageInfo {
+              __typename
+              hasNextPage
+              nextPageToken
+            }
             data {
               __typename
               id
@@ -63,7 +79,16 @@ public final class NewsQuery: GraphQLQuery {
 
   public let operationName: String = "News"
 
-  public init() {
+  public var lastPodcastId: String?
+  public var lastWebsitePostId: String?
+
+  public init(lastPodcastId: String? = nil, lastWebsitePostId: String? = nil) {
+    self.lastPodcastId = lastPodcastId
+    self.lastWebsitePostId = lastWebsitePostId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["lastPodcastId": lastPodcastId, "lastWebsitePostId": lastWebsitePostId]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -149,7 +174,7 @@ public final class NewsQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("Podcasts", alias: "playlist", type: .nonNull(.object(Playlist.selections))),
+            GraphQLField("BanklessPodcastPodcastV1s", alias: "playlist", arguments: ["orderBy": ["fieldPath": "snippet.publishedAt", "direction": "desc"], "after": GraphQLVariable("lastPodcastId")], type: .nonNull(.object(Playlist.selections))),
           ]
         }
 
@@ -172,7 +197,7 @@ public final class NewsQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of Podcasts. Supports pagination and filtering.
+        /// Returns a list of BanklessPodcastPodcastV1s. Supports pagination and filtering.
         public var playlist: Playlist {
           get {
             return Playlist(unsafeResultMap: resultMap["playlist"]! as! ResultMap)
@@ -183,11 +208,12 @@ public final class NewsQuery: GraphQLQuery {
         }
 
         public struct Playlist: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["PodcastResults"]
+          public static let possibleTypes: [String] = ["BanklessPodcastPodcastV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("pageInfo", type: .nonNull(.object(PageInfo.selections))),
               GraphQLField("data", type: .nonNull(.list(.nonNull(.object(Datum.selections))))),
             ]
           }
@@ -198,8 +224,8 @@ public final class NewsQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "PodcastResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+          public init(pageInfo: PageInfo, data: [Datum]) {
+            self.init(unsafeResultMap: ["__typename": "BanklessPodcastPodcastV1Results", "pageInfo": pageInfo.resultMap, "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -208,6 +234,16 @@ public final class NewsQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// Contains information necessary for pagination
+          public var pageInfo: PageInfo {
+            get {
+              return PageInfo(unsafeResultMap: resultMap["pageInfo"]! as! ResultMap)
+            }
+            set {
+              resultMap.updateValue(newValue.resultMap, forKey: "pageInfo")
             }
           }
 
@@ -221,8 +257,59 @@ public final class NewsQuery: GraphQLQuery {
             }
           }
 
+          public struct PageInfo: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["PageInfo"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("hasNextPage", type: .nonNull(.scalar(Bool.self))),
+                GraphQLField("nextPageToken", type: .scalar(String.self)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(hasNextPage: Bool, nextPageToken: String? = nil) {
+              self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage, "nextPageToken": nextPageToken])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// Tells whether there are more pages after the current one.
+            public var hasNextPage: Bool {
+              get {
+                return resultMap["hasNextPage"]! as! Bool
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "hasNextPage")
+              }
+            }
+
+            /// Pass this token in your next query as the value for the `after` parameter to access the next page.
+            public var nextPageToken: String? {
+              get {
+                return resultMap["nextPageToken"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "nextPageToken")
+              }
+            }
+          }
+
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["Podcast"]
+            public static let possibleTypes: [String] = ["BanklessPodcastPodcastV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -240,7 +327,7 @@ public final class NewsQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, contentDetails: ContentDetail? = nil, snippet: Snippet? = nil) {
-              self.init(unsafeResultMap: ["__typename": "Podcast", "id": id, "contentDetails": contentDetails.flatMap { (value: ContentDetail) -> ResultMap in value.resultMap }, "snippet": snippet.flatMap { (value: Snippet) -> ResultMap in value.resultMap }])
+              self.init(unsafeResultMap: ["__typename": "BanklessPodcastPodcastV1", "id": id, "contentDetails": contentDetails.flatMap { (value: ContentDetail) -> ResultMap in value.resultMap }, "snippet": snippet.flatMap { (value: Snippet) -> ResultMap in value.resultMap }])
             }
 
             public var __typename: String {
@@ -280,7 +367,7 @@ public final class NewsQuery: GraphQLQuery {
             }
 
             public struct ContentDetail: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["ContentDetails"]
+              public static let possibleTypes: [String] = ["BanklessPodcastContentDetailsV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -297,7 +384,7 @@ public final class NewsQuery: GraphQLQuery {
               }
 
               public init(videoId: String? = nil, videoPublishedAt: Double? = nil) {
-                self.init(unsafeResultMap: ["__typename": "ContentDetails", "videoId": videoId, "videoPublishedAt": videoPublishedAt])
+                self.init(unsafeResultMap: ["__typename": "BanklessPodcastContentDetailsV1", "videoId": videoId, "videoPublishedAt": videoPublishedAt])
               }
 
               public var __typename: String {
@@ -329,7 +416,7 @@ public final class NewsQuery: GraphQLQuery {
             }
 
             public struct Snippet: GraphQLSelectionSet {
-              public static let possibleTypes: [String] = ["Snippet"]
+              public static let possibleTypes: [String] = ["BanklessPodcastSnippetV1"]
 
               public static var selections: [GraphQLSelection] {
                 return [
@@ -348,7 +435,7 @@ public final class NewsQuery: GraphQLQuery {
               }
 
               public init(publishedAt: Double? = nil, thumbnails: [Thumbnail?]? = nil, title: String? = nil, description: String? = nil) {
-                self.init(unsafeResultMap: ["__typename": "Snippet", "publishedAt": publishedAt, "thumbnails": thumbnails.flatMap { (value: [Thumbnail?]) -> [ResultMap?] in value.map { (value: Thumbnail?) -> ResultMap? in value.flatMap { (value: Thumbnail) -> ResultMap in value.resultMap } } }, "title": title, "description": description])
+                self.init(unsafeResultMap: ["__typename": "BanklessPodcastSnippetV1", "publishedAt": publishedAt, "thumbnails": thumbnails.flatMap { (value: [Thumbnail?]) -> [ResultMap?] in value.map { (value: Thumbnail?) -> ResultMap? in value.flatMap { (value: Thumbnail) -> ResultMap in value.resultMap } } }, "title": title, "description": description])
               }
 
               public var __typename: String {
@@ -397,7 +484,7 @@ public final class NewsQuery: GraphQLQuery {
               }
 
               public struct Thumbnail: GraphQLSelectionSet {
-                public static let possibleTypes: [String] = ["Thumbnail"]
+                public static let possibleTypes: [String] = ["BanklessPodcastThumbnailV1"]
 
                 public static var selections: [GraphQLSelection] {
                   return [
@@ -414,7 +501,7 @@ public final class NewsQuery: GraphQLQuery {
                 }
 
                 public init(kind: String? = nil, url: String? = nil) {
-                  self.init(unsafeResultMap: ["__typename": "Thumbnail", "kind": kind, "url": url])
+                  self.init(unsafeResultMap: ["__typename": "BanklessPodcastThumbnailV1", "kind": kind, "url": url])
                 }
 
                 public var __typename: String {
@@ -455,7 +542,7 @@ public final class NewsQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("posts", type: .nonNull(.object(Post.selections))),
+            GraphQLField("BanklessWebsitePostV1s", alias: "posts", arguments: ["orderBy": ["fieldPath": "publishedAt", "direction": "desc"], "after": GraphQLVariable("lastWebsitePostId")], type: .nonNull(.object(Post.selections))),
           ]
         }
 
@@ -478,7 +565,7 @@ public final class NewsQuery: GraphQLQuery {
           }
         }
 
-        /// Returns a list of posts. Supports pagination and filtering.
+        /// Returns a list of BanklessWebsitePostV1s. Supports pagination and filtering.
         public var posts: Post {
           get {
             return Post(unsafeResultMap: resultMap["posts"]! as! ResultMap)
@@ -489,11 +576,12 @@ public final class NewsQuery: GraphQLQuery {
         }
 
         public struct Post: GraphQLSelectionSet {
-          public static let possibleTypes: [String] = ["postResults"]
+          public static let possibleTypes: [String] = ["BanklessWebsitePostV1Results"]
 
           public static var selections: [GraphQLSelection] {
             return [
               GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("pageInfo", type: .nonNull(.object(PageInfo.selections))),
               GraphQLField("data", type: .nonNull(.list(.nonNull(.object(Datum.selections))))),
             ]
           }
@@ -504,8 +592,8 @@ public final class NewsQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(data: [Datum]) {
-            self.init(unsafeResultMap: ["__typename": "postResults", "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
+          public init(pageInfo: PageInfo, data: [Datum]) {
+            self.init(unsafeResultMap: ["__typename": "BanklessWebsitePostV1Results", "pageInfo": pageInfo.resultMap, "data": data.map { (value: Datum) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -514,6 +602,16 @@ public final class NewsQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          /// Contains information necessary for pagination
+          public var pageInfo: PageInfo {
+            get {
+              return PageInfo(unsafeResultMap: resultMap["pageInfo"]! as! ResultMap)
+            }
+            set {
+              resultMap.updateValue(newValue.resultMap, forKey: "pageInfo")
             }
           }
 
@@ -527,8 +625,59 @@ public final class NewsQuery: GraphQLQuery {
             }
           }
 
+          public struct PageInfo: GraphQLSelectionSet {
+            public static let possibleTypes: [String] = ["PageInfo"]
+
+            public static var selections: [GraphQLSelection] {
+              return [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("hasNextPage", type: .nonNull(.scalar(Bool.self))),
+                GraphQLField("nextPageToken", type: .scalar(String.self)),
+              ]
+            }
+
+            public private(set) var resultMap: ResultMap
+
+            public init(unsafeResultMap: ResultMap) {
+              self.resultMap = unsafeResultMap
+            }
+
+            public init(hasNextPage: Bool, nextPageToken: String? = nil) {
+              self.init(unsafeResultMap: ["__typename": "PageInfo", "hasNextPage": hasNextPage, "nextPageToken": nextPageToken])
+            }
+
+            public var __typename: String {
+              get {
+                return resultMap["__typename"]! as! String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "__typename")
+              }
+            }
+
+            /// Tells whether there are more pages after the current one.
+            public var hasNextPage: Bool {
+              get {
+                return resultMap["hasNextPage"]! as! Bool
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "hasNextPage")
+              }
+            }
+
+            /// Pass this token in your next query as the value for the `after` parameter to access the next page.
+            public var nextPageToken: String? {
+              get {
+                return resultMap["nextPageToken"] as? String
+              }
+              set {
+                resultMap.updateValue(newValue, forKey: "nextPageToken")
+              }
+            }
+          }
+
           public struct Datum: GraphQLSelectionSet {
-            public static let possibleTypes: [String] = ["post"]
+            public static let possibleTypes: [String] = ["BanklessWebsitePostV1"]
 
             public static var selections: [GraphQLSelection] {
               return [
@@ -554,7 +703,7 @@ public final class NewsQuery: GraphQLQuery {
             }
 
             public init(id: String? = nil, title: String? = nil, slug: String? = nil, excerpt: String? = nil, createdAt: Double? = nil, updatedAt: Double? = nil, featureImage: String? = nil, url: String? = nil, html: String? = nil, readingTime: Double? = nil, featured: Bool? = nil) {
-              self.init(unsafeResultMap: ["__typename": "post", "id": id, "title": title, "slug": slug, "excerpt": excerpt, "createdAt": createdAt, "updatedAt": updatedAt, "featureImage": featureImage, "url": url, "html": html, "readingTime": readingTime, "featured": featured])
+              self.init(unsafeResultMap: ["__typename": "BanklessWebsitePostV1", "id": id, "title": title, "slug": slug, "excerpt": excerpt, "createdAt": createdAt, "updatedAt": updatedAt, "featureImage": featureImage, "url": url, "html": html, "readingTime": readingTime, "featured": featured])
             }
 
             public var __typename: String {

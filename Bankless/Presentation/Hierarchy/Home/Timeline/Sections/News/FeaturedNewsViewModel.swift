@@ -46,12 +46,11 @@ final class FeaturedNewsViewModel: BaseViewModel {
     // MARK: - Events -
     
     let selectionRelay = PublishRelay<Int>()
-    let expandRequestRelay = PublishRelay<Void>()
     
     // MARK: - Initializets -
     
     init(newsItems: [NewsItemPreviewBehaviour]) {
-        self.newsItems = newsItems + [ShowMorePlaceholderItem()]
+        self.newsItems = newsItems
     }
     
     // MARK: - Transformer -
@@ -61,14 +60,8 @@ final class FeaturedNewsViewModel: BaseViewModel {
             .drive(onNext: { [weak self] index in
                 guard let self = self else { return }
                 
-                guard !(self.newsItems[index] is ShowMorePlaceholderItem) else {
-                    self.expandRequestRelay.accept(())
-                    return
-                }
-                
                 self.selectionRelay.accept(index)
-            })
-            .disposed(by: disposer)
+            }).disposed(by: disposer)
         
         return Output(
             title: .just(FeaturedNewsViewModel.title),

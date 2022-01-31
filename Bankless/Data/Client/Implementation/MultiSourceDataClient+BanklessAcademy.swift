@@ -21,7 +21,9 @@ import Foundation
 import RxSwift
 
 extension MultiSourceDataClient: BanklessAcademyClient {
-    func claimPoap(request: BanklessAcademyClaimPOAPRequest) -> Completable {
+    func claimPoap(
+        request: BanklessAcademyClaimPOAPRequest
+    ) -> Observable<AttendanceTokenClaimCode> {
         return banklessAcademyAPI
             .request(
                 .claimPoap(
@@ -29,9 +31,8 @@ extension MultiSourceDataClient: BanklessAcademyClient {
                     address: request.ethAddress
                 )
             )
+            .map(AttendanceTokenClaimCode.self)
             .asObservable()
-            .flatMap({ _ in Completable.empty() })
-            .asCompletable()
             .catchMapError()
     }
 }

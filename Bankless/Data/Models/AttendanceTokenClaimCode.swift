@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-16.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-01-24.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -19,26 +19,6 @@
 
 import Foundation
 
-struct ShowMorePlaceholderItem: NewsItemPreviewBehaviour {
-    var previewImageURL: URL {
-        fatalError("not implemented")
-    }
-    
-    var categoryTitle: String {
-        fatalError("not implemented")
-    }
-    
-    var title: String {
-        return NSLocalizedString(
-            "home.timeline.news.navigation.show_more.title",
-            value: "Show More",
-            comment: ""
-        )
-    }
-    
-    var date: Date {
-        return Date(timeIntervalSince1970: 0)
-    }
-    
-    init() { }
+struct AttendanceTokenClaimCode: Codable {
+    let code: String
 }

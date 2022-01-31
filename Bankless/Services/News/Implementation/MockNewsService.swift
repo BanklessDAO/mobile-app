@@ -21,11 +21,13 @@ import Foundation
 import RxSwift
 
 final class MockNewsService: NewsService {
-    func listNewsItems() -> Observable<NewsItemsResponse> {
+    func listNewsItems(request: NewsItemsRequest) -> Observable<NewsItemsResponse> {
         return .just(
             .init(
                 newsletterItems: NewsletterItem.generateMocks(.random(in: 20 ... 40)),
-                podcastItems: PodcastItem.generateMocks(.random(in: 90 ... 120))
+                newsletterNextPageToken: nil,
+                podcastItems: PodcastItem.generateMocks(.random(in: 90 ... 120)),
+                podcastNextPageToken: nil
             )
         )
     }

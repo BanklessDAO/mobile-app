@@ -17,8 +17,6 @@
 //
     
 
-import Foundation
-import UIKit
 import Cartography
 import RxSwift
 import RxCocoa
@@ -40,7 +38,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     
     // MARK: - Subviews -
     
-    private var titleLabel: UILabel!
     private var collectionView: UICollectionView!
     
     // MARK: - Lifecycle -
@@ -61,11 +58,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
             right: 0
         )
         
-        titleLabel = UILabel()
-        titleLabel.font = Appearance.Text.Font.Title1.font(bold: true)
-        titleLabel.textColor = .secondaryWhite
-        contentView.addSubview(titleLabel)
-        
         collectionView = UICollectionView(
             featuredNewsCollectionFlowLayout: featuredNewsCollectionFlowLayout
         )
@@ -75,10 +67,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
         collectionView.register(
             FeaturedNewsItemCell.self,
             forCellWithReuseIdentifier: String(describing: FeaturedNewsItemCell.self)
-        )
-        collectionView.register(
-            FeaturedNewsExpandCell.self,
-            forCellWithReuseIdentifier: String(describing: FeaturedNewsExpandCell.self)
         )
         featuredNewsCollectionFlowLayout.estimatedItemSize
             = UICollectionViewFlowLayout.automaticSize
@@ -92,15 +80,8 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
     }
     
     override func setUpConstraints() {
-        constrain(titleLabel, contentView) { (title, view) in
-            title.top == view.top + Appearance.contentInsets.top
-            title.left == view.left + Appearance.contentInsets.left * 2
-            title.right == view.right - Appearance.contentInsets.right * 2
-            title.height == Appearance.Text.Font.Title1.lineHeight
-        }
-        
-        constrain(collectionView, titleLabel, contentView) { items, title, view in
-            items.top == title.bottom + Appearance.contentPaddings.bottom
+        constrain(collectionView, contentView) { items, view in
+            items.top == view.top + Appearance.contentInsets.top
             items.left == view.left
             items.right == view.right
             items.height == view.width
@@ -115,7 +96,6 @@ class FeaturedNewsCell: BaseTableViewCell<FeaturedNewsViewModel> {
             input: .init(selection: itemSelection.asDriver(onErrorDriveWith: .empty()))
         )
         
-        output.title.drive(titleLabel.rx.text).disposed(by: disposer)
         output.items.drive(itemsSource).disposed(by: disposer)
         
         itemsSource.asDriver()
@@ -131,7 +111,7 @@ extension FeaturedNewsCell: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return itemsSource.value.count
+        itemsSource.value.count
     }
     
     func collectionView(
@@ -140,20 +120,7 @@ extension FeaturedNewsCell: UICollectionViewDataSource {
         indexPath: IndexPath
     ) -> UICollectionViewCell {
         let sourceItem = itemsSource.value[indexPath.row]
-        
-        guard !(sourceItem is ShowMorePlaceholderItem) else {
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: FeaturedNewsExpandCell.self),
-                for: indexPath
-            ) as! FeaturedNewsExpandCell
-            
-            cell.set(placeholderItem: sourceItem as! ShowMorePlaceholderItem)
-            
-            return cell
-        }
-        
         let newsItemViewModel = NewsItemViewModel(newsItem: sourceItem)
-        
         let newsItemView = FeaturedNewsItemView()
         newsItemView.set(viewModel: newsItemViewModel)
         
