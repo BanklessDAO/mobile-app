@@ -1,3 +1,15 @@
+## v0.2.3 - 2022-01-31 - Beta
+
+### Fixed
+
+- POAP claim flow now works via the in-app browser after Academy course completion.
+
+### Updated
+
+- Added pagination in the news feed.
+- Reduced News section preview on the home screen to 3 items.
+- Connect the new Academy version (the official release).
+
 ## v0.2.2 - 2021-12-09 - Beta
 
 ### Fixed
