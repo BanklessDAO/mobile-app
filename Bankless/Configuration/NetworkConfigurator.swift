@@ -40,7 +40,8 @@ class NetworkConfigurator: Configurator {
         )
         
         let userSettingsService = DefaultUserSettingsService(
-            settingsStorage: appLevelSettingsStorage
+            settingsStorage: appLevelSettingsStorage,
+            contentGatewayClient: dataClient
         )
         container.register { (object: inout UserSettingsServiceDependency) in
             object.userSettingsService = userSettingsService

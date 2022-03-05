@@ -22,11 +22,16 @@ import RxSwift
 
 class DefaultUserSettingsService: UserSettingsService {
     private let settingsStorage: SettingsStorage
+    private let contentGatewayClient: ContentGatewayClient
     
     private let settingsUpdatesStream = PublishSubject<(key: UserSetting, value: Any?)>()
     
-    init(settingsStorage: SettingsStorage) {
+    init(
+        settingsStorage: SettingsStorage,
+        contentGatewayClient: ContentGatewayClient
+    ) {
         self.settingsStorage = settingsStorage
+        self.contentGatewayClient = contentGatewayClient
     }
     
     func streamValue(for userSetting: UserSetting) -> Observable<Any?> {
@@ -37,8 +42,56 @@ class DefaultUserSettingsService: UserSettingsService {
     }
     
     func setValue(_ value: Any?, for userSetting: UserSetting) -> Completable {
+        switch userSetting {
+            
+        case .publicETHAddress, .ensName:
+           return setEthIdentity(value, for: userSetting)
+        }
+        
         settingsStorage.writeValue(value, for: userSetting)
         settingsUpdatesStream.onNext((key: userSetting, value))
+        
         return Completable.empty()
+    }
+    
+    // MARK: - ETH Identity -
+    
+    private func setEthIdentity(_ value: Any?, for userSetting: UserSetting) -> Completable {
+        guard let value = value else {
+            settingsStorage.writeValue(nil, for: .ensName)
+            settingsUpdatesStream.onNext((key: .ensName, nil))
+            
+            settingsStorage.writeValue(nil, for: .publicETHAddress)
+            settingsUpdatesStream.onNext((key: .publicETHAddress, nil))
+            
+            return Completable.empty()
+        }
+        
+        let resolvedENS: Observable<ResolveENSResponse>
+        
+        switch userSetting {
+            
+        case .publicETHAddress:
+            resolvedENS = resolveETHAddress(request: .init(type: .address(value as! String)))
+        case .ensName:
+            resolvedENS = resolveETHAddress(request: .init(type: .name(value as! String)))
+        }
+        
+        return resolvedENS
+            .do { [weak self] response in
+                self?.settingsStorage.writeValue(response.name, for: .ensName)
+                self?.settingsUpdatesStream.onNext((key: .ensName, response.name))
+                
+                self?.settingsStorage.writeValue(response.address, for: .publicETHAddress)
+                self?.settingsUpdatesStream.onNext((key: .publicETHAddress, response.address))
+            }
+            .flatMap({ _ in Completable.empty() })
+            .asCompletable()
+    }
+    
+    private func resolveETHAddress(request: ResolveENSRequest) -> Observable<ResolveENSResponse> {
+        return contentGatewayClient
+            .resolveENS(request: request)
+            .take(1)
     }
 }
