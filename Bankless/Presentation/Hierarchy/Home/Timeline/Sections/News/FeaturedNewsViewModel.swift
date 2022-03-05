@@ -29,15 +29,8 @@ final class FeaturedNewsViewModel: BaseViewModel {
     }
     
     struct Output {
-        let title: Driver<String>
         let items: Driver<[NewsItemPreviewBehaviour]>
     }
-    
-    // MARK: - Constants -
-    
-    private static let title = NSLocalizedString(
-        "home.timeline.news.title", value: "Latest", comment: ""
-    )
     
     // MARK: - Data -
     
@@ -64,7 +57,6 @@ final class FeaturedNewsViewModel: BaseViewModel {
             }).disposed(by: disposer)
         
         return Output(
-            title: .just(FeaturedNewsViewModel.title),
             items: .just(newsItems)
         )
     }
