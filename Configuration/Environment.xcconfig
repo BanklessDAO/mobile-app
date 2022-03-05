@@ -5,5 +5,6 @@ DISCORD_ACCESS_TOKEN_PATH = discord.com/api/oauth2/token
 DISCORD_API_BASE_PATH = discord.com/api
 DISCORD_SERVER_LINK = discord.gg/nH86xRg5
 BANKLESS_ACADEMY_API_BASE_PATH = app.banklessacademy.com/api
+BANKLESS_ACADEMY_LESSONS_BASE_PATH = app.banklessacademy.com/lessons/
 POAP_API_BASE_PATH = api.poap.xyz
 POAP_APP_BASE_PATH = app.poap.xyz

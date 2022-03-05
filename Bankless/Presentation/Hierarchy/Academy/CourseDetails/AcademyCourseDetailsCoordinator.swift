@@ -62,16 +62,13 @@ final class AcademyCourseDetailsCoordinator: Coordinator {
     
     private func subscibeToEvents(in viewModel: AcademyCourseDetailsViewModel) {
         viewModel.events.academyCourseStartFlowRequest.asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] academyCourse in
-                guard let self = self else { return }
-                
-                let coordinator = AcademyCourseFlowCoordinator(container: self.container)
-                self.container.resolve(coordinator)
-                
-                coordinator.start(
-                    with: academyCourse,
-                    from: self.initialViewController.navigationController!
-                )
+            .drive(onNext: { academyCourse in
+                UIApplication.shared
+                    .open(
+                        .init(
+                            string: Environment.banklessAcademyLessonsBaseURL + academyCourse.slug
+                        )!
+                    )
             })
             .disposed(by: initialViewController.disposer)
     }
