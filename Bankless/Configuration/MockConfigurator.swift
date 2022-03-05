@@ -23,11 +23,7 @@ class MockConfigurator: Configurator {
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
         
-        let appLevelSettingsStorage = AppLevelPersistentSettingsStorage()
-        
-        let userSettingsService = DefaultUserSettingsService(
-            settingsStorage: appLevelSettingsStorage
-        )
+        let userSettingsService = MockUserSettingsService()
         container.register { (object: inout UserSettingsServiceDependency) in
             object.userSettingsService = userSettingsService
         }
