@@ -1,0 +1,41 @@
+query ENSName($ethAddress: String) {
+    historical {
+        EnsV1 {
+            EnsDomainV1s(
+                where: {
+                    address: {
+                        equals: $ethAddress
+                    }
+                }
+            ) {
+                data {
+                    id
+                    createdAt
+                    name
+                    address
+                }
+            }
+        }
+    }
+}
+
+query ENSAddress($ensName: String) {
+    historical {
+        EnsV1 {
+            EnsDomainV1s(
+                where: {
+                    name: {
+                        equals: $ensName
+                    }
+                }
+            ) {
+                data {
+                    id
+                    createdAt
+                    name
+                    address
+                }
+            }
+        }
+    }
+}
