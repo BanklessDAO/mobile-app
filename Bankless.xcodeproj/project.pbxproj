@@ -49,6 +49,9 @@
 		FF1AC6A5274C7124003025E0 /* AcademyCourseQuizSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A4274C7124003025E0 /* AcademyCourseQuizSectionView.swift */; };
 		FF1AC6A7274C712F003025E0 /* AcademyCoursePoapSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A6274C712F003025E0 /* AcademyCoursePoapSectionView.swift */; };
 		FF1AC6A9274C71D5003025E0 /* AcademyCourseSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1AC6A8274C71D5003025E0 /* AcademyCourseSectionFactory.swift */; };
+		FF44547C27D2AB76009F077A /* ResolveENSRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */; };
+		FF44547E27D2AC19009F077A /* ResolveENSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */; };
+		FF44548027D2B231009F077A /* ENS.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF44547F27D2B231009F077A /* ENS.graphql */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -186,6 +189,7 @@
 		FFAE9874270F6C510047405D /* FeaturedNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9873270F6C510047405D /* FeaturedNewsCell.swift */; };
 		FFAE9877270F6F270047405D /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9876270F6F270047405D /* SectionHeaderCell.swift */; };
 		FFAE9879270F7E640047405D /* FeaturedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAE9878270F7E640047405D /* FeaturedNewsViewModel.swift */; };
+		FFC042BA27D28BF200A19732 /* Ink in Frameworks */ = {isa = PBXBuildFile; productRef = FFC042B927D28BF200A19732 /* Ink */; };
 		FFC4D661274F150C008E10D8 /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D660274F150C008E10D8 /* GridCollectionViewLayout.swift */; };
 		FFC4D66427507CE1008E10D8 /* BanklessAcademyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66327507CE1008E10D8 /* BanklessAcademyClient.swift */; };
 		FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D66527507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift */; };
@@ -239,6 +243,8 @@
 		FFCC9FB42718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */; };
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
+		FFD9D41727D2C7BA00643E79 /* MockUserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9D41627D2C7BA00643E79 /* MockUserSettingsService.swift */; };
+		FFD9D41927D2CAED00643E79 /* ENS.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */; };
 		FFDD61A9279F726F000F0BEC /* AttendanceTokenClaimCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */; };
 		FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45827596443007B4E3A /* ErrorLogging.swift */; };
 		FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */; };
@@ -320,6 +326,9 @@
 		FF1AC6A4274C7124003025E0 /* AcademyCourseQuizSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseQuizSectionView.swift; sourceTree = "<group>"; };
 		FF1AC6A6274C712F003025E0 /* AcademyCoursePoapSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCoursePoapSectionView.swift; sourceTree = "<group>"; };
 		FF1AC6A8274C71D5003025E0 /* AcademyCourseSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCourseSectionFactory.swift; sourceTree = "<group>"; };
+		FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveENSRequest.swift; sourceTree = "<group>"; };
+		FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveENSResponse.swift; sourceTree = "<group>"; };
+		FF44547F27D2B231009F077A /* ENS.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ENS.graphql; sourceTree = "<group>"; };
 		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
 		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
 		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
@@ -516,6 +525,8 @@
 		FFCC9FB32718D1CD00CAB3A3 /* ERC20AmountPresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20AmountPresentationBehaviour.swift; sourceTree = "<group>"; };
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
+		FFD9D41627D2C7BA00643E79 /* MockUserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserSettingsService.swift; sourceTree = "<group>"; };
+		FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENS.graphql.swift; sourceTree = "<group>"; };
 		FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenClaimCode.swift; sourceTree = "<group>"; };
 		FFE4D45827596443007B4E3A /* ErrorLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogging.swift; sourceTree = "<group>"; };
 		FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorLogging+ErrorReporter.swift"; sourceTree = "<group>"; };
@@ -557,6 +568,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC042BA27D28BF200A19732 /* Ink in Frameworks */,
 				FF1AC67B274C474C003025E0 /* YouTubePlayerKit in Frameworks */,
 				D8E81691F1DCEF9966E2EE56 /* Pods_Bankless.framework in Frameworks */,
 			);
@@ -1269,6 +1281,8 @@
 			isa = PBXGroup;
 			children = (
 				FF7A33B0273CA5A80037899B /* ContentGatewayClient.swift */,
+				FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */,
+				FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */,
 			);
 			path = ContentGateway;
 			sourceTree = "<group>";
@@ -1427,6 +1441,7 @@
 		FFA95AC2274EC51700D72978 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				FFD9D41627D2C7BA00643E79 /* MockUserSettingsService.swift */,
 				FFA95AC3274EC52700D72978 /* DefaultUserSettingsService.swift */,
 			);
 			path = Implementation;
@@ -1856,6 +1871,7 @@
 				FF1AC671274C25E8003025E0 /* Timeline.graphql */,
 				FF1AC675274C2640003025E0 /* Academy.graphql */,
 				FFC4D6AB2756D3F7008E10D8 /* News.graphql */,
+				FF44547F27D2B231009F077A /* ENS.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -1893,6 +1909,7 @@
 				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
 				FFC4D6AD2756D533008E10D8 /* News.graphql.swift */,
 				FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */,
+				FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */,
 				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
 			);
 			path = API;
@@ -1941,6 +1958,7 @@
 			name = Bankless;
 			packageProductDependencies = (
 				FF1AC67A274C474C003025E0 /* YouTubePlayerKit */,
+				FFC042B927D28BF200A19732 /* Ink */,
 			);
 			productName = Bankless;
 			productReference = FF7D493E27053EF300F0244B /* Bankless.app */;
@@ -1972,6 +1990,7 @@
 			mainGroup = FF7D493527053EF300F0244B;
 			packageReferences = (
 				FF1AC679274C474C003025E0 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+				FFC042B827D28BF200A19732 /* XCRemoteSwiftPackageReference "ink" */,
 			);
 			productRefGroup = FF7D493F27053EF300F0244B /* Products */;
 			projectDirPath = "";
@@ -2074,6 +2093,7 @@
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFC4D6832755515A008E10D8 /* DataError.swift in Sources */,
 				FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */,
+				FFD9D41927D2CAED00643E79 /* ENS.graphql.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
@@ -2100,8 +2120,10 @@
 				FF78F3B42706617C00A47A91 /* TimelineItemsResponse.swift in Sources */,
 				FF7A33D8273CCC630037899B /* BaseNavigationBar.swift in Sources */,
 				FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */,
+				FF44547C27D2AB76009F077A /* ResolveENSRequest.swift in Sources */,
 				FFC4D68A27555B87008E10D8 /* DisplayableError+Alert.swift in Sources */,
 				FFC4D6A82756A9C1008E10D8 /* BankAccount.graphql in Sources */,
+				FFD9D41727D2C7BA00643E79 /* MockUserSettingsService.swift in Sources */,
 				FFEB124E2718AB18003EF90D /* AchievementsResponse.swift in Sources */,
 				FF5BCD9F273DD93E000D3FEF /* Bounty+ColorBehaviour.swift in Sources */,
 				FF5BCD81273DD30E000D3FEF /* BountyBoardCoordinator.swift in Sources */,
@@ -2199,6 +2221,7 @@
 				FFE4D45E275967FF007B4E3A /* ErrorReporter.swift in Sources */,
 				FFC4D68C27555C5E008E10D8 /* Localization.swift in Sources */,
 				FF78F3A1270636E800A47A91 /* TimelineService.swift in Sources */,
+				FF44547E27D2AC19009F077A /* ResolveENSResponse.swift in Sources */,
 				FF78F3AA27063BDB00A47A91 /* Bounty.swift in Sources */,
 				FF7A33DB273CCCBB0037899B /* BaseNavigationView.swift in Sources */,
 				FF78F3DA2706B3BD00A47A91 /* BaseTableViewCell.swift in Sources */,
@@ -2244,6 +2267,7 @@
 				FF78F39E270635CC00A47A91 /* DependencyContainer.swift in Sources */,
 				FFC6F46F2735F41500EA8F12 /* AuthService.swift in Sources */,
 				FF78F3BA2706691200A47A91 /* HomeCoordinator.swift in Sources */,
+				FF44548027D2B231009F077A /* ENS.graphql in Sources */,
 				FF0CFCBD279CD35C005A8A09 /* NewsItemsRequest.swift in Sources */,
 				FF7A33AD273CA3DA0037899B /* DiscordClient.swift in Sources */,
 				FF5BCDC527444E84000D3FEF /* PodcastItem.swift in Sources */,
@@ -2893,6 +2917,14 @@
 				minimumVersion = 1.1.4;
 			};
 		};
+		FFC042B827D28BF200A19732 /* XCRemoteSwiftPackageReference "ink" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnsundell/ink.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2900,6 +2932,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF1AC679274C474C003025E0 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
 			productName = YouTubePlayerKit;
+		};
+		FFC042B927D28BF200A19732 /* Ink */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFC042B827D28BF200A19732 /* XCRemoteSwiftPackageReference "ink" */;
+			productName = Ink;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
