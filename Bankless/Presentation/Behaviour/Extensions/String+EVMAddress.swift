@@ -21,10 +21,19 @@ import Foundation
 
 extension String: EVMAddress {
     private static let evmAddressRegExp = "^0x[a-fA-F0-9]{40}$"
+    private static let ensNameRegExp
+    = "[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)?"
     
     var isValidEVMAddress: Bool {
         return range(
             of: String.evmAddressRegExp,
+            options: .regularExpression
+        ) != nil
+    }
+    
+    var isValidENSName: Bool {
+        return range(
+            of: String.ensNameRegExp,
             options: .regularExpression
         ) != nil
     }

@@ -95,7 +95,7 @@ final class IdentityStripeViewModel: BaseViewModel,
         ),
         placeholder: NSLocalizedString(
             "user.setting.set_address.placeholder",
-            value: "E.g. 0x22...3a9d",
+            value: "E.g. 'vitalik.eth' or '0x22...3a9d'",
             comment: ""
         ),
         save: NSLocalizedString(
@@ -138,15 +138,20 @@ final class IdentityStripeViewModel: BaseViewModel,
     func transform(input: Input) -> Output {
         loadUser().map({ $0 as DiscordUser? }).startWith(nil)
             .bind(to: userRelay).disposed(by: disposer)
-        let ethAddress = userSettingsService
-            .streamValue(for: .publicETHAddress)
-            .map({ $0 as? String })
+        let ethIdentity = Observable.zip(
+            userSettingsService
+                .streamValue(for: .publicETHAddress)
+                .map({ $0 as? String }),
+            userSettingsService
+                .streamValue(for: .ensName)
+                .map({ $0 as? String })
+        )
         
         let domainIcon = domainIcon(user: userRelay.asObservable())
         
         let titleString = titleString(
             user: userRelay.asObservable(),
-            ethAddress: ethAddress
+            ethAddress: ethIdentity
         )
         
         bind(tap: input.tap)
@@ -174,14 +179,16 @@ final class IdentityStripeViewModel: BaseViewModel,
     
     private func titleString(
         user: Observable<DiscordUser?>,
-        ethAddress: Observable<String?>
+        ethAddress: Observable<(String?, String?)>
     ) -> Observable<String> {
-        return Observable.combineLatest(user, ethAddress) { (user: $0, address: $1) }
+        return Observable.combineLatest(user, ethAddress) { (user: $0, address: $1.0, ens: $1.1) }
             .map({ [weak self] identity in
                 guard let self = self else { return "" }
                 
                 let userString = identity.user?.handle
                     ?? IdentityStripeViewModel.placeholders.user
+                
+                let ensString = (identity.ens?.isValidENSName ?? false) ? identity.ens! : nil
                 
                 let addressString = identity.address?.isValidEVMAddress ?? false
                 ? String(identity.address![
@@ -196,7 +203,7 @@ final class IdentityStripeViewModel: BaseViewModel,
                 switch self.mode {
                     
                 case .currentUser:
-                    return userString + " (\(addressString))"
+                    return ensString ?? addressString
                 case .user:
                     return userString
                 }
@@ -314,13 +321,22 @@ final class IdentityStripeViewModel: BaseViewModel,
                 
                 switch userSetting {
                     
-                case .publicETHAddress:
+                case .publicETHAddress, .ensName:
                     return self.ethereumPublicAddressInput()
-                        .map({ ($0?.isValidEVMAddress ?? false) ? $0 : nil })
-                        .flatMap({ [weak self] newAddress in
-                            self?.userSettingsService
-                                .setValue(newAddress, for: .publicETHAddress)
+                        .flatMap({ [weak self] newValue -> Completable in
+                            if newValue?.isValidEVMAddress ?? false {
+                                return self?.userSettingsService
+                                    .setValue(newValue!, for: .publicETHAddress)
                                 ?? .empty()
+                            } else if newValue?.isValidENSName ?? false {
+                                return self?.userSettingsService
+                                    .setValue(newValue!, for: .ensName)
+                                ?? .empty()
+                            } else {
+                                return self?.userSettingsService
+                                    .setValue(nil, for: .publicETHAddress)
+                                    ?? .empty()
+                            }
                         })
                         .asCompletable()
                 }
