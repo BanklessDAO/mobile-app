@@ -21,6 +21,7 @@ import Foundation
 import RxSwift
 
 protocol ContentGatewayClient: DataClient {
+    func resolveENS(request: ResolveENSRequest) -> Observable<ResolveENSResponse>
     func getUserBANKAccount(request: BANKAccountRequest) -> Observable<BANKAccount>
     func getUserAttendanceTokens(request: AttendanceTokensRequest) -> Observable<[AttendanceToken]>
     func getTimelineContent() -> Observable<TimelineContentResponse>
