@@ -89,7 +89,6 @@ class NewsViewModel: BaseViewModel, NewsServiceDependency {
     func transform(input: Input) -> Output {
         let refreshTrigger = Driver
             .merge([input.refresh, autorefresh.asDriver(onErrorDriveWith: .empty())])
-            .startWith(())
             .do(onNext: { [weak self] in
                 self?.newsItemsRelay.accept([])
                 self?.nextItemPageRelay.accept(.init())
