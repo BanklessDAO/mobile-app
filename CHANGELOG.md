@@ -1,3 +1,17 @@
+## v1.0.0 - 2022-03-07 - Beta
+
+### Fixed
+
+- Unpublished Bankless Podcast items caused corrupt data issues.
+- Timeline navigation issues.
+
+### Updated
+
+- Added ENS support.
+- Switched Bankless Academy UX to the official mobile web browser version completely (due to crypto signature feature requirements).
+- Discord login disabled.
+- Bankless Newsletter is excluded from the News (due to lack of open data access).
+
 ## v0.2.3 - 2022-01-31 - Beta
 
 ### Fixed
