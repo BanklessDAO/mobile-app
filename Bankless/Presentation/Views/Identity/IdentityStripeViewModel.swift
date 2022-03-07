@@ -283,24 +283,6 @@ final class IdentityStripeViewModel: BaseViewModel,
             )
         )
         
-        if userRelay.value == nil {
-            menu.addAction(
-                .init(
-                    title: IdentityStripeViewModel.userMenuItemTitles.logIn,
-                    style: .default,
-                    handler: { [weak self] _ in self?.logInRequest.onNext(()) }
-                )
-            )
-        } else {
-            menu.addAction(
-                .init(
-                    title: IdentityStripeViewModel.userMenuItemTitles.logOut,
-                    style: .destructive,
-                    handler: { [weak self] _ in self?.logOutRequest.onNext(()) }
-                )
-            )
-        }
-        
         menu.addAction(
             .init(
                 title: IdentityStripeViewModel.userMenuItemTitles.cancel,
