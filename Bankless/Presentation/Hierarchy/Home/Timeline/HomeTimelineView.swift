@@ -173,7 +173,11 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         source.drive(self.source).disposed(by: disposer)
         
         self.source
-            .subscribe(onNext: { [weak self] _ in self?.tableView.reloadData() })
+            .observe(on: MainScheduler.asyncInstance)
+            .do(afterNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .subscribe()
             .disposed(by: disposer)
     }
     
@@ -198,8 +202,7 @@ final class HomeTimelineView: BaseView<HomeTimelineViewModel>,
         
         return HomeTimelineViewModel.Input(
             refresh: refreshControl.rx.controlEvent(.valueChanged).asDriver(),
-            selection: selection.asDriver(),
-            expandSection: sectionExpandButtonRelay.asDriver(onErrorDriveWith: .empty())
+            selection: selection.asDriver()
         )
     }
     
@@ -347,7 +350,6 @@ extension HomeTimelineView {
             
             self.newsSection = .init(
                 type: .news,
-                headerViewModel: featuredNewsHeaderViewModel,
                 viewModels: [featuredNewsViewModel]
             )
             

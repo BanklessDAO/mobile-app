@@ -32,7 +32,6 @@ final class HomeTimelineViewModel: BaseViewModel,
     struct Input {
         let refresh: Driver<Void>
         let selection: Driver<ViewModelFoundation>
-        let expandSection: Driver<Int>
     }
     
     struct Output {
@@ -147,20 +146,32 @@ final class HomeTimelineViewModel: BaseViewModel,
             .map({ Array($0.prefix(HomeTimelineViewModel.maxNewsItemPreviewCount)) })
             .map({ items -> FeaturedNewsViewModel in
                 let viewModel = FeaturedNewsViewModel(newsItems: items)
+                viewModel.set(title: HomeTimelineViewModel.featuredNewsSectionTitle)
+                viewModel.setExpandButton(
+                    title: HomeTimelineViewModel.expandSectionButtonTitle
+                )
                 
                 viewModel.selectionRelay.asDriver(onErrorDriveWith: .empty())
                     .drive(onNext: { [weak self] index in
+                        guard let self = self else {
+                            return
+                        }
+                        
                         switch items[index] {
                         
                         case let newsletterItem as NewsletterItem:
-                            self?.newsletterItemTransitionRequested.accept(newsletterItem)
+                            self.newsletterItemTransitionRequested.accept(newsletterItem)
                         case let podcastItem as PodcastItem:
-                            self?.podcastItemTransitionRequested.accept(podcastItem)
+                            self.podcastItemTransitionRequested.accept(podcastItem)
                         default:
                             fatalError("unexpected type")
                         }
                     })
                     .disposed(by: viewModel.disposer)
+                
+                viewModel.expandRelay
+                    .bind(to: self.expandNewsTransitionRequested)
+                    .disposed(by: self.disposer)
                 
                 return viewModel
             })
