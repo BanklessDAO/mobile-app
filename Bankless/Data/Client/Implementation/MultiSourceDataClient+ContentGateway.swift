@@ -288,29 +288,14 @@ extension MultiSourceDataClient: ContentGatewayClient {
             responseType: NewsContentResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
-                let newsletterPageInfo = responseData.historical.banklessWebsiteV1.posts.pageInfo
-                
-                let newsletterItems = responseData.historical.banklessWebsiteV1.posts.data
-                    .map({ post in
-                        NewsletterItem(
-                            id: post.id!,
-                            title: post.title!,
-                            slug: post.slug!,
-                            excerpt: post.excerpt!,
-                            createdAt: Date(timeIntervalSince1970: post.createdAt!  / 1000),
-                            updatedAt: Date(timeIntervalSince1970: post.updatedAt!  / 1000),
-                            coverPictureURL: URL(string: post.featureImage!)!,
-                            url: URL(string: post.url!)!,
-                            htmlContent: post.html!,
-                            readingTimeInMinutes: Int(post.readingTime!),
-                            isFeatured: post.featured!
-                        )
-                    })
-                
                 let podcastsPageInfo = responseData.historical.banklessPodcastV1.playlist.pageInfo
                 
                 let podcastItems = responseData.historical.banklessPodcastV1.playlist.data
-                    .map({ playlistItem -> PodcastItem in
+                    .compactMap({ playlistItem -> PodcastItem? in
+                        guard (playlistItem.snippet?.thumbnails?.count ?? 0) > 0 else {
+                            return nil
+                        }
+                        
                         let thumbnailURL = URL(
                             string: playlistItem.snippet!.thumbnails!
                                 .filter({ $0!.kind == "high" }).compactMap({ $0 }).first!.url!
