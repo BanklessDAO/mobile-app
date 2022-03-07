@@ -21,4 +21,5 @@ import Foundation
 
 enum UserSetting: String {
     case publicETHAddress
+    case ensName
 }

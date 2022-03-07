@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-30.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-03-04.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -19,22 +19,17 @@
 
 import Foundation
 
-extension String: EVMAddress {
-    private static let evmAddressRegExp = "^0x[a-fA-F0-9]{40}$"
-    private static let ensNameRegExp
-    = "[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)?"
+struct ResolveENSRequest {
+    let type: Type
     
-    var isValidEVMAddress: Bool {
-        return range(
-            of: String.evmAddressRegExp,
-            options: .regularExpression
-        ) != nil
+    init(type: Type) {
+        self.type = type
     }
-    
-    var isValidENSName: Bool {
-        return range(
-            of: String.ensNameRegExp,
-            options: .regularExpression
-        ) != nil
+}
+
+extension ResolveENSRequest {
+    enum `Type` {
+        case name(_: String)
+        case address(_: String)
     }
 }

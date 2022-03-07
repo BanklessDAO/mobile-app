@@ -18,8 +18,10 @@
     
 
 import Foundation
+import Apollo
 import RxSwift
 import BigInt
+import Ink
 
 extension MultiSourceDataClient: ContentGatewayClient {
     // MARK: - Constants -
@@ -30,6 +32,61 @@ extension MultiSourceDataClient: ContentGatewayClient {
     }
     
     // MARK: - Methods -
+    
+    func resolveENS(request: ResolveENSRequest) -> Observable<ResolveENSResponse> {
+        switch request.type {
+            
+        case let .address(ethAddress):
+            return apolloRequest(
+                apolloQuery: EnsNameQuery(ethAddress: ethAddress.lowercased()),
+                responseType: ResolveENSResponse.self
+            ) { graphQLResult in
+                if let responseData = graphQLResult.data {
+                    guard let record = responseData.historical.ensV1.ensDomainV1s.data.first else {
+                        return .success(
+                            ResolveENSResponse(
+                                name: nil,
+                                address: ethAddress
+                            )
+                        )
+                    }
+                    
+                    return .success(
+                        ResolveENSResponse(
+                            name: record.name!,
+                            address:  record.address!
+                        )
+                    )
+                } else if let errors = graphQLResult.errors {
+                    return .failure(DataError.rawCollection(errors))
+                } else {
+                    fatalError("not supported")
+                }
+            }
+        case let .name(ensName):
+            return apolloRequest(
+                apolloQuery: EnsAddressQuery(ensName: ensName.lowercased()),
+                responseType: ResolveENSResponse.self
+            ) { graphQLResult in
+                if let responseData = graphQLResult.data {
+                    guard let record = responseData.historical.ensV1.ensDomainV1s.data.first else {
+                        return .failure(DataError.unknown)
+                    }
+                    
+                    return .success(
+                        ResolveENSResponse(
+                            name: record.name!,
+                            address:  record.address!
+                        )
+                    )
+                } else if let errors = graphQLResult.errors {
+                    return .failure(DataError.rawCollection(errors))
+                } else {
+                    fatalError("not supported")
+                }
+            }
+        }
+    }
     
     func getUserBANKAccount(request: BANKAccountRequest) -> Observable<BANKAccount> {
         return apolloRequest(
@@ -127,7 +184,11 @@ extension MultiSourceDataClient: ContentGatewayClient {
                     })
                 
                 let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data
-                    .map({ playlistItem -> PodcastItem in
+                    .compactMap({ playlistItem -> PodcastItem? in
+                        guard (playlistItem.snippet?.thumbnails?.count ?? 0) > 0 else {
+                            return nil
+                        }
+                        
                         let thumbnailURL = URL(
                             string: playlistItem.snippet!.thumbnails!
                                 .filter({ $0!.kind == "high" }).compactMap({ $0 }).first!.url!
@@ -227,29 +288,14 @@ extension MultiSourceDataClient: ContentGatewayClient {
             responseType: NewsContentResponse.self
         ) { graphQLResult in
             if let responseData = graphQLResult.data {
-                let newsletterPageInfo = responseData.historical.banklessWebsiteV1.posts.pageInfo
-                
-                let newsletterItems = responseData.historical.banklessWebsiteV1.posts.data
-                    .map({ post in
-                        NewsletterItem(
-                            id: post.id!,
-                            title: post.title!,
-                            slug: post.slug!,
-                            excerpt: post.excerpt!,
-                            createdAt: Date(timeIntervalSince1970: post.createdAt!  / 1000),
-                            updatedAt: Date(timeIntervalSince1970: post.updatedAt!  / 1000),
-                            coverPictureURL: URL(string: post.featureImage!)!,
-                            url: URL(string: post.url!)!,
-                            htmlContent: post.html!,
-                            readingTimeInMinutes: Int(post.readingTime!),
-                            isFeatured: post.featured!
-                        )
-                    })
-                
                 let podcastsPageInfo = responseData.historical.banklessPodcastV1.playlist.pageInfo
                 
                 let podcastItems = responseData.historical.banklessPodcastV1.playlist.data
-                    .map({ playlistItem -> PodcastItem in
+                    .compactMap({ playlistItem -> PodcastItem? in
+                        guard (playlistItem.snippet?.thumbnails?.count ?? 0) > 0 else {
+                            return nil
+                        }
+                        
                         let thumbnailURL = URL(
                             string: playlistItem.snippet!.thumbnails!
                                 .filter({ $0!.kind == "high" }).compactMap({ $0 }).first!.url!
@@ -271,8 +317,8 @@ extension MultiSourceDataClient: ContentGatewayClient {
                     })
                 
                 let response = NewsContentResponse(
-                    newsletterItems: newsletterItems,
-                    newsletterNextPageToken: newsletterPageInfo.nextPageToken,
+                    newsletterItems: [],
+                    newsletterNextPageToken: nil,
                     podcastItems: podcastItems,
                     podcastNextPageToken: podcastsPageInfo.nextPageToken
                 )

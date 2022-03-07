@@ -110,6 +110,14 @@ public enum Environment {
         return value
     }()
     
+    static let banklessAcademyLessonsBaseURL: String = {
+        guard let value = Environment.infoDictionary["BANKLESS_ACADEMY_LESSONS_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
     static let poapAPIBaseURL: String = {
         guard let value = Environment.infoDictionary["POAP_API_BASE_URL"] as? String else {
             fatalError("Not found")

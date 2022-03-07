@@ -50,11 +50,6 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
     
     // MARK: - Setup -
     
-    override func setUp() {
-        setUpSubviews()
-        setUpConstraints()
-    }
-    
     override func setUpSubviews() {
         backgroundColor = .backgroundBlack
         selectionStyle = .none
@@ -66,11 +61,13 @@ class SectionHeaderCell: BaseTableViewCell<SectionHeaderViewModel> {
             right: 0
         )
         
+        titleLabel?.removeFromSuperview()
         titleLabel = UILabel()
         titleLabel.font = Appearance.Text.Font.Title1.font(bold: true)
         titleLabel.textColor = .secondaryWhite
         contentView.addSubview(titleLabel)
         
+        expandButton?.removeFromSuperview()
         expandButton = UIButton(type: .custom)
         expandButton.setTitleColor(SectionHeaderCell.expandButtonColor, for: .normal)
         contentView.addSubview(expandButton)
