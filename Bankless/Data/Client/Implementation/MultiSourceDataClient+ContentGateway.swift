@@ -184,7 +184,11 @@ extension MultiSourceDataClient: ContentGatewayClient {
                     })
                 
                 let podcastItems = timelineData.historical.banklessPodcastV1.playlist.data
-                    .map({ playlistItem -> PodcastItem in
+                    .compactMap({ playlistItem -> PodcastItem? in
+                        guard (playlistItem.snippet?.thumbnails?.count ?? 0) > 0 else {
+                            return nil
+                        }
+                        
                         let thumbnailURL = URL(
                             string: playlistItem.snippet!.thumbnails!
                                 .filter({ $0!.kind == "high" }).compactMap({ $0 }).first!.url!
