@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-25.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-06-25.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -20,10 +20,6 @@
 import Foundation
 import RxSwift
 
-protocol BanklessAcademyClient: DataClient {
-    func getAcademyCourses() -> Observable<AcademyCoursesResponse>
-    func claimPoap(request: BanklessAcademyClaimPOAPRequest) -> Observable<AttendanceTokenClaimCode>
+protocol YoutubeClient: DataClient {
+    func getPodcastContent(request: PodcastItemsRequest) -> Observable<PodcastItemsResponse>
 }
-
-typealias AcademyCoursesResponse = AcademyCourseListResponse
-typealias BanklessAcademyClaimPOAPRequest = AcademyClaimProofOfAttendanceRequest

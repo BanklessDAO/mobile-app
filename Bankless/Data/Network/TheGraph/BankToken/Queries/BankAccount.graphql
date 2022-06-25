@@ -1,0 +1,10 @@
+query BankAccount($ethAddress: ID!) {
+    account(id: $ethAddress) {
+        id
+        lastTransactionTimestamp
+        ERC20balances {
+              value
+              valueExact
+        }
+    }
+}

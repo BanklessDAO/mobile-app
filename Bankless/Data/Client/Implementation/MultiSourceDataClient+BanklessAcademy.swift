@@ -21,6 +21,15 @@ import Foundation
 import RxSwift
 
 extension MultiSourceDataClient: BanklessAcademyClient {
+    func getAcademyCourses() -> Observable<AcademyCoursesResponse> {
+        return banklessAcademyAPI
+            .request(.lessons)
+            .map([AcademyCourse].self)
+            .map({ AcademyCoursesResponse(courses: $0) })
+            .asObservable()
+            .catchMapError()
+    }
+    
     func claimPoap(
         request: BanklessAcademyClaimPOAPRequest
     ) -> Observable<AttendanceTokenClaimCode> {

@@ -36,19 +36,16 @@ final class NetworkAcademyService: AcademyService {
     
     // MARK: - Components -
     
-    private let contentGatewayClient: ContentGatewayClient
     private let banklessAcademyClient: BanklessAcademyClient
     
     init(
-        contentGatewayClient: ContentGatewayClient,
         banklessAcademyClient: BanklessAcademyClient
     ) {
-        self.contentGatewayClient = contentGatewayClient
         self.banklessAcademyClient = banklessAcademyClient
     }
     
     func listCourses() -> Observable<AcademyCourseListResponse> {
-        return contentGatewayClient.getAcademyCourses().take(1)
+        return banklessAcademyClient.getAcademyCourses()
     }
     
     func claimProofOfAttendance(request: AcademyClaimProofOfAttendanceRequest) -> Completable {

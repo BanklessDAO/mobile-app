@@ -24,16 +24,24 @@ import Apollo
 class MultiSourceDataClient: DataClient {
     let discordAPI: DiscordAPIProvider
     let banklessAcademyAPI: BanklessAcademyAPIProvider
+    let youtubeAPI: YoutubeAPIProvider
     let poapAPI: PoapAPIProvider
-    let apollo: ApolloClient
+    let contentGatewayGraphQLClient: ApolloClient
+    let ensGraphQLClient: ApolloClient
+    let bankTokenGraphQLClient: ApolloClient
     
     init(
-        contentGatewayAPIBaseURL: URL,
+        contentGatewayAPIURL: URL,
+        ensAPIURL: URL,
+        bankTokenAPIURL: URL,
         sessionStorage: SessionStorage
     ) {
         self.discordAPI = DiscordAPIProvider(sessionStorage: sessionStorage)
         self.banklessAcademyAPI = BanklessAcademyAPIProvider(sessionStorage: sessionStorage)
+        self.youtubeAPI = YoutubeAPIProvider(sessionStorage: sessionStorage)
         self.poapAPI = PoapAPIProvider(sessionStorage: sessionStorage)
-        self.apollo = ApolloClient(url: contentGatewayAPIBaseURL)
+        self.contentGatewayGraphQLClient = ApolloClient(url: contentGatewayAPIURL)
+        self.ensGraphQLClient = ApolloClient(url: ensAPIURL)
+        self.bankTokenGraphQLClient = ApolloClient(url: bankTokenAPIURL)
     }
 }

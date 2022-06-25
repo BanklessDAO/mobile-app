@@ -23,19 +23,19 @@ extension AcademyCourse.Difficulty: TitleBehaviour {
     var title: String {
         switch self {
             
-        case .easy:
+        case .Easy:
             return NSLocalizedString(
                 "academy.course.difficulty.easy.title",
                 value: "🙂 Easy",
                 comment: ""
             )
-        case .medium:
+        case .Medium:
             return NSLocalizedString(
                 "academy.course.difficulty.medium.title",
                 value: "🤔 Medium",
                 comment: ""
             )
-        case .hard:
+        case .Hard:
             return NSLocalizedString(
                 "academy.course.difficulty.hard.title",
                 value: "🤯 Hard",

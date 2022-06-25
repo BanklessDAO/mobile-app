@@ -20,7 +20,11 @@
 import Foundation
 
 class NetworkConfigurator: Configurator {
-    private static let graphQLAPIEndpoint: URL = .init(string: Environment.graphQLAPIEndpoint)!
+    private static let cgGraphQLAPIEndpoint: URL = .init(string: Environment.graphQLAPIEndpoint)!
+    private static let ensGraphQLAPIEndpoint: URL = .init(string: Environment.ensSubgraphAPIURL)!
+    private static let bankGraphQLAPIEndpoint: URL = .init(
+        string: Environment.bankTokenSubgraphAPIURL
+    )!
     
     func configure() -> DependencyContainer {
         let container = SimpleDependencyContainer()
@@ -35,13 +39,15 @@ class NetworkConfigurator: Configurator {
         )
         
         let dataClient = MultiSourceDataClient(
-            contentGatewayAPIBaseURL: NetworkConfigurator.graphQLAPIEndpoint,
+            contentGatewayAPIURL: NetworkConfigurator.cgGraphQLAPIEndpoint,
+            ensAPIURL: NetworkConfigurator.ensGraphQLAPIEndpoint,
+            bankTokenAPIURL: NetworkConfigurator.bankGraphQLAPIEndpoint,
             sessionStorage: keychainSessionStorage
         )
         
         let userSettingsService = DefaultUserSettingsService(
             settingsStorage: appLevelSettingsStorage,
-            contentGatewayClient: dataClient
+            ensClient: dataClient
         )
         container.register { (object: inout UserSettingsServiceDependency) in
             object.userSettingsService = userSettingsService
@@ -57,7 +63,7 @@ class NetworkConfigurator: Configurator {
             object.identityService = identityService
         }
         
-        let banklessService = NetworkBanklessService(contentGatewayClient: dataClient)
+        let banklessService = NetworkBanklessService(banklessClient: dataClient)
         container.register { (object: inout BanklessServiceDependency) in
             object.banklessService = banklessService
         }
@@ -67,12 +73,14 @@ class NetworkConfigurator: Configurator {
             object.achievementsService = achievementsService
         }
         
-        let timelineService = NetworkTimelineService(contentGatewayClient: dataClient)
+        let timelineService = NetworkTimelineService(
+            youtubeClient: dataClient, academyClient: dataClient
+        )
         container.register { (object: inout TimelineServiceDependency) in
             object.timelineService = timelineService
         }
         
-        let newsService = NetworkNewsService(contentGatewayClient: dataClient)
+        let newsService = NetworkNewsService(youtubeClient: dataClient)
         container.register { (object: inout NewsServiceDependency) in
             object.newsService = newsService
         }
@@ -83,7 +91,6 @@ class NetworkConfigurator: Configurator {
         }
         
         let academyService = NetworkAcademyService(
-            contentGatewayClient: dataClient,
             banklessAcademyClient: dataClient
         )
         container.register { (object: inout AcademyServiceDependency) in

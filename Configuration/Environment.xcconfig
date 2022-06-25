@@ -8,3 +8,6 @@ BANKLESS_ACADEMY_API_BASE_PATH = app.banklessacademy.com/api
 BANKLESS_ACADEMY_LESSONS_BASE_PATH = app.banklessacademy.com/lessons/
 POAP_API_BASE_PATH = api.poap.xyz
 POAP_APP_BASE_PATH = app.poap.xyz
+ENS_GRAPHQL_API_PATH = api.thegraph.com/subgraphs/name/ensdomains/ens
+BANK_TOKEN_GRAPHQL_API_PATH = api.thegraph.com/subgraphs/name/0xnshuman/bank-subgraph
+YOUTUBE_API_BASE_PATH = www.googleapis.com/youtube

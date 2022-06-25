@@ -21,15 +21,33 @@ import Foundation
 import RxSwift
 
 final class NetworkTimelineService: TimelineService {
-    private let contentGatewayClient: ContentGatewayClient
+    private let youtubeClient: YoutubeClient
+    private let academyClient: BanklessAcademyClient
     
     init(
-        contentGatewayClient: ContentGatewayClient
+        youtubeClient: YoutubeClient,
+        academyClient: BanklessAcademyClient
     ) {
-        self.contentGatewayClient = contentGatewayClient
+        self.youtubeClient = youtubeClient
+        self.academyClient = academyClient
     }
     
     func getTimelineItems() -> Observable<TimelineItemsResponse> {
-        return contentGatewayClient.getTimelineContent().take(1)
+        let podcastItems = youtubeClient
+            .getPodcastContent(request: .init(lastPodcastItemId: nil))
+            .map({ $0.podcastItems })
+        
+        let academyCourses = academyClient
+            .getAcademyCourses()
+            .map({ $0.courses })
+        
+        return Observable.combineLatest(podcastItems, academyCourses) {
+            return .init(
+                newsletterItems: [],
+                podcastItems: $0,
+                bounties: [],
+                academyCourses: $1
+            )
+        }
     }
 }

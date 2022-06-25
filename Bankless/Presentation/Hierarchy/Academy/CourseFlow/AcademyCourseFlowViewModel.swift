@@ -176,28 +176,6 @@ final class AcademyCourseFlowViewModel: BaseViewModel,
         request: Observable<Void>,
         onCompleted: @escaping () -> Void
     ) -> Completable {
-        return Observable
-            .combineLatest(request, userSettingsService.streamValue(for: .publicETHAddress)) {
-                _, addressSetting -> Any? in return addressSetting
-            }
-            .flatMapLatest({ [weak self] ethAddress -> Completable in
-                guard let self = self else { return .empty() }
-                
-                guard let ethAddress = ethAddress as? String else {
-                    return .error(ApplicationError.ethAddressIsNotSet)
-                        .handleError()
-                }
-                
-                return self.academyService
-                    .claimProofOfAttendance(
-                        request: .init(
-                            eventId: String(self.academyCourse.poapEventId),
-                            ethAddress: ethAddress
-                        )
-                    )
-                    .do(onCompleted: onCompleted)
-                    .handleError()
-            })
-            .asCompletable()
+        fatalError("not implemented")
     }
 }

@@ -22,16 +22,16 @@ import RxSwift
 
 class DefaultUserSettingsService: UserSettingsService {
     private let settingsStorage: SettingsStorage
-    private let contentGatewayClient: ContentGatewayClient
+    private let ensClient: ENSClient
     
     private let settingsUpdatesStream = PublishSubject<(key: UserSetting, value: Any?)>()
     
     init(
         settingsStorage: SettingsStorage,
-        contentGatewayClient: ContentGatewayClient
+        ensClient: ENSClient
     ) {
         self.settingsStorage = settingsStorage
-        self.contentGatewayClient = contentGatewayClient
+        self.ensClient = ensClient
     }
     
     func streamValue(for userSetting: UserSetting) -> Observable<Any?> {
@@ -90,7 +90,7 @@ class DefaultUserSettingsService: UserSettingsService {
     }
     
     private func resolveETHAddress(request: ResolveENSRequest) -> Observable<ResolveENSResponse> {
-        return contentGatewayClient
+        return ensClient
             .resolveENS(request: request)
             .take(1)
     }

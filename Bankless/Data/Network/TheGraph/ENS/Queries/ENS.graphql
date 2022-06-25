@@ -1,0 +1,28 @@
+query ENSName($ethAddress: String) {
+    domains(
+        where: {
+            resolvedAddress_contains: $ethAddress,
+            name_contains: ".eth"
+        }
+    ) {
+        id
+        name
+        resolvedAddress {
+            id
+        }
+    }
+}
+
+query ENSAddress($ensName: String) {
+    domains(
+        where: {
+            name_contains: $ensName
+        }
+    ) {
+        id
+        name
+        resolvedAddress {
+            id
+        }
+    }
+}

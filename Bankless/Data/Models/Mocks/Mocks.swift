@@ -50,54 +50,19 @@ extension Member: Mock {
 
 extension AcademyCourse: Mock {
     static func generateMock() -> AcademyCourse {
-        return .init(
-            id: UUID().uuidString,
-            name: faker.lorem.sentence(wordsAmount: 3).capitalized,
-            slug: faker.internet.username(separator: nil),
-            backgroundImageURL: URL(string: "https://ethereum.org/static/28214bb68eb5445dcb063a72535bc90c/96d01/hero.png")!,
-            notionId: UUID().uuidString,
-            poapEventId: Int.random(in: 0 ... 1_000_000),
-            description: faker.company.catchPhrase(),
-            duration: Int.random(in: 5 ... 40),
-            difficulty: .allCases.randomElement()!,
-            poapImageLink: URL(string: "https://storage.googleapis.com/poapmedia/bankless-academy-intro-to-defi-2021-logo-1630063060767.png")!,
-            learnings: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
-            learningActions: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
-            knowledgeRequirements: faker.lorem.sentence(wordsAmount: Int.random(in: 5 ... 20)),
-            sections: AcademyCourse.Section.generateMocks(Int.random(in: 10 ... 20))
-        )
+        fatalError("not implemented")
     }
 }
 
 extension AcademyCourse.Section: Mock {
     static func generateMock() -> AcademyCourse.Section {
-        let type = `Type`.allCases.filter({ [.learn, .quiz].contains($0) }).randomElement()!
-        
-        return .init(
-            id: UUID().uuidString,
-            type: type,
-            title: faker.lorem.sentence(wordsAmount: 3).capitalized,
-            content: faker.lorem.paragraphs(amount: 3),
-            quiz: .generateMock(),
-            component: nil,
-            poapImageLink: type == .poap ? URL(string: "https://storage.googleapis.com/poapmedia/bankless-academy-intro-to-defi-2021-logo-1630063060767.png")! : nil
-        )
+        fatalError("not implemented")
     }
 }
 
 extension AcademyCourse.Section.Quiz: Mock {
     static func generateMock() -> AcademyCourse.Section.Quiz {
-        return .init(
-            id: UUID().uuidString,
-            question: faker.lorem.sentence(wordsAmount: 5),
-            answers: [
-                faker.lorem.word(),
-                faker.lorem.word(),
-                faker.lorem.word(),
-                faker.lorem.word()
-            ],
-            rightAnswerNumber: Int.random(in: 0 ..< 4)
-        )
+        fatalError("not implemented")
     }
 }
 

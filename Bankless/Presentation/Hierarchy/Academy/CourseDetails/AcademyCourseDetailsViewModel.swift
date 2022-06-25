@@ -92,7 +92,7 @@ final class AcademyCourseDetailsViewModel: BaseViewModel {
         let detailViewModels = [
             Detail(
                 title: AcademyCourseDetailsViewModel.detailTitles.knowledgeRequirements,
-                body: academyCourse.knowledgeRequirements
+                body: academyCourse.knowledgeRequirements ?? "None"
             ),
             Detail(
                 title: AcademyCourseDetailsViewModel.detailTitles.takeaways,

@@ -102,6 +102,22 @@ public enum Environment {
         return value
     }()
     
+    static let youtubeAPIBaseURL: String = {
+        guard let value = Environment.infoDictionary["YOUTUBE_API_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let youtubeAPIAccess: String = {
+        guard let value = Environment.infoDictionary["YOUTUBE_API_ACCESS"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
     static let banklessAcademyAPIBaseURL: String = {
         guard let value = Environment.infoDictionary["BANKLESS_ACADEMY_API_BASE_URL"] as? String else {
             fatalError("Not found")
@@ -128,6 +144,22 @@ public enum Environment {
     
     static let poapAppBaseURL: String = {
         guard let value = Environment.infoDictionary["POAP_APP_BASE_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let ensSubgraphAPIURL: String = {
+        guard let value = Environment.infoDictionary["ENS_GRAPHQL_API_URL"] as? String else {
+            fatalError("Not found")
+        }
+        
+        return value
+    }()
+    
+    static let bankTokenSubgraphAPIURL: String = {
+        guard let value = Environment.infoDictionary["BANK_TOKEN_GRAPHQL_API_URL"] as? String else {
             fatalError("Not found")
         }
         

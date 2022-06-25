@@ -23,12 +23,13 @@ import Apollo
 
 extension MultiSourceDataClient {
     func apolloRequest<Q, T>(
+        apolloClient: ApolloClient,
         apolloQuery: Q,
         responseType: T.Type,
         resultMapper: @escaping (Apollo.GraphQLResult<Q.Data>) -> Result<T, Error>
     ) -> Observable<T> where Q: Apollo.GraphQLQuery {
-        return Observable<T>.create { [weak self] observer in
-            self?.apollo.fetch(
+        return Observable<T>.create { observer in
+            apolloClient.fetch(
                 query: apolloQuery,
                 cachePolicy: .fetchIgnoringCacheData,
                 contextIdentifier: nil,

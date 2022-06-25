@@ -21,15 +21,27 @@ import Foundation
 import RxSwift
 
 final class NetworkNewsService: NewsService {
-    private let contentGatewayClient: ContentGatewayClient
+    private let youtubeClient: YoutubeClient
     
     init(
-        contentGatewayClient: ContentGatewayClient
+        youtubeClient: YoutubeClient
     ) {
-        self.contentGatewayClient = contentGatewayClient
+        self.youtubeClient = youtubeClient
     }
     
     func listNewsItems(request: NewsItemsRequest) -> Observable<NewsItemsResponse> {
-        return contentGatewayClient.getNewsContent(request: request).take(1)
+        return youtubeClient
+            .getPodcastContent(
+                request: .init(lastPodcastItemId: request.lastPodcastItemId)
+            )
+            .map({
+                .init(
+                    newsletterItems: [],
+                    newsletterNextPageToken: nil,
+                    podcastItems: $0.podcastItems,
+                    podcastNextPageToken: $0.podcastNextPageToken
+                )
+            })
+            .take(1)
     }
 }

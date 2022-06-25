@@ -1,6 +1,6 @@
 //
-//  Created with ♥ by BanklessDAO contributors on 2021-11-25.
-//  Copyright (C) 2021 BanklessDAO.
+//  Created with ♥ by BanklessDAO contributors on 2022-06-25.
+//  Copyright (C) 2022 BanklessDAO.
 
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -20,34 +20,29 @@
 import Foundation
 import Moya
 
-enum BanklessAcademyAPIMethod {
-    case lessons
-    case claimPoap(poapEventId: Int, address: String)
+enum YoutubeAPIMethod {
+    case banklessPodcastPlaylistItems
 }
 
-extension BanklessAcademyAPIMethod: TargetType, AccessTokenAuthorizable, Cacheable {
+extension YoutubeAPIMethod: TargetType, AccessTokenAuthorizable, Cacheable {
     var baseURL: URL {
-        return URL(string: Environment.banklessAcademyAPIBaseURL)!
+        return URL(string: Environment.youtubeAPIBaseURL)!
     }
     
     var path: String {
-        let versionPath = ""
+        let versionPath = "/v3/"
         
         switch self {
             
-        case .lessons:
-            return versionPath + "lessons"
-        case .claimPoap:
-            return versionPath + "claim-poap"
+        case .banklessPodcastPlaylistItems:
+            return versionPath + "playlistItems"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        
-        case .lessons:
-            return .get
-        case .claimPoap:
+            
+        case .banklessPodcastPlaylistItems:
             return .get
         }
     }
@@ -57,10 +52,12 @@ extension BanklessAcademyAPIMethod: TargetType, AccessTokenAuthorizable, Cacheab
         
         switch self {
             
-        case let .claimPoap(poapEventId, address):
+        case .banklessPodcastPlaylistItems:
             params = [
-                "poapEventId": poapEventId,
-                "address": address,
+                "playlistId": "PLmkdAgtxf3ahEmMWNY52BX3t1o7vb4aN5",
+                "key": Environment.youtubeAPIAccess,
+                "maxResults": 50,
+                "part": "contentDetails,id,snippet",
             ] as [String: Any?]
         default:
             params = [:]

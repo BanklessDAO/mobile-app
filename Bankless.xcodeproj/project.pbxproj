@@ -52,6 +52,21 @@
 		FF44547C27D2AB76009F077A /* ResolveENSRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */; };
 		FF44547E27D2AC19009F077A /* ResolveENSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */; };
 		FF44548027D2B231009F077A /* ENS.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF44547F27D2B231009F077A /* ENS.graphql */; };
+		FF493D0F286666C8001D97A8 /* ENSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D0E286666C8001D97A8 /* ENSClient.swift */; };
+		FF493D112866671A001D97A8 /* MultiSourceDataClient+ENS.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D102866671A001D97A8 /* MultiSourceDataClient+ENS.swift */; };
+		FF493D18286670AB001D97A8 /* ENS.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FF493D17286670AB001D97A8 /* ENS.graphql */; };
+		FF493D1C28667DA0001D97A8 /* BankAccount.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FF493D1B28667DA0001D97A8 /* BankAccount.graphql */; };
+		FF493D28286683E3001D97A8 /* ENS.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D26286683E3001D97A8 /* ENS.graphql.swift */; };
+		FF493D2C286683F7001D97A8 /* BankAccount.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D2A286683F7001D97A8 /* BankAccount.graphql.swift */; };
+		FF493D2F2866845A001D97A8 /* BanklessClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D2E2866845A001D97A8 /* BanklessClient.swift */; };
+		FF493D312866849B001D97A8 /* MultiSourceDataClient+Bankless.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D302866849B001D97A8 /* MultiSourceDataClient+Bankless.swift */; };
+		FF493D342867633D001D97A8 /* YoutubeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D332867633D001D97A8 /* YoutubeClient.swift */; };
+		FF493D36286763ED001D97A8 /* PodcastContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D35286763ED001D97A8 /* PodcastContentRequest.swift */; };
+		FF493D38286763F7001D97A8 /* PodcastContentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D37286763F7001D97A8 /* PodcastContentResponse.swift */; };
+		FF493D3A28676475001D97A8 /* MultiSourceDataClient+Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D3928676475001D97A8 /* MultiSourceDataClient+Youtube.swift */; };
+		FF493D3D28676592001D97A8 /* YoutubeAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D3C28676592001D97A8 /* YoutubeAPIProvider.swift */; };
+		FF493D3F2867659F001D97A8 /* YoutubeAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D3E2867659F001D97A8 /* YoutubeAPIMethod.swift */; };
+		FF493D41286767E5001D97A8 /* YoutubePlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF493D40286767E5001D97A8 /* YoutubePlaylist.swift */; };
 		FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */; };
 		FF5BCD71273DD069000D3FEF /* BountyListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */; };
 		FF5BCD73273DD077000D3FEF /* BountyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5BCD72273DD077000D3FEF /* BountyResponse.swift */; };
@@ -216,7 +231,6 @@
 		FFC4D6A42755C924008E10D8 /* PoapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A32755C924008E10D8 /* PoapClient.swift */; };
 		FFC4D6A62755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */; };
 		FFC4D6A82756A9C1008E10D8 /* BankAccount.graphql in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */; };
-		FFC4D6AA2756AA79008E10D8 /* BankAccount.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */; };
 		FFC4D6AC2756D3F7008E10D8 /* News.graphql in Resources */ = {isa = PBXBuildFile; fileRef = FFC4D6AB2756D3F7008E10D8 /* News.graphql */; };
 		FFC4D6AE2756D533008E10D8 /* News.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AD2756D533008E10D8 /* News.graphql.swift */; };
 		FFC4D6B02756E000008E10D8 /* EVMAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */; };
@@ -244,7 +258,6 @@
 		FFCC9FB62718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */; };
 		FFCC9FB82718E36D00CAB3A3 /* AchievementsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */; };
 		FFD9D41727D2C7BA00643E79 /* MockUserSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9D41627D2C7BA00643E79 /* MockUserSettingsService.swift */; };
-		FFD9D41927D2CAED00643E79 /* ENS.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */; };
 		FFDD61A9279F726F000F0BEC /* AttendanceTokenClaimCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */; };
 		FFE4D45927596443007B4E3A /* ErrorLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45827596443007B4E3A /* ErrorLogging.swift */; };
 		FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */; };
@@ -265,7 +278,6 @@
 		FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60022271E2DDD00F73FA1 /* AchievementsTitleCell.swift */; };
 		FFE60026271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60025271E2FDB00F73FA1 /* CollectionSectionHeaderCell.swift */; };
 		FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE60028271E33C300F73FA1 /* NotificationEvent.swift */; };
-		FFEB12272710CF7E003EF90D /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = FFEB12262710CF7E003EF90D /* schema.json */; };
 		FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12302710FBCC003EF90D /* DataClient.swift */; };
 		FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB12332710FC63003EF90D /* MultiSourceDataClient.swift */; };
 		FFEB1242271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */; };
@@ -329,6 +341,23 @@
 		FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveENSRequest.swift; sourceTree = "<group>"; };
 		FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveENSResponse.swift; sourceTree = "<group>"; };
 		FF44547F27D2B231009F077A /* ENS.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ENS.graphql; sourceTree = "<group>"; };
+		FF493D0E286666C8001D97A8 /* ENSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENSClient.swift; sourceTree = "<group>"; };
+		FF493D102866671A001D97A8 /* MultiSourceDataClient+ENS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+ENS.swift"; sourceTree = "<group>"; };
+		FF493D17286670AB001D97A8 /* ENS.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ENS.graphql; sourceTree = "<group>"; };
+		FF493D1B28667DA0001D97A8 /* BankAccount.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BankAccount.graphql; sourceTree = "<group>"; };
+		FF493D1D286682B3001D97A8 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		FF493D1F286682F6001D97A8 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		FF493D26286683E3001D97A8 /* ENS.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENS.graphql.swift; sourceTree = "<group>"; };
+		FF493D2A286683F7001D97A8 /* BankAccount.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.graphql.swift; sourceTree = "<group>"; };
+		FF493D2E2866845A001D97A8 /* BanklessClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanklessClient.swift; sourceTree = "<group>"; };
+		FF493D302866849B001D97A8 /* MultiSourceDataClient+Bankless.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+Bankless.swift"; sourceTree = "<group>"; };
+		FF493D332867633D001D97A8 /* YoutubeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeClient.swift; sourceTree = "<group>"; };
+		FF493D35286763ED001D97A8 /* PodcastContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastContentRequest.swift; sourceTree = "<group>"; };
+		FF493D37286763F7001D97A8 /* PodcastContentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastContentResponse.swift; sourceTree = "<group>"; };
+		FF493D3928676475001D97A8 /* MultiSourceDataClient+Youtube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultiSourceDataClient+Youtube.swift"; sourceTree = "<group>"; };
+		FF493D3C28676592001D97A8 /* YoutubeAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeAPIProvider.swift; sourceTree = "<group>"; };
+		FF493D3E2867659F001D97A8 /* YoutubeAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeAPIMethod.swift; sourceTree = "<group>"; };
+		FF493D40286767E5001D97A8 /* YoutubePlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlaylist.swift; sourceTree = "<group>"; };
 		FF5BCD6E273DCFA2000D3FEF /* BountyBoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyBoardService.swift; sourceTree = "<group>"; };
 		FF5BCD70273DD069000D3FEF /* BountyListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyListResponse.swift; sourceTree = "<group>"; };
 		FF5BCD72273DD077000D3FEF /* BountyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BountyResponse.swift; sourceTree = "<group>"; };
@@ -497,7 +526,6 @@
 		FFC4D6A32755C924008E10D8 /* PoapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoapClient.swift; sourceTree = "<group>"; };
 		FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultisourceDataClient+PoapClient.swift"; sourceTree = "<group>"; };
 		FFC4D6A72756A9C1008E10D8 /* BankAccount.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = BankAccount.graphql; sourceTree = "<group>"; };
-		FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankAccount.graphql.swift; sourceTree = "<group>"; };
 		FFC4D6AB2756D3F7008E10D8 /* News.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = News.graphql; sourceTree = "<group>"; };
 		FFC4D6AD2756D533008E10D8 /* News.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.graphql.swift; sourceTree = "<group>"; };
 		FFC4D6AF2756E000008E10D8 /* EVMAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVMAddress.swift; sourceTree = "<group>"; };
@@ -526,7 +554,6 @@
 		FFCC9FB52718D20900CAB3A3 /* BANKAccount+ERC20BalancePresentationBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANKAccount+ERC20BalancePresentationBehaviour.swift"; sourceTree = "<group>"; };
 		FFCC9FB72718E36D00CAB3A3 /* AchievementsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsBarView.swift; sourceTree = "<group>"; };
 		FFD9D41627D2C7BA00643E79 /* MockUserSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserSettingsService.swift; sourceTree = "<group>"; };
-		FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENS.graphql.swift; sourceTree = "<group>"; };
 		FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTokenClaimCode.swift; sourceTree = "<group>"; };
 		FFE4D45827596443007B4E3A /* ErrorLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorLogging.swift; sourceTree = "<group>"; };
 		FFE4D45A275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorLogging+ErrorReporter.swift"; sourceTree = "<group>"; };
@@ -769,6 +796,106 @@
 				FF1AC6A0274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift */,
 			);
 			path = Poap;
+			sourceTree = "<group>";
+		};
+		FF493D0D286666B3001D97A8 /* ENSClient */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D0E286666C8001D97A8 /* ENSClient.swift */,
+				FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */,
+				FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */,
+			);
+			path = ENSClient;
+			sourceTree = "<group>";
+		};
+		FF493D122866702F001D97A8 /* TheGraph */ = {
+			isa = PBXGroup;
+			children = (
+				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
+				FFEB12232710CD1A003EF90D /* ContentGateway */,
+				FF493D1328667071001D97A8 /* ENS */,
+				FF493D1428667077001D97A8 /* BankToken */,
+			);
+			path = TheGraph;
+			sourceTree = "<group>";
+		};
+		FF493D1328667071001D97A8 /* ENS */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D1D286682B3001D97A8 /* schema.json */,
+				FF493D152866708B001D97A8 /* API */,
+				FF493D1628667092001D97A8 /* Queries */,
+			);
+			path = ENS;
+			sourceTree = "<group>";
+		};
+		FF493D1428667077001D97A8 /* BankToken */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D1F286682F6001D97A8 /* schema.json */,
+				FF493D1928667D61001D97A8 /* API */,
+				FF493D1A28667D6E001D97A8 /* Queries */,
+			);
+			path = BankToken;
+			sourceTree = "<group>";
+		};
+		FF493D152866708B001D97A8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D26286683E3001D97A8 /* ENS.graphql.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		FF493D1628667092001D97A8 /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D17286670AB001D97A8 /* ENS.graphql */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		FF493D1928667D61001D97A8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D2A286683F7001D97A8 /* BankAccount.graphql.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		FF493D1A28667D6E001D97A8 /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D1B28667DA0001D97A8 /* BankAccount.graphql */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		FF493D2D28668441001D97A8 /* BanklessClient */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D2E2866845A001D97A8 /* BanklessClient.swift */,
+			);
+			path = BanklessClient;
+			sourceTree = "<group>";
+		};
+		FF493D322867631C001D97A8 /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D332867633D001D97A8 /* YoutubeClient.swift */,
+				FF493D35286763ED001D97A8 /* PodcastContentRequest.swift */,
+				FF493D37286763F7001D97A8 /* PodcastContentResponse.swift */,
+			);
+			path = Youtube;
+			sourceTree = "<group>";
+		};
+		FF493D3B28676577001D97A8 /* Youtube */ = {
+			isa = PBXGroup;
+			children = (
+				FF493D3C28676592001D97A8 /* YoutubeAPIProvider.swift */,
+				FF493D3E2867659F001D97A8 /* YoutubeAPIMethod.swift */,
+			);
+			path = Youtube;
 			sourceTree = "<group>";
 		};
 		FF5BCD6D273DCF8D000D3FEF /* BountyBoard */ = {
@@ -1174,6 +1301,7 @@
 				FF5BCDC227444E7B000D3FEF /* NewsletterItem.swift */,
 				FF5BCDC427444E84000D3FEF /* PodcastItem.swift */,
 				FFDD61A8279F726F000F0BEC /* AttendanceTokenClaimCode.swift */,
+				FF493D40286767E5001D97A8 /* YoutubePlaylist.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1281,8 +1409,6 @@
 			isa = PBXGroup;
 			children = (
 				FF7A33B0273CA5A80037899B /* ContentGatewayClient.swift */,
-				FF44547B27D2AB76009F077A /* ResolveENSRequest.swift */,
-				FF44547D27D2AC19009F077A /* ResolveENSResponse.swift */,
 			);
 			path = ContentGateway;
 			sourceTree = "<group>";
@@ -1847,9 +1973,10 @@
 			children = (
 				FF7A339C273C67070037899B /* Base */,
 				FF7A339B273C66AD0037899B /* Discord */,
-				FFEB12232710CD1A003EF90D /* ContentGateway */,
 				FFC4D66927507F6E008E10D8 /* Academy */,
 				FFC4D69D2755C6E4008E10D8 /* Poap */,
+				FF493D122866702F001D97A8 /* TheGraph */,
+				FF493D3B28676577001D97A8 /* Youtube */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1883,7 +2010,10 @@
 				FF7A33A9273CA29E0037899B /* Discord */,
 				FF7A33AB273CA2D10037899B /* ContentGateway */,
 				FFC4D66227507CC3008E10D8 /* Academy */,
+				FF493D322867631C001D97A8 /* Youtube */,
 				FFC4D6A22755C908008E10D8 /* Poap */,
+				FF493D0D286666B3001D97A8 /* ENSClient */,
+				FF493D2D28668441001D97A8 /* BanklessClient */,
 				FFEB12322710FC56003EF90D /* Implementation */,
 			);
 			path = Client;
@@ -1898,6 +2028,9 @@
 				FFEB1241271898CC003EF90D /* MultiSourceDataClient+ApolloRequest.swift */,
 				FFC4D66727507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift */,
 				FFC4D6A52755CA4D008E10D8 /* MultisourceDataClient+PoapClient.swift */,
+				FF493D102866671A001D97A8 /* MultiSourceDataClient+ENS.swift */,
+				FF493D302866849B001D97A8 /* MultiSourceDataClient+Bankless.swift */,
+				FF493D3928676475001D97A8 /* MultiSourceDataClient+Youtube.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -1905,12 +2038,9 @@
 		FFEB12352710FE17003EF90D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				FFC4D6A92756AA79008E10D8 /* BankAccount.graphql.swift */,
 				FF1AC686274C4FD0003025E0 /* Timeline.graphql.swift */,
 				FFC4D6AD2756D533008E10D8 /* News.graphql.swift */,
 				FF1AC684274C4FD0003025E0 /* Academy.graphql.swift */,
-				FFD9D41827D2CAED00643E79 /* ENS.graphql.swift */,
-				FF1AC687274C4FD0003025E0 /* Types.graphql.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1945,7 +2075,7 @@
 			buildConfigurationList = FF7D495227053EF400F0244B /* Build configuration list for PBXNativeTarget "Bankless" */;
 			buildPhases = (
 				98D6D79030347918E53205D3 /* [CP] Check Pods Manifest.lock */,
-				FFEB12212710CBA6003EF90D /* Generate Content Gateway GraphQL API */,
+				FFEB12212710CBA6003EF90D /* Generate GraphQL APIs */,
 				FF7D493A27053EF300F0244B /* Sources */,
 				FF7D493B27053EF300F0244B /* Frameworks */,
 				FF7D493C27053EF300F0244B /* Resources */,
@@ -2006,7 +2136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFEB12272710CF7E003EF90D /* schema.json in Resources */,
+				FF493D1C28667DA0001D97A8 /* BankAccount.graphql in Resources */,
 				FFC6F4812736075300EA8F12 /* Secrets.xcconfig in Resources */,
 				FF9F5CF32705494100629D79 /* Main.storyboard in Resources */,
 				FF1AC676274C2640003025E0 /* Academy.graphql in Resources */,
@@ -2058,7 +2188,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FFEB12212710CBA6003EF90D /* Generate Content Gateway GraphQL API */ = {
+		FFEB12212710CBA6003EF90D /* Generate GraphQL APIs */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
 			files = (
@@ -2067,14 +2197,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Generate Content Gateway GraphQL API";
+			name = "Generate GraphQL APIs";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = " SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/ContentGateway\"\n \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n\n";
+			shellScript = " SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/TheGraph/ContentGateway\"\n \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n  cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/TheGraph/ENS\"\n \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n  cd \"${SRCROOT}/${TARGET_NAME}/Data/Network/TheGraph/BankToken\"\n \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2093,7 +2223,6 @@
 				FF7A33A8273C6B5A0037899B /* Moya+CachePolicyPlugin.swift in Sources */,
 				FFC4D6832755515A008E10D8 /* DataError.swift in Sources */,
 				FFE4D4632759794D007B4E3A /* ErrorHandling+Display+Log.swift in Sources */,
-				FFD9D41927D2CAED00643E79 /* ENS.graphql.swift in Sources */,
 				FFCC9FA82718B64A00CAB3A3 /* NetworkBanklessService.swift in Sources */,
 				FFC4D66D27507F8D008E10D8 /* BanklessAcademyAPIMethod.swift in Sources */,
 				FFAE986D270E86DB0047405D /* AcademyCourseCard.swift in Sources */,
@@ -2103,12 +2232,13 @@
 				FF1AC67027472218003025E0 /* SectionNavigationControlView.swift in Sources */,
 				FFC4D66827507F57008E10D8 /* MultiSourceDataClient+BanklessAcademy.swift in Sources */,
 				FF78F39D270635CC00A47A91 /* SimpleDependencyContainer.swift in Sources */,
+				FF493D3A28676475001D97A8 /* MultiSourceDataClient+Youtube.swift in Sources */,
 				FF7A33BB273CA7210037899B /* MockIdentityService.swift in Sources */,
 				FF5BCD83273DD31E000D3FEF /* BountyBoardViewController.swift in Sources */,
-				FFC4D6AA2756AA79008E10D8 /* BankAccount.graphql.swift in Sources */,
 				FF7A33A0273C684F0037899B /* NetworkProvider.swift in Sources */,
 				FF5BCDF3274588F2000D3FEF /* NewsItemListCell.swift in Sources */,
 				FF5BCDBC2742DFD5000D3FEF /* TextView.swift in Sources */,
+				FF493D312866849B001D97A8 /* MultiSourceDataClient+Bankless.swift in Sources */,
 				FFC6F4772735FC5D00EA8F12 /* AuthProvider.swift in Sources */,
 				FFE4D45B275965F9007B4E3A /* ErrorLogging+ErrorReporter.swift in Sources */,
 				FF78F38E27062BAF00A47A91 /* BountyListCell.swift in Sources */,
@@ -2122,6 +2252,7 @@
 				FFEB12342710FC63003EF90D /* MultiSourceDataClient.swift in Sources */,
 				FF44547C27D2AB76009F077A /* ResolveENSRequest.swift in Sources */,
 				FFC4D68A27555B87008E10D8 /* DisplayableError+Alert.swift in Sources */,
+				FF493D18286670AB001D97A8 /* ENS.graphql in Sources */,
 				FFC4D6A82756A9C1008E10D8 /* BankAccount.graphql in Sources */,
 				FFD9D41727D2C7BA00643E79 /* MockUserSettingsService.swift in Sources */,
 				FFEB124E2718AB18003EF90D /* AchievementsResponse.swift in Sources */,
@@ -2141,6 +2272,7 @@
 				FF7A33C8273CB4F40037899B /* NavigationBar.swift in Sources */,
 				FF5BCDCB27445474000D3FEF /* NetworkNewsService.swift in Sources */,
 				FF1AC66927471A01003025E0 /* AcademyCourseDetailCard.swift in Sources */,
+				FF493D3F2867659F001D97A8 /* YoutubeAPIMethod.swift in Sources */,
 				FFCC9FAB2718CA1700CAB3A3 /* GaugeClusterViewModel.swift in Sources */,
 				FF5BCDD92744BC31000D3FEF /* FeaturedNewsItemCell.swift in Sources */,
 				FF1AC6422746435F003025E0 /* AcademyCoordinator.swift in Sources */,
@@ -2158,6 +2290,7 @@
 				FF5BCDA9273DE897000D3FEF /* BountyBoardHeaderCell.swift in Sources */,
 				FFC6F4742735F49400EA8F12 /* NetworkAuthService.swift in Sources */,
 				FFE60023271E2DDD00F73FA1 /* AchievementsTitleCell.swift in Sources */,
+				FF493D0F286666C8001D97A8 /* ENSClient.swift in Sources */,
 				FFC6F48327360BCB00EA8F12 /* OAuth2ConsumerInfo.swift in Sources */,
 				FF1AC65C27470DE7003025E0 /* AcademyCourseDetailsViewModel.swift in Sources */,
 				FFAE985D270E43D00047405D /* CardView.swift in Sources */,
@@ -2174,6 +2307,7 @@
 				FF78F3C9270695A900A47A91 /* AcademyCourse+TitleBehaviour.swift in Sources */,
 				FF78F3BF270673C000A47A91 /* ApplicationAppearance.swift in Sources */,
 				FFEB124A2718AAAC003EF90D /* AchievementsService.swift in Sources */,
+				FF493D2F2866845A001D97A8 /* BanklessClient.swift in Sources */,
 				FFC4D6942755613C008E10D8 /* DataError+ErrorHandling.swift in Sources */,
 				FF1AC68A274C4FD0003025E0 /* Timeline.graphql.swift in Sources */,
 				FFC4D69F2755C704008E10D8 /* PoapAPIProvider.swift in Sources */,
@@ -2190,7 +2324,10 @@
 				FFE6001D271C8FB000F73FA1 /* ReusableCell.swift in Sources */,
 				FFCC9FAD2718CA2800CAB3A3 /* GaugeClusterCell.swift in Sources */,
 				FF1AC66B27471A9B003025E0 /* AcademyCourseDetail.swift in Sources */,
+				FF493D38286763F7001D97A8 /* PodcastContentResponse.swift in Sources */,
 				FFAE984C270D18930047405D /* ApplicationConfigurator.swift in Sources */,
+				FF493D36286763ED001D97A8 /* PodcastContentRequest.swift in Sources */,
+				FF493D2C286683F7001D97A8 /* BankAccount.graphql.swift in Sources */,
 				FFEB12312710FBCC003EF90D /* DataClient.swift in Sources */,
 				FFCC9FA62718B64000CAB3A3 /* MockBanklessService.swift in Sources */,
 				FF7A33CF273CB6A40037899B /* IconButtonNavigationBarItem.swift in Sources */,
@@ -2256,6 +2393,7 @@
 				FF5BCD76273DD0E3000D3FEF /* MockBountyBoardService.swift in Sources */,
 				FFEB124C2718AAC2003EF90D /* BanklessService.swift in Sources */,
 				FF7A33A4273C69970037899B /* DiscordAPIMethod.swift in Sources */,
+				FF493D41286767E5001D97A8 /* YoutubePlaylist.swift in Sources */,
 				FF5BCE092745CAEC000D3FEF /* NewsletterDetailsCoordinator.swift in Sources */,
 				FFC4D69A27559030008E10D8 /* DAOOwnershipRequest.swift in Sources */,
 				FF5BCD99273DD44B000D3FEF /* BountySubmissionViewModel.swift in Sources */,
@@ -2276,11 +2414,13 @@
 				FF5BCDDD2744CB42000D3FEF /* FeaturedNewsCollectionFlowLayout.swift in Sources */,
 				FF1AC6A1274C6FD4003025E0 /* AcademyCoursePoapSectionViewModel.swift in Sources */,
 				FFE60021271E2DCD00F73FA1 /* AchievementsTitleViewModel.swift in Sources */,
+				FF493D3D28676592001D97A8 /* YoutubeAPIProvider.swift in Sources */,
 				FF1AC68D274C6B66003025E0 /* AcademyCourseFlowCoordinator.swift in Sources */,
 				FF78F3D82706B27A00A47A91 /* BaseView.swift in Sources */,
 				FF5BCDCD27445CC7000D3FEF /* NewsItemPreviewBehaviour.swift in Sources */,
 				FF1AC6642747153A003025E0 /* String+MarkupRenderable.swift in Sources */,
 				FFC4D66627507D23008E10D8 /* AcademyClaimProofOfAttendanceRequest.swift in Sources */,
+				FF493D112866671A001D97A8 /* MultiSourceDataClient+ENS.swift in Sources */,
 				FF60C9A0274DD80A00C794C1 /* AcademyCourse+QuizItem.swift in Sources */,
 				FFEB12522718ABFD003EF90D /* BANKAccount.swift in Sources */,
 				FF7A33BF273CA87E0037899B /* MultiSourceDataClient+Discord.swift in Sources */,
@@ -2315,6 +2455,7 @@
 				FF1AC69D274C6FA9003025E0 /* AcademyCourseLearnSectionViewModel.swift in Sources */,
 				FF7A339E273C68240037899B /* BaseNetworkProvider.swift in Sources */,
 				FF78F3C12706741100A47A91 /* Colors.swift in Sources */,
+				FF493D342867633D001D97A8 /* YoutubeClient.swift in Sources */,
 				FF5BCDA2273DE0A9000D3FEF /* BaseSectionedSource.swift in Sources */,
 				FFC4D66B27507F83008E10D8 /* BanklessAcademyAPIProvider.swift in Sources */,
 				FFAE985F270E43D00047405D /* TagView.swift in Sources */,
@@ -2326,6 +2467,7 @@
 				FF5BCD6F273DCFA2000D3FEF /* BountyBoardService.swift in Sources */,
 				FFA9C169274DAB8E003F4B11 /* QuizItemOptionView.swift in Sources */,
 				FF78F38827062B4000A47A91 /* HomeTimelineView.swift in Sources */,
+				FF493D28286683E3001D97A8 /* ENS.graphql.swift in Sources */,
 				FF1AC68B274C4FD0003025E0 /* Types.graphql.swift in Sources */,
 				FFC4D6B7275844E2008E10D8 /* AcademyCourseUnsupportedSectionView.swift in Sources */,
 				FFE60029271E33C300F73FA1 /* NotificationEvent.swift in Sources */,

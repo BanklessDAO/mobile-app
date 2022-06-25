@@ -20,31 +20,28 @@
 import Foundation
 
 struct AcademyCourse: Codable {
-    let id: String
     let name: String
     let slug: String
-    let backgroundImageURL: URL
-    let notionId: String
-    let poapEventId: Int
+    let lessonImageLink: URL
     let description: String
     let duration: Int
     let difficulty: Difficulty
     let poapImageLink: URL
     let learnings: String
     let learningActions: String
-    let knowledgeRequirements: String
-    let sections: [Section]
+    let knowledgeRequirements: String?
+    
+    var sections: [Section] { return [] }
 }
 
 extension AcademyCourse {
     enum Difficulty: String, Codable, CaseIterable {
-        case easy
-        case medium
-        case hard
+        case Easy
+        case Medium
+        case Hard
     }
     
     struct Section: Codable {
-        let id: String
         let type: `Type`
         let title: String
         let content: String?
@@ -56,14 +53,13 @@ extension AcademyCourse {
 
 extension AcademyCourse.Section {
     enum `Type`: String, Codable, CaseIterable {
-        case learn
-        case quiz
-        case quest
-        case poap
+        case learn = "LEARN"
+        case quiz = "QUIZ"
+        case quest = "QUEST"
+        case poap = "POAP"
     }
     
     struct Quiz: Codable {
-        let id: String
         let question: String
         let answers: [String]?
         let rightAnswerNumber: Int
