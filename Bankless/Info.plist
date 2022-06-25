@@ -6,6 +6,8 @@
 	<string>https://${BANKLESS_ACADEMY_API_BASE_PATH}</string>
 	<key>BANKLESS_ACADEMY_LESSONS_BASE_URL</key>
 	<string>https://${BANKLESS_ACADEMY_LESSONS_BASE_PATH}</string>
+	<key>BANK_TOKEN_GRAPHQL_API_URL</key>
+	<string>https://${BANK_TOKEN_GRAPHQL_API_PATH}</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -49,8 +51,8 @@
 	<string>${DISCORD_CLIENT_SECRET}</string>
 	<key>DISCORD_SERVER_URL</key>
 	<string>https://${DISCORD_SERVER_LINK}</string>
-	<key>YOUTUBE_API_ACCESS</key>
-	<string>${YOUTUBE_API_ACCESS}</string>
+	<key>ENS_GRAPHQL_API_URL</key>
+	<string>https://${ENS_GRAPHQL_API_PATH}</string>
 	<key>GRAPHQL_API_ENDPOINT</key>
 	<string>https://${GRAPHQL_API_ENDPOINT}</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -59,12 +61,6 @@
 	<string>https://${POAP_API_BASE_PATH}</string>
 	<key>POAP_APP_BASE_URL</key>
 	<string>https://${POAP_APP_BASE_PATH}</string>
-	<key>ENS_GRAPHQL_API_URL</key>
-	<string>https://${ENS_GRAPHQL_API_PATH}</string>
-	<key>BANK_TOKEN_GRAPHQL_API_URL</key>
-	<string>https://${BANK_TOKEN_GRAPHQL_API_PATH}</string>
-	<key>YOUTUBE_API_BASE_URL</key>
-	<string>https://${YOUTUBE_API_BASE_PATH}</string>
 	<key>SENTRY_DSN</key>
 	<string>https://${SENTRY_DSN_PATH}</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -88,5 +84,9 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
+	<key>YOUTUBE_API_ACCESS</key>
+	<string>${YOUTUBE_API_ACCESS}</string>
+	<key>YOUTUBE_API_BASE_URL</key>
+	<string>https://${YOUTUBE_API_BASE_PATH}</string>
 </dict>
 </plist>

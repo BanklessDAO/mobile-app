@@ -1,3 +1,9 @@
+## v1.0.1 - 2022-06-25 - Beta
+
+### Updated
+
+- Re-implemented all the API integrations that relied on Content Gateway previously.
+
 ## v1.0.0 - 2022-03-07 - Beta
 
 ### Fixed
